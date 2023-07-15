@@ -11,14 +11,18 @@ class Color:
     self._b: int = b
     self._a: int = a
 
+    @property
+    def r(self):
+      return _mod.HEAPU8[self._address + 0]
+
     @r.setter
     def r(self, value):
       self._r = value
       _mod.HEAPU8[self._address + 0] = self._r
 
     @property
-    def r(self):
-      return _mod.HEAPU8[self._address + 0]
+    def g(self):
+      return _mod.HEAPU8[self._address + 1]
 
     @g.setter
     def g(self, value):
@@ -26,8 +30,8 @@ class Color:
       _mod.HEAPU8[self._address + 1] = self._g
 
     @property
-    def g(self):
-      return _mod.HEAPU8[self._address + 1]
+    def b(self):
+      return _mod.HEAPU8[self._address + 2]
 
     @b.setter
     def b(self, value):
@@ -35,17 +39,13 @@ class Color:
       _mod.HEAPU8[self._address + 2] = self._b
 
     @property
-    def b(self):
-      return _mod.HEAPU8[self._address + 2]
+    def a(self):
+      return _mod.HEAPU8[self._address + 3]
 
     @a.setter
     def a(self, value):
       self._a = value
       _mod.HEAPU8[self._address + 3] = self._a
-
-    @property
-    def a(self):
-      return _mod.HEAPU8[self._address + 3]
 
     def __del__(self):
       _mod.free(self._address)
@@ -77,6 +77,13 @@ BLANK = Color(0, 0, 0, 0) # Blank (Transparent)
 MAGENTA = Color(255, 0, 255, 255) # Magenta
 RAYWHITE = Color(245, 245, 245, 255) # My own White (raylib logo)
 
+def ClearBackground(color):
+  _mod._ClearBackground(color._address)
+
+def DrawText(text, x, y, fontSize, color):
+  s = _mod.stringToUTF8(text)
+  _mod._DrawText(s, x, y, fontSize, color._address)
+  _mod._free(s)
 `
 
 export default async function setup (canvas) {
@@ -94,10 +101,6 @@ export default async function setup (canvas) {
   pyodide.globals.set('BeginDrawing', mod._BeginDrawing)
   pyodide.globals.set('DrawFPS', mod._DrawFPS)
   pyodide.globals.set('EndDrawing', mod._EndDrawing)
-  pyodide.globals.set('ClearBackground', mod._ClearBackground)
-
-  // some have types that can be automatically converted (like the string here)
-  pyodide.globals.set('DrawText', mod.cwrap('DrawText', 'void', ['string', 'i32', 'i32', 'f32', 'pointer']))
 
   // these are functions that are not in the api JSON
   pyodide.globals.set('DrawTextBoxedSelectable', mod.cwrap('DrawTextBoxedSelectable', 'void', ['pointer', 'string', 'pointer', 'f32', 'f32', 'bool', 'pointer', 'i32', 'pointer', 'pointer']))
