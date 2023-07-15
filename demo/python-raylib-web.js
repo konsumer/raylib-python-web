@@ -25,7 +25,11 @@ export default async function setup (canvas) {
   pyodide.globals.set('ClearBackground', mod._ClearBackground)
 
   // some have types that can be automatically converted (like the string here)
-  pyodide.globals.set('DrawText', mod.cwrap('DrawText', 'void', ['string', 'i32', 'i32', 'i32', 'pointer']))
+  pyodide.globals.set('DrawText', mod.cwrap('DrawText', 'void', ['string', 'i32', 'i32', 'f32', 'pointer']))
+
+  // these are functions that are not in the api JSON
+  pyodide.globals.set('DrawTextBoxedSelectable', mod.cwrap('DrawTextBoxedSelectable', 'void', ['pointer', 'string', 'pointer', 'f32', 'f32', 'bool', 'pointer', 'i32', 'pointer', 'pointer']))
+  pyodide.globals.set('DrawTextBoxed', mod.cwrap('DrawTextBoxed', 'void', ['pointer', 'string', 'pointer', 'f32', 'f32', 'bool', 'pointer']))
 
   // since I am not sure how structs will work, this is just some initial stuff to make the demo work
   pyodide.globals.set('LIGHTGRAY', color(200, 200, 200, 255)) // Light Gray
