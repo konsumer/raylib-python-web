@@ -84,4 +84,7 @@ def ClearBackground(color):
 
 
 def DrawText(text, x, y, fontSize, color):
-    _mod.ccall('DrawText', 'void', ['string', 'i32', 'i32', 'f32', 'pointer'], [text, x, y, fontSize, color._address])
+    sp = _mod._malloc(len(text) + 1)
+    _mod.stringToUTF8(text, sp)
+    _mod._DrawText(sp, x, y, fontSize, color._address)
+    _mod._free(sp)
