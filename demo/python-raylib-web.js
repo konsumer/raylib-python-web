@@ -7,9 +7,13 @@ class Color:
     self._size: int = 4
     self._address: int = _mod._malloc(self._size)
     self._r: int = r
+    _mod.HEAPU8[self._address + 0] = self._r
     self._g: int = g
+    _mod.HEAPU8[self._address + 1] = self._g
     self._b: int = b
+    _mod.HEAPU8[self._address + 2] = self._b
     self._a: int = a
+    _mod.HEAPU8[self._address + 3] = self._a
 
     @property
     def r(self):
@@ -89,7 +93,7 @@ def DrawText(text, x, y, fontSize, color):
 export default async function setup (canvas) {
   const mod = await Module({ canvas })
   const pyodide = await loadPyodide()
-
+  window.mod = mod
   pyodide.globals.set('_mod', mod)
   pyodide.runPython(wrapper)
 
