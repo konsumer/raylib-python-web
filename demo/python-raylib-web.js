@@ -85,9 +85,7 @@ def ClearBackground(color):
   _mod._ClearBackground(color._address)
 
 def DrawText(text, x, y, fontSize, color):
-  s = _mod.stringToUTF8(text)
-  _mod._DrawText(s, x, y, fontSize, color._address)
-  _mod._free(s)
+  _mod.ccall('DrawText', 'void', ['string', 'number', 'number', 'pointer'], [text, x, y, fontSize, color._address])
 `
 
 export default async function setup (canvas) {
