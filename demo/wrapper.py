@@ -48,7 +48,7 @@ class Color:
         _mod.HEAPU8[self._address + 3] = self._a
 
     def __del__(self):
-        _mod.free(self._address)
+        _mod._free(self._address)
 
 
 LIGHTGRAY = Color(200, 200, 200, 255)  # Light Gray
@@ -85,6 +85,6 @@ def ClearBackground(color):
 
 def DrawText(text, x, y, fontSize, color):
     sp = _mod._malloc(len(text) + 1)
-    _mod.stringToUTF8(text, sp)
+    _mod.stringToUTF8(text, sp, len(text) + 1)
     _mod._DrawText(sp, x, y, fontSize, color._address)
     _mod._free(sp)
