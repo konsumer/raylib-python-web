@@ -48,6 +48,7 @@ class Color:
         _mod.HEAPU8[self._address + 3] = self._a
 
     def __del__(self):
+        print('deleted color ' + str(self._address))
         _mod._free(self._address)
 
 
