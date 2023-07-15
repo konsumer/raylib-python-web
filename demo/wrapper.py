@@ -1,6 +1,3 @@
-_mod = ...
-
-
 class Color:
     def __init__(self, r: int, g: int, b: int, a: int):
         self._size: int = 4
