@@ -83,9 +83,33 @@ RAYWHITE = Color(245, 245, 245, 255)  # My own White (raylib logo)
 def ClearBackground(color):
     _mod._ClearBackground(color._address)
 
-
 def DrawText(text, x, y, fontSize, color):
     sp = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, sp, len(text) + 1)
     _mod._DrawText(sp, x, y, fontSize, color._address)
     _mod._free(sp)
+
+def BeginDrawing():
+    _mod._BeginDrawing()
+
+def EndDrawing():
+    _mod._EndDrawing()
+
+def DrawFPS(x, y):
+    _mod._DrawFPS(x, y)
+
+def InitWindow(width, height):
+    _mod._InitWindow(width, height)
+
+def DrawTextBoxedSelectable(font, text, rec, fontSize, spacing, wordWrap, tint, selectStart, selectLength, selectTint, selectBackTint):
+    sp = _mod._malloc(len(text) + 1)
+    _mod.stringToUTF8(text, sp, len(text) + 1)
+    _mod._DrawTextBoxedSelectable(font._address, sp, rec._address, fontSize, spacing, wordWrap, tint._address, selectStart, selectLength, selectTint._address, selectBackTint._address)
+    _mod._free(sp)
+
+def DrawTextBoxed(font, text, rec, fontSize, spacing, wordWrap, tint):
+    sp = _mod._malloc(len(text) + 1)
+    _mod.stringToUTF8(text, sp, len(text) + 1)
+    _mod._DrawTextBoxed(font._address, sp, rec._address, fontSize, spacing, wordWrap, tint._address)
+    _mod._free(sp)
+
