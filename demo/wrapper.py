@@ -57,19 +57,35 @@ class Rectangle:
 
     @property
     def x(self):
-        return _mod.HEAP32[self._address + 0]
+        return _mod.HEAPF32[self._address + 0]
 
     @x.setter
     def x(self, value):
-        _mod.HEAP32[self._address + 0] = value
+        _mod.HEAPF32[self._address + 0] = value
 
     @property
     def y(self):
-        return _mod.HEAP32[self._address + 4]
+        return _mod.HEAPF32[self._address + 4]
 
     @y.setter
     def y(self, value):
-        _mod.HEAP32[self._address + 4] = value
+        _mod.HEAPF32[self._address + 4] = value
+
+    @property
+    def width(self):
+        return _mod.HEAPF32[self._address + 8]
+
+    @width.setter
+    def width(self, value):
+        _mod.HEAPF32[self._address + 8] = value
+
+    @property
+    def height(self):
+        return _mod.HEAPF32[self._address + 12]
+
+    @width.setter
+    def height(self, value):
+        _mod.HEAPF32[self._address + 12] = value
 
 
 
