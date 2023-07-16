@@ -101,3 +101,15 @@ def DrawFPS(x, y):
 def InitWindow(width, height):
     _mod._InitWindow(width, height)
 
+def DrawTextBoxedSelectable(font, text, rec, fontSize, spacing, wordWrap, tint, selectStart, selectLength, selectTint, selectBackTint):
+    sp = _mod._malloc(len(text) + 1)
+    _mod.stringToUTF8(text, sp, len(text) + 1)
+    _mod._DrawTextBoxedSelectable(font._address, sp, rec._address, fontSize, spacing, wordWrap, tint._address, selectStart, selectLength, selectTint._address, selectBackTint._address)
+    _mod._free(sp)
+
+def DrawTextBoxed(font, text, rec, fontSize, spacing, wordWrap, tint):
+    sp = _mod._malloc(len(text) + 1)
+    _mod.stringToUTF8(text, sp, len(text) + 1)
+    _mod._DrawTextBoxed(font._address, sp, rec._address, fontSize, spacing, wordWrap, tint._address)
+    _mod._free(sp)
+
