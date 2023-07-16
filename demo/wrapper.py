@@ -1,11 +1,11 @@
 class Color:
-    def __init__(self, r: int, g: int, b: int, a: int):
+    def __init__(self, r: int = 0, g: int = 0, b: int = 0, a: int = 0):
         self._size: int = 4
         self._address: int = _mod._malloc(self._size)
-        _mod.HEAPU8[self._address + 0] = r or 0
-        _mod.HEAPU8[self._address + 1] = g or 0
-        _mod.HEAPU8[self._address + 2] = b or 0
-        _mod.HEAPU8[self._address + 3] = a or 0
+        _mod.HEAPU8[self._address + 0] = r
+        _mod.HEAPU8[self._address + 1] = g
+        _mod.HEAPU8[self._address + 2] = b
+        _mod.HEAPU8[self._address + 3] = a
 
     def __del__(self):
         _mod._free(self._address)
@@ -44,13 +44,13 @@ class Color:
 
 
 class Rectangle:
-    def __init__(self, x: int, y: int, width: int, height: int):
+    def __init__(self, x: float = 0, y: float = 0, width: float = 0, height: float = 0):
         self._size: int = 16
         self._address: int = _mod._malloc(self._size)
-        _mod.HEAPF32[self._address + 0] = x or 0
-        _mod.HEAPF32[self._address + 4] = y or 0
-        _mod.HEAPF32[self._address + 8] = width or 0
-        _mod.HEAPF32[self._address + 12] = height or 0
+        _mod.HEAPF32[self._address + 0] = x
+        _mod.HEAPF32[self._address + 4] = y
+        _mod.HEAPF32[self._address + 8] = width
+        _mod.HEAPF32[self._address + 12] = height
 
     def __del__(self):
         _mod._free(self._address)
