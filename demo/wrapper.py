@@ -135,11 +135,11 @@ RAYWHITE = Color(245, 245, 245, 255, frozen=True)  # My own White (raylib logo)
 
 # helper to copy a struct
 # newColor = sturct_clone(RAYWHITE)
-def sturct_clone(Struct, source):
-    a = _mod.malloc(destination._size)
-    _mod.memcpy(a, source._address, source._size)
-    # TODO: there is probly a more pythonic way to get the class from source, so we don't need Struct param
-    out = Struct(address = a)
+# TODO: _memcpy is not exposed for some reason
+def struct_clone(source):
+    a = _mod._malloc(source._size)
+    _mod._memcpy(a, source._address, source._size)
+    out = source.__class__(address = a)
     out._frozen = False
     return out
 
