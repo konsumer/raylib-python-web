@@ -47,10 +47,10 @@ class Rectangle:
     def __init__(self, x: int, y: int, width: int, height: int):
         self._size: int = 16
         self._address: int = _mod._malloc(self._size)
-        _mod.HEAP32[self._address + 0] = x or 0
-        _mod.HEAP32[self._address + 4] = y or 0
-        _mod.HEAP32[self._address + 8] = width or 0
-        _mod.HEAP32[self._address + 12] = height or 0
+        _mod.HEAPF32[self._address + 0] = x or 0
+        _mod.HEAPF32[self._address + 4] = y or 0
+        _mod.HEAPF32[self._address + 8] = width or 0
+        _mod.HEAPF32[self._address + 12] = height or 0
 
     def __del__(self):
         _mod._free(self._address)
