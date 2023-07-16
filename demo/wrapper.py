@@ -2,14 +2,13 @@ class Color:
     def __init__(self, r: int, g: int, b: int, a: int):
         self._size: int = 4
         self._address: int = _mod._malloc(self._size)
-        self._r: int = r
-        _mod.HEAPU8[self._address + 0] = self._r
-        self._g: int = g
-        _mod.HEAPU8[self._address + 1] = self._g
-        self._b: int = b
-        _mod.HEAPU8[self._address + 2] = self._b
-        self._a: int = a
-        _mod.HEAPU8[self._address + 3] = self._a
+        _mod.HEAPU8[self._address + 0] = r or 0
+        _mod.HEAPU8[self._address + 1] = g or 0
+        _mod.HEAPU8[self._address + 2] = b or 0
+        _mod.HEAPU8[self._address + 3] = a or 0
+
+    def __del__(self):
+        _mod._free(self._address)
 
     @property
     def r(self):
@@ -17,8 +16,7 @@ class Color:
 
     @r.setter
     def r(self, value):
-        self._r = value
-        _mod.HEAPU8[self._address + 0] = self._r
+        _mod.HEAPU8[self._address + 0] = value
 
     @property
     def g(self):
@@ -26,8 +24,7 @@ class Color:
 
     @g.setter
     def g(self, value):
-        self._g = value
-        _mod.HEAPU8[self._address + 1] = self._g
+        _mod.HEAPU8[self._address + 1] = value
 
     @property
     def b(self):
@@ -35,8 +32,7 @@ class Color:
 
     @b.setter
     def b(self, value):
-        self._b = value
-        _mod.HEAPU8[self._address + 2] = self._b
+        _mod.HEAPU8[self._address + 2] = value
 
     @property
     def a(self):
@@ -44,12 +40,37 @@ class Color:
 
     @a.setter
     def a(self, value):
-        self._a = value
-        _mod.HEAPU8[self._address + 3] = self._a
+        _mod.HEAPU8[self._address + 3] = value
+
+
+class Rectangle:
+    def __init__(self, x: int, y: int, width: int, height: int):
+        self._size: int = 16
+        self._address: int = _mod._malloc(self._size)
+        _mod.HEAP32[self._address + 0] = x or 0
+        _mod.HEAP32[self._address + 4] = y or 0
+        _mod.HEAP32[self._address + 8] = width or 0
+        _mod.HEAP32[self._address + 12] = height or 0
 
     def __del__(self):
-        print('deleted color ' + str(self._address))
         _mod._free(self._address)
+
+    @property
+    def x(self):
+        return _mod.HEAP32[self._address + 0]
+
+    @x.setter
+    def x(self, value):
+        _mod.HEAP32[self._address + 0] = value
+
+    @property
+    def y(self):
+        return _mod.HEAP32[self._address + 4]
+
+    @y.setter
+    def y(self, value):
+        _mod.HEAP32[self._address + 4] = value
+
 
 
 LIGHTGRAY = Color(200, 200, 200, 255)  # Light Gray
