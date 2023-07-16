@@ -62,6 +62,6 @@ class CTypeKind(Enum):
 
 
 class CTypeToken:
-    def __init__(self, kind: CTypeKind, string: str = ""):
+    def __init__(self, kind: CTypeTokenKind, string: str = ""):
         self.kind = kind
         self.string = string

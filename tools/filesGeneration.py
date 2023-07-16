@@ -26,21 +26,6 @@ wrapped_functions_names_stub = []
 
 # -----------------------------------------
 
-class CTypeKind(Enum):
-    I8 = auto()
-    I16 = auto()
-    I32 = auto()
-    I64 = auto()
-    Float = auto()
-    Double = auto()
-    Array = auto()
-    Pointer = auto()
-    Struct = auto()
-
-class CType:
-    def __init__(self, kind: CTypeKind, of: CType, pointer_level: int = 0, array_sizee: int = 0):
-        pass
-
 
 def generate_file(file_path: Path) -> None:
     if Path(file_path).exists():
