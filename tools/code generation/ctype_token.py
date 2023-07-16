@@ -16,8 +16,8 @@ class CTypeTokenKind(IntFlag):
 
     # Separators
     ASTERISK = 1 << 19  # *
-    OPENING_PARENTHESIS = 1 << 20  # [
-    CLOSING_PARENTHESIS = 1 << 21  # ]
+    OPENING_BRACKETS = 1 << 20  # [
+    CLOSING_BRACKETS = 1 << 21  # ]
 
     # Numbers
     INTEGER_LITERAL = 1 << 22
@@ -30,8 +30,8 @@ class CTypeTokenKind(IntFlag):
 
 string_to_separator: dict[str, CTypeTokenKind] = {
     '*': CTypeTokenKind.ASTERISK,
-    '[': CTypeTokenKind.OPENING_PARENTHESIS,
-    ']': CTypeTokenKind.CLOSING_PARENTHESIS,
+    '[': CTypeTokenKind.OPENING_BRACKETS,
+    ']': CTypeTokenKind.CLOSING_BRACKETS,
 }
 
 string_to_keyword: dict[str, CTypeTokenKind] = {

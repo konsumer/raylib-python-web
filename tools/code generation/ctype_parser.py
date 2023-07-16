@@ -154,17 +154,47 @@ class Parser:
 
         return ctype
 
+    def peek_pointer_or_array(self) -> CType | None:
+        if self.is_token_kind(CTypeTokenKind.ASTERISK):
+            pointer_level: int = 0
+            while self.is_token_kind(CTypeTokenKind.ASTERISK):
+                pointer_level += 1
+                self.peek_token()  # peek * token
+
+            return CType(CTypeKind.Pointer, pointer_level=pointer_level)
+
+        elif self.is_token_kind(CTypeTokenKind.OPENING_BRACKETS):
+            self.peek_token()  # peek [ token
+
+            integer_token: CTypeToken = self.current_token
+            self.peek_token()  # peek integer token
+
+            self.peek_token()  # peek ] token
+
+            return CType(CTypeKind.Array, array_size=int(integer_token.string))
+        else:
+            raise SyntaxError("Invalid Starter token for pointer or array")
+
     def parse_token_stream_to_ctype(self, token_stream: list[CTypeToken]) -> CType:
         self.token_stream = token_stream
         self.index = 0
         self.current_token = self.token_stream[self.index]
 
-        ctype: CType = self.peek_specifier_qualifier_list()
+        ctype_specifier: CType = self.peek_specifier_qualifier_list()
+        ctype: CType = ctype_specifier
 
+        if self.is_token_kind(CTypeTokenKind.ASTERISK) or \
+                self.is_token_kind(CTypeTokenKind.OPENING_BRACKETS):
+            ctype_pointer_or_array = self.peek_pointer_or_array()
+            ctype_pointer_or_array.of = ctype
+            ctype = ctype_pointer_or_array
         return ctype
 
+
 from ctype_lexer import *
+
 lexer = Lexer()
-lexer.lex_string_to_token_stream("const unsigned char")
+lexer.lex_string_to_token_stream("const rect [555]")
 parser = Parser()
-parser.parse_token_stream_to_ctype(lexer.token_stream)
+ctype = parser.parse_token_stream_to_ctype(lexer.token_stream)
+
