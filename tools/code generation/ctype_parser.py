@@ -50,11 +50,13 @@ specifier_cases: dict[CTypeTokenKind, CTypeKind] = {
 
 class CType:
     def __init__(self, kind: CTypeKind,
-                 of: CType | CTypeToken | None = None,
+                 of: CType | None = None,
+                 struct_token: CTypeToken | None = None,
                  pointer_level: int = 0,
                  array_size: int = 0):
         self.kind = kind
         self.of = of
+        self.struct_token = struct_token
         self.pointer_level = pointer_level
         self.array_size = array_size
 
@@ -135,7 +137,7 @@ class Parser:
 
                 self.peek_token()  # peek struct identifier name
 
-                return CType(CTypeKind.Struct, of=token)
+                return CType(CTypeKind.Struct, struct_token=token)
 
             current_specifier_kind: CTypeTokenKind = self.peek_token_kind()
             if current_specifier_kind == current_specifier_kind.UNSIGNED or current_specifier_kind == current_specifier_kind.SIGNED:
@@ -160,3 +162,9 @@ class Parser:
         ctype: CType = self.peek_specifier_qualifier_list()
 
         return ctype
+
+from ctype_lexer import *
+lexer = Lexer()
+lexer.lex_string_to_token_stream("const unsigned char")
+parser = Parser()
+parser.parse_token_stream_to_ctype(lexer.token_stream)
