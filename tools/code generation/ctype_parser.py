@@ -194,7 +194,6 @@ class Parser:
 from ctype_lexer import *
 
 lexer = Lexer()
-lexer.lex_string_to_token_stream("const rect [555]")
+lexer.lex_string_to_token_stream("const rect const [555]")
 parser = Parser()
 ctype = parser.parse_token_stream_to_ctype(lexer.token_stream)
-
