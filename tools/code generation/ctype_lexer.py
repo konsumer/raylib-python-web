@@ -108,9 +108,3 @@ class Lexer:
         self.token_stream.append(CTypeToken(CTypeTokenKind.END, '\0'))
 
         return self.token_stream
-
-
-lexer = Lexer()
-stream = lexer.lex_string_to_token_stream("const long long[10]**")
-
-print("")

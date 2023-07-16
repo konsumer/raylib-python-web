@@ -1,32 +1,31 @@
 from enum import *
 
 
-class CTypeTokenKind(Enum):
+class CTypeTokenKind(IntFlag):
     # Keywords
-    CHAR = auto()  # char
-    CONST = auto()  # const
-    DOUBLE = auto()  # double
-    ENUM = auto()  # enum
-    FLOAT = auto()  # float
-    INT = auto()  # int
-    LONG = auto()  # long
-    SHORT = auto()  # short
-    SIGNED = auto()  # signed
-    UNSIGNED = auto()  # unsigned
-    VOID = auto()  # void
+    CHAR = 1 << 0  # char
+    CONST = 1 << 2  # const
+    DOUBLE = 1 << 4  # double
+    FLOAT = 1 << 6  # float
+    INT = 1 << 8  # int
+    LONG = 1 << 10  # long
+    SHORT = 1 << 12  # short
+    SIGNED = 1 << 14  # signed
+    UNSIGNED = 1 << 16  # unsigned
+    VOID = 1 << 18  # void
 
     # Separators
-    ASTERISK = auto()  # *
-    OPENING_PARENTHESIS = auto()  # [
-    CLOSING_PARENTHESIS = auto()  # ]
+    ASTERISK = 1 << 19  # *
+    OPENING_PARENTHESIS = 1 << 20  # [
+    CLOSING_PARENTHESIS = 1 << 21  # ]
 
     # Numbers
-    INTEGER_LITERAL = auto()
+    INTEGER_LITERAL = 1 << 22
 
     # struct identifier name
-    IDENTIFIER = auto()
+    IDENTIFIER = 1 << 23
 
-    END = auto()  # End Of Tokens stream token
+    END = 1 << 24  # End Of Tokens stream token
 
 
 string_to_separator: dict[str, CTypeTokenKind] = {
@@ -39,7 +38,6 @@ string_to_keyword: dict[str, CTypeTokenKind] = {
     "char": CTypeTokenKind.CHAR,
     "const": CTypeTokenKind.CONST,
     "double": CTypeTokenKind.DOUBLE,
-    "enum": CTypeTokenKind.ENUM,
     "float": CTypeTokenKind.FLOAT,
     "int": CTypeTokenKind.INT,
     "long": CTypeTokenKind.LONG,
@@ -51,6 +49,7 @@ string_to_keyword: dict[str, CTypeTokenKind] = {
 
 
 class CTypeKind(Enum):
+    Void = auto()
     I8 = auto()
     I16 = auto()
     I32 = auto()
