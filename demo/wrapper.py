@@ -52,6 +52,9 @@ class Rectangle:
         _mod.HEAP32[self._address + 8] = width or 0
         _mod.HEAP32[self._address + 12] = height or 0
 
+    def __del__(self):
+        _mod._free(self._address)
+
     @property
     def x(self):
         return _mod.HEAP32[self._address + 0]
