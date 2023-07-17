@@ -6,6 +6,9 @@ END_OF_FILE = '\0'
 specifier_cases: dict[CTypeTokenKind, CTypeKind] = {
     CTypeTokenKind.VOID: CTypeKind.Void,
 
+    # bool kind
+    CTypeTokenKind.BOOL: CTypeKind.I8,
+
     # char kinds
     CTypeTokenKind.CHAR: CTypeKind.I8,
     CTypeTokenKind.SIGNED + CTypeTokenKind.CHAR: CTypeKind.I8,
@@ -92,6 +95,7 @@ class Parser:
              CTypeTokenKind.FLOAT,
              CTypeTokenKind.DOUBLE,
              CTypeTokenKind.SIGNED,
+             CTypeTokenKind.BOOL,
              CTypeTokenKind.UNSIGNED,
              CTypeTokenKind.IDENTIFIER])
 
@@ -189,11 +193,3 @@ class Parser:
             ctype_pointer_or_array.of = ctype
             ctype = ctype_pointer_or_array
         return ctype
-
-
-from ctype_lexer import *
-
-lexer = Lexer()
-lexer.lex_string_to_token_stream("const rect const [555]")
-parser = Parser()
-ctype = parser.parse_token_stream_to_ctype(lexer.token_stream)
