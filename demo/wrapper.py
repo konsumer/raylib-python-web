@@ -1,6 +1,6 @@
 class Color:
+    _size: int = 4
     def __init__(self, r: int = 0, g: int = 0, b: int = 0, a: int = 0, frozen=False, address=None):
-        self._size: int = 4
         self._frozen = frozen
         if address:
             self._address:int = address
@@ -51,9 +51,26 @@ class Color:
             _mod.HEAPU8[self._address + 3] = value
 
 
+class StructArray:
+    def __init__(self, stype, length, frozen=False, address=None):
+        self._stype = stype
+        self._length = length
+        self._frozen = frozen
+        self._size = self._stype._size * self._length
+        if address:
+            self._address:int = address
+        else:
+            self._address: int = _mod._malloc(self._size)
+    def __del__(self):
+        _mod._free(self._address)
+
+    def __getitem__(self, item):
+        return self._stype(address=(self._stype._sizee * item))
+
+
 class Rectangle:
+    _size: int = 16
     def __init__(self, x: float = 0, y: float = 0, width: float = 0, height: float = 0, frozen=False, address=None):
-        self._size: int = 16
         self._frozen = frozen
         if address:
             self._address:int = address
