@@ -35,7 +35,19 @@ string_to_separator: dict[str, CTypeTokenKind] = {
     ']': CTypeTokenKind.CLOSING_BRACKETS,
 }
 
-
+string_to_keyword: dict[str, CTypeTokenKind] = {
+    "unsigned": CTypeTokenKind.UNSIGNED,
+    "double": CTypeTokenKind.DOUBLE,
+    "signed": CTypeTokenKind.SIGNED,
+    "const": CTypeTokenKind.CONST,
+    "float": CTypeTokenKind.FLOAT,
+    "short": CTypeTokenKind.SHORT,
+    "char": CTypeTokenKind.CHAR,
+    "long": CTypeTokenKind.LONG,
+    "void": CTypeTokenKind.VOID,
+    "bool": CTypeTokenKind.BOOL,
+    "int": CTypeTokenKind.INT,
+}
 
 class CTypeKind(Enum):
     Void = auto()
