@@ -94,5 +94,5 @@ for struct_api in raylib_api_structs:
             alias_struct.size = out.size
             general_structs.append(alias_struct)
 
-for struct in general_structs:
-    print(struct.name, struct.size)
+"""for struct in general_structs:
+    print(struct.name, struct.size)"""
