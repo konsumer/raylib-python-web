@@ -28,7 +28,7 @@ def get_ctype_size(ctype: CType) -> int:
             size += 1
         case CTypeKind.I16 | CTypeKind.UI16:
             size += 2
-        case CTypeKind.I32 | CTypeKind.UI16 | CTypeKind.Float:
+        case CTypeKind.I32 | CTypeKind.UI32 | CTypeKind.Float:
             size += 4
         case CTypeKind.I64 | CTypeKind.UI64 | CTypeKind.Double:
             size += 8
