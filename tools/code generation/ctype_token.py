@@ -10,22 +10,23 @@ class CTypeTokenKind(IntFlag):
     INT = 1 << 8  # int
     LONG = 1 << 10  # long
     SHORT = 1 << 12  # short
-    SIGNED = 1 << 14  # signed
-    UNSIGNED = 1 << 16  # unsigned
-    VOID = 1 << 18  # void
+    BOOL = 1 << 14  # bool
+    SIGNED = 1 << 16  # signed
+    UNSIGNED = 1 << 18  # unsigned
+    VOID = 1 << 20  # void
 
     # Separators
-    ASTERISK = 1 << 19  # *
-    OPENING_BRACKETS = 1 << 20  # [
-    CLOSING_BRACKETS = 1 << 21  # ]
+    ASTERISK = 1 << 21  # *
+    OPENING_BRACKETS = 1 << 22  # [
+    CLOSING_BRACKETS = 1 << 23  # ]
 
     # Numbers
-    INTEGER_LITERAL = 1 << 22
+    INTEGER_LITERAL = 1 << 24
 
     # struct identifier name
-    IDENTIFIER = 1 << 23
+    IDENTIFIER = 1 << 25
 
-    END = 1 << 24  # End Of Tokens stream token
+    END = 1 << 26  # End Of Tokens stream token
 
 
 string_to_separator: dict[str, CTypeTokenKind] = {
@@ -34,18 +35,6 @@ string_to_separator: dict[str, CTypeTokenKind] = {
     ']': CTypeTokenKind.CLOSING_BRACKETS,
 }
 
-string_to_keyword: dict[str, CTypeTokenKind] = {
-    "char": CTypeTokenKind.CHAR,
-    "const": CTypeTokenKind.CONST,
-    "double": CTypeTokenKind.DOUBLE,
-    "float": CTypeTokenKind.FLOAT,
-    "int": CTypeTokenKind.INT,
-    "long": CTypeTokenKind.LONG,
-    "short": CTypeTokenKind.SHORT,
-    "signed": CTypeTokenKind.SIGNED,
-    "unsigned": CTypeTokenKind.UNSIGNED,
-    "void": CTypeTokenKind.VOID,
-}
 
 
 class CTypeKind(Enum):
