@@ -24,11 +24,11 @@ def get_ctype_size(ctype: CType) -> int:
     match ctype.kind:
         case CTypeKind.Void:
             raise SyntaxError("void type shouldn't be checked for size")
-        case CTypeKind.Pointer | CTypeKind.I8 | CTypeKind.UI8:
+        case CTypeKind.I8 | CTypeKind.UI8:
             size += 1
         case CTypeKind.I16 | CTypeKind.UI16:
             size += 2
-        case CTypeKind.I32 | CTypeKind.UI32 | CTypeKind.Float:
+        case CTypeKind.Pointer | CTypeKind.I32 | CTypeKind.UI32 | CTypeKind.Float:
             size += 4
         case CTypeKind.I64 | CTypeKind.UI64 | CTypeKind.Double:
             size += 8
