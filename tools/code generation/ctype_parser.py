@@ -12,8 +12,8 @@ specifier_cases: dict[CTypeTokenKind, CTypeKind] = {
     # char kinds
     CTypeTokenKind.CHAR: CTypeKind.I8,
     CTypeTokenKind.SIGNED + CTypeTokenKind.CHAR: CTypeKind.I8,
-    CTypeTokenKind.UNSIGNED + CTypeTokenKind.CHAR: CTypeKind.I8,
-    CTypeTokenKind.UNSIGNED + CTypeTokenKind.CHAR: CTypeKind.I8,
+    CTypeTokenKind.UNSIGNED + CTypeTokenKind.CHAR: CTypeKind.UI8,
+    CTypeTokenKind.UNSIGNED + CTypeTokenKind.CHAR: CTypeKind.UI8,
 
     # short kinds
     CTypeKind.I16: CTypeKind.I16,
