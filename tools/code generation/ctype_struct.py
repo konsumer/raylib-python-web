@@ -24,13 +24,13 @@ def get_ctype_size(ctype: CType) -> int:
     match ctype.kind:
         case CTypeKind.Void:
             raise SyntaxError("void type shouldn't be checked for size")
-        case CTypeKind.Pointer | CTypeKind.I8:
+        case CTypeKind.Pointer | CTypeKind.I8 | CTypeKind.UI8:
             size += 1
-        case CTypeKind.I16:
+        case CTypeKind.I16 | CTypeKind.UI16:
             size += 2
-        case CTypeKind.I32 | CTypeKind.Float:
+        case CTypeKind.I32 | CTypeKind.UI16 | CTypeKind.Float:
             size += 4
-        case CTypeKind.I64 | CTypeKind.Double:
+        case CTypeKind.I64 | CTypeKind.UI64 | CTypeKind.Double:
             size += 8
         case CTypeKind.Array:
             multiplayer: int = ctype.array_size
