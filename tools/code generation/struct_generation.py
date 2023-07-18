@@ -90,7 +90,7 @@ def struct_member_to_python_type_hint(member: CType):
             return member.struct_token.string
 
 
-def emscripten_getValue_type_string_from_ctype_kind(kind: CTypeKind) -> str:
+def emscripten_Value_type_string_from_ctype_kind(kind: CTypeKind) -> str:
     match kind:
         case CTypeKind.Void:
             return ""
@@ -155,7 +155,7 @@ def generate_struct_code(struct_api) -> str:
         if member_ctype.kind != CTypeKind.Struct:
             string += f"        self._{member_json['name']} = {member_json['name']}\n"
             heap_kind: CTypeKind = struct_member_heap_kind(member_ctype)
-            string += f"        _mod.{heap_kind_to_wasm_heap_string(heap_kind)}[self._address + {offset}] = {member_json['name']}\n"
+            string += f"        _mod.setValue(self._address + {offset}, {member_json['name']}, {emscripten_Value_type_string_from_ctype_kind(member_ctype.kind)})\n"
 
         else:
             string += f"        self._{member_json['name']} = {member_json['name']}\n"
@@ -182,7 +182,7 @@ def generate_struct_code(struct_api) -> str:
             string += f"    @{member_json['name']}.setter\n"
             string += f"    def {member_json['name']}(self, value):\n"
             string += f"        self._{member_json['name']} = value\n"
-            string += f"        _mod.{heap_kind_to_wasm_heap_string(heap_kind)}[self._address + {offset}] = self._{member_json['name']}\n\n"
+            string += f"        _mod.setValue(self._address + {offset}, self._{member_json['name']}, {emscripten_Value_type_string_from_ctype_kind(member_ctype.kind)})\n\n"
         else:
             # getter
             string += f"    @property\n"
