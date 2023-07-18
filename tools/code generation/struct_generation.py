@@ -17,6 +17,28 @@ class HeapKind(Enum):
     NOT_HEAPED_KIND = auto()  # used when we want to get a member, but it is a struct or an array
 
 
+def heap_kind_to_wasm_heap_string(kind: HeapKind):
+    match kind:
+        case HeapKind.NOT_HEAPED_KIND:
+            raise SyntaxError("not heap size doesn't have an heap string")
+        case HeapKind.Int8:
+            return "HEAP8"
+        case HeapKind.UInt8:
+            return "HEAPU8"
+        case HeapKind.Int16:
+            return "HEAP16"
+        case HeapKind.UInt16:
+            return "HEAPU16"
+        case HeapKind.Int32:
+            return "HEAP32"
+        case HeapKind.UInt32:
+            return "HEAPU32"
+        case HeapKind.Float32:
+            return "HEAPF32"
+        case HeapKind.Float64:
+            return "HEAPF32"
+
+
 def struct_member_heap_kind(member: CType) -> HeapKind:
     match member.kind:
         case CTypeKind.Void:
@@ -107,28 +129,44 @@ def generate_struct_code(struct_api) -> str:
         if member_ctype.kind != CTypeKind.Struct:
             string += f"        self._{member_json['name']} = {member_json['name']}\n"
             heap_kind: CTypeKind = struct_member_heap_kind(member_ctype)
-            match heap_kind:
-                case CTypeKind.Void:
-                    raise SyntaxError("void type shouldn't be checked for size")
-                case HeapKind.Int8:
-                    string += f"        _mod.HEAP8[self._address + {offset}] = {member_json['name']}\n"
-                case HeapKind.UInt8:
-                    string += f"        _mod.HEAPU8[self._address + {offset}] = {member_json['name']}\n"
-                case HeapKind.Int16:
-                    string += f"        _mod.HEAP16[self._address + {offset}] = {member_json['name']}\n"
-                case HeapKind.UInt16:
-                    string += f"        _mod.HEAPU16[self._address + {offset}] = {member_json['name']}\n"
-                case HeapKind.Int32:
-                    string += f"        _mod.HEAP32[self._address + {offset}] = {member_json['name']}\n"
-                case HeapKind.UInt32:
-                    string += f"        _mod.HEAPU32[self._address + {offset}] = {member_json['name']}\n"
-                case HeapKind.Float32:
-                    string += f"        _mod.HEAPF32[self._address + {offset}] = {member_json['name']}\n"
-                case HeapKind.Float64:
-                    string += f"        _mod.HEAPF32[self._address + {offset}] = {member_json['name']}\n"
+            string += f"        _mod.{heap_kind_to_wasm_heap_string(heap_kind)}[self._address + {offset}] = {member_json['name']}\n"
+
         else:
             string += f"        self._{member_json['name']} = {member_json['name']}\n"
 
+        offset += get_ctype_size(member_ctype)
+
+    string += '\n'
+
+    # add setters and getters
+    offset = 0
+    for member_ctype, member_json in zip(struct_.members, struct_api['fields']):
+        if member_ctype.kind == CTypeKind.Array:
+            return ""  # TODO: implement struct code generation for structs that has members of array type
+
+        if member_ctype.kind != CTypeKind.Struct:
+            heap_kind: CTypeKind = struct_member_heap_kind(member_ctype)
+
+            # getter
+            string += f"    @property\n"
+            string += f"    def {member_json['name']}(self):\n"
+            string += f"        return _{member_json['name']}\n\n"
+
+            # setter
+            string += f"    @{member_json['name']}.setter\n"
+            string += f"    def {member_json['name']}(self, value):\n"
+            string += f"        self._{member_json['name']} = value\n"
+            string += f"        _mod.{heap_kind_to_wasm_heap_string(heap_kind)}[self._address + {offset}] = self._{member_json['name']}\n\n"
+        else:
+            # getter
+            string += f"    @property\n"
+            string += f"    def {member_json['name']}(self):\n"
+            string += f"        return _{member_json['name']}\n\n"
+
+            # setter
+            string += f"    @{member_json['name']}.setter\n"
+            string += f"    def {member_json['name']}(self, value):\n"
+            string += f"        self._{member_json['name']} = value\n\n"
 
         offset += get_ctype_size(member_ctype)
 
