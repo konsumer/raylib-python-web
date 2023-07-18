@@ -297,7 +297,7 @@ RAYWHITE = Color(245, 245, 245, 255, frozen=True)  # My own White (raylib logo)
 
 
 # helper to copy a struct
-# newColor = sturct_clone(RAYWHITE)
+# newColor = struct_clone(RAYWHITE)
 # newColor._frozen = false
 # newColor.a = 127
 # TODO: _memcpy is not exposed for some reason
