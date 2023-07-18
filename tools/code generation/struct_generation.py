@@ -127,7 +127,7 @@ def generate_struct_code(struct_api) -> str:
     string += f"    size: int = {struct_.size}\n\n"
 
     # add init method
-    string += f"    def __init__("
+    string += f"    def __init__(self, "
     for member_ctype, member_json in zip(struct_.members, struct_api['fields']):
         if member_ctype.kind == CTypeKind.Array:
             return ""  # TODO: implement struct code generation for structs that has members of array type
@@ -155,7 +155,7 @@ def generate_struct_code(struct_api) -> str:
         if member_ctype.kind != CTypeKind.Struct:
             string += f"        self._{member_json['name']} = {member_json['name']}\n"
             heap_kind: CTypeKind = struct_member_heap_kind(member_ctype)
-            string += f"        _mod.setValue(self._address + {offset}, {member_json['name']}, {emscripten_Value_type_string_from_ctype_kind(member_ctype.kind)})\n"
+            string += f"        _mod.setValue(self._address + {offset}, {member_json['name']}, \"{emscripten_Value_type_string_from_ctype_kind(member_ctype.kind)}\")\n"
 
         else:
             string += f"        self._{member_json['name']} = {member_json['name']}\n"
@@ -182,7 +182,7 @@ def generate_struct_code(struct_api) -> str:
             string += f"    @{member_json['name']}.setter\n"
             string += f"    def {member_json['name']}(self, value):\n"
             string += f"        self._{member_json['name']} = value\n"
-            string += f"        _mod.setValue(self._address + {offset}, self._{member_json['name']}, {emscripten_Value_type_string_from_ctype_kind(member_ctype.kind)})\n\n"
+            string += f"        _mod.setValue(self._address + {offset}, self._{member_json['name']}, \"{emscripten_Value_type_string_from_ctype_kind(member_ctype.kind)}\")\n\n"
         else:
             # getter
             string += f"    @property\n"
