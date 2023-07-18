@@ -12,6 +12,8 @@ const python = await setup(document.getElementById('canvas'))
 python.runPython(`
 def init():
   InitWindow(800, 450)
+  font = GetFontDefault()
+  print("glyphCount (224) ", font.glyphCount)
 
 def update():
   BeginDrawing()
