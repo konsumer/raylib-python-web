@@ -90,6 +90,32 @@ def struct_member_to_python_type_hint(member: CType):
             return member.struct_token.string
 
 
+def emscripten_getValue_type_string_from_ctype_kind(kind: CTypeKind) -> str:
+    match kind:
+        case CTypeKind.Void:
+            return ""
+        case CTypeKind.Pointer:
+            return "*"
+        case CTypeKind.I8 | CTypeKind.UI8:
+            return "i8"
+        case CTypeKind.I16 | CTypeKind.UI16:
+            return "i16"
+        case CTypeKind.I32 | CTypeKind.UI32:
+            return "i32"
+        case CTypeKind.Float:
+            return "float"
+        case CTypeKind.I64:
+            assert False, "not implemented yet"
+        case CTypeKind.UI64:
+            assert False, "not implemented yet"
+        case CTypeKind.Double:
+            return "double"
+        case CTypeKind.Array:
+            return ""
+        case CTypeKind.Struct:
+            return ""
+
+
 def generate_struct_code(struct_api) -> str:
     string: str = ""
     struct_: CTypeStruct = parse_struct_json_to_CTypeStruct(struct_api)
