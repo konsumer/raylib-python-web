@@ -303,7 +303,6 @@ RAYWHITE = Color(245, 245, 245, 255, frozen=True)  # My own White (raylib logo)
 # newColor = struct_clone(RAYWHITE)
 # newColor._frozen = false
 # newColor.a = 127
-# TODO: _memcpy is not exposed for some reason
 def struct_clone(source, a):
     if not a:
         a = _mod._malloc(source._size)
