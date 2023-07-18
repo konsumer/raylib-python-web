@@ -15,7 +15,10 @@ class StructArray:
         return self._length
 
     def __getitem__(self, item):
-        return self._stype(address=(self._stype._size * item))
+        return self._stype(address=(self._address + (self._stype._size * item)))
+
+    def __setitem__(self, item, value):
+        struct_clone(value, self._address + (self._stype._size * item))
 
 class Color:
     _size: int = 4
