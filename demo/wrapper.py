@@ -321,12 +321,12 @@ class Font:
     def recs(self):
         # TODO: where does recs.length come from?
         length=10
-        return StructArray(Rectangle, length, address=self._address + 32)
+        return StructArray(Rectangle, length, address=_mod.mem.getUint32(self._address + 32))
 
     @recs.setter
     def recs(self, value):
         if not self._frozen:
-            struct_clone(value, self._address + 32)
+            struct_clone(value, _mod.mem.getUint32(self._address + 32))
 
     @property
     def glyphs(self):
