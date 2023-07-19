@@ -18,7 +18,7 @@ def init():
 
   # test fonts
   font = GetFontDefault()
-  print('Font: address: %d, size: %d' % ( font._size, font._address ))
+  print('Font: size: %d, address: %d' % ( font._size, font._address ))
   print("baseSize (%d == 10?) " % font.baseSize)
   print("glyphCount (%d == 224?) " % font.glyphCount)
   print("glyphPadding (%d == 0?) " % font.glyphPadding)

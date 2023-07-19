@@ -1,24 +1,55 @@
 # Generic array-like collection that uses wasm as memory-back
-class StructArray:
-    def __init__(self, stype, length, address=None):
-        self._stype = stype
+class WasmArray:
+    def __init__(self, itemSize, length, address=None):
         self._length = length
-        self._size = self._stype._size * self._length
+        self._itemSize = itemSize
+        self._size = self._itemSize * self._length
         if address is not None:
             self._address:int = address
         else:
             self._address: int = _mod._malloc(self._size)
     def __del__(self):
         _mod._free(self._address)
-    
     def __len__(self):
         return self._length
 
+# an array of structs
+class StructArray(WasmArray):
+    def __init__(self, stype, length, address=None):
+        super(StructArray, self).__init__(stype._size, length, address)
+        self._stype = stype
     def __getitem__(self, item):
         return self._stype(address=(self._address + (self._stype._size * item)))
-
     def __setitem__(self, item, value):
-        struct_clone(value, self._address + (self._stype._size * item))
+        struct_clone(value, self._address + (self._size * item))
+
+# int* used as an array of i32's
+class IntArray(WasmArray):
+    def __init__(self, length, address=None):
+        super(IntArray, self).__init__(4, length, address)
+    def __getitem__(self, item):
+        return _mod.HEAP32[self._address + (item * self._size)]
+    def __setitem__(self, item, value):
+        _mod.HEAP32[self._address + (item * self._size)] = value
+
+# float* used as an array of floats
+class FloatArray(WasmArray):
+    def __init__(self, length, address=None):
+        super(FloatArray, self).__init__(4, length, address)
+    def __getitem__(self, item):
+        return _mod.HEAPF32[self._address + (item * self._size)]
+    def __setitem__(self, item, value):
+        _mod.HEAPF32[self._address + (item * self._size)] = value
+
+# char* used as an array of bytes
+class ByteArray(WasmArray):
+    def __init__(self, length, address=None):
+        super(ByteArray, self).__init__(1, length, address)
+    def __getitem__(self, item):
+        return _mod.HEAPU8[self._address + (item * self._size)]
+    def __setitem__(self, item, value):
+        _mod.HEAPU8[self._address + (item * self._size)] = value
+
 
 class Color:
     _size: int = 4
