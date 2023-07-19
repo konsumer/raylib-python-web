@@ -2,6 +2,7 @@ def init():
   InitWindow(800, 450)
 
   # test struct
+  print(RAYWHITE)
   r = Rectangle()
   r.height = 150
   r.width = 150

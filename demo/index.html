@@ -9,7 +9,7 @@ const python = await setup(document.getElementById('canvas'))
 // pyodide.globals.set('name', jsthing)
 
 // Here I am loading a seperate python file for user-code
-python.runPython(await fetch('user.py').then(r => r.text()))
+python.runPython(await fetch('user.py?t='+Date.now()).then(r => r.text()))
 
 // here we run init() and setup hook for update()
 python.runPython('init()')

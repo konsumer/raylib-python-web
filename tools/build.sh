@@ -48,6 +48,7 @@ emcc src/raylib.c src/raylib/build/raylib/libraylib.a -o demo/raylib.js -I src/r
 	-sEXPORT_KEEPALIVE=1 \
 	-sEXPORT_ES6=1 \
 	-sALLOW_MEMORY_GROWTH=1 \
+	-sMAXIMUM_MEMORY=4GB \
 	-sUSE_GLFW=3 \
 	-sEXPORTED_RUNTIME_METHODS=ccall,cwrap,allocateUTF8,stringToUTF8,UTF8ToString,FS,setValue,getValue \
 	-sENVIRONMENT=web \

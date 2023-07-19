@@ -34,27 +34,27 @@ class IntArray(WasmArray):
     def __init__(self, length, address=None):
         super(IntArray, self).__init__(4, length, address)
     def __getitem__(self, item):
-        return _mod.HEAP32[self._address + (item * self._itemSize)]
+        return _mod.mem.getInt32(self._address + (item * self._itemSize), True)
     def __setitem__(self, item, value):
-        _mod.HEAP32[self._address + (item * self._itemSize)] = value
+        _mod.mem.setInt32(self._address + (item * self._itemSize), value, True)
 
 # float* used as an array of floats
 class FloatArray(WasmArray):
     def __init__(self, length, address=None):
         super(FloatArray, self).__init__(4, length, address)
     def __getitem__(self, item):
-        return _mod.HEAPF32[self._address + (item * self._itemSize)]
+        return _mod.mem.getFloat32(self._address + 0, True)
     def __setitem__(self, item, value):
-        _mod.HEAPF32[self._address + (item * self._itemSize)] = value
+        _mod.mem.setFloat32(self._address + (item * self._itemSize), value, True)
 
 # char* used as an array of bytes
 class ByteArray(WasmArray):
     def __init__(self, length, address=None):
         super(ByteArray, self).__init__(1, length, address)
     def __getitem__(self, item):
-        return _mod.HEAPU8[self._address + (item * self._itemSize)]
+        return _mod.mem.getUint8(self._address + (item * self._itemSize), True)
     def __setitem__(self, item, value):
-        _mod.HEAPU8[self._address + (item * self._itemSize)] = value
+        _mod.mem.setUint8(self._address + (item * self._itemSize), value, True)
 
 
 class Color:
@@ -65,10 +65,10 @@ class Color:
             self._address:int = address
         else:
             self._address: int = _mod._malloc(self._size)
-            _mod.HEAPU8[self._address + 0] = r
-            _mod.HEAPU8[self._address + 1] = g
-            _mod.HEAPU8[self._address + 2] = b
-            _mod.HEAPU8[self._address + 3] = a
+            _mod.mem.setUint8(self._address + 0, r, True)
+            _mod.mem.setUint8(self._address + 1, g, True)
+            _mod.mem.setUint8(self._address + 2, b, True)
+            _mod.mem.setUint8(self._address + 3, a, True)
 
     # this seems to bug things out.
     # def __del__(self):
@@ -79,39 +79,39 @@ class Color:
 
     @property
     def r(self):
-        return _mod.HEAPU8[self._address + 0]
+        return _mod.mem.getUint8(self._address + 0)
 
     @r.setter
     def r(self, value):
         if not self._frozen:
-            _mod.HEAPU8[self._address + 0] = value
+            _mod.mem.setUint8(self._address + 0, value)
 
     @property
     def g(self):
-        return _mod.HEAPU8[self._address + 1]
+        return _mod.mem.getUint8(self._address + 1)
 
     @g.setter
     def g(self, value):
         if not self._frozen:
-            _mod.HEAPU8[self._address + 1] = value
+            _mod.mem.setUint8(self._address + 1, value)
 
     @property
     def b(self):
-        return _mod.HEAPU8[self._address + 2]
+        return _mod.mem.getUint8(self._address + 2)
 
     @b.setter
     def b(self, value):
         if not self._frozen:
-            _mod.HEAPU8[self._address + 2] = value
+            _mod.mem.setUint8(self._address + 2, value)
 
     @property
     def a(self):
-        return _mod.HEAPU8[self._address + 3]
+        return _mod.mem.getUint8(self._address + 3)
 
     @a.setter
     def a(self, value):
         if not self._frozen:
-            _mod.HEAPU8[self._address + 3] = value
+            _mod.mem.setUint8(self._address + 3, value)
 
 class Rectangle:
     _size: int = 16
@@ -121,10 +121,10 @@ class Rectangle:
             self._address:int = address
         else:
             self._address: int = _mod._malloc(self._size)
-            _mod.HEAPF32[self._address + 0] = x
-            _mod.HEAPF32[self._address + 4] = y
-            _mod.HEAPF32[self._address + 8] = width
-            _mod.HEAPF32[self._address + 12] = height
+            _mod.mem.setFloat32(self._address + 0, x, True)
+            _mod.mem.setFloat32(self._address + 4, y, True)
+            _mod.mem.setFloat32(self._address + 8, width, True)
+            _mod.mem.setFloat32(self._address + 12, height, True)
 
     # this seems to bug things out.
     # def __del__(self):
@@ -141,39 +141,39 @@ class Rectangle:
 
     @property
     def x(self):
-        return _mod.HEAPF32[self._address + 0]
+        return _mod.mem.getFloat32(self._address + 0, True)
 
     @x.setter
     def x(self, value):
         if not self._frozen:
-            _mod.HEAPF32[self._address + 0] = value
+            _mod.mem.setFloat32(self._address + 0, value, True)
 
     @property
     def y(self):
-        return _mod.HEAPF32[self._address + 4]
+        return _mod.mem.getFloat32(self._address + 4, True)
 
     @y.setter
     def y(self, value):
         if not self._frozen:
-            _mod.HEAPF32[self._address + 4] = value
+            _mod.mem.setFloat32(self._address + 4, value, True)
 
     @property
     def width(self):
-        return _mod.HEAPF32[self._address + 8]
+        return _mod.mem.getFloat32(self._address + 8, True)
 
     @width.setter
     def width(self, value):
         if not self._frozen:
-            _mod.HEAPF32[self._address + 8] = value
+            _mod.mem.setFloat32(self._address + 8, value, True)
 
     @property
     def height(self):
-        return _mod.HEAPF32[self._address + 12]
+        return _mod.mem.getFloat32(self._address + 12, True)
 
     @height.setter
     def height(self, value):
         if not self._frozen:
-            _mod.HEAPF32[self._address + 12] = value
+            _mod.mem.setFloat32(self._address + 12, value, True)
 
 class Texture:
     _size:int = 20
@@ -183,11 +183,11 @@ class Texture:
             self._address:int = address
         else:
             self._address: int = _mod._malloc(self._size)
-            _mod.HEAP32[self._address + 0] = tid
-            _mod.HEAP32[self._address + 4] = width
-            _mod.HEAP32[self._address + 8] = height
-            _mod.HEAP32[self._address + 12] = mipmaps
-            _mod.HEAP32[self._address + 16] = tformat
+            _mod.mem.setInt32(self._address + 0, tid, True)
+            _mod.mem.setInt32(self._address + 4, width, True)
+            _mod.mem.setInt32(self._address + 8, height, True)
+            _mod.mem.setInt32(self._address + 12, mipmaps, True)
+            _mod.mem.setInt32(self._address + 16, tformat, True)
 
     # this seems to bug things out.
     # def __del__(self):
@@ -205,48 +205,48 @@ class Texture:
 
     @property
     def tid(self):
-        return _mod.HEAPU32[self._address + 0]
+        return _mod.mem.getUint32(self._address + 0, True)
 
     @tid.setter
     def tid(self, value):
         if not self._frozen:
-            _mod.HEAPU32[self._address + 0] = value
+            _mod.mem.setUint32(self._address + 0, value, True)
 
     @property
     def width(self):
-        return _mod.HEAP32[self._address + 4]
+        return _mod.mem.getInt32(self._address + 4, True)
 
     @width.setter
     def width(self, value):
         if not self._frozen:
-            _mod.HEAP32[self._address + 4] = value
+            _mod.mem.setInt32(self._address + 4, value, True)
 
     @property
     def height(self):
-        return _mod.HEAP32[self._address + 8]
+        return _mod.mem.getInt32(self._address + 8, True)
 
     @height.setter
     def height(self, value):
         if not self._frozen:
-            _mod.HEAP32[self._address + 8] = value
+            _mod.mem.setInt32(self._address + 8, value, True)
 
     @property
     def mipmaps(self):
-        return _mod.HEAP32[self._address + 12]
+        return _mod.mem.getInt32(self._address + 12, True)
 
     @mipmaps.setter
     def mipmaps(self, value):
         if not self._frozen:
-            _mod.HEAP32[self._address + 12] = value
+            _mod.mem.setInt32(self._address + 12, value, True)
 
     @property
     def tformat(self):
-        return _mod.HEAP32[self._address + 16]
+        return _mod.mem.getInt32(self._address + 16, True)
 
     @tformat.setter
     def tformat(self, value):
         if not self._frozen:
-            _mod.HEAP32[self._address + 16] = value
+            _mod.mem.setInt32(self._address + 16, value, True)
 
 class Font:
     _size:int = 40
@@ -256,15 +256,15 @@ class Font:
             self._address:int = address
         else:
             self._address: int = _mod._malloc(self._size)
-            _mod.HEAP32[self._address + 0] = baseSize
-            _mod.HEAP32[self._address + 4] = glyphCount
-            _mod.HEAP32[self._address + 8] = glyphPadding
+            _mod.mem.setInt32(self._address + 0, baseSize, True)
+            _mod.mem.setInt32(self._address + 4, glyphCount, True)
+            _mod.mem.setInt32(self._address + 8, glyphPadding, True)
             if texture is not None:
                 struct_clone(texture, self._address + 12)
             if recs is not None:
-                _mod.HEAP32[self._address + 32] = recs._address
+                _mod.mem.setInt32(self._address + 32, recs._address, True)
             if glyphs is not None:
-                _mod.HEAP32[self._address + 36] = glyphs._address
+                _mod.mem.setInt32(self._address + 36, glyphs._address, True)
 
     # this seems to bug things out.
     # def __del__(self):
@@ -283,30 +283,30 @@ class Font:
 
     @property
     def baseSize(self):
-        return _mod.HEAP32[self._address + 0]
+        return _mod.mem.getInt32(self._address + 0, True)
 
     @baseSize.setter
     def baseSize(self, value):
         if not self._frozen:
-            _mod.HEAP32[self._address + 0] = value
+            _mod.mem.setInt32(self._address + 0, value, True)
 
     @property
     def glyphCount(self):
-        return _mod.HEAP32[self._address + 4]
+        return _mod.mem.getInt32(self._address + 4, True)
 
     @glyphCount.setter
     def glyphCount(self, value):
         if not self._frozen:
-            _mod.HEAP32[self._address + 4] = value
+            _mod.mem.setInt32(self._address + 4, value, True)
 
     @property
     def glyphPadding(self):
-        return _mod.HEAP32[self._address + 8]
+        return _mod.mem.getInt32(self._address + 8, True)
 
     @glyphPadding.setter
     def glyphPadding(self, value):
         if not self._frozen:
-            _mod.HEAP32[self._address + 8] = value
+            _mod.mem.setInt32(self._address + 8, value, True)
 
     @property
     def texture(self):
@@ -330,7 +330,7 @@ class Font:
 
     @property
     def glyphs(self):
-        glyphCount = _mod.HEAP32[self._address + 4]
+        glyphCount = _mod.mem.getInt32(self._address + 4, True)
         return StructArray(GlyphInfo, glyphCount, address=self._address + 36)
 
     @glyphs.setter
@@ -339,13 +339,39 @@ class Font:
             struct_clone(value, self._address + 36)
 
 
-# TODO: these need to be filled in for Font to work right
+# TODO: these need to be filled in for everything to work right
 
 class Image:
     _size:int = 20
+    def __init__(self, data:int=0, width:int=0, height:int=0, mipmaps:int=0, format:int=0, frozen=False, address=None):
+        pass
+
+"""
+// Image, pixel data stored in CPU memory (RAM)
+typedef struct Image {
+    void *data;             // Image raw data
+    int width;              // Image base width
+    int height;             // Image base height
+    int mipmaps;            // Mipmap levels, 1 by default
+    int format;             // Data format (PixelFormat type)
+} Image;
+"""
 
 class GlyphInfo:
     _size:int = 52
+    def __init__(self, value:int=0, offsetX:int=0, offsetY:int=0, advanceX:int=0, image:Image=None, frozen=False, address=None):
+        pass
+
+"""
+// GlyphInfo, font characters glyphs info
+typedef struct GlyphInfo {
+    int value;              // Character value (Unicode)
+    int offsetX;            // Character offset X when drawing
+    int offsetY;            // Character offset Y when drawing
+    int advanceX;           // Character advance position X
+    Image image;            // Character image data
+} GlyphInfo;
+"""
 
 
 LIGHTGRAY = Color(200, 200, 200, 255, frozen=True)  # Light Gray
@@ -388,9 +414,9 @@ def struct_clone(source, a):
     return out
 
 def GetFontDefault():
-    ret = Font()
-    _mod._GetFontDefault(ret._address)
-    return ret
+    a = _mod._malloc(Font._size)
+    _mod._GetFontDefault(a)
+    return Font(address=a)
 
 def ClearBackground(color):
     _mod._ClearBackground(color._address)
