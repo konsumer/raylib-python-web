@@ -16,7 +16,7 @@ class WasmArray:
     def __str__(self):
         out = "WasmArray["
         out += ', '.join([str(self[i]) for i in range(self._length)])
-        out += "]"
+        out += "] " + hex(self._address)
         return out
 
 # an array of structs
@@ -75,7 +75,7 @@ class Color:
     #     _mod._free(self._address)
 
     def __str__(self):
-        return "Color(r:%d, g:%d, b:%d, a:%d) #%d" % (self.r, self.g, self.b, self.a, self._address)
+        return "Color(r:%d, g:%d, b:%d, a:%d) %s" % (self.r, self.g, self.b, self.a, hex(self._address))
 
     @property
     def r(self):
@@ -131,12 +131,12 @@ class Rectangle:
     #     _mod._free(self._address)
 
     def __str__(self):
-        return "Rectangle(x:%f, y:%f, width:%f, height:%f) #%d" % (
+        return "Rectangle(x:%f, y:%f, width:%f, height:%f) %s" % (
             self.x,
             self.y,
             self.width,
             self.height,
-            self._address
+            hex(self._address)
         )
 
     @property
@@ -194,13 +194,13 @@ class Texture:
     #     _mod._free(self._address)
 
     def __str__(self):
-        return "Texture(tid:%d, width:%d, height:%d, mipmaps: %d, tformat: %d) #%d" % (
+        return "Texture(tid:%d, width:%d, height:%d, mipmaps: %d, tformat: %d) %s" % (
             self.tid,
             self.width,
             self.height,
             self.mipmaps,
             self.tformat,
-            self._address
+            hex(self._address)
         )
 
     @property
@@ -271,14 +271,14 @@ class Font:
     #     _mod._free(self._address)
 
     def __str__(self):
-        return "Font(baseSize:%d, glyphCount:%d, glyphPadding:%d, texture:%s, recs:%s, glyphs:%s) #%d" % (
+        return "Font(baseSize:%d, glyphCount:%d, glyphPadding:%d, texture:%s, recs:%s, glyphs:%s) %s" % (
             self.baseSize,
             self.glyphCount,
             self.glyphPadding,
             str(self.texture),
             str(self.recs),
             str(self.glyphs),
-            self._address
+            hex(self._address)
         )
 
     @property
