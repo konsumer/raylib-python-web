@@ -1,5 +1,6 @@
 <canvas id="canvas"></canvas>
-<script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script> -->
+<script src="/pyiodide-0.23.4/pyodide.js"></script>
 <script type="module">
 import setup from './python-raylib-web.js'
 const python = await setup(document.getElementById('canvas'))
