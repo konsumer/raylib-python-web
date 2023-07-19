@@ -8,10 +8,16 @@ class WasmArray:
             self._address:int = address
         else:
             self._address: int = _mod._malloc(self._size)
-    def __del__(self):
-        _mod._free(self._address)
+    # this seems to bug things out.
+    # def __del__(self):
+    #     _mod._free(self._address)
     def __len__(self):
         return self._length
+    def __str__(self):
+        out = "WasmArray["
+        out += ', '.join([str(self[i]) for i in range(self._length)])
+        out += "]"
+        return out
 
 # an array of structs
 class StructArray(WasmArray):
@@ -19,36 +25,36 @@ class StructArray(WasmArray):
         super(StructArray, self).__init__(stype._size, length, address)
         self._stype = stype
     def __getitem__(self, item):
-        return self._stype(address=(self._address + (self._stype._size * item)))
+        return self._stype(address=(self._address + (self._itemSize * item)))
     def __setitem__(self, item, value):
-        struct_clone(value, self._address + (self._size * item))
+        struct_clone(value, self._address + (self._itemSize * item))
 
 # int* used as an array of i32's
 class IntArray(WasmArray):
     def __init__(self, length, address=None):
         super(IntArray, self).__init__(4, length, address)
     def __getitem__(self, item):
-        return _mod.HEAP32[self._address + (item * self._size)]
+        return _mod.HEAP32[self._address + (item * self._itemSize)]
     def __setitem__(self, item, value):
-        _mod.HEAP32[self._address + (item * self._size)] = value
+        _mod.HEAP32[self._address + (item * self._itemSize)] = value
 
 # float* used as an array of floats
 class FloatArray(WasmArray):
     def __init__(self, length, address=None):
         super(FloatArray, self).__init__(4, length, address)
     def __getitem__(self, item):
-        return _mod.HEAPF32[self._address + (item * self._size)]
+        return _mod.HEAPF32[self._address + (item * self._itemSize)]
     def __setitem__(self, item, value):
-        _mod.HEAPF32[self._address + (item * self._size)] = value
+        _mod.HEAPF32[self._address + (item * self._itemSize)] = value
 
 # char* used as an array of bytes
 class ByteArray(WasmArray):
     def __init__(self, length, address=None):
         super(ByteArray, self).__init__(1, length, address)
     def __getitem__(self, item):
-        return _mod.HEAPU8[self._address + (item * self._size)]
+        return _mod.HEAPU8[self._address + (item * self._itemSize)]
     def __setitem__(self, item, value):
-        _mod.HEAPU8[self._address + (item * self._size)] = value
+        _mod.HEAPU8[self._address + (item * self._itemSize)] = value
 
 
 class Color:
@@ -64,8 +70,12 @@ class Color:
             _mod.HEAPU8[self._address + 2] = b
             _mod.HEAPU8[self._address + 3] = a
 
-    def __del__(self):
-        _mod._free(self._address)
+    # this seems to bug things out.
+    # def __del__(self):
+    #     _mod._free(self._address)
+
+    def __str__(self):
+        return "Color(r:%d, g:%d, b:%d, a:%d) #%d" % (self.r, self.g, self.b, self.a, self._address)
 
     @property
     def r(self):
@@ -116,8 +126,18 @@ class Rectangle:
             _mod.HEAPF32[self._address + 8] = width
             _mod.HEAPF32[self._address + 12] = height
 
-    def __del__(self):
-        _mod._free(self._address)
+    # this seems to bug things out.
+    # def __del__(self):
+    #     _mod._free(self._address)
+
+    def __str__(self):
+        return "Rectangle(x:%f, y:%f, width:%f, height:%f) #%d" % (
+            self.x,
+            self.y,
+            self.width,
+            self.height,
+            self._address
+        )
 
     @property
     def x(self):
@@ -168,6 +188,20 @@ class Texture:
             _mod.HEAP32[self._address + 8] = height
             _mod.HEAP32[self._address + 12] = mipmaps
             _mod.HEAP32[self._address + 16] = tformat
+
+    # this seems to bug things out.
+    # def __del__(self):
+    #     _mod._free(self._address)
+
+    def __str__(self):
+        return "Texture(tid:%d, width:%d, height:%d, mipmaps: %d, tformat: %d) #%d" % (
+            self.tid,
+            self.width,
+            self.height,
+            self.mipmaps,
+            self.tformat,
+            self._address
+        )
 
     @property
     def tid(self):
@@ -232,8 +266,20 @@ class Font:
             if glyphs is not None:
                 _mod.HEAP32[self._address + 36] = glyphs._address
 
-    def __del__(self):
-        _mod._free(self._address)
+    # this seems to bug things out.
+    # def __del__(self):
+    #     _mod._free(self._address)
+
+    def __str__(self):
+        return "Font(baseSize:%d, glyphCount:%d, glyphPadding:%d, texture:%s, recs:%s, glyphs:%s) #%d" % (
+            self.baseSize,
+            self.glyphCount,
+            self.glyphPadding,
+            str(self.texture),
+            str(self.recs),
+            str(self.glyphs),
+            self._address
+        )
 
     @property
     def baseSize(self):

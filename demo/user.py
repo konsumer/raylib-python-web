@@ -1,27 +1,25 @@
-# I put this up here, so it doesn't try to deallocate the original colors
-colors = StructArray(Color, 4)
-
 def init():
   InitWindow(800, 450)
 
+  # test struct
+  r = Rectangle()
+  r.height = 150
+  r.width = 150
+  print(r)
+
   # test StructArray
   # this should copy values into array
+  colors = StructArray(Color, 4)
   colors[0] = RED
   colors[1] = BLUE
   colors[2] = GREEN
   colors[3] = BLACK
   print("colors.len (%d == 4?)" % len(colors))
-  print("RED: (%d, %d, %d, %d)" % (colors[0].r, colors[0].g, colors[0].b, colors[0].a)) # this one is wrong for some reason
-  print("BLUE: (%d, %d, %d, %d)" % (colors[1].r, colors[1].g, colors[1].b, colors[1].a))
-  print("GREEN: (%d, %d, %d, %d)" % (colors[2].r, colors[2].g, colors[2].b, colors[2].a))
-  print("BLACK: (%d, %d, %d, %d)" % (colors[3].r, colors[3].g, colors[3].b, colors[3].a))
+  print(colors)
 
   # test fonts
   font = GetFontDefault()
-  print('Font: size: %d, address: %d' % ( font._size, font._address ))
-  print("baseSize (%d == 10?) " % font.baseSize)
-  print("glyphCount (%d == 224?) " % font.glyphCount)
-  print("glyphPadding (%d == 0?) " % font.glyphPadding)
+  print(font)
 
 def update():
   BeginDrawing()
