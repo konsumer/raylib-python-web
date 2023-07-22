@@ -18,9 +18,9 @@ def init():
   print("colors.len (%d == 4?)" % len(colors))
   print(colors)
 
-  # test fonts
-  font = GetFontDefault()
-  print(font)
+  # # test fonts
+  # font = GetFontDefault()
+  # print(font)
 
 def update():
   BeginDrawing()

@@ -8,9 +8,8 @@ class WasmArray:
             self._address:int = address
         else:
             self._address: int = _mod._malloc(self._size)
-    # this seems to bug things out.
-    # def __del__(self):
-    #     _mod._free(self._address)
+    def __del__(self):
+        _mod._free(self._address)
     def __len__(self):
         return self._length
     def __str__(self):
@@ -70,9 +69,8 @@ class Color:
             _mod.mem.setUint8(self._address + 2, b, True)
             _mod.mem.setUint8(self._address + 3, a, True)
 
-    # this seems to bug things out.
-    # def __del__(self):
-    #     _mod._free(self._address)
+    def __del__(self):
+        _mod._free(self._address)
 
     def __str__(self):
         return "Color(r:%d, g:%d, b:%d, a:%d) %s" % (self.r, self.g, self.b, self.a, hex(self._address))
@@ -126,9 +124,8 @@ class Rectangle:
             _mod.mem.setFloat32(self._address + 8, width, True)
             _mod.mem.setFloat32(self._address + 12, height, True)
 
-    # this seems to bug things out.
-    # def __del__(self):
-    #     _mod._free(self._address)
+    def __del__(self):
+        _mod._free(self._address)
 
     def __str__(self):
         return "Rectangle(x:%f, y:%f, width:%f, height:%f) %s" % (
@@ -189,9 +186,8 @@ class Texture:
             _mod.mem.setInt32(self._address + 12, mipmaps, True)
             _mod.mem.setInt32(self._address + 16, tformat, True)
 
-    # this seems to bug things out.
-    # def __del__(self):
-    #     _mod._free(self._address)
+    def __del__(self):
+        _mod._free(self._address)
 
     def __str__(self):
         return "Texture(tid:%d, width:%d, height:%d, mipmaps: %d, tformat: %d) %s" % (
@@ -265,10 +261,9 @@ class Font:
                 _mod.mem.setInt32(self._address + 32, recs._address, True)
             if glyphs is not None:
                 _mod.mem.setInt32(self._address + 36, glyphs._address, True)
-
-    # this seems to bug things out.
-    # def __del__(self):
-    #     _mod._free(self._address)
+    
+    def __del__(self):
+        _mod._free(self._address)
 
     def __str__(self):
         return "Font(baseSize:%d, glyphCount:%d, glyphPadding:%d, texture:%s, recs:%s, glyphs:%s) %s" % (
