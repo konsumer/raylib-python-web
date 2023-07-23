@@ -25,7 +25,7 @@ class WasmArray:
 # an array of structs
 class StructArray(WasmArray):
     def __init__(self, stype, length, address=None):
-        super(StructArray, self).__init__(stype._size, length, address)
+        super(StructArray, self).__init__(stype.size, length, address)
         self._stype = stype
 
     def __getitem__(self, item):
@@ -87,21 +87,21 @@ class Vector2:
 
     @property
     def x(self):
-        return _mod.mem.getFloat32(self._address + 0)
+        return _mod.mem.getFloat32(self._address + 0, True)
 
     @x.setter
     def x(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 0, value)
+            _mod.mem.setFloat32(self._address + 0, value, True)
 
     @property
     def y(self):
-        return _mod.mem.getFloat32(self._address + 4)
+        return _mod.mem.getFloat32(self._address + 4, True)
 
     @y.setter
     def y(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 4, value)
+            _mod.mem.setFloat32(self._address + 4, value, True)
 
 
 class Vector3:
@@ -121,30 +121,30 @@ class Vector3:
 
     @property
     def x(self):
-        return _mod.mem.getFloat32(self._address + 0)
+        return _mod.mem.getFloat32(self._address + 0, True)
 
     @x.setter
     def x(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 0, value)
+            _mod.mem.setFloat32(self._address + 0, value, True)
 
     @property
     def y(self):
-        return _mod.mem.getFloat32(self._address + 4)
+        return _mod.mem.getFloat32(self._address + 4, True)
 
     @y.setter
     def y(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 4, value)
+            _mod.mem.setFloat32(self._address + 4, value, True)
 
     @property
     def z(self):
-        return _mod.mem.getFloat32(self._address + 8)
+        return _mod.mem.getFloat32(self._address + 8, True)
 
     @z.setter
     def z(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 8, value)
+            _mod.mem.setFloat32(self._address + 8, value, True)
 
 
 class Vector4:
@@ -166,39 +166,39 @@ class Vector4:
 
     @property
     def x(self):
-        return _mod.mem.getFloat32(self._address + 0)
+        return _mod.mem.getFloat32(self._address + 0, True)
 
     @x.setter
     def x(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 0, value)
+            _mod.mem.setFloat32(self._address + 0, value, True)
 
     @property
     def y(self):
-        return _mod.mem.getFloat32(self._address + 4)
+        return _mod.mem.getFloat32(self._address + 4, True)
 
     @y.setter
     def y(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 4, value)
+            _mod.mem.setFloat32(self._address + 4, value, True)
 
     @property
     def z(self):
-        return _mod.mem.getFloat32(self._address + 8)
+        return _mod.mem.getFloat32(self._address + 8, True)
 
     @z.setter
     def z(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 8, value)
+            _mod.mem.setFloat32(self._address + 8, value, True)
 
     @property
     def w(self):
-        return _mod.mem.getFloat32(self._address + 12)
+        return _mod.mem.getFloat32(self._address + 12, True)
 
     @w.setter
     def w(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 12, value)
+            _mod.mem.setFloat32(self._address + 12, value, True)
 
 
 Quaternion = Vector4
@@ -237,147 +237,147 @@ class Matrix:
 
     @property
     def m0(self):
-        return _mod.mem.getFloat32(self._address + 0)
+        return _mod.mem.getFloat32(self._address + 0, True)
 
     @m0.setter
     def m0(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 0, value)
+            _mod.mem.setFloat32(self._address + 0, value, True)
 
     @property
     def m4(self):
-        return _mod.mem.getFloat32(self._address + 4)
+        return _mod.mem.getFloat32(self._address + 4, True)
 
     @m4.setter
     def m4(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 4, value)
+            _mod.mem.setFloat32(self._address + 4, value, True)
 
     @property
     def m8(self):
-        return _mod.mem.getFloat32(self._address + 8)
+        return _mod.mem.getFloat32(self._address + 8, True)
 
     @m8.setter
     def m8(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 8, value)
+            _mod.mem.setFloat32(self._address + 8, value, True)
 
     @property
     def m12(self):
-        return _mod.mem.getFloat32(self._address + 12)
+        return _mod.mem.getFloat32(self._address + 12, True)
 
     @m12.setter
     def m12(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 12, value)
+            _mod.mem.setFloat32(self._address + 12, value, True)
 
     @property
     def m1(self):
-        return _mod.mem.getFloat32(self._address + 16)
+        return _mod.mem.getFloat32(self._address + 16, True)
 
     @m1.setter
     def m1(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 16, value)
+            _mod.mem.setFloat32(self._address + 16, value, True)
 
     @property
     def m5(self):
-        return _mod.mem.getFloat32(self._address + 20)
+        return _mod.mem.getFloat32(self._address + 20, True)
 
     @m5.setter
     def m5(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 20, value)
+            _mod.mem.setFloat32(self._address + 20, value, True)
 
     @property
     def m9(self):
-        return _mod.mem.getFloat32(self._address + 24)
+        return _mod.mem.getFloat32(self._address + 24, True)
 
     @m9.setter
     def m9(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 24, value)
+            _mod.mem.setFloat32(self._address + 24, value, True)
 
     @property
     def m13(self):
-        return _mod.mem.getFloat32(self._address + 28)
+        return _mod.mem.getFloat32(self._address + 28, True)
 
     @m13.setter
     def m13(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 28, value)
+            _mod.mem.setFloat32(self._address + 28, value, True)
 
     @property
     def m2(self):
-        return _mod.mem.getFloat32(self._address + 32)
+        return _mod.mem.getFloat32(self._address + 32, True)
 
     @m2.setter
     def m2(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 32, value)
+            _mod.mem.setFloat32(self._address + 32, value, True)
 
     @property
     def m6(self):
-        return _mod.mem.getFloat32(self._address + 36)
+        return _mod.mem.getFloat32(self._address + 36, True)
 
     @m6.setter
     def m6(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 36, value)
+            _mod.mem.setFloat32(self._address + 36, value, True)
 
     @property
     def m10(self):
-        return _mod.mem.getFloat32(self._address + 40)
+        return _mod.mem.getFloat32(self._address + 40, True)
 
     @m10.setter
     def m10(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 40, value)
+            _mod.mem.setFloat32(self._address + 40, value, True)
 
     @property
     def m14(self):
-        return _mod.mem.getFloat32(self._address + 44)
+        return _mod.mem.getFloat32(self._address + 44, True)
 
     @m14.setter
     def m14(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 44, value)
+            _mod.mem.setFloat32(self._address + 44, value, True)
 
     @property
     def m3(self):
-        return _mod.mem.getFloat32(self._address + 48)
+        return _mod.mem.getFloat32(self._address + 48, True)
 
     @m3.setter
     def m3(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 48, value)
+            _mod.mem.setFloat32(self._address + 48, value, True)
 
     @property
     def m7(self):
-        return _mod.mem.getFloat32(self._address + 52)
+        return _mod.mem.getFloat32(self._address + 52, True)
 
     @m7.setter
     def m7(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 52, value)
+            _mod.mem.setFloat32(self._address + 52, value, True)
 
     @property
     def m11(self):
-        return _mod.mem.getFloat32(self._address + 56)
+        return _mod.mem.getFloat32(self._address + 56, True)
 
     @m11.setter
     def m11(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 56, value)
+            _mod.mem.setFloat32(self._address + 56, value, True)
 
     @property
     def m15(self):
-        return _mod.mem.getFloat32(self._address + 60)
+        return _mod.mem.getFloat32(self._address + 60, True)
 
     @m15.setter
     def m15(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 60, value)
+            _mod.mem.setFloat32(self._address + 60, value, True)
 
 
 class Color:
@@ -398,39 +398,39 @@ class Color:
 
     @property
     def r(self):
-        return _mod.mem.getUint8(self._address + 0)
+        return _mod.mem.getUint8(self._address + 0, True)
 
     @r.setter
     def r(self, value):
         if not self._frozen:
-            _mod.mem.setUint8(self._address + 0, value)
+            _mod.mem.setUint8(self._address + 0, value, True)
 
     @property
     def g(self):
-        return _mod.mem.getUint8(self._address + 1)
+        return _mod.mem.getUint8(self._address + 1, True)
 
     @g.setter
     def g(self, value):
         if not self._frozen:
-            _mod.mem.setUint8(self._address + 1, value)
+            _mod.mem.setUint8(self._address + 1, value, True)
 
     @property
     def b(self):
-        return _mod.mem.getUint8(self._address + 2)
+        return _mod.mem.getUint8(self._address + 2, True)
 
     @b.setter
     def b(self, value):
         if not self._frozen:
-            _mod.mem.setUint8(self._address + 2, value)
+            _mod.mem.setUint8(self._address + 2, value, True)
 
     @property
     def a(self):
-        return _mod.mem.getUint8(self._address + 3)
+        return _mod.mem.getUint8(self._address + 3, True)
 
     @a.setter
     def a(self, value):
         if not self._frozen:
-            _mod.mem.setUint8(self._address + 3, value)
+            _mod.mem.setUint8(self._address + 3, value, True)
 
 
 class Rectangle:
@@ -452,39 +452,39 @@ class Rectangle:
 
     @property
     def x(self):
-        return _mod.mem.getFloat32(self._address + 0)
+        return _mod.mem.getFloat32(self._address + 0, True)
 
     @x.setter
     def x(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 0, value)
+            _mod.mem.setFloat32(self._address + 0, value, True)
 
     @property
     def y(self):
-        return _mod.mem.getFloat32(self._address + 4)
+        return _mod.mem.getFloat32(self._address + 4, True)
 
     @y.setter
     def y(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 4, value)
+            _mod.mem.setFloat32(self._address + 4, value, True)
 
     @property
     def width(self):
-        return _mod.mem.getFloat32(self._address + 8)
+        return _mod.mem.getFloat32(self._address + 8, True)
 
     @width.setter
     def width(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 8, value)
+            _mod.mem.setFloat32(self._address + 8, value, True)
 
     @property
     def height(self):
-        return _mod.mem.getFloat32(self._address + 12)
+        return _mod.mem.getFloat32(self._address + 12, True)
 
     @height.setter
     def height(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 12, value)
+            _mod.mem.setFloat32(self._address + 12, value, True)
 
 
 class Image:
@@ -507,48 +507,48 @@ class Image:
 
     @property
     def data(self):
-        return _mod.mem.getUint32(self._address + 0)
+        return _mod.mem.getUint32(self._address + 0, True)
 
     @data.setter
     def data(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 0, value)
+            _mod.mem.setUint32(self._address + 0, value, True)
 
     @property
     def width(self):
-        return _mod.mem.getInt32(self._address + 4)
+        return _mod.mem.getInt32(self._address + 4, True)
 
     @width.setter
     def width(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 4, value)
+            _mod.mem.setInt32(self._address + 4, value, True)
 
     @property
     def height(self):
-        return _mod.mem.getInt32(self._address + 8)
+        return _mod.mem.getInt32(self._address + 8, True)
 
     @height.setter
     def height(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 8, value)
+            _mod.mem.setInt32(self._address + 8, value, True)
 
     @property
     def mipmaps(self):
-        return _mod.mem.getInt32(self._address + 12)
+        return _mod.mem.getInt32(self._address + 12, True)
 
     @mipmaps.setter
     def mipmaps(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 12, value)
+            _mod.mem.setInt32(self._address + 12, value, True)
 
     @property
     def format(self):
-        return _mod.mem.getInt32(self._address + 16)
+        return _mod.mem.getInt32(self._address + 16, True)
 
     @format.setter
     def format(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 16, value)
+            _mod.mem.setInt32(self._address + 16, value, True)
 
 
 class Texture:
@@ -571,48 +571,48 @@ class Texture:
 
     @property
     def id(self):
-        return _mod.mem.getUint32(self._address + 0)
+        return _mod.mem.getUint32(self._address + 0, True)
 
     @id.setter
     def id(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 0, value)
+            _mod.mem.setUint32(self._address + 0, value, True)
 
     @property
     def width(self):
-        return _mod.mem.getInt32(self._address + 4)
+        return _mod.mem.getInt32(self._address + 4, True)
 
     @width.setter
     def width(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 4, value)
+            _mod.mem.setInt32(self._address + 4, value, True)
 
     @property
     def height(self):
-        return _mod.mem.getInt32(self._address + 8)
+        return _mod.mem.getInt32(self._address + 8, True)
 
     @height.setter
     def height(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 8, value)
+            _mod.mem.setInt32(self._address + 8, value, True)
 
     @property
     def mipmaps(self):
-        return _mod.mem.getInt32(self._address + 12)
+        return _mod.mem.getInt32(self._address + 12, True)
 
     @mipmaps.setter
     def mipmaps(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 12, value)
+            _mod.mem.setInt32(self._address + 12, value, True)
 
     @property
     def format(self):
-        return _mod.mem.getInt32(self._address + 16)
+        return _mod.mem.getInt32(self._address + 16, True)
 
     @format.setter
     def format(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 16, value)
+            _mod.mem.setInt32(self._address + 16, value, True)
 
 
 Texture2D = Texture
@@ -640,12 +640,12 @@ class RenderTexture:
 
     @property
     def id(self):
-        return _mod.mem.getUint32(self._address + 0)
+        return _mod.mem.getUint32(self._address + 0, True)
 
     @id.setter
     def id(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 0, value)
+            _mod.mem.setUint32(self._address + 0, value, True)
 
     @property
     def texture(self):
@@ -700,48 +700,48 @@ class NPatchInfo:
 
     @property
     def left(self):
-        return _mod.mem.getInt32(self._address + 16)
+        return _mod.mem.getInt32(self._address + 16, True)
 
     @left.setter
     def left(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 16, value)
+            _mod.mem.setInt32(self._address + 16, value, True)
 
     @property
     def top(self):
-        return _mod.mem.getInt32(self._address + 20)
+        return _mod.mem.getInt32(self._address + 20, True)
 
     @top.setter
     def top(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 20, value)
+            _mod.mem.setInt32(self._address + 20, value, True)
 
     @property
     def right(self):
-        return _mod.mem.getInt32(self._address + 24)
+        return _mod.mem.getInt32(self._address + 24, True)
 
     @right.setter
     def right(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 24, value)
+            _mod.mem.setInt32(self._address + 24, value, True)
 
     @property
     def bottom(self):
-        return _mod.mem.getInt32(self._address + 28)
+        return _mod.mem.getInt32(self._address + 28, True)
 
     @bottom.setter
     def bottom(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 28, value)
+            _mod.mem.setInt32(self._address + 28, value, True)
 
     @property
     def layout(self):
-        return _mod.mem.getInt32(self._address + 32)
+        return _mod.mem.getInt32(self._address + 32, True)
 
     @layout.setter
     def layout(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 32, value)
+            _mod.mem.setInt32(self._address + 32, value, True)
 
 
 class GlyphInfo:
@@ -765,39 +765,39 @@ class GlyphInfo:
 
     @property
     def value(self):
-        return _mod.mem.getInt32(self._address + 0)
+        return _mod.mem.getInt32(self._address + 0, True)
 
     @value.setter
     def value(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 0, value)
+            _mod.mem.setInt32(self._address + 0, value, True)
 
     @property
     def offsetX(self):
-        return _mod.mem.getInt32(self._address + 4)
+        return _mod.mem.getInt32(self._address + 4, True)
 
     @offsetX.setter
     def offsetX(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 4, value)
+            _mod.mem.setInt32(self._address + 4, value, True)
 
     @property
     def offsetY(self):
-        return _mod.mem.getInt32(self._address + 8)
+        return _mod.mem.getInt32(self._address + 8, True)
 
     @offsetY.setter
     def offsetY(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 8, value)
+            _mod.mem.setInt32(self._address + 8, value, True)
 
     @property
     def advanceX(self):
-        return _mod.mem.getInt32(self._address + 12)
+        return _mod.mem.getInt32(self._address + 12, True)
 
     @advanceX.setter
     def advanceX(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 12, value)
+            _mod.mem.setInt32(self._address + 12, value, True)
 
     @property
     def image(self):
@@ -831,30 +831,30 @@ class Font:
 
     @property
     def baseSize(self):
-        return _mod.mem.getInt32(self._address + 0)
+        return _mod.mem.getInt32(self._address + 0, True)
 
     @baseSize.setter
     def baseSize(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 0, value)
+            _mod.mem.setInt32(self._address + 0, value, True)
 
     @property
     def glyphCount(self):
-        return _mod.mem.getInt32(self._address + 4)
+        return _mod.mem.getInt32(self._address + 4, True)
 
     @glyphCount.setter
     def glyphCount(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 4, value)
+            _mod.mem.setInt32(self._address + 4, value, True)
 
     @property
     def glyphPadding(self):
-        return _mod.mem.getInt32(self._address + 8)
+        return _mod.mem.getInt32(self._address + 8, True)
 
     @glyphPadding.setter
     def glyphPadding(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 8, value)
+            _mod.mem.setInt32(self._address + 8, value, True)
 
     @property
     def texture(self):
@@ -867,21 +867,21 @@ class Font:
 
     @property
     def recs(self):
-        return _mod.mem.getUint32(self._address + 32)
+        return _mod.mem.getUint32(self._address + 32, True)
 
     @recs.setter
     def recs(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 32, value)
+            _mod.mem.setUint32(self._address + 32, value, True)
 
     @property
     def glyphs(self):
-        return _mod.mem.getUint32(self._address + 36)
+        return _mod.mem.getUint32(self._address + 36, True)
 
     @glyphs.setter
     def glyphs(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 36, value)
+            _mod.mem.setUint32(self._address + 36, value, True)
 
 
 class Camera3D:
@@ -934,21 +934,21 @@ class Camera3D:
 
     @property
     def fovy(self):
-        return _mod.mem.getFloat32(self._address + 36)
+        return _mod.mem.getFloat32(self._address + 36, True)
 
     @fovy.setter
     def fovy(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 36, value)
+            _mod.mem.setFloat32(self._address + 36, value, True)
 
     @property
     def projection(self):
-        return _mod.mem.getInt32(self._address + 40)
+        return _mod.mem.getInt32(self._address + 40, True)
 
     @projection.setter
     def projection(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 40, value)
+            _mod.mem.setInt32(self._address + 40, value, True)
 
 
 Camera = Camera3D
@@ -993,21 +993,21 @@ class Camera2D:
 
     @property
     def rotation(self):
-        return _mod.mem.getFloat32(self._address + 16)
+        return _mod.mem.getFloat32(self._address + 16, True)
 
     @rotation.setter
     def rotation(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 16, value)
+            _mod.mem.setFloat32(self._address + 16, value, True)
 
     @property
     def zoom(self):
-        return _mod.mem.getFloat32(self._address + 20)
+        return _mod.mem.getFloat32(self._address + 20, True)
 
     @zoom.setter
     def zoom(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 20, value)
+            _mod.mem.setFloat32(self._address + 20, value, True)
 
 
 class Mesh:
@@ -1042,138 +1042,138 @@ class Mesh:
 
     @property
     def vertexCount(self):
-        return _mod.mem.getInt32(self._address + 0)
+        return _mod.mem.getInt32(self._address + 0, True)
 
     @vertexCount.setter
     def vertexCount(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 0, value)
+            _mod.mem.setInt32(self._address + 0, value, True)
 
     @property
     def triangleCount(self):
-        return _mod.mem.getInt32(self._address + 4)
+        return _mod.mem.getInt32(self._address + 4, True)
 
     @triangleCount.setter
     def triangleCount(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 4, value)
+            _mod.mem.setInt32(self._address + 4, value, True)
 
     @property
     def vertices(self):
-        return _mod.mem.getUint32(self._address + 8)
+        return _mod.mem.getUint32(self._address + 8, True)
 
     @vertices.setter
     def vertices(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 8, value)
+            _mod.mem.setUint32(self._address + 8, value, True)
 
     @property
     def texcoords(self):
-        return _mod.mem.getUint32(self._address + 12)
+        return _mod.mem.getUint32(self._address + 12, True)
 
     @texcoords.setter
     def texcoords(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 12, value)
+            _mod.mem.setUint32(self._address + 12, value, True)
 
     @property
     def texcoords2(self):
-        return _mod.mem.getUint32(self._address + 16)
+        return _mod.mem.getUint32(self._address + 16, True)
 
     @texcoords2.setter
     def texcoords2(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 16, value)
+            _mod.mem.setUint32(self._address + 16, value, True)
 
     @property
     def normals(self):
-        return _mod.mem.getUint32(self._address + 20)
+        return _mod.mem.getUint32(self._address + 20, True)
 
     @normals.setter
     def normals(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 20, value)
+            _mod.mem.setUint32(self._address + 20, value, True)
 
     @property
     def tangents(self):
-        return _mod.mem.getUint32(self._address + 24)
+        return _mod.mem.getUint32(self._address + 24, True)
 
     @tangents.setter
     def tangents(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 24, value)
+            _mod.mem.setUint32(self._address + 24, value, True)
 
     @property
     def colors(self):
-        return _mod.mem.getUint32(self._address + 28)
+        return _mod.mem.getUint32(self._address + 28, True)
 
     @colors.setter
     def colors(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 28, value)
+            _mod.mem.setUint32(self._address + 28, value, True)
 
     @property
     def indices(self):
-        return _mod.mem.getUint32(self._address + 32)
+        return _mod.mem.getUint32(self._address + 32, True)
 
     @indices.setter
     def indices(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 32, value)
+            _mod.mem.setUint32(self._address + 32, value, True)
 
     @property
     def animVertices(self):
-        return _mod.mem.getUint32(self._address + 36)
+        return _mod.mem.getUint32(self._address + 36, True)
 
     @animVertices.setter
     def animVertices(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 36, value)
+            _mod.mem.setUint32(self._address + 36, value, True)
 
     @property
     def animNormals(self):
-        return _mod.mem.getUint32(self._address + 40)
+        return _mod.mem.getUint32(self._address + 40, True)
 
     @animNormals.setter
     def animNormals(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 40, value)
+            _mod.mem.setUint32(self._address + 40, value, True)
 
     @property
     def boneIds(self):
-        return _mod.mem.getUint32(self._address + 44)
+        return _mod.mem.getUint32(self._address + 44, True)
 
     @boneIds.setter
     def boneIds(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 44, value)
+            _mod.mem.setUint32(self._address + 44, value, True)
 
     @property
     def boneWeights(self):
-        return _mod.mem.getUint32(self._address + 48)
+        return _mod.mem.getUint32(self._address + 48, True)
 
     @boneWeights.setter
     def boneWeights(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 48, value)
+            _mod.mem.setUint32(self._address + 48, value, True)
 
     @property
     def vaoId(self):
-        return _mod.mem.getUint32(self._address + 52)
+        return _mod.mem.getUint32(self._address + 52, True)
 
     @vaoId.setter
     def vaoId(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 52, value)
+            _mod.mem.setUint32(self._address + 52, value, True)
 
     @property
     def vboId(self):
-        return _mod.mem.getUint32(self._address + 56)
+        return _mod.mem.getUint32(self._address + 56, True)
 
     @vboId.setter
     def vboId(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 56, value)
+            _mod.mem.setUint32(self._address + 56, value, True)
 
 
 class Shader:
@@ -1192,21 +1192,21 @@ class Shader:
 
     @property
     def id(self):
-        return _mod.mem.getUint32(self._address + 0)
+        return _mod.mem.getUint32(self._address + 0, True)
 
     @id.setter
     def id(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 0, value)
+            _mod.mem.setUint32(self._address + 0, value, True)
 
     @property
     def locs(self):
-        return _mod.mem.getUint32(self._address + 4)
+        return _mod.mem.getUint32(self._address + 4, True)
 
     @locs.setter
     def locs(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 4, value)
+            _mod.mem.setUint32(self._address + 4, value, True)
 
 
 class MaterialMap:
@@ -1247,12 +1247,12 @@ class MaterialMap:
 
     @property
     def value(self):
-        return _mod.mem.getFloat32(self._address + 24)
+        return _mod.mem.getFloat32(self._address + 24, True)
 
     @value.setter
     def value(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 24, value)
+            _mod.mem.setFloat32(self._address + 24, value, True)
 
 
 class Transform:
@@ -1337,75 +1337,75 @@ class Model:
 
     @property
     def meshCount(self):
-        return _mod.mem.getInt32(self._address + 64)
+        return _mod.mem.getInt32(self._address + 64, True)
 
     @meshCount.setter
     def meshCount(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 64, value)
+            _mod.mem.setInt32(self._address + 64, value, True)
 
     @property
     def materialCount(self):
-        return _mod.mem.getInt32(self._address + 68)
+        return _mod.mem.getInt32(self._address + 68, True)
 
     @materialCount.setter
     def materialCount(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 68, value)
+            _mod.mem.setInt32(self._address + 68, value, True)
 
     @property
     def meshes(self):
-        return _mod.mem.getUint32(self._address + 72)
+        return _mod.mem.getUint32(self._address + 72, True)
 
     @meshes.setter
     def meshes(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 72, value)
+            _mod.mem.setUint32(self._address + 72, value, True)
 
     @property
     def materials(self):
-        return _mod.mem.getUint32(self._address + 76)
+        return _mod.mem.getUint32(self._address + 76, True)
 
     @materials.setter
     def materials(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 76, value)
+            _mod.mem.setUint32(self._address + 76, value, True)
 
     @property
     def meshMaterial(self):
-        return _mod.mem.getUint32(self._address + 80)
+        return _mod.mem.getUint32(self._address + 80, True)
 
     @meshMaterial.setter
     def meshMaterial(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 80, value)
+            _mod.mem.setUint32(self._address + 80, value, True)
 
     @property
     def boneCount(self):
-        return _mod.mem.getInt32(self._address + 84)
+        return _mod.mem.getInt32(self._address + 84, True)
 
     @boneCount.setter
     def boneCount(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 84, value)
+            _mod.mem.setInt32(self._address + 84, value, True)
 
     @property
     def bones(self):
-        return _mod.mem.getUint32(self._address + 88)
+        return _mod.mem.getUint32(self._address + 88, True)
 
     @bones.setter
     def bones(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 88, value)
+            _mod.mem.setUint32(self._address + 88, value, True)
 
     @property
     def bindPose(self):
-        return _mod.mem.getUint32(self._address + 92)
+        return _mod.mem.getUint32(self._address + 92, True)
 
     @bindPose.setter
     def bindPose(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 92, value)
+            _mod.mem.setUint32(self._address + 92, value, True)
 
 
 class Ray:
@@ -1464,21 +1464,21 @@ class RayCollision:
 
     @property
     def hit(self):
-        return _mod.mem.getInt8(self._address + 0)
+        return _mod.mem.getInt8(self._address + 0, True)
 
     @hit.setter
     def hit(self, value):
         if not self._frozen:
-            _mod.mem.setInt8(self._address + 0, value)
+            _mod.mem.setInt8(self._address + 0, value, True)
 
     @property
     def distance(self):
-        return _mod.mem.getFloat32(self._address + 1)
+        return _mod.mem.getFloat32(self._address + 1, True)
 
     @distance.setter
     def distance(self, value):
         if not self._frozen:
-            _mod.mem.setFloat32(self._address + 1, value)
+            _mod.mem.setFloat32(self._address + 1, value, True)
 
     @property
     def point(self):
@@ -1554,48 +1554,48 @@ class Wave:
 
     @property
     def frameCount(self):
-        return _mod.mem.getUint32(self._address + 0)
+        return _mod.mem.getUint32(self._address + 0, True)
 
     @frameCount.setter
     def frameCount(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 0, value)
+            _mod.mem.setUint32(self._address + 0, value, True)
 
     @property
     def sampleRate(self):
-        return _mod.mem.getUint32(self._address + 4)
+        return _mod.mem.getUint32(self._address + 4, True)
 
     @sampleRate.setter
     def sampleRate(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 4, value)
+            _mod.mem.setUint32(self._address + 4, value, True)
 
     @property
     def sampleSize(self):
-        return _mod.mem.getUint32(self._address + 8)
+        return _mod.mem.getUint32(self._address + 8, True)
 
     @sampleSize.setter
     def sampleSize(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 8, value)
+            _mod.mem.setUint32(self._address + 8, value, True)
 
     @property
     def channels(self):
-        return _mod.mem.getUint32(self._address + 12)
+        return _mod.mem.getUint32(self._address + 12, True)
 
     @channels.setter
     def channels(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 12, value)
+            _mod.mem.setUint32(self._address + 12, value, True)
 
     @property
     def data(self):
-        return _mod.mem.getUint32(self._address + 16)
+        return _mod.mem.getUint32(self._address + 16, True)
 
     @data.setter
     def data(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 16, value)
+            _mod.mem.setUint32(self._address + 16, value, True)
 
 
 class AudioStream:
@@ -1618,48 +1618,48 @@ class AudioStream:
 
     @property
     def buffer(self):
-        return _mod.mem.getUint32(self._address + 0)
+        return _mod.mem.getUint32(self._address + 0, True)
 
     @buffer.setter
     def buffer(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 0, value)
+            _mod.mem.setUint32(self._address + 0, value, True)
 
     @property
     def processor(self):
-        return _mod.mem.getUint32(self._address + 4)
+        return _mod.mem.getUint32(self._address + 4, True)
 
     @processor.setter
     def processor(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 4, value)
+            _mod.mem.setUint32(self._address + 4, value, True)
 
     @property
     def sampleRate(self):
-        return _mod.mem.getUint32(self._address + 8)
+        return _mod.mem.getUint32(self._address + 8, True)
 
     @sampleRate.setter
     def sampleRate(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 8, value)
+            _mod.mem.setUint32(self._address + 8, value, True)
 
     @property
     def sampleSize(self):
-        return _mod.mem.getUint32(self._address + 12)
+        return _mod.mem.getUint32(self._address + 12, True)
 
     @sampleSize.setter
     def sampleSize(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 12, value)
+            _mod.mem.setUint32(self._address + 12, value, True)
 
     @property
     def channels(self):
-        return _mod.mem.getUint32(self._address + 16)
+        return _mod.mem.getUint32(self._address + 16, True)
 
     @channels.setter
     def channels(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 16, value)
+            _mod.mem.setUint32(self._address + 16, value, True)
 
 
 class Sound:
@@ -1688,12 +1688,12 @@ class Sound:
 
     @property
     def frameCount(self):
-        return _mod.mem.getUint32(self._address + 20)
+        return _mod.mem.getUint32(self._address + 20, True)
 
     @frameCount.setter
     def frameCount(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 20, value)
+            _mod.mem.setUint32(self._address + 20, value, True)
 
 
 class Music:
@@ -1726,39 +1726,39 @@ class Music:
 
     @property
     def frameCount(self):
-        return _mod.mem.getUint32(self._address + 20)
+        return _mod.mem.getUint32(self._address + 20, True)
 
     @frameCount.setter
     def frameCount(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 20, value)
+            _mod.mem.setUint32(self._address + 20, value, True)
 
     @property
     def looping(self):
-        return _mod.mem.getInt8(self._address + 24)
+        return _mod.mem.getInt8(self._address + 24, True)
 
     @looping.setter
     def looping(self, value):
         if not self._frozen:
-            _mod.mem.setInt8(self._address + 24, value)
+            _mod.mem.setInt8(self._address + 24, value, True)
 
     @property
     def ctxType(self):
-        return _mod.mem.getInt32(self._address + 25)
+        return _mod.mem.getInt32(self._address + 25, True)
 
     @ctxType.setter
     def ctxType(self, value):
         if not self._frozen:
-            _mod.mem.setInt32(self._address + 25, value)
+            _mod.mem.setInt32(self._address + 25, value, True)
 
     @property
     def ctxData(self):
-        return _mod.mem.getUint32(self._address + 29)
+        return _mod.mem.getUint32(self._address + 29, True)
 
     @ctxData.setter
     def ctxData(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 29, value)
+            _mod.mem.setUint32(self._address + 29, value, True)
 
 
 class FilePathList:
@@ -1778,30 +1778,30 @@ class FilePathList:
 
     @property
     def capacity(self):
-        return _mod.mem.getUint32(self._address + 0)
+        return _mod.mem.getUint32(self._address + 0, True)
 
     @capacity.setter
     def capacity(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 0, value)
+            _mod.mem.setUint32(self._address + 0, value, True)
 
     @property
     def count(self):
-        return _mod.mem.getUint32(self._address + 4)
+        return _mod.mem.getUint32(self._address + 4, True)
 
     @count.setter
     def count(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 4, value)
+            _mod.mem.setUint32(self._address + 4, value, True)
 
     @property
     def paths(self):
-        return _mod.mem.getUint32(self._address + 8)
+        return _mod.mem.getUint32(self._address + 8, True)
 
     @paths.setter
     def paths(self, value):
         if not self._frozen:
-            _mod.mem.setUint32(self._address + 8, value)
+            _mod.mem.setUint32(self._address + 8, value, True)
 
 
 LIGHTGRAY = Color(200, 200, 200, 255, frozen=True)  # Light Gray
@@ -1845,7 +1845,7 @@ def struct_clone(source, a):
 
 
 def GetFontDefault():
-    a = _mod._malloc(Font._size)
+    a = _mod._malloc(Font.size)
     _mod._GetFontDefault(a)
     return Font(address=a)
 
