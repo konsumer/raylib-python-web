@@ -192,12 +192,13 @@ def generate_struct_code(struct_api) -> str:
 
         string += ", "
 
-    # remove the last ", "
-    string: str = string[0:-2]
+    # added frozen argument
+    string += f"frozen: bool = False"
     string += f"):\n"
 
+    # add frozen self
+    string += f"        self._frozen = frozen\n"
     # malloc code of class
-
     string += f"        if address != 0:\n"
     string += f"            self._address = address\n"
     string += f"        else:\n"
@@ -210,7 +211,8 @@ def generate_struct_code(struct_api) -> str:
             return ""  # TODO: implement struct code generation for structs that has members of array type
 
         if member_ctype.kind != CTypeKind.Struct:
-            string += f"            _mod.mem.{emscripten_XXXType_string_for_ctype_kind(member_ctype.kind, False)}({member_json['name']})\n"
+            string += f"            _mod.mem.{emscripten_XXXType_string_for_ctype_kind(member_ctype.kind, False)}" \
+                      f"(self._address + {offset}, {member_json['name']})\n"
         else:
             string += f"            if {member_json['name']} is not None: \n"
             string += f"                struct_clone({member_json['name']}, self._address + {offset})\n"
@@ -218,37 +220,39 @@ def generate_struct_code(struct_api) -> str:
 
     string += '\n'
 
-    """# add setters and getters
+    # add setters and getters
     offset = 0
     for member_ctype, member_json in zip(struct_.members, struct_api['fields']):
         if member_ctype.kind == CTypeKind.Array:
             return ""  # TODO: implement struct code generation for structs that has members of array type
 
         if member_ctype.kind != CTypeKind.Struct:
-            heap_kind: CTypeKind = struct_member_heap_kind(member_ctype)
-
             # getter
             string += f"    @property\n"
             string += f"    def {member_json['name']}(self):\n"
-            string += f"        return _{member_json['name']}\n\n"
+            string += f"        return _mod.mem.{emscripten_XXXType_string_for_ctype_kind(member_ctype.kind, True)}" \
+                      f"(self._address + {offset})\n\n"
 
             # setter
             string += f"    @{member_json['name']}.setter\n"
             string += f"    def {member_json['name']}(self, value):\n"
-            string += f"        self._{member_json['name']} = value\n"
-            string += f"        _mod.setValue(self._address + {offset}, self._{member_json['name']}, \"{emscripten_Value_type_string_from_ctype_kind(member_ctype.kind)}\")\n\n"
+            string += f"        if not self._frozen:\n"
+            string += f"            _mod.mem.{emscripten_XXXType_string_for_ctype_kind(member_ctype.kind, False)}" \
+                      f"(self._address + {offset}, value)\n\n"
         else:
+            type_hint: str = struct_member_to_python_type_hint(member_ctype)
             # getter
             string += f"    @property\n"
             string += f"    def {member_json['name']}(self):\n"
-            string += f"        return _{member_json['name']}\n\n"
+            string += f"        return {type_hint}(address=self._address + {offset})\n\n"
 
             # setter
             string += f"    @{member_json['name']}.setter\n"
             string += f"    def {member_json['name']}(self, value):\n"
-            string += f"        self._{member_json['name']} = value\n\n"
+            string += f"        if not self._frozen:\n"
+            string += f"            struct_clone(value, self._address + {offset})\n\n"
 
-        offset += get_ctype_size(member_ctype)"""
+        offset += get_ctype_size(member_ctype)
 
     return string
 
