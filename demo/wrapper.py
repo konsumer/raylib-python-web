@@ -76,9 +76,10 @@ class Vector2:
 
     size: int = 8
 
-    def __init__(self, x: float = 0.0, y: float = 0.0, address: int = 0, frozen: bool = False):
+    def __init__(self, x: float = 0.0, y: float = 0.0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(8)
@@ -103,15 +104,21 @@ class Vector2:
         if not self._frozen:
             _mod.mem.setFloat32(self._address + 4, value, True)
 
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
 
 class Vector3:
     """Vector3, 3 components"""
 
     size: int = 12
 
-    def __init__(self, x: float = 0.0, y: float = 0.0, z: float = 0.0, address: int = 0, frozen: bool = False):
+    def __init__(self, x: float = 0.0, y: float = 0.0, z: float = 0.0, address: int = 0, to_alloc: bool = True,
+                 frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(12)
@@ -146,6 +153,10 @@ class Vector3:
         if not self._frozen:
             _mod.mem.setFloat32(self._address + 8, value, True)
 
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
 
 class Vector4:
     """Vector4, 4 components"""
@@ -153,9 +164,10 @@ class Vector4:
     size: int = 16
 
     def __init__(self, x: float = 0.0, y: float = 0.0, z: float = 0.0, w: float = 0.0, address: int = 0,
-                 frozen: bool = False):
+                 to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(16)
@@ -200,6 +212,10 @@ class Vector4:
         if not self._frozen:
             _mod.mem.setFloat32(self._address + 12, value, True)
 
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
 
 Quaternion = Vector4
 
@@ -212,9 +228,10 @@ class Matrix:
     def __init__(self, m0: float = 0.0, m4: float = 0.0, m8: float = 0.0, m12: float = 0.0, m1: float = 0.0,
                  m5: float = 0.0, m9: float = 0.0, m13: float = 0.0, m2: float = 0.0, m6: float = 0.0, m10: float = 0.0,
                  m14: float = 0.0, m3: float = 0.0, m7: float = 0.0, m11: float = 0.0, m15: float = 0.0,
-                 address: int = 0, frozen: bool = False):
+                 address: int = 0, to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(64)
@@ -379,15 +396,21 @@ class Matrix:
         if not self._frozen:
             _mod.mem.setFloat32(self._address + 60, value, True)
 
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
 
 class Color:
     """Color, 4 components, R8G8B8A8 (32bit)"""
 
     size: int = 4
 
-    def __init__(self, r: int = 0, g: int = 0, b: int = 0, a: int = 0, address: int = 0, frozen: bool = False):
+    def __init__(self, r: int = 0, g: int = 0, b: int = 0, a: int = 0, address: int = 0, to_alloc: bool = True,
+                 frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(4)
@@ -432,6 +455,10 @@ class Color:
         if not self._frozen:
             _mod.mem.setUint8(self._address + 3, value, True)
 
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
 
 class Rectangle:
     """Rectangle, 4 components"""
@@ -439,9 +466,10 @@ class Rectangle:
     size: int = 16
 
     def __init__(self, x: float = 0.0, y: float = 0.0, width: float = 0.0, height: float = 0.0, address: int = 0,
-                 frozen: bool = False):
+                 to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(16)
@@ -486,6 +514,10 @@ class Rectangle:
         if not self._frozen:
             _mod.mem.setFloat32(self._address + 12, value, True)
 
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
 
 class Image:
     """Image, pixel data stored in CPU memory (RAM)"""
@@ -493,9 +525,10 @@ class Image:
     size: int = 20
 
     def __init__(self, data: int = 0, width: int = 0, height: int = 0, mipmaps: int = 0, format: int = 0,
-                 address: int = 0, frozen: bool = False):
+                 address: int = 0, to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(20)
@@ -550,6 +583,10 @@ class Image:
         if not self._frozen:
             _mod.mem.setInt32(self._address + 16, value, True)
 
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
 
 class Texture:
     """Texture, tex data stored in GPU memory (VRAM)"""
@@ -557,9 +594,10 @@ class Texture:
     size: int = 20
 
     def __init__(self, id: int = 0, width: int = 0, height: int = 0, mipmaps: int = 0, format: int = 0,
-                 address: int = 0, frozen: bool = False):
+                 address: int = 0, to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(20)
@@ -614,6 +652,10 @@ class Texture:
         if not self._frozen:
             _mod.mem.setInt32(self._address + 16, value, True)
 
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
 
 Texture2D = Texture
 
@@ -626,9 +668,10 @@ class RenderTexture:
     size: int = 44
 
     def __init__(self, id: int = 0, texture: Texture = None, depth: Texture = None, address: int = 0,
-                 frozen: bool = False):
+                 to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(44)
@@ -649,7 +692,7 @@ class RenderTexture:
 
     @property
     def texture(self):
-        return Texture(address=self._address + 4)
+        return Texture(address=self._address + 4, to_alloc=False)
 
     @texture.setter
     def texture(self, value):
@@ -658,12 +701,16 @@ class RenderTexture:
 
     @property
     def depth(self):
-        return Texture(address=self._address + 24)
+        return Texture(address=self._address + 24, to_alloc=False)
 
     @depth.setter
     def depth(self, value):
         if not self._frozen:
             struct_clone(value, self._address + 24)
+
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
 
 
 RenderTexture2D = RenderTexture
@@ -675,9 +722,10 @@ class NPatchInfo:
     size: int = 36
 
     def __init__(self, source: Rectangle = None, left: int = 0, top: int = 0, right: int = 0, bottom: int = 0,
-                 layout: int = 0, address: int = 0, frozen: bool = False):
+                 layout: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(36)
@@ -691,7 +739,7 @@ class NPatchInfo:
 
     @property
     def source(self):
-        return Rectangle(address=self._address + 0)
+        return Rectangle(address=self._address + 0, to_alloc=False)
 
     @source.setter
     def source(self, value):
@@ -743,6 +791,10 @@ class NPatchInfo:
         if not self._frozen:
             _mod.mem.setInt32(self._address + 32, value, True)
 
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
 
 class GlyphInfo:
     """GlyphInfo, font characters glyphs info"""
@@ -750,9 +802,10 @@ class GlyphInfo:
     size: int = 36
 
     def __init__(self, value: int = 0, offsetX: int = 0, offsetY: int = 0, advanceX: int = 0, image: Image = None,
-                 address: int = 0, frozen: bool = False):
+                 address: int = 0, to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(36)
@@ -801,12 +854,16 @@ class GlyphInfo:
 
     @property
     def image(self):
-        return Image(address=self._address + 16)
+        return Image(address=self._address + 16, to_alloc=False)
 
     @image.setter
     def image(self, value):
         if not self._frozen:
             struct_clone(value, self._address + 16)
+
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
 
 
 class Font:
@@ -815,9 +872,10 @@ class Font:
     size: int = 40
 
     def __init__(self, baseSize: int = 0, glyphCount: int = 0, glyphPadding: int = 0, texture: Texture2D = None,
-                 recs: int = 0, glyphs: int = 0, address: int = 0, frozen: bool = False):
+                 recs: int = 0, glyphs: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(40)
@@ -858,7 +916,7 @@ class Font:
 
     @property
     def texture(self):
-        return Texture2D(address=self._address + 12)
+        return Texture2D(address=self._address + 12, to_alloc=False)
 
     @texture.setter
     def texture(self, value):
@@ -883,6 +941,10 @@ class Font:
         if not self._frozen:
             _mod.mem.setUint32(self._address + 36, value, True)
 
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
 
 class Camera3D:
     """Camera, defines position/orientation in 3d space"""
@@ -890,9 +952,10 @@ class Camera3D:
     size: int = 44
 
     def __init__(self, position: Vector3 = None, target: Vector3 = None, up: Vector3 = None, fovy: float = 0.0,
-                 projection: int = 0, address: int = 0, frozen: bool = False):
+                 projection: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(44)
@@ -907,7 +970,7 @@ class Camera3D:
 
     @property
     def position(self):
-        return Vector3(address=self._address + 0)
+        return Vector3(address=self._address + 0, to_alloc=False)
 
     @position.setter
     def position(self, value):
@@ -916,7 +979,7 @@ class Camera3D:
 
     @property
     def target(self):
-        return Vector3(address=self._address + 12)
+        return Vector3(address=self._address + 12, to_alloc=False)
 
     @target.setter
     def target(self, value):
@@ -925,7 +988,7 @@ class Camera3D:
 
     @property
     def up(self):
-        return Vector3(address=self._address + 24)
+        return Vector3(address=self._address + 24, to_alloc=False)
 
     @up.setter
     def up(self, value):
@@ -950,6 +1013,10 @@ class Camera3D:
         if not self._frozen:
             _mod.mem.setInt32(self._address + 40, value, True)
 
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
 
 Camera = Camera3D
 
@@ -960,9 +1027,10 @@ class Camera2D:
     size: int = 24
 
     def __init__(self, offset: Vector2 = None, target: Vector2 = None, rotation: float = 0.0, zoom: float = 0.0,
-                 address: int = 0, frozen: bool = False):
+                 address: int = 0, to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(24)
@@ -975,7 +1043,7 @@ class Camera2D:
 
     @property
     def offset(self):
-        return Vector2(address=self._address + 0)
+        return Vector2(address=self._address + 0, to_alloc=False)
 
     @offset.setter
     def offset(self, value):
@@ -984,7 +1052,7 @@ class Camera2D:
 
     @property
     def target(self):
-        return Vector2(address=self._address + 8)
+        return Vector2(address=self._address + 8, to_alloc=False)
 
     @target.setter
     def target(self, value):
@@ -1009,6 +1077,10 @@ class Camera2D:
         if not self._frozen:
             _mod.mem.setFloat32(self._address + 20, value, True)
 
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
 
 class Mesh:
     """Mesh, vertex data and vao/vbo"""
@@ -1018,9 +1090,10 @@ class Mesh:
     def __init__(self, vertexCount: int = 0, triangleCount: int = 0, vertices: int = 0, texcoords: int = 0,
                  texcoords2: int = 0, normals: int = 0, tangents: int = 0, colors: int = 0, indices: int = 0,
                  animVertices: int = 0, animNormals: int = 0, boneIds: int = 0, boneWeights: int = 0, vaoId: int = 0,
-                 vboId: int = 0, address: int = 0, frozen: bool = False):
+                 vboId: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(60)
@@ -1175,15 +1248,20 @@ class Mesh:
         if not self._frozen:
             _mod.mem.setUint32(self._address + 56, value, True)
 
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
 
 class Shader:
     """Shader"""
 
     size: int = 8
 
-    def __init__(self, id: int = 0, locs: int = 0, address: int = 0, frozen: bool = False):
+    def __init__(self, id: int = 0, locs: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(8)
@@ -1208,6 +1286,10 @@ class Shader:
         if not self._frozen:
             _mod.mem.setUint32(self._address + 4, value, True)
 
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
 
 class MaterialMap:
     """MaterialMap"""
@@ -1215,9 +1297,10 @@ class MaterialMap:
     size: int = 28
 
     def __init__(self, texture: Texture2D = None, color: Color = None, value: float = 0.0, address: int = 0,
-                 frozen: bool = False):
+                 to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(28)
@@ -1229,7 +1312,7 @@ class MaterialMap:
 
     @property
     def texture(self):
-        return Texture2D(address=self._address + 0)
+        return Texture2D(address=self._address + 0, to_alloc=False)
 
     @texture.setter
     def texture(self, value):
@@ -1238,7 +1321,7 @@ class MaterialMap:
 
     @property
     def color(self):
-        return Color(address=self._address + 20)
+        return Color(address=self._address + 20, to_alloc=False)
 
     @color.setter
     def color(self, value):
@@ -1254,6 +1337,10 @@ class MaterialMap:
         if not self._frozen:
             _mod.mem.setFloat32(self._address + 24, value, True)
 
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
 
 class Transform:
     """Transform, vertex transformation data"""
@@ -1261,9 +1348,10 @@ class Transform:
     size: int = 40
 
     def __init__(self, translation: Vector3 = None, rotation: Quaternion = None, scale: Vector3 = None,
-                 address: int = 0, frozen: bool = False):
+                 address: int = 0, to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(40)
@@ -1276,7 +1364,7 @@ class Transform:
 
     @property
     def translation(self):
-        return Vector3(address=self._address + 0)
+        return Vector3(address=self._address + 0, to_alloc=False)
 
     @translation.setter
     def translation(self, value):
@@ -1285,7 +1373,7 @@ class Transform:
 
     @property
     def rotation(self):
-        return Quaternion(address=self._address + 12)
+        return Quaternion(address=self._address + 12, to_alloc=False)
 
     @rotation.setter
     def rotation(self, value):
@@ -1294,12 +1382,16 @@ class Transform:
 
     @property
     def scale(self):
-        return Vector3(address=self._address + 28)
+        return Vector3(address=self._address + 28, to_alloc=False)
 
     @scale.setter
     def scale(self, value):
         if not self._frozen:
             struct_clone(value, self._address + 28)
+
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
 
 
 class Model:
@@ -1309,9 +1401,10 @@ class Model:
 
     def __init__(self, transform: Matrix = None, meshCount: int = 0, materialCount: int = 0, meshes: int = 0,
                  materials: int = 0, meshMaterial: int = 0, boneCount: int = 0, bones: int = 0, bindPose: int = 0,
-                 address: int = 0, frozen: bool = False):
+                 address: int = 0, to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(96)
@@ -1328,7 +1421,7 @@ class Model:
 
     @property
     def transform(self):
-        return Matrix(address=self._address + 0)
+        return Matrix(address=self._address + 0, to_alloc=False)
 
     @transform.setter
     def transform(self, value):
@@ -1407,15 +1500,21 @@ class Model:
         if not self._frozen:
             _mod.mem.setUint32(self._address + 92, value, True)
 
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
 
 class Ray:
     """Ray, ray for raycasting"""
 
     size: int = 24
 
-    def __init__(self, position: Vector3 = None, direction: Vector3 = None, address: int = 0, frozen: bool = False):
+    def __init__(self, position: Vector3 = None, direction: Vector3 = None, address: int = 0, to_alloc: bool = True,
+                 frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(24)
@@ -1426,7 +1525,7 @@ class Ray:
 
     @property
     def position(self):
-        return Vector3(address=self._address + 0)
+        return Vector3(address=self._address + 0, to_alloc=False)
 
     @position.setter
     def position(self, value):
@@ -1435,12 +1534,16 @@ class Ray:
 
     @property
     def direction(self):
-        return Vector3(address=self._address + 12)
+        return Vector3(address=self._address + 12, to_alloc=False)
 
     @direction.setter
     def direction(self, value):
         if not self._frozen:
             struct_clone(value, self._address + 12)
+
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
 
 
 class RayCollision:
@@ -1449,9 +1552,10 @@ class RayCollision:
     size: int = 29
 
     def __init__(self, hit: int = 0, distance: float = 0.0, point: Vector3 = None, normal: Vector3 = None,
-                 address: int = 0, frozen: bool = False):
+                 address: int = 0, to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(29)
@@ -1482,7 +1586,7 @@ class RayCollision:
 
     @property
     def point(self):
-        return Vector3(address=self._address + 5)
+        return Vector3(address=self._address + 5, to_alloc=False)
 
     @point.setter
     def point(self, value):
@@ -1491,12 +1595,16 @@ class RayCollision:
 
     @property
     def normal(self):
-        return Vector3(address=self._address + 17)
+        return Vector3(address=self._address + 17, to_alloc=False)
 
     @normal.setter
     def normal(self, value):
         if not self._frozen:
             struct_clone(value, self._address + 17)
+
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
 
 
 class BoundingBox:
@@ -1504,9 +1612,11 @@ class BoundingBox:
 
     size: int = 24
 
-    def __init__(self, min: Vector3 = None, max: Vector3 = None, address: int = 0, frozen: bool = False):
+    def __init__(self, min: Vector3 = None, max: Vector3 = None, address: int = 0, to_alloc: bool = True,
+                 frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(24)
@@ -1517,7 +1627,7 @@ class BoundingBox:
 
     @property
     def min(self):
-        return Vector3(address=self._address + 0)
+        return Vector3(address=self._address + 0, to_alloc=False)
 
     @min.setter
     def min(self, value):
@@ -1526,12 +1636,16 @@ class BoundingBox:
 
     @property
     def max(self):
-        return Vector3(address=self._address + 12)
+        return Vector3(address=self._address + 12, to_alloc=False)
 
     @max.setter
     def max(self, value):
         if not self._frozen:
             struct_clone(value, self._address + 12)
+
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
 
 
 class Wave:
@@ -1540,9 +1654,10 @@ class Wave:
     size: int = 20
 
     def __init__(self, frameCount: int = 0, sampleRate: int = 0, sampleSize: int = 0, channels: int = 0, data: int = 0,
-                 address: int = 0, frozen: bool = False):
+                 address: int = 0, to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(20)
@@ -1597,6 +1712,10 @@ class Wave:
         if not self._frozen:
             _mod.mem.setUint32(self._address + 16, value, True)
 
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
 
 class AudioStream:
     """AudioStream, custom audio stream"""
@@ -1604,9 +1723,10 @@ class AudioStream:
     size: int = 20
 
     def __init__(self, buffer: int = 0, processor: int = 0, sampleRate: int = 0, sampleSize: int = 0, channels: int = 0,
-                 address: int = 0, frozen: bool = False):
+                 address: int = 0, to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(20)
@@ -1661,15 +1781,21 @@ class AudioStream:
         if not self._frozen:
             _mod.mem.setUint32(self._address + 16, value, True)
 
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
 
 class Sound:
     """Sound"""
 
     size: int = 24
 
-    def __init__(self, stream: AudioStream = None, frameCount: int = 0, address: int = 0, frozen: bool = False):
+    def __init__(self, stream: AudioStream = None, frameCount: int = 0, address: int = 0, to_alloc: bool = True,
+                 frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(24)
@@ -1679,7 +1805,7 @@ class Sound:
 
     @property
     def stream(self):
-        return AudioStream(address=self._address + 0)
+        return AudioStream(address=self._address + 0, to_alloc=False)
 
     @stream.setter
     def stream(self, value):
@@ -1695,6 +1821,10 @@ class Sound:
         if not self._frozen:
             _mod.mem.setUint32(self._address + 20, value, True)
 
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
 
 class Music:
     """Music, audio stream, anything longer than ~10 seconds should be streamed"""
@@ -1702,9 +1832,10 @@ class Music:
     size: int = 33
 
     def __init__(self, stream: AudioStream = None, frameCount: int = 0, looping: int = 0, ctxType: int = 0,
-                 ctxData: int = 0, address: int = 0, frozen: bool = False):
+                 ctxData: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(33)
@@ -1717,7 +1848,7 @@ class Music:
 
     @property
     def stream(self):
-        return AudioStream(address=self._address + 0)
+        return AudioStream(address=self._address + 0, to_alloc=False)
 
     @stream.setter
     def stream(self, value):
@@ -1760,15 +1891,21 @@ class Music:
         if not self._frozen:
             _mod.mem.setUint32(self._address + 29, value, True)
 
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
 
 class FilePathList:
     """File path list"""
 
     size: int = 12
 
-    def __init__(self, capacity: int = 0, count: int = 0, paths: int = 0, address: int = 0, frozen: bool = False):
+    def __init__(self, capacity: int = 0, count: int = 0, paths: int = 0, address: int = 0, to_alloc: bool = True,
+                 frozen: bool = False):
+        self._to_alloc = to_alloc
         self._frozen = frozen
-        if address != 0:
+        if not to_alloc:
             self._address = address
         else:
             self._address = _mod._malloc(12)
@@ -1802,6 +1939,10 @@ class FilePathList:
     def paths(self, value):
         if not self._frozen:
             _mod.mem.setUint32(self._address + 8, value, True)
+
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
 
 
 LIGHTGRAY = Color(200, 200, 200, 255, frozen=True)  # Light Gray
@@ -1840,7 +1981,7 @@ def struct_clone(source, a):
     if not a:
         a = _mod._malloc(source.size)
     _mod._memcpy(a, source._address, source.size)
-    out = source.__class__(address=a)
+    out = source.__class__(address=a, to_alloc=False)
     return out
 
 

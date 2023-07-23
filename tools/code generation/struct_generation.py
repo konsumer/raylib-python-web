@@ -192,15 +192,17 @@ def generate_struct_code(struct_api) -> str:
 
         string += ", "
 
-    # added frozen and address arguments
+    # added to_alloc, frozen and address arguments
     string += f"address: int = 0, "
+    string += f"to_alloc: bool = True, "
     string += f"frozen: bool = False"
     string += f"):\n"
 
-    # add frozen self
+    # add to_alloc and frozen to self
+    string += f"        self._to_alloc = to_alloc\n"
     string += f"        self._frozen = frozen\n"
     # malloc code of class
-    string += f"        if address != 0:\n"
+    string += f"        if not to_alloc:\n"
     string += f"            self._address = address\n"
     string += f"        else:\n"
     string += f"            self._address = _mod._malloc({struct_.size})\n"
@@ -245,7 +247,7 @@ def generate_struct_code(struct_api) -> str:
             # getter
             string += f"    @property\n"
             string += f"    def {member_json['name']}(self):\n"
-            string += f"        return {type_hint}(address=self._address + {offset})\n\n"
+            string += f"        return {type_hint}(address=self._address + {offset}, to_alloc=False)\n\n"
 
             # setter
             string += f"    @{member_json['name']}.setter\n"
@@ -254,6 +256,11 @@ def generate_struct_code(struct_api) -> str:
             string += f"            struct_clone(value, self._address + {offset})\n\n"
 
         offset += get_ctype_size(member_ctype)
+
+    # add __del__ function
+    string += "    def __del__(self):\n"
+    string += "        if self._to_alloc:\n"
+    string += "            _mod._free(self._address)\n\n"
 
     return string
 
