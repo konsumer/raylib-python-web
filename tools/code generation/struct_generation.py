@@ -232,14 +232,14 @@ def generate_struct_code(struct_api) -> str:
             string += f"    @property\n"
             string += f"    def {member_json['name']}(self):\n"
             string += f"        return _mod.mem.{emscripten_XXXType_string_for_ctype_kind(member_ctype.kind, True)}" \
-                      f"(self._address + {offset})\n\n"
+                      f"(self._address + {offset}, True)\n\n"
 
             # setter
             string += f"    @{member_json['name']}.setter\n"
             string += f"    def {member_json['name']}(self, value):\n"
             string += f"        if not self._frozen:\n"
             string += f"            _mod.mem.{emscripten_XXXType_string_for_ctype_kind(member_ctype.kind, False)}" \
-                      f"(self._address + {offset}, value)\n\n"
+                      f"(self._address + {offset}, value, True)\n\n"
         else:
             type_hint: str = struct_member_to_python_type_hint(member_ctype)
             # getter
