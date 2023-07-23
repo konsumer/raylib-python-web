@@ -76,7 +76,7 @@ def struct_member_to_python_type_hint(member: CType):
         case CTypeKind.Void:
             return ""
         case CTypeKind.Pointer:
-            return f"\"{struct_member_to_python_type_hint(member.of)}*\""
+            return f"\"{struct_member_to_python_type_hint(member.of)}{'*' * member.pointer_level}\""
         case CTypeKind.I8 | CTypeKind.UI8 | \
              CTypeKind.I16 | CTypeKind.UI16 | \
              CTypeKind.I32 | CTypeKind.UI32 | \
@@ -88,6 +88,40 @@ def struct_member_to_python_type_hint(member: CType):
             return ""  # TODO: we can do better
         case CTypeKind.Struct:
             return member.struct_token.string
+
+
+def emscripten_XXXType_string_for_ctype_kind(kind: CTypeKind, get: bool = True) -> str:
+    string_ = "get" if get else "set"
+    match kind:
+        case CTypeKind.Void:
+            return ""
+        case CTypeKind.Pointer:
+            string_ += "Uint32"
+        case CTypeKind.I8:
+            string_ += "Int8"
+        case CTypeKind.UI8:
+            string_ += "Uint8"
+        case CTypeKind.I16:
+            string_ += "Int16"
+        case CTypeKind.UI16:
+            string_ += "Uint16"
+        case CTypeKind.I32:
+            string_ += "Int32"
+        case CTypeKind.UI32:
+            string_ += "Uint32"
+        case CTypeKind.I64:
+            assert False, "not implemented yet"
+        case CTypeKind.UI64:
+            assert False, "not implemented yet"
+        case CTypeKind.Float:
+            string_ += "Float32"
+        case CTypeKind.Double:
+            string_ += "Float64"
+        case CTypeKind.Array:
+            return ""
+        case CTypeKind.Struct:
+            return ""
+    return string_
 
 
 def emscripten_Value_type_string_from_ctype_kind(kind: CTypeKind) -> str:
@@ -144,7 +178,11 @@ def generate_struct_code(struct_api) -> str:
     string += f"):\n"
 
     # malloc code of class
-    string += f"        self._address = _mod._malloc({struct_.size})\n"
+
+    string += f"        if address != 0:\n"
+    string += f"            self._address = address"
+    string += f"        else:"
+    string += f"            self._address = _mod._malloc({struct_.size})\n"
 
     # set self values
     offset: int = 0
