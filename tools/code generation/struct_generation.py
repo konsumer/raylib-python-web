@@ -76,7 +76,7 @@ def struct_member_to_python_type_hint(member: CType):
         case CTypeKind.Void:
             return ""
         case CTypeKind.Pointer:
-            return f"\"{struct_member_to_python_type_hint(member.of)}{'*' * member.pointer_level}\""
+            return "int"
         case CTypeKind.I8 | CTypeKind.UI8 | \
              CTypeKind.I16 | CTypeKind.UI16 | \
              CTypeKind.I32 | CTypeKind.UI32 | \
@@ -192,7 +192,8 @@ def generate_struct_code(struct_api) -> str:
 
         string += ", "
 
-    # added frozen argument
+    # added frozen and address arguments
+    string += f"address: int = 0, "
     string += f"frozen: bool = False"
     string += f"):\n"
 
