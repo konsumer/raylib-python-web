@@ -10,7 +10,7 @@ demo/raylib.wasm: ## Build the raylib wasm from C
 	docker run -it --rm -v $$(pwd):/src -v /tmp/emscripten-cache:/emsdk/upstream/emscripten/cache/ -u $$(id -u):$$(id -g) emscripten/emsdk ./tools/build.sh
 
 clean: ## Delete built files
-	rm -f build/raylib.js build/raylib.wasm
+	rm -f demo/raylib.js demo/raylib.wasm
 
 deploy: ## Deploy the website
 	npx -y surge demo raylib-python.surge.sh

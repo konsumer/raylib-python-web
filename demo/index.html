@@ -1,5 +1,6 @@
 <canvas id="canvas"></canvas>
-<script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script> -->
+<script src="/pyiodide-0.23.4/pyodide.js"></script>
 <script type="module">
 import setup from './python-raylib-web.js'
 const python = await setup(document.getElementById('canvas'))
@@ -8,22 +9,12 @@ const python = await setup(document.getElementById('canvas'))
 // python.runPython(CODE)
 // pyodide.globals.set('name', jsthing)
 
-// here is your python code
-python.runPython(`
-def init():
-  InitWindow(800, 450)
-  testc = Color(0,0,0,255)
-
-def update():
-  BeginDrawing()
-  ClearBackground(RAYWHITE)
-  DrawText("Congrats! You created your first python window!", 150, 200, 20, LIGHTGRAY)
-  DrawFPS(10, 10)
-  EndDrawing()
-`)
+// Here I am loading a seperate python file for user-code
+python.runPython(await fetch('user.py?t='+Date.now()).then(r => r.text()))
 
 // here we run init() and setup hook for update()
 python.runPython('init()')
+
 const update = () => {
   python.runPython(`update()`)
   requestAnimationFrame(update)
