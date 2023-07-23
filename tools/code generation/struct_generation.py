@@ -258,7 +258,21 @@ def generate_struct_code(struct_api) -> str:
     return string
 
 
+def does_struct_name_has_alias(name: str) -> list[dict]:
+    for alias in raylib_api_aliases:
+        if alias['type'] == name:
+            yield alias
+
+
+def generate_struct_alias_code(alias_api) -> str:
+    return f"{alias_api['name']} = {alias_api['type']}\n"
+
+
 for struct_api in raylib_api_structs:
     struct_string = generate_struct_code(struct_api)
     print(struct_string)
-    print()
+
+    struct_aliases = does_struct_name_has_alias(struct_api['name'])
+    for alias in struct_aliases:
+        alias_string = generate_struct_alias_code(alias)
+        print(alias_string)
