@@ -78,8 +78,3 @@ primitive_array_classes_metadata: list[tuple[str, str, int]] = [
     ("FloatArray", "Float32", 4),
     ("DoubleArray", "Float64", 8),
 ]
-
-print(wasm_array_string)
-print(struct_array_string)
-for primitive_array_metadata in primitive_array_classes_metadata:
-    print(generate_primitive_array_class(primitive_array_metadata))
