@@ -17,60 +17,6 @@ class HeapKind(Enum):
     NOT_HEAPED_KIND = auto()  # used when we want to get a member, but it is a struct or an array
 
 
-def heap_kind_to_wasm_heap_string(kind: HeapKind):
-    match kind:
-        case HeapKind.NOT_HEAPED_KIND:
-            raise SyntaxError("not heap size doesn't have an heap string")
-        case HeapKind.Int8:
-            return "HEAP8"
-        case HeapKind.UInt8:
-            return "HEAPU8"
-        case HeapKind.Int16:
-            return "HEAP16"
-        case HeapKind.UInt16:
-            return "HEAPU16"
-        case HeapKind.Int32:
-            return "HEAP32"
-        case HeapKind.UInt32:
-            return "HEAPU32"
-        case HeapKind.Float32:
-            return "HEAPF32"
-        case HeapKind.Float64:
-            return "HEAPF32"
-
-
-def struct_member_heap_kind(member: CType) -> HeapKind:
-    match member.kind:
-        case CTypeKind.Void:
-            raise SyntaxError("void type shouldn't be checked for size")
-        case CTypeKind.Pointer:
-            return HeapKind.UInt32
-        case CTypeKind.I8:
-            return HeapKind.Int8
-        case CTypeKind.UI8:
-            return HeapKind.UInt8
-        case CTypeKind.I16:
-            return HeapKind.Int16
-        case CTypeKind.UI16:
-            return HeapKind.UInt16
-        case CTypeKind.I32:
-            return HeapKind.Int32
-        case CTypeKind.UI32:
-            return HeapKind.UInt32
-        case CTypeKind.Float:
-            return HeapKind.Float32
-        case CTypeKind.I64:
-            assert False, "not implemented yet"
-        case CTypeKind.UI64:
-            assert False, "not implemented yet"
-        case CTypeKind.Double:
-            return HeapKind.Float64
-        case CTypeKind.Array:
-            return HeapKind.NOT_HEAPED_KIND
-        case CTypeKind.Struct:
-            return HeapKind.NOT_HEAPED_KIND
-
-
 def struct_member_to_python_type_hint(member: CType):
     match member.kind:
         case CTypeKind.Void:
@@ -161,31 +107,6 @@ def default_attribute_string_from_ctype_kind(kind: CTypeKind) -> str:
         case CTypeKind.Struct:
             return "None"
 
-
-def emscripten_Value_type_string_from_ctype_kind(kind: CTypeKind) -> str:
-    match kind:
-        case CTypeKind.Void:
-            return ""
-        case CTypeKind.Pointer:
-            return "*"
-        case CTypeKind.I8 | CTypeKind.UI8:
-            return "i8"
-        case CTypeKind.I16 | CTypeKind.UI16:
-            return "i16"
-        case CTypeKind.I32 | CTypeKind.UI32:
-            return "i32"
-        case CTypeKind.Float:
-            return "float"
-        case CTypeKind.I64:
-            assert False, "not implemented yet"
-        case CTypeKind.UI64:
-            assert False, "not implemented yet"
-        case CTypeKind.Double:
-            return "double"
-        case CTypeKind.Array:
-            return ""
-        case CTypeKind.Struct:
-            return ""
 
 
 def generate_struct_code(struct_api) -> str:
