@@ -86,13 +86,24 @@ def struct_member_to_python_type_hint(member: CType):
             return "float"
         case CTypeKind.Array:
             match member.of.kind:
-                case CTypeKind.I8 | CTypeKind.I16 | CTypeKind.I32 | \
-                     CTypeKind.UI8 | CTypeKind.UI16 | CTypeKind.UI32:  # | CTypeKind.I64 | CTypeKind.I32  we won't implement that
-                    return "IntArray"  # TODO: make that i8 will use CharArray, i16 -> Int16Array, i32 -> Int32Array
+                case CTypeKind.I8:
+                    return "CharArray"
+                case CTypeKind.UI8:
+                    return "UCharArray"
+                case CTypeKind.I16:
+                    return "Int16Array"
+                case CTypeKind.UI16:
+                    return "UInt16Array"
+                case CTypeKind.I32:
+                    return "Int32Array"
+                case CTypeKind.UI32:
+                    return "UInt32Array"
+                case CTypeKind.Float:
+                    return "FloatArray"
+                case CTypeKind.Double:
+                    return "DoubleArray"
                 case CTypeKind.Struct:
                     return "StructArray"
-                case CTypeKind.Float | CTypeKind.Double:
-                    return "FloatArray"  # TODO: make that Float will use FloatArray, Double -> DoubleArray
                 case _:
                     assert False, "array type is not implemented"
         case CTypeKind.Struct:
