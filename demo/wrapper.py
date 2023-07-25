@@ -2533,7 +2533,7 @@ def struct_clone(source, a):
 def GetFontDefault():
     a = _mod._malloc(Font.size)
     _mod._GetFontDefault(a)
-    return Font(address=a)
+    return Font(address=a, to_alloc=False)
 
 
 def ClearBackground(color):
