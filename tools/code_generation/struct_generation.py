@@ -7,11 +7,11 @@ class HeapKind(Enum):
     Int8 = auto()
     Int16 = auto()
     Int32 = auto()
-    # Int64 = auto() not implemented TODO: implement 64 bit ints heap code generation
+    # Int64 = auto() not implemented TODO: implement 64 bit ints heap code_generation
     UInt8 = auto()
     UInt16 = auto()
     UInt32 = auto()
-    # UInt64 = auto() not implemented TODO: implement 64 bit ints heap code generation
+    # UInt64 = auto() not implemented TODO: implement 64 bit ints heap code_generation
     Float32 = auto()
     Float64 = auto()
     NOT_HEAPED_KIND = auto()  # used when we want to get a member, but it is a struct or an array
@@ -170,7 +170,7 @@ def generate_struct_code(struct_api) -> str:
                     array_type = "FloatArray"  # TODO: make that Float will use FloatArray, Double -> DoubleArray
                 case _:
                     assert False, "array type is not implemented"
-            return ""  # TODO: implement struct code generation for structs that has members of array type"""
+            return ""  # TODO: implement struct code_generation for structs that has members of array type"""
 
     # add setters and getters
     offset = 0
@@ -224,8 +224,8 @@ def generate_struct_code(struct_api) -> str:
     return string
 
 
-def does_struct_name_has_alias(name: str) -> list[dict]:
-    for alias in raylib_api_aliases:
+def does_struct_name_has_alias(name: str, aliases_api) -> list[dict]:
+    for alias in aliases_api:
         if alias['type'] == name:
             yield alias
 
