@@ -9,9 +9,9 @@ class WasmArray:
         else:
             self._address: int = _mod._malloc(self._size)
 
-    # this seems to bug things out.
-    # def __del__(self):
-    #     _mod._free(self._address)
+    def __del__(self):
+        _mod._free(self._address)
+
     def __len__(self):
         return self._length
 
