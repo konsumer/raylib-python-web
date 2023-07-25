@@ -8,7 +8,7 @@ export default async function setup (canvas) {
   pyodide.globals.set('_mod', mod)
 
   // just for dev, pull wrapper from seperate file
-  const wrapper = await fetch('wrapper.py').then(r => r.text())
+  const wrapper = await fetch('wasmraypy/__init__.py').then(r => r.text())
   pyodide.runPython(wrapper)
 
   return pyodide

@@ -197,7 +197,7 @@ def generate_struct_code(struct_api) -> str:
             if member_ctype.kind == CTypeKind.Array:
                 if member_ctype.of.kind == CTypeKind.Struct:
                     string += f"{member_ctype.of.struct_token.string}, "
-            string += f"address=self._address + {offset}, to_alloc=False)\n\n"
+            string += f"{member_ctype.array_size}, address=self._address + {offset}, to_alloc=False)\n\n"
 
             # setter
             string += f"    @{member_json['name']}.setter\n"
