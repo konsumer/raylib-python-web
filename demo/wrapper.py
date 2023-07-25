@@ -28,7 +28,7 @@ class WasmArray:
 class StructArray(WasmArray):
     """an array of structs"""
 
-    def __init__(self, stype, length, address: int = 0, to_alloc: bool = False):
+    def __init__(self, stype, length, address: int = 0, to_alloc: bool = True):
         super(StructArray, self).__init__(stype.size, length, address, to_alloc)
         self._stype = stype
 
@@ -129,7 +129,7 @@ class DoubleArray(WasmArray):
 
 # char* used as an array of bytes
 class ByteArray(WasmArray):
-    def __init__(self, length, address: int = 0, to_alloc: bool = False):
+    def __init__(self, length, address: int = 0, to_alloc: bool = True):
         super(ByteArray, self).__init__(1, length, address, to_alloc)
 
     def __getitem__(self, item):
