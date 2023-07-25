@@ -64,35 +64,3 @@ def parse_struct_json_to_CTypeStruct(struct_json) -> CTypeStruct:
         members.append(ctype)
 
     return CTypeStruct(struct_json["name"], members)
-
-
-RAYLIB_PYTHON_WEB_FOLDER_PATH = Path(__file__).parent.parent.parent
-JSON_API_FOLDER_PATH = RAYLIB_PYTHON_WEB_FOLDER_PATH / "tools/api"
-
-with open(Path(JSON_API_FOLDER_PATH / 'raylib.json')) as reader:
-    raylib_api = json.load(reader)
-
-raylib_api_defines = raylib_api['defines']
-raylib_api_structs = raylib_api['structs']
-raylib_api_aliases = raylib_api['aliases']
-raylib_api_enums = raylib_api['enums']
-raylib_api_functions = raylib_api['functions']
-
-for struct_api in raylib_api_structs:
-    # get struct aliases
-    aliases = []
-    for alias_api in raylib_api_aliases:
-        if alias_api["type"] == struct_api["name"]:
-            aliases.append(alias_api)
-    out = parse_struct_json_to_CTypeStruct(struct_api)
-    out.calculate_size()
-
-    general_structs.append(out)
-    if len(aliases) != 0:
-        for alias in aliases:
-            alias_struct = CTypeStruct(alias["name"], out.members)
-            alias_struct.size = out.size
-            general_structs.append(alias_struct)
-
-"""for struct in general_structs:
-    print(struct.name, struct.size)"""

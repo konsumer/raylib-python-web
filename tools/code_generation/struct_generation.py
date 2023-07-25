@@ -108,7 +108,6 @@ def default_attribute_string_from_ctype_kind(kind: CTypeKind) -> str:
             return "None"
 
 
-
 def generate_struct_code(struct_api) -> str:
     string: str = ""
     struct_: CTypeStruct = parse_struct_json_to_CTypeStruct(struct_api)
@@ -232,13 +231,3 @@ def does_struct_name_has_alias(name: str, aliases_api) -> list[dict]:
 
 def generate_struct_alias_code(alias_api) -> str:
     return f"{alias_api['name']} = {alias_api['type']}\n"
-
-
-for struct_api in raylib_api_structs:
-    struct_string = generate_struct_code(struct_api)
-    print(struct_string)
-
-    struct_aliases = does_struct_name_has_alias(struct_api['name'])
-    for alias in struct_aliases:
-        alias_string = generate_struct_alias_code(alias)
-        print(alias_string)
