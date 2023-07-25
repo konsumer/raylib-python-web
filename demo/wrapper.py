@@ -1,5 +1,6 @@
-# Generic array-like collection that uses wasm as memory-back
 class WasmArray:
+    """Generic array-like collection that uses wasm as memory-back"""
+
     def __init__(self, item_size: int, length: int, address: int = 0, to_alloc: bool = True):
         self._length = length
         self._item_size = item_size
@@ -24,8 +25,9 @@ class WasmArray:
         return out
 
 
-# an array of structs
 class StructArray(WasmArray):
+    """an array of structs"""
+
     def __init__(self, stype, length, address: int = 0, to_alloc: bool = False):
         super(StructArray, self).__init__(stype.size, length, address, to_alloc)
         self._stype = stype
@@ -37,10 +39,53 @@ class StructArray(WasmArray):
         struct_clone(value, self._address + (self._item_size * item))
 
 
-# int* used as an array of i32's
-class IntArray(WasmArray):
-    def __init__(self, length, address: int = 0, to_alloc: bool = False):
-        super(IntArray, self).__init__(4, length, address, to_alloc)
+class CharArray(WasmArray):
+    def __init__(self, length, address: int = 0, to_alloc: bool = True):
+        super(CharArray, self).__init__(1, length, address, to_alloc)
+
+    def __getitem__(self, item):
+        return _mod.mem.getInt8(self._address + (item * self._item_size), True)
+
+    def __setitem__(self, item, value):
+        _mod.mem.setInt8(self._address + (item * self._item_size), value, True)
+
+
+class UCharArray(WasmArray):
+    def __init__(self, length, address: int = 0, to_alloc: bool = True):
+        super(UCharArray, self).__init__(1, length, address, to_alloc)
+
+    def __getitem__(self, item):
+        return _mod.mem.getUint8(self._address + (item * self._item_size), True)
+
+    def __setitem__(self, item, value):
+        _mod.mem.setUint8(self._address + (item * self._item_size), value, True)
+
+
+class Int16Array(WasmArray):
+    def __init__(self, length, address: int = 0, to_alloc: bool = True):
+        super(Int16Array, self).__init__(2, length, address, to_alloc)
+
+    def __getitem__(self, item):
+        return _mod.mem.getInt16(self._address + (item * self._item_size), True)
+
+    def __setitem__(self, item, value):
+        _mod.mem.setInt16(self._address + (item * self._item_size), value, True)
+
+
+class UInt16Array(WasmArray):
+    def __init__(self, length, address: int = 0, to_alloc: bool = True):
+        super(UInt16Array, self).__init__(2, length, address, to_alloc)
+
+    def __getitem__(self, item):
+        return _mod.mem.getUint16(self._address + (item * self._item_size), True)
+
+    def __setitem__(self, item, value):
+        _mod.mem.setUint16(self._address + (item * self._item_size), value, True)
+
+
+class Int32Array(WasmArray):
+    def __init__(self, length, address: int = 0, to_alloc: bool = True):
+        super(Int32Array, self).__init__(4, length, address, to_alloc)
 
     def __getitem__(self, item):
         return _mod.mem.getInt32(self._address + (item * self._item_size), True)
@@ -49,16 +94,37 @@ class IntArray(WasmArray):
         _mod.mem.setInt32(self._address + (item * self._item_size), value, True)
 
 
-# float* used as an array of floats
+class UInt32Array(WasmArray):
+    def __init__(self, length, address: int = 0, to_alloc: bool = True):
+        super(UInt32Array, self).__init__(4, length, address, to_alloc)
+
+    def __getitem__(self, item):
+        return _mod.mem.getUint32(self._address + (item * self._item_size), True)
+
+    def __setitem__(self, item, value):
+        _mod.mem.setUint32(self._address + (item * self._item_size), value, True)
+
+
 class FloatArray(WasmArray):
-    def __init__(self, length, address: int = 0, to_alloc: bool = False):
+    def __init__(self, length, address: int = 0, to_alloc: bool = True):
         super(FloatArray, self).__init__(4, length, address, to_alloc)
 
     def __getitem__(self, item):
-        return _mod.mem.getFloat32(self._address + 0, True)
+        return _mod.mem.getFloat32(self._address + (item * self._item_size), True)
 
     def __setitem__(self, item, value):
         _mod.mem.setFloat32(self._address + (item * self._item_size), value, True)
+
+
+class DoubleArray(WasmArray):
+    def __init__(self, length, address: int = 0, to_alloc: bool = True):
+        super(DoubleArray, self).__init__(8, length, address, to_alloc)
+
+    def __getitem__(self, item):
+        return _mod.mem.getFloat64(self._address + (item * self._item_size), True)
+
+    def __setitem__(self, item, value):
+        _mod.mem.setFloat64(self._address + (item * self._item_size), value, True)
 
 
 # char* used as an array of bytes
