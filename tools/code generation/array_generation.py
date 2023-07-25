@@ -36,7 +36,7 @@ class StructArray(WasmArray):
         self._stype = stype
 
     def __getitem__(self, item):
-        return self._stype(address=(self._address + (self._item_size * item)))
+        return self._stype(address=(self._address + (self._item_size * item)), to_alloc=False)
 
     def __setitem__(self, item, value):
         struct_clone(value, self._address + (self._item_size * item))

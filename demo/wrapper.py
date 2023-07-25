@@ -21,7 +21,7 @@ class WasmArray:
     def __str__(self):
         out = "WasmArray["
         out += ', '.join([str(self[i]) for i in range(self._length)])
-        out += "] " + hex(self._address)
+        out += "] " + str(self._address)
         return out
 
 
@@ -33,7 +33,7 @@ class StructArray(WasmArray):
         self._stype = stype
 
     def __getitem__(self, item):
-        return self._stype(address=(self._address + (self._item_size * item)))
+        return self._stype(address=(self._address + (self._item_size * item)), to_alloc=False)
 
     def __setitem__(self, item, value):
         struct_clone(value, self._address + (self._item_size * item))
