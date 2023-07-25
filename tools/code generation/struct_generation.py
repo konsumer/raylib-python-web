@@ -85,7 +85,16 @@ def struct_member_to_python_type_hint(member: CType):
         case CTypeKind.Double | CTypeKind.Float:
             return "float"
         case CTypeKind.Array:
-            return ""  # TODO: we can do better
+            match member.of.kind:
+                case CTypeKind.I8 | CTypeKind.I16 | CTypeKind.I32 | \
+                     CTypeKind.UI8 | CTypeKind.UI16 | CTypeKind.UI32:  # | CTypeKind.I64 | CTypeKind.I32  we won't implement that
+                    return "IntArray"  # TODO: make that i8 will use CharArray, i16 -> Int16Array, i32 -> Int32Array
+                case CTypeKind.Struct:
+                    return "StructArray"
+                case CTypeKind.Float | CTypeKind.Double:
+                    return "FloatArray"  # TODO: make that Float will use FloatArray, Double -> DoubleArray
+                case _:
+                    assert False, "array type is not implemented"
         case CTypeKind.Struct:
             return member.struct_token.string
 
@@ -137,7 +146,7 @@ def default_attribute_string_from_ctype_kind(kind: CTypeKind) -> str:
         case CTypeKind.Double | CTypeKind.Float:
             return "0.0"
         case CTypeKind.Array:
-            return ""  # TODO: we can do better
+            return "None"
         case CTypeKind.Struct:
             return "None"
 
@@ -181,9 +190,6 @@ def generate_struct_code(struct_api) -> str:
     # add init method
     string += f"    def __init__(self, "
     for member_ctype, member_json in zip(struct_.members, struct_api['fields']):
-        if member_ctype.kind == CTypeKind.Array:
-            return ""  # TODO: implement struct code generation for structs that has members of array type
-
         string += f"{member_json['name']}"
         type_hint: str = struct_member_to_python_type_hint(member_ctype)
         if type_hint != "":
@@ -210,26 +216,34 @@ def generate_struct_code(struct_api) -> str:
     # set self values
     offset: int = 0
     for member_ctype, member_json in zip(struct_.members, struct_api['fields']):
-        if member_ctype.kind == CTypeKind.Array:
-            return ""  # TODO: implement struct code generation for structs that has members of array type
-
-        if member_ctype.kind != CTypeKind.Struct:
+        if member_ctype.kind != CTypeKind.Struct and member_ctype.kind != CTypeKind.Array:
             string += f"            _mod.mem.{emscripten_XXXType_string_for_ctype_kind(member_ctype.kind, False)}" \
                       f"(self._address + {offset}, {member_json['name']})\n"
         else:
-            string += f"            if {member_json['name']} is not None: \n"
+            string += f"            if {member_json['name']} is not None:\n"
             string += f"                struct_clone({member_json['name']}, self._address + {offset})\n"
+
         offset += get_ctype_size(member_ctype)
 
     string += '\n'
 
+    """array_type: str = ""
+            match member.of.kind:
+                case CTypeKind.I8 | CTypeKind.I16 | CTypeKind.I32 | \
+                     CTypeKind.UI8 | CTypeKind.UI16 | CTypeKind.UI32:  # | CTypeKind.I64 | CTypeKind.I32  we won't implement that
+                    array_type = "IntArray"  # TODO: make that i8 will use CharArray, i16 -> Int16Array, i32 -> Int32Array
+                case CTypeKind.Struct:
+                    array_type = "StructArray"
+                case CTypeKind.Float | CTypeKind.Double:
+                    array_type = "FloatArray"  # TODO: make that Float will use FloatArray, Double -> DoubleArray
+                case _:
+                    assert False, "array type is not implemented"
+            return ""  # TODO: implement struct code generation for structs that has members of array type"""
+
     # add setters and getters
     offset = 0
     for member_ctype, member_json in zip(struct_.members, struct_api['fields']):
-        if member_ctype.kind == CTypeKind.Array:
-            return ""  # TODO: implement struct code generation for structs that has members of array type
-
-        if member_ctype.kind != CTypeKind.Struct:
+        if member_ctype.kind != CTypeKind.Struct and member_ctype.kind != CTypeKind.Array:
             # getter
             string += f"    @property\n"
             string += f"    def {member_json['name']}(self):\n"
@@ -247,7 +261,11 @@ def generate_struct_code(struct_api) -> str:
             # getter
             string += f"    @property\n"
             string += f"    def {member_json['name']}(self):\n"
-            string += f"        return {type_hint}(address=self._address + {offset}, to_alloc=False)\n\n"
+            string += f"        return {type_hint}("
+            if member_ctype.kind == CTypeKind.Array:
+                if member_ctype.of.kind == CTypeKind.Struct:
+                    string += f"{member_ctype.of.struct_token.string}, "
+            string += f"address=self._address + {offset}, to_alloc=False)\n\n"
 
             # setter
             string += f"    @{member_json['name']}.setter\n"
