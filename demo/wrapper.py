@@ -1410,6 +1410,57 @@ class MaterialMap:
             _mod._free(self._address)
 
 
+class Material:
+    """Material, includes shader and maps"""
+
+    size: int = 28
+
+    def __init__(self, shader: Shader = None, maps: int = 0, params: FloatArray = None, address: int = 0,
+                 to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
+        self._frozen = frozen
+        if not to_alloc:
+            self._address = address
+        else:
+            self._address = _mod._malloc(28)
+            if shader is not None:
+                struct_clone(shader, self._address + 0)
+            _mod.mem.setUint32(self._address + 8, maps)
+            if params is not None:
+                struct_clone(params, self._address + 12)
+
+    @property
+    def shader(self):
+        return Shader(address=self._address + 0, to_alloc=False)
+
+    @shader.setter
+    def shader(self, value):
+        if not self._frozen:
+            struct_clone(value, self._address + 0)
+
+    @property
+    def maps(self):
+        return _mod.mem.getUint32(self._address + 8, True)
+
+    @maps.setter
+    def maps(self, value):
+        if not self._frozen:
+            _mod.mem.setUint32(self._address + 8, value, True)
+
+    @property
+    def params(self):
+        return FloatArray(address=self._address + 12, to_alloc=False)
+
+    @params.setter
+    def params(self, value):
+        if not self._frozen:
+            struct_clone(value, self._address + 12)
+
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
+
 class Transform:
     """Transform, vertex transformation data"""
 
@@ -1456,6 +1507,46 @@ class Transform:
     def scale(self, value):
         if not self._frozen:
             struct_clone(value, self._address + 28)
+
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
+
+class BoneInfo:
+    """Bone, skeletal animation bone"""
+
+    size: int = 36
+
+    def __init__(self, name: CharArray = None, parent: int = 0, address: int = 0, to_alloc: bool = True,
+                 frozen: bool = False):
+        self._to_alloc = to_alloc
+        self._frozen = frozen
+        if not to_alloc:
+            self._address = address
+        else:
+            self._address = _mod._malloc(36)
+            if name is not None:
+                struct_clone(name, self._address + 0)
+            _mod.mem.setInt32(self._address + 32, parent)
+
+    @property
+    def name(self):
+        return CharArray(address=self._address + 0, to_alloc=False)
+
+    @name.setter
+    def name(self, value):
+        if not self._frozen:
+            struct_clone(value, self._address + 0)
+
+    @property
+    def parent(self):
+        return _mod.mem.getInt32(self._address + 32, True)
+
+    @parent.setter
+    def parent(self, value):
+        if not self._frozen:
+            _mod.mem.setInt32(self._address + 32, value, True)
 
     def __del__(self):
         if self._to_alloc:
@@ -1567,6 +1658,76 @@ class Model:
     def bindPose(self, value):
         if not self._frozen:
             _mod.mem.setUint32(self._address + 92, value, True)
+
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
+
+class ModelAnimation:
+    """ModelAnimation"""
+
+    size: int = 48
+
+    def __init__(self, boneCount: int = 0, frameCount: int = 0, bones: int = 0, framePoses: int = 0,
+                 name: CharArray = None, address: int = 0, to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
+        self._frozen = frozen
+        if not to_alloc:
+            self._address = address
+        else:
+            self._address = _mod._malloc(48)
+            _mod.mem.setInt32(self._address + 0, boneCount)
+            _mod.mem.setInt32(self._address + 4, frameCount)
+            _mod.mem.setUint32(self._address + 8, bones)
+            _mod.mem.setUint32(self._address + 12, framePoses)
+            if name is not None:
+                struct_clone(name, self._address + 16)
+
+    @property
+    def boneCount(self):
+        return _mod.mem.getInt32(self._address + 0, True)
+
+    @boneCount.setter
+    def boneCount(self, value):
+        if not self._frozen:
+            _mod.mem.setInt32(self._address + 0, value, True)
+
+    @property
+    def frameCount(self):
+        return _mod.mem.getInt32(self._address + 4, True)
+
+    @frameCount.setter
+    def frameCount(self, value):
+        if not self._frozen:
+            _mod.mem.setInt32(self._address + 4, value, True)
+
+    @property
+    def bones(self):
+        return _mod.mem.getUint32(self._address + 8, True)
+
+    @bones.setter
+    def bones(self, value):
+        if not self._frozen:
+            _mod.mem.setUint32(self._address + 8, value, True)
+
+    @property
+    def framePoses(self):
+        return _mod.mem.getUint32(self._address + 12, True)
+
+    @framePoses.setter
+    def framePoses(self, value):
+        if not self._frozen:
+            _mod.mem.setUint32(self._address + 12, value, True)
+
+    @property
+    def name(self):
+        return CharArray(address=self._address + 16, to_alloc=False)
+
+    @name.setter
+    def name(self, value):
+        if not self._frozen:
+            struct_clone(value, self._address + 16)
 
     def __del__(self):
         if self._to_alloc:
@@ -1958,6 +2119,238 @@ class Music:
     def ctxData(self, value):
         if not self._frozen:
             _mod.mem.setUint32(self._address + 29, value, True)
+
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
+
+class VrDeviceInfo:
+    """VrDeviceInfo, Head-Mounted-Display device parameters"""
+
+    size: int = 64
+
+    def __init__(self, hResolution: int = 0, vResolution: int = 0, hScreenSize: float = 0.0, vScreenSize: float = 0.0,
+                 vScreenCenter: float = 0.0, eyeToScreenDistance: float = 0.0, lensSeparationDistance: float = 0.0,
+                 interpupillaryDistance: float = 0.0, lensDistortionValues: FloatArray = None,
+                 chromaAbCorrection: FloatArray = None, address: int = 0, to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
+        self._frozen = frozen
+        if not to_alloc:
+            self._address = address
+        else:
+            self._address = _mod._malloc(64)
+            _mod.mem.setInt32(self._address + 0, hResolution)
+            _mod.mem.setInt32(self._address + 4, vResolution)
+            _mod.mem.setFloat32(self._address + 8, hScreenSize)
+            _mod.mem.setFloat32(self._address + 12, vScreenSize)
+            _mod.mem.setFloat32(self._address + 16, vScreenCenter)
+            _mod.mem.setFloat32(self._address + 20, eyeToScreenDistance)
+            _mod.mem.setFloat32(self._address + 24, lensSeparationDistance)
+            _mod.mem.setFloat32(self._address + 28, interpupillaryDistance)
+            if lensDistortionValues is not None:
+                struct_clone(lensDistortionValues, self._address + 32)
+            if chromaAbCorrection is not None:
+                struct_clone(chromaAbCorrection, self._address + 48)
+
+    @property
+    def hResolution(self):
+        return _mod.mem.getInt32(self._address + 0, True)
+
+    @hResolution.setter
+    def hResolution(self, value):
+        if not self._frozen:
+            _mod.mem.setInt32(self._address + 0, value, True)
+
+    @property
+    def vResolution(self):
+        return _mod.mem.getInt32(self._address + 4, True)
+
+    @vResolution.setter
+    def vResolution(self, value):
+        if not self._frozen:
+            _mod.mem.setInt32(self._address + 4, value, True)
+
+    @property
+    def hScreenSize(self):
+        return _mod.mem.getFloat32(self._address + 8, True)
+
+    @hScreenSize.setter
+    def hScreenSize(self, value):
+        if not self._frozen:
+            _mod.mem.setFloat32(self._address + 8, value, True)
+
+    @property
+    def vScreenSize(self):
+        return _mod.mem.getFloat32(self._address + 12, True)
+
+    @vScreenSize.setter
+    def vScreenSize(self, value):
+        if not self._frozen:
+            _mod.mem.setFloat32(self._address + 12, value, True)
+
+    @property
+    def vScreenCenter(self):
+        return _mod.mem.getFloat32(self._address + 16, True)
+
+    @vScreenCenter.setter
+    def vScreenCenter(self, value):
+        if not self._frozen:
+            _mod.mem.setFloat32(self._address + 16, value, True)
+
+    @property
+    def eyeToScreenDistance(self):
+        return _mod.mem.getFloat32(self._address + 20, True)
+
+    @eyeToScreenDistance.setter
+    def eyeToScreenDistance(self, value):
+        if not self._frozen:
+            _mod.mem.setFloat32(self._address + 20, value, True)
+
+    @property
+    def lensSeparationDistance(self):
+        return _mod.mem.getFloat32(self._address + 24, True)
+
+    @lensSeparationDistance.setter
+    def lensSeparationDistance(self, value):
+        if not self._frozen:
+            _mod.mem.setFloat32(self._address + 24, value, True)
+
+    @property
+    def interpupillaryDistance(self):
+        return _mod.mem.getFloat32(self._address + 28, True)
+
+    @interpupillaryDistance.setter
+    def interpupillaryDistance(self, value):
+        if not self._frozen:
+            _mod.mem.setFloat32(self._address + 28, value, True)
+
+    @property
+    def lensDistortionValues(self):
+        return FloatArray(address=self._address + 32, to_alloc=False)
+
+    @lensDistortionValues.setter
+    def lensDistortionValues(self, value):
+        if not self._frozen:
+            struct_clone(value, self._address + 32)
+
+    @property
+    def chromaAbCorrection(self):
+        return FloatArray(address=self._address + 48, to_alloc=False)
+
+    @chromaAbCorrection.setter
+    def chromaAbCorrection(self, value):
+        if not self._frozen:
+            struct_clone(value, self._address + 48)
+
+    def __del__(self):
+        if self._to_alloc:
+            _mod._free(self._address)
+
+
+class VrStereoConfig:
+    """VrStereoConfig, VR stereo rendering configuration for simulator"""
+
+    size: int = 304
+
+    def __init__(self, projection: StructArray = None, viewOffset: StructArray = None,
+                 leftLensCenter: FloatArray = None, rightLensCenter: FloatArray = None,
+                 leftScreenCenter: FloatArray = None, rightScreenCenter: FloatArray = None, scale: FloatArray = None,
+                 scaleIn: FloatArray = None, address: int = 0, to_alloc: bool = True, frozen: bool = False):
+        self._to_alloc = to_alloc
+        self._frozen = frozen
+        if not to_alloc:
+            self._address = address
+        else:
+            self._address = _mod._malloc(304)
+            if projection is not None:
+                struct_clone(projection, self._address + 0)
+            if viewOffset is not None:
+                struct_clone(viewOffset, self._address + 128)
+            if leftLensCenter is not None:
+                struct_clone(leftLensCenter, self._address + 256)
+            if rightLensCenter is not None:
+                struct_clone(rightLensCenter, self._address + 264)
+            if leftScreenCenter is not None:
+                struct_clone(leftScreenCenter, self._address + 272)
+            if rightScreenCenter is not None:
+                struct_clone(rightScreenCenter, self._address + 280)
+            if scale is not None:
+                struct_clone(scale, self._address + 288)
+            if scaleIn is not None:
+                struct_clone(scaleIn, self._address + 296)
+
+    @property
+    def projection(self):
+        return StructArray(Matrix, address=self._address + 0, to_alloc=False)
+
+    @projection.setter
+    def projection(self, value):
+        if not self._frozen:
+            struct_clone(value, self._address + 0)
+
+    @property
+    def viewOffset(self):
+        return StructArray(Matrix, address=self._address + 128, to_alloc=False)
+
+    @viewOffset.setter
+    def viewOffset(self, value):
+        if not self._frozen:
+            struct_clone(value, self._address + 128)
+
+    @property
+    def leftLensCenter(self):
+        return FloatArray(address=self._address + 256, to_alloc=False)
+
+    @leftLensCenter.setter
+    def leftLensCenter(self, value):
+        if not self._frozen:
+            struct_clone(value, self._address + 256)
+
+    @property
+    def rightLensCenter(self):
+        return FloatArray(address=self._address + 264, to_alloc=False)
+
+    @rightLensCenter.setter
+    def rightLensCenter(self, value):
+        if not self._frozen:
+            struct_clone(value, self._address + 264)
+
+    @property
+    def leftScreenCenter(self):
+        return FloatArray(address=self._address + 272, to_alloc=False)
+
+    @leftScreenCenter.setter
+    def leftScreenCenter(self, value):
+        if not self._frozen:
+            struct_clone(value, self._address + 272)
+
+    @property
+    def rightScreenCenter(self):
+        return FloatArray(address=self._address + 280, to_alloc=False)
+
+    @rightScreenCenter.setter
+    def rightScreenCenter(self, value):
+        if not self._frozen:
+            struct_clone(value, self._address + 280)
+
+    @property
+    def scale(self):
+        return FloatArray(address=self._address + 288, to_alloc=False)
+
+    @scale.setter
+    def scale(self, value):
+        if not self._frozen:
+            struct_clone(value, self._address + 288)
+
+    @property
+    def scaleIn(self):
+        return FloatArray(address=self._address + 296, to_alloc=False)
+
+    @scaleIn.setter
+    def scaleIn(self, value):
+        if not self._frozen:
+            struct_clone(value, self._address + 296)
 
     def __del__(self):
         if self._to_alloc:
