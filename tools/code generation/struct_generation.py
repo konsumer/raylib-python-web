@@ -286,7 +286,16 @@ def generate_struct_code(struct_api) -> str:
 
         offset += get_ctype_size(member_ctype)
 
-    # add __del__ function
+    # add __str__ method
+    string += f"    def __str__(self):\n"
+    string += f"        return f\"{struct_api['name']}("
+    string += "address={self._address}, "
+    for member_json in struct_api['fields']:
+        string += "{self." + member_json['name'] + "}, "
+    string = string[:-2]
+    string += ")\"\n\n"
+
+    # add __del__ method
     string += "    def __del__(self):\n"
     string += "        if self._to_alloc:\n"
     string += "            _mod._free(self._address)\n\n"

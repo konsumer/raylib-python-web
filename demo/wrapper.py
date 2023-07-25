@@ -127,18 +127,6 @@ class DoubleArray(WasmArray):
         _mod.mem.setFloat64(self._address + (item * self._item_size), value, True)
 
 
-# char* used as an array of bytes
-class ByteArray(WasmArray):
-    def __init__(self, length, address: int = 0, to_alloc: bool = True):
-        super(ByteArray, self).__init__(1, length, address, to_alloc)
-
-    def __getitem__(self, item):
-        return _mod.mem.getUint8(self._address + (item * self._item_size), True)
-
-    def __setitem__(self, item, value):
-        _mod.mem.setUint8(self._address + (item * self._item_size), value, True)
-
-
 class Vector2:
     """Vector2, 2 components"""
 
@@ -171,6 +159,9 @@ class Vector2:
     def y(self, value):
         if not self._frozen:
             _mod.mem.setFloat32(self._address + 4, value, True)
+
+    def __str__(self):
+        return f"Vector2(address={self._address}, {self.x}, {self.y})"
 
     def __del__(self):
         if self._to_alloc:
@@ -220,6 +211,9 @@ class Vector3:
     def z(self, value):
         if not self._frozen:
             _mod.mem.setFloat32(self._address + 8, value, True)
+
+    def __str__(self):
+        return f"Vector3(address={self._address}, {self.x}, {self.y}, {self.z})"
 
     def __del__(self):
         if self._to_alloc:
@@ -279,6 +273,9 @@ class Vector4:
     def w(self, value):
         if not self._frozen:
             _mod.mem.setFloat32(self._address + 12, value, True)
+
+    def __str__(self):
+        return f"Vector4(address={self._address}, {self.x}, {self.y}, {self.z}, {self.w})"
 
     def __del__(self):
         if self._to_alloc:
@@ -464,6 +461,9 @@ class Matrix:
         if not self._frozen:
             _mod.mem.setFloat32(self._address + 60, value, True)
 
+    def __str__(self):
+        return f"Matrix(address={self._address}, {self.m0}, {self.m4}, {self.m8}, {self.m12}, {self.m1}, {self.m5}, {self.m9}, {self.m13}, {self.m2}, {self.m6}, {self.m10}, {self.m14}, {self.m3}, {self.m7}, {self.m11}, {self.m15})"
+
     def __del__(self):
         if self._to_alloc:
             _mod._free(self._address)
@@ -523,6 +523,9 @@ class Color:
         if not self._frozen:
             _mod.mem.setUint8(self._address + 3, value, True)
 
+    def __str__(self):
+        return f"Color(address={self._address}, {self.r}, {self.g}, {self.b}, {self.a})"
+
     def __del__(self):
         if self._to_alloc:
             _mod._free(self._address)
@@ -581,6 +584,9 @@ class Rectangle:
     def height(self, value):
         if not self._frozen:
             _mod.mem.setFloat32(self._address + 12, value, True)
+
+    def __str__(self):
+        return f"Rectangle(address={self._address}, {self.x}, {self.y}, {self.width}, {self.height})"
 
     def __del__(self):
         if self._to_alloc:
@@ -651,6 +657,9 @@ class Image:
         if not self._frozen:
             _mod.mem.setInt32(self._address + 16, value, True)
 
+    def __str__(self):
+        return f"Image(address={self._address}, {self.data}, {self.width}, {self.height}, {self.mipmaps}, {self.format})"
+
     def __del__(self):
         if self._to_alloc:
             _mod._free(self._address)
@@ -720,6 +729,9 @@ class Texture:
         if not self._frozen:
             _mod.mem.setInt32(self._address + 16, value, True)
 
+    def __str__(self):
+        return f"Texture(address={self._address}, {self.id}, {self.width}, {self.height}, {self.mipmaps}, {self.format})"
+
     def __del__(self):
         if self._to_alloc:
             _mod._free(self._address)
@@ -775,6 +787,9 @@ class RenderTexture:
     def depth(self, value):
         if not self._frozen:
             struct_clone(value, self._address + 24)
+
+    def __str__(self):
+        return f"RenderTexture(address={self._address}, {self.id}, {self.texture}, {self.depth})"
 
     def __del__(self):
         if self._to_alloc:
@@ -859,6 +874,9 @@ class NPatchInfo:
         if not self._frozen:
             _mod.mem.setInt32(self._address + 32, value, True)
 
+    def __str__(self):
+        return f"NPatchInfo(address={self._address}, {self.source}, {self.left}, {self.top}, {self.right}, {self.bottom}, {self.layout})"
+
     def __del__(self):
         if self._to_alloc:
             _mod._free(self._address)
@@ -928,6 +946,9 @@ class GlyphInfo:
     def image(self, value):
         if not self._frozen:
             struct_clone(value, self._address + 16)
+
+    def __str__(self):
+        return f"GlyphInfo(address={self._address}, {self.value}, {self.offsetX}, {self.offsetY}, {self.advanceX}, {self.image})"
 
     def __del__(self):
         if self._to_alloc:
@@ -1009,6 +1030,9 @@ class Font:
         if not self._frozen:
             _mod.mem.setUint32(self._address + 36, value, True)
 
+    def __str__(self):
+        return f"Font(address={self._address}, {self.baseSize}, {self.glyphCount}, {self.glyphPadding}, {self.texture}, {self.recs}, {self.glyphs})"
+
     def __del__(self):
         if self._to_alloc:
             _mod._free(self._address)
@@ -1081,6 +1105,9 @@ class Camera3D:
         if not self._frozen:
             _mod.mem.setInt32(self._address + 40, value, True)
 
+    def __str__(self):
+        return f"Camera3D(address={self._address}, {self.position}, {self.target}, {self.up}, {self.fovy}, {self.projection})"
+
     def __del__(self):
         if self._to_alloc:
             _mod._free(self._address)
@@ -1144,6 +1171,9 @@ class Camera2D:
     def zoom(self, value):
         if not self._frozen:
             _mod.mem.setFloat32(self._address + 20, value, True)
+
+    def __str__(self):
+        return f"Camera2D(address={self._address}, {self.offset}, {self.target}, {self.rotation}, {self.zoom})"
 
     def __del__(self):
         if self._to_alloc:
@@ -1316,6 +1346,9 @@ class Mesh:
         if not self._frozen:
             _mod.mem.setUint32(self._address + 56, value, True)
 
+    def __str__(self):
+        return f"Mesh(address={self._address}, {self.vertexCount}, {self.triangleCount}, {self.vertices}, {self.texcoords}, {self.texcoords2}, {self.normals}, {self.tangents}, {self.colors}, {self.indices}, {self.animVertices}, {self.animNormals}, {self.boneIds}, {self.boneWeights}, {self.vaoId}, {self.vboId})"
+
     def __del__(self):
         if self._to_alloc:
             _mod._free(self._address)
@@ -1353,6 +1386,9 @@ class Shader:
     def locs(self, value):
         if not self._frozen:
             _mod.mem.setUint32(self._address + 4, value, True)
+
+    def __str__(self):
+        return f"Shader(address={self._address}, {self.id}, {self.locs})"
 
     def __del__(self):
         if self._to_alloc:
@@ -1405,6 +1441,9 @@ class MaterialMap:
         if not self._frozen:
             _mod.mem.setFloat32(self._address + 24, value, True)
 
+    def __str__(self):
+        return f"MaterialMap(address={self._address}, {self.texture}, {self.color}, {self.value})"
+
     def __del__(self):
         if self._to_alloc:
             _mod._free(self._address)
@@ -1455,6 +1494,9 @@ class Material:
     def params(self, value):
         if not self._frozen:
             struct_clone(value, self._address + 12)
+
+    def __str__(self):
+        return f"Material(address={self._address}, {self.shader}, {self.maps}, {self.params})"
 
     def __del__(self):
         if self._to_alloc:
@@ -1508,6 +1550,9 @@ class Transform:
         if not self._frozen:
             struct_clone(value, self._address + 28)
 
+    def __str__(self):
+        return f"Transform(address={self._address}, {self.translation}, {self.rotation}, {self.scale})"
+
     def __del__(self):
         if self._to_alloc:
             _mod._free(self._address)
@@ -1547,6 +1592,9 @@ class BoneInfo:
     def parent(self, value):
         if not self._frozen:
             _mod.mem.setInt32(self._address + 32, value, True)
+
+    def __str__(self):
+        return f"BoneInfo(address={self._address}, {self.name}, {self.parent})"
 
     def __del__(self):
         if self._to_alloc:
@@ -1659,6 +1707,9 @@ class Model:
         if not self._frozen:
             _mod.mem.setUint32(self._address + 92, value, True)
 
+    def __str__(self):
+        return f"Model(address={self._address}, {self.transform}, {self.meshCount}, {self.materialCount}, {self.meshes}, {self.materials}, {self.meshMaterial}, {self.boneCount}, {self.bones}, {self.bindPose})"
+
     def __del__(self):
         if self._to_alloc:
             _mod._free(self._address)
@@ -1729,6 +1780,9 @@ class ModelAnimation:
         if not self._frozen:
             struct_clone(value, self._address + 16)
 
+    def __str__(self):
+        return f"ModelAnimation(address={self._address}, {self.boneCount}, {self.frameCount}, {self.bones}, {self.framePoses}, {self.name})"
+
     def __del__(self):
         if self._to_alloc:
             _mod._free(self._address)
@@ -1769,6 +1823,9 @@ class Ray:
     def direction(self, value):
         if not self._frozen:
             struct_clone(value, self._address + 12)
+
+    def __str__(self):
+        return f"Ray(address={self._address}, {self.position}, {self.direction})"
 
     def __del__(self):
         if self._to_alloc:
@@ -1831,6 +1888,9 @@ class RayCollision:
         if not self._frozen:
             struct_clone(value, self._address + 17)
 
+    def __str__(self):
+        return f"RayCollision(address={self._address}, {self.hit}, {self.distance}, {self.point}, {self.normal})"
+
     def __del__(self):
         if self._to_alloc:
             _mod._free(self._address)
@@ -1871,6 +1931,9 @@ class BoundingBox:
     def max(self, value):
         if not self._frozen:
             struct_clone(value, self._address + 12)
+
+    def __str__(self):
+        return f"BoundingBox(address={self._address}, {self.min}, {self.max})"
 
     def __del__(self):
         if self._to_alloc:
@@ -1941,6 +2004,9 @@ class Wave:
         if not self._frozen:
             _mod.mem.setUint32(self._address + 16, value, True)
 
+    def __str__(self):
+        return f"Wave(address={self._address}, {self.frameCount}, {self.sampleRate}, {self.sampleSize}, {self.channels}, {self.data})"
+
     def __del__(self):
         if self._to_alloc:
             _mod._free(self._address)
@@ -2010,6 +2076,9 @@ class AudioStream:
         if not self._frozen:
             _mod.mem.setUint32(self._address + 16, value, True)
 
+    def __str__(self):
+        return f"AudioStream(address={self._address}, {self.buffer}, {self.processor}, {self.sampleRate}, {self.sampleSize}, {self.channels})"
+
     def __del__(self):
         if self._to_alloc:
             _mod._free(self._address)
@@ -2049,6 +2118,9 @@ class Sound:
     def frameCount(self, value):
         if not self._frozen:
             _mod.mem.setUint32(self._address + 20, value, True)
+
+    def __str__(self):
+        return f"Sound(address={self._address}, {self.stream}, {self.frameCount})"
 
     def __del__(self):
         if self._to_alloc:
@@ -2119,6 +2191,9 @@ class Music:
     def ctxData(self, value):
         if not self._frozen:
             _mod.mem.setUint32(self._address + 29, value, True)
+
+    def __str__(self):
+        return f"Music(address={self._address}, {self.stream}, {self.frameCount}, {self.looping}, {self.ctxType}, {self.ctxData})"
 
     def __del__(self):
         if self._to_alloc:
@@ -2243,6 +2318,9 @@ class VrDeviceInfo:
         if not self._frozen:
             struct_clone(value, self._address + 48)
 
+    def __str__(self):
+        return f"VrDeviceInfo(address={self._address}, {self.hResolution}, {self.vResolution}, {self.hScreenSize}, {self.vScreenSize}, {self.vScreenCenter}, {self.eyeToScreenDistance}, {self.lensSeparationDistance}, {self.interpupillaryDistance}, {self.lensDistortionValues}, {self.chromaAbCorrection})"
+
     def __del__(self):
         if self._to_alloc:
             _mod._free(self._address)
@@ -2352,6 +2430,9 @@ class VrStereoConfig:
         if not self._frozen:
             struct_clone(value, self._address + 296)
 
+    def __str__(self):
+        return f"VrStereoConfig(address={self._address}, {self.projection}, {self.viewOffset}, {self.leftLensCenter}, {self.rightLensCenter}, {self.leftScreenCenter}, {self.rightScreenCenter}, {self.scale}, {self.scaleIn})"
+
     def __del__(self):
         if self._to_alloc:
             _mod._free(self._address)
@@ -2400,6 +2481,9 @@ class FilePathList:
     def paths(self, value):
         if not self._frozen:
             _mod.mem.setUint32(self._address + 8, value, True)
+
+    def __str__(self):
+        return f"FilePathList(address={self._address}, {self.capacity}, {self.count}, {self.paths})"
 
     def __del__(self):
         if self._to_alloc:
