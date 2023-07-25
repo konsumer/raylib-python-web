@@ -1,4 +1,9 @@
+font = None
+colors = None
+
+
 def init():
+    global font, colors
     InitWindow(800, 450)
 
     # test struct
