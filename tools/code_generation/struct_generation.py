@@ -112,6 +112,7 @@ def generate_struct_code(struct_api) -> str:
     string: str = ""
     struct_: CTypeStruct = parse_struct_json_to_CTypeStruct(struct_api)
     struct_.calculate_size()
+    struct_name_size_pars.append((struct_.name, struct_.size))
 
     string += f"class {struct_api['name']}:\n"
     string += f"    \"\"\"{struct_api['description']}\"\"\"\n\n"

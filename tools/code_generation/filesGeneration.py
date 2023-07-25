@@ -1,12 +1,12 @@
 from __future__ import annotations
-
+import array_generation
+import ctype_struct
+import struct_generation
 import json
-import re
-import sys
 from pathlib import Path
-from enum import *
 
-RAYLIB_PYTHON_WEB_FOLDER_PATH = Path(__file__).parent.parent
+RAYLIB_PYTHON_WEB_FOLDER_PATH = Path(__file__).parent.parent.parent
+print(RAYLIB_PYTHON_WEB_FOLDER_PATH)
 JSON_API_FOLDER_PATH = RAYLIB_PYTHON_WEB_FOLDER_PATH / "tools/api"
 WASMRAYPY_FOLDER_PATH = RAYLIB_PYTHON_WEB_FOLDER_PATH / "demo/wasmraypy"
 
@@ -44,31 +44,34 @@ def add_text_to_file(file_path: Path, _string: str) -> None:
 
 # -----------------------------------------
 
-def generate_structs_aliases_code(structs_api, aliases_api, for_stub: bool = False) -> str:
+def generate_wasm_array_classes_code() -> str:
     _string = ""
-    if not for_stub:
-        _wrapped_structures_names = wrapped_structures_names
-    else:
-        _wrapped_structures_names = wrapped_structures_names_stub
-    for struct in structs_api:
-        if struct['name'] not in _wrapped_structures_names:
-            struct_string_logic = generate_struct_code(struct, for_stub)
-            if struct_string_logic != "":
-                _wrapped_structures_names.append(struct['name'])
-                struct_string_logic += "\n"
+    _string += array_generation.wasm_array_string + '\n\n'
+    _string += array_generation.struct_array_string + '\n\n'
 
-            _string += struct_string_logic
+    for primitive_array_metadata in array_generation.primitive_array_classes_metadata:
+        _string += array_generation.generate_primitive_array_class(primitive_array_metadata) + '\n\n'
 
-            for alias in aliases_api:
-                if struct['name'] == alias['type']:
-                    if alias['name'] not in _wrapped_structures_names:
-                        alias_string_logic = ""
-                        alias_string_logic += generate_alias_code(alias['name'], struct['name'])
-                        if alias_string_logic != "":
-                            _wrapped_structures_names.append(alias['name'])
-                        alias_string_logic += "\n\n"
+    return _string
 
-                        _string += alias_string_logic
+
+def generate_structs_aliases_code(structs_api, aliases_api) -> str:
+    _string = ""
+    for struct_api in structs_api:
+        if struct_api['name'] in wrapped_structures_names:
+            continue
+        wrapped_enums_names.append(struct_api['name'])
+        _string += struct_generation.generate_struct_code(struct_api) + '\n'
+
+        struct_aliases = struct_generation.does_struct_name_has_alias(struct_api['name'], aliases_api)
+        for alias_api in struct_aliases:
+            if alias_api['name'] in wrapped_aliases_names:
+                continue
+            wrapped_aliases_names.append(alias_api['name'])
+            _string += struct_generation.generate_struct_alias_code(alias_api) + '\n'
+            struct_ = ctype_struct.parse_struct_json_to_CTypeStruct(struct_api)
+            struct_.calculate_size()
+            struct_generation.struct_name_size_pars.append((alias_api['name'], struct_.size))
 
     return _string
 
@@ -127,3 +130,7 @@ raygui_api_functions = raygui_api['functions']
 # -----------------------------------------
 # generate all the files for wasmraypy
 generate_file(WASMRAYPY_FOLDER_PATH / 'structures/__init__.py')
+add_text_to_file(WASMRAYPY_FOLDER_PATH / 'structures/__init__.py', "from ..utils import struct_clone\n\n")
+add_text_to_file(WASMRAYPY_FOLDER_PATH / 'structures/__init__.py', generate_wasm_array_classes_code())
+add_text_to_file(WASMRAYPY_FOLDER_PATH / 'structures/__init__.py',
+                 generate_structs_aliases_code(raylib_api_structs, raylib_api_aliases))

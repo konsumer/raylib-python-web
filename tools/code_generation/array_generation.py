@@ -25,7 +25,7 @@ class WasmArray:
         out += ', '.join([str(self[i]) for i in range(self._length)])
         out += "] " + hex(self._address)
         return out
-    """
+"""
 
 struct_array_string: str = \
     """

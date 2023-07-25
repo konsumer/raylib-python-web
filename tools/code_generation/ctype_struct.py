@@ -8,13 +8,14 @@ END_OF_FILE = '\0'
 
 # first step, build all the structs as objects and link then together (if needed)
 
-general_structs: list[CTypeStruct] = []
+# struct_name-size par
+struct_name_size_pars: list[tuple[str, int]] = []
 
 
-def get_general_struct_by_name(name: str) -> CTypeStruct:
-    for struct in general_structs:
-        if name == struct.name:
-            return struct
+def get_struct_name_size_par_by_name(name: str) -> tuple[str, int]:
+    for par in struct_name_size_pars:
+        if name == par[0]:
+            return par
     return None
 
 
@@ -36,7 +37,7 @@ def get_ctype_size(ctype: CType) -> int:
             multiplayer: int = ctype.array_size
             size += multiplayer * get_ctype_size(ctype.of)
         case CTypeKind.Struct:
-            size += get_general_struct_by_name(ctype.struct_token.string).size
+            size += get_struct_name_size_par_by_name(ctype.struct_token.string)[1]
 
     return size
 
