@@ -49,12 +49,17 @@ string_to_keyword: dict[str, CTypeTokenKind] = {
     "int": CTypeTokenKind.INT,
 }
 
+
 class CTypeKind(Enum):
     Void = auto()
     I8 = auto()
     I16 = auto()
     I32 = auto()
     I64 = auto()
+    UI8 = auto()
+    UI16 = auto()
+    UI32 = auto()
+    UI64 = auto()
     Float = auto()
     Double = auto()
     Array = auto()

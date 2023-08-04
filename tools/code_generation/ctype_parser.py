@@ -12,16 +12,16 @@ specifier_cases: dict[CTypeTokenKind, CTypeKind] = {
     # char kinds
     CTypeTokenKind.CHAR: CTypeKind.I8,
     CTypeTokenKind.SIGNED + CTypeTokenKind.CHAR: CTypeKind.I8,
-    CTypeTokenKind.UNSIGNED + CTypeTokenKind.CHAR: CTypeKind.I8,
-    CTypeTokenKind.UNSIGNED + CTypeTokenKind.CHAR: CTypeKind.I8,
+    CTypeTokenKind.UNSIGNED + CTypeTokenKind.CHAR: CTypeKind.UI8,
+    CTypeTokenKind.UNSIGNED + CTypeTokenKind.CHAR: CTypeKind.UI8,
 
     # short kinds
     CTypeKind.I16: CTypeKind.I16,
     CTypeTokenKind.SHORT + CTypeTokenKind.INT: CTypeKind.I16,
     CTypeTokenKind.SIGNED + CTypeTokenKind.SHORT: CTypeKind.I16,
     CTypeTokenKind.SIGNED + CTypeTokenKind.SHORT + CTypeTokenKind.INT: CTypeKind.I16,
-    CTypeTokenKind.UNSIGNED + CTypeTokenKind.SHORT: CTypeKind.I16,
-    CTypeTokenKind.UNSIGNED + CTypeTokenKind.SHORT + CTypeTokenKind.INT: CTypeKind.I16,
+    CTypeTokenKind.UNSIGNED + CTypeTokenKind.SHORT: CTypeKind.UI16,
+    CTypeTokenKind.UNSIGNED + CTypeTokenKind.SHORT + CTypeTokenKind.INT: CTypeKind.UI16,
 
     # int X64WIN kinds
     CTypeTokenKind.INT: CTypeKind.I32,
@@ -31,18 +31,18 @@ specifier_cases: dict[CTypeTokenKind, CTypeKind] = {
     CTypeTokenKind.LONG + CTypeTokenKind.INT: CTypeKind.I32,
     CTypeTokenKind.SIGNED + CTypeTokenKind.LONG: CTypeKind.I32,
     CTypeTokenKind.SIGNED + CTypeTokenKind.LONG + CTypeTokenKind.INT: CTypeKind.I32,
-    CTypeTokenKind.UNSIGNED: CTypeKind.I32,
-    CTypeTokenKind.UNSIGNED + CTypeTokenKind.INT: CTypeKind.I32,
-    CTypeTokenKind.UNSIGNED + CTypeTokenKind.LONG: CTypeKind.I32,
-    CTypeTokenKind.UNSIGNED + CTypeTokenKind.LONG + CTypeTokenKind.INT: CTypeKind.I32,
+    CTypeTokenKind.UNSIGNED: CTypeKind.UI32,
+    CTypeTokenKind.UNSIGNED + CTypeTokenKind.INT: CTypeKind.UI32,
+    CTypeTokenKind.UNSIGNED + CTypeTokenKind.LONG: CTypeKind.UI32,
+    CTypeTokenKind.UNSIGNED + CTypeTokenKind.LONG + CTypeTokenKind.INT: CTypeKind.UI32,
 
     # long kinds
     CTypeTokenKind.LONG + CTypeTokenKind.LONG: CTypeKind.I32,
     CTypeTokenKind.LONG + CTypeTokenKind.LONG + CTypeTokenKind.INT: CTypeKind.I32,
     CTypeTokenKind.SIGNED + CTypeTokenKind.LONG + CTypeTokenKind.LONG: CTypeKind.I32,
     CTypeTokenKind.SIGNED + CTypeTokenKind.LONG + CTypeTokenKind.LONG + CTypeTokenKind.INT: CTypeKind.I32,
-    CTypeTokenKind.UNSIGNED + CTypeTokenKind.LONG + CTypeTokenKind.LONG: CTypeKind.I32,
-    CTypeTokenKind.UNSIGNED + CTypeTokenKind.LONG + CTypeTokenKind.LONG + CTypeTokenKind.INT: CTypeKind.I32,
+    CTypeTokenKind.UNSIGNED + CTypeTokenKind.LONG + CTypeTokenKind.LONG: CTypeKind.UI32,
+    CTypeTokenKind.UNSIGNED + CTypeTokenKind.LONG + CTypeTokenKind.LONG + CTypeTokenKind.INT: CTypeKind.UI32,
 
     # float and double
     CTypeTokenKind.FLOAT: CTypeKind.Float,

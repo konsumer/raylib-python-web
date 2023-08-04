@@ -1,6 +1,14 @@
+def struct_clone(source, a):
+    if not a:
+        a = _mod._malloc(source.size)
+    _mod._memcpy(a, source._address, source.size)
+    out = source.__class__(address=a, to_alloc=False)
+    return out
+
+
 class WasmArray:
     """Generic array-like collection that uses wasm as memory-back"""
-
+    
     def __init__(self, item_size: int, length: int, address: int = 0, to_alloc: bool = True):
         self._length = length
         self._item_size = item_size
@@ -21,13 +29,12 @@ class WasmArray:
     def __str__(self):
         out = "WasmArray["
         out += ', '.join([str(self[i]) for i in range(self._length)])
-        out += "] " + str(self._address)
+        out += "] " + hex(self._address)
         return out
 
 
 class StructArray(WasmArray):
     """an array of structs"""
-
     def __init__(self, stype, length, address: int = 0, to_alloc: bool = True):
         super(StructArray, self).__init__(stype.size, length, address, to_alloc)
         self._stype = stype
@@ -37,8 +44,7 @@ class StructArray(WasmArray):
 
     def __setitem__(self, item, value):
         struct_clone(value, self._address + (self._item_size * item))
-
-
+    
 class CharArray(WasmArray):
     def __init__(self, length, address: int = 0, to_alloc: bool = True):
         super(CharArray, self).__init__(1, length, address, to_alloc)
@@ -167,14 +173,12 @@ class Vector2:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class Vector3:
     """Vector3, 3 components"""
 
     size: int = 12
 
-    def __init__(self, x: float = 0.0, y: float = 0.0, z: float = 0.0, address: int = 0, to_alloc: bool = True,
-                 frozen: bool = False):
+    def __init__(self, x: float = 0.0, y: float = 0.0, z: float = 0.0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -219,14 +223,12 @@ class Vector3:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class Vector4:
     """Vector4, 4 components"""
 
     size: int = 16
 
-    def __init__(self, x: float = 0.0, y: float = 0.0, z: float = 0.0, w: float = 0.0, address: int = 0,
-                 to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, x: float = 0.0, y: float = 0.0, z: float = 0.0, w: float = 0.0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -281,19 +283,14 @@ class Vector4:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 Quaternion = Vector4
-
 
 class Matrix:
     """Matrix, 4x4 components, column major, OpenGL style, right-handed"""
 
     size: int = 64
 
-    def __init__(self, m0: float = 0.0, m4: float = 0.0, m8: float = 0.0, m12: float = 0.0, m1: float = 0.0,
-                 m5: float = 0.0, m9: float = 0.0, m13: float = 0.0, m2: float = 0.0, m6: float = 0.0, m10: float = 0.0,
-                 m14: float = 0.0, m3: float = 0.0, m7: float = 0.0, m11: float = 0.0, m15: float = 0.0,
-                 address: int = 0, to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, m0: float = 0.0, m4: float = 0.0, m8: float = 0.0, m12: float = 0.0, m1: float = 0.0, m5: float = 0.0, m9: float = 0.0, m13: float = 0.0, m2: float = 0.0, m6: float = 0.0, m10: float = 0.0, m14: float = 0.0, m3: float = 0.0, m7: float = 0.0, m11: float = 0.0, m15: float = 0.0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -468,14 +465,12 @@ class Matrix:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class Color:
     """Color, 4 components, R8G8B8A8 (32bit)"""
 
     size: int = 4
 
-    def __init__(self, r: int = 0, g: int = 0, b: int = 0, a: int = 0, address: int = 0, to_alloc: bool = True,
-                 frozen: bool = False):
+    def __init__(self, r: int = 0, g: int = 0, b: int = 0, a: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -530,14 +525,12 @@ class Color:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class Rectangle:
     """Rectangle, 4 components"""
 
     size: int = 16
 
-    def __init__(self, x: float = 0.0, y: float = 0.0, width: float = 0.0, height: float = 0.0, address: int = 0,
-                 to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, x: float = 0.0, y: float = 0.0, width: float = 0.0, height: float = 0.0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -592,14 +585,12 @@ class Rectangle:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class Image:
     """Image, pixel data stored in CPU memory (RAM)"""
 
     size: int = 20
 
-    def __init__(self, data: int = 0, width: int = 0, height: int = 0, mipmaps: int = 0, format: int = 0,
-                 address: int = 0, to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, data: int = 0, width: int = 0, height: int = 0, mipmaps: int = 0, format: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -664,14 +655,12 @@ class Image:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class Texture:
     """Texture, tex data stored in GPU memory (VRAM)"""
 
     size: int = 20
 
-    def __init__(self, id: int = 0, width: int = 0, height: int = 0, mipmaps: int = 0, format: int = 0,
-                 address: int = 0, to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, id: int = 0, width: int = 0, height: int = 0, mipmaps: int = 0, format: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -736,19 +725,16 @@ class Texture:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 Texture2D = Texture
 
 TextureCubemap = Texture
-
 
 class RenderTexture:
     """RenderTexture, fbo for texture rendering"""
 
     size: int = 44
 
-    def __init__(self, id: int = 0, texture: Texture = None, depth: Texture = None, address: int = 0,
-                 to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, id: int = 0, texture: Texture = None, depth: Texture = None, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -772,7 +758,7 @@ class RenderTexture:
 
     @property
     def texture(self):
-        return Texture(address=self._address + 4, to_alloc=False)
+        return Texture(0, address=self._address + 4, to_alloc=False)
 
     @texture.setter
     def texture(self, value):
@@ -781,7 +767,7 @@ class RenderTexture:
 
     @property
     def depth(self):
-        return Texture(address=self._address + 24, to_alloc=False)
+        return Texture(0, address=self._address + 24, to_alloc=False)
 
     @depth.setter
     def depth(self, value):
@@ -795,17 +781,14 @@ class RenderTexture:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 RenderTexture2D = RenderTexture
-
 
 class NPatchInfo:
     """NPatchInfo, n-patch layout info"""
 
     size: int = 36
 
-    def __init__(self, source: Rectangle = None, left: int = 0, top: int = 0, right: int = 0, bottom: int = 0,
-                 layout: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, source: Rectangle = None, left: int = 0, top: int = 0, right: int = 0, bottom: int = 0, layout: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -822,7 +805,7 @@ class NPatchInfo:
 
     @property
     def source(self):
-        return Rectangle(address=self._address + 0, to_alloc=False)
+        return Rectangle(0, address=self._address + 0, to_alloc=False)
 
     @source.setter
     def source(self, value):
@@ -881,14 +864,12 @@ class NPatchInfo:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class GlyphInfo:
     """GlyphInfo, font characters glyphs info"""
 
     size: int = 36
 
-    def __init__(self, value: int = 0, offsetX: int = 0, offsetY: int = 0, advanceX: int = 0, image: Image = None,
-                 address: int = 0, to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, value: int = 0, offsetX: int = 0, offsetY: int = 0, advanceX: int = 0, image: Image = None, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -940,7 +921,7 @@ class GlyphInfo:
 
     @property
     def image(self):
-        return Image(address=self._address + 16, to_alloc=False)
+        return Image(0, address=self._address + 16, to_alloc=False)
 
     @image.setter
     def image(self, value):
@@ -954,14 +935,12 @@ class GlyphInfo:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class Font:
     """Font, font texture and GlyphInfo array data"""
 
     size: int = 40
 
-    def __init__(self, baseSize: int = 0, glyphCount: int = 0, glyphPadding: int = 0, texture: Texture2D = None,
-                 recs: int = 0, glyphs: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, baseSize: int = 0, glyphCount: int = 0, glyphPadding: int = 0, texture: Texture2D = None, recs: int = 0, glyphs: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -1005,7 +984,7 @@ class Font:
 
     @property
     def texture(self):
-        return Texture2D(address=self._address + 12, to_alloc=False)
+        return Texture2D(0, address=self._address + 12, to_alloc=False)
 
     @texture.setter
     def texture(self, value):
@@ -1037,14 +1016,12 @@ class Font:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class Camera3D:
     """Camera, defines position/orientation in 3d space"""
 
     size: int = 44
 
-    def __init__(self, position: Vector3 = None, target: Vector3 = None, up: Vector3 = None, fovy: float = 0.0,
-                 projection: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, position: Vector3 = None, target: Vector3 = None, up: Vector3 = None, fovy: float = 0.0, projection: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -1062,7 +1039,7 @@ class Camera3D:
 
     @property
     def position(self):
-        return Vector3(address=self._address + 0, to_alloc=False)
+        return Vector3(0, address=self._address + 0, to_alloc=False)
 
     @position.setter
     def position(self, value):
@@ -1071,7 +1048,7 @@ class Camera3D:
 
     @property
     def target(self):
-        return Vector3(address=self._address + 12, to_alloc=False)
+        return Vector3(0, address=self._address + 12, to_alloc=False)
 
     @target.setter
     def target(self, value):
@@ -1080,7 +1057,7 @@ class Camera3D:
 
     @property
     def up(self):
-        return Vector3(address=self._address + 24, to_alloc=False)
+        return Vector3(0, address=self._address + 24, to_alloc=False)
 
     @up.setter
     def up(self, value):
@@ -1112,17 +1089,14 @@ class Camera3D:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 Camera = Camera3D
-
 
 class Camera2D:
     """Camera2D, defines position/orientation in 2d space"""
 
     size: int = 24
 
-    def __init__(self, offset: Vector2 = None, target: Vector2 = None, rotation: float = 0.0, zoom: float = 0.0,
-                 address: int = 0, to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, offset: Vector2 = None, target: Vector2 = None, rotation: float = 0.0, zoom: float = 0.0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -1138,7 +1112,7 @@ class Camera2D:
 
     @property
     def offset(self):
-        return Vector2(address=self._address + 0, to_alloc=False)
+        return Vector2(0, address=self._address + 0, to_alloc=False)
 
     @offset.setter
     def offset(self, value):
@@ -1147,7 +1121,7 @@ class Camera2D:
 
     @property
     def target(self):
-        return Vector2(address=self._address + 8, to_alloc=False)
+        return Vector2(0, address=self._address + 8, to_alloc=False)
 
     @target.setter
     def target(self, value):
@@ -1179,16 +1153,12 @@ class Camera2D:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class Mesh:
     """Mesh, vertex data and vao/vbo"""
 
     size: int = 60
 
-    def __init__(self, vertexCount: int = 0, triangleCount: int = 0, vertices: int = 0, texcoords: int = 0,
-                 texcoords2: int = 0, normals: int = 0, tangents: int = 0, colors: int = 0, indices: int = 0,
-                 animVertices: int = 0, animNormals: int = 0, boneIds: int = 0, boneWeights: int = 0, vaoId: int = 0,
-                 vboId: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, vertexCount: int = 0, triangleCount: int = 0, vertices: int = 0, texcoords: int = 0, texcoords2: int = 0, normals: int = 0, tangents: int = 0, colors: int = 0, indices: int = 0, animVertices: int = 0, animNormals: int = 0, boneIds: int = 0, boneWeights: int = 0, vaoId: int = 0, vboId: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -1353,7 +1323,6 @@ class Mesh:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class Shader:
     """Shader"""
 
@@ -1394,14 +1363,12 @@ class Shader:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class MaterialMap:
     """MaterialMap"""
 
     size: int = 28
 
-    def __init__(self, texture: Texture2D = None, color: Color = None, value: float = 0.0, address: int = 0,
-                 to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, texture: Texture2D = None, color: Color = None, value: float = 0.0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -1416,7 +1383,7 @@ class MaterialMap:
 
     @property
     def texture(self):
-        return Texture2D(address=self._address + 0, to_alloc=False)
+        return Texture2D(0, address=self._address + 0, to_alloc=False)
 
     @texture.setter
     def texture(self, value):
@@ -1425,7 +1392,7 @@ class MaterialMap:
 
     @property
     def color(self):
-        return Color(address=self._address + 20, to_alloc=False)
+        return Color(0, address=self._address + 20, to_alloc=False)
 
     @color.setter
     def color(self, value):
@@ -1448,14 +1415,12 @@ class MaterialMap:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class Material:
     """Material, includes shader and maps"""
 
     size: int = 28
 
-    def __init__(self, shader: Shader = None, maps: int = 0, params: FloatArray = None, address: int = 0,
-                 to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, shader: Shader = None, maps: int = 0, params: FloatArray = None, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -1470,7 +1435,7 @@ class Material:
 
     @property
     def shader(self):
-        return Shader(address=self._address + 0, to_alloc=False)
+        return Shader(0, address=self._address + 0, to_alloc=False)
 
     @shader.setter
     def shader(self, value):
@@ -1488,7 +1453,7 @@ class Material:
 
     @property
     def params(self):
-        return FloatArray(address=self._address + 12, to_alloc=False)
+        return FloatArray(4, address=self._address + 12, to_alloc=False)
 
     @params.setter
     def params(self, value):
@@ -1502,14 +1467,12 @@ class Material:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class Transform:
     """Transform, vertex transformation data"""
 
     size: int = 40
 
-    def __init__(self, translation: Vector3 = None, rotation: Quaternion = None, scale: Vector3 = None,
-                 address: int = 0, to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, translation: Vector3 = None, rotation: Quaternion = None, scale: Vector3 = None, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -1525,7 +1488,7 @@ class Transform:
 
     @property
     def translation(self):
-        return Vector3(address=self._address + 0, to_alloc=False)
+        return Vector3(0, address=self._address + 0, to_alloc=False)
 
     @translation.setter
     def translation(self, value):
@@ -1534,7 +1497,7 @@ class Transform:
 
     @property
     def rotation(self):
-        return Quaternion(address=self._address + 12, to_alloc=False)
+        return Quaternion(0, address=self._address + 12, to_alloc=False)
 
     @rotation.setter
     def rotation(self, value):
@@ -1543,7 +1506,7 @@ class Transform:
 
     @property
     def scale(self):
-        return Vector3(address=self._address + 28, to_alloc=False)
+        return Vector3(0, address=self._address + 28, to_alloc=False)
 
     @scale.setter
     def scale(self, value):
@@ -1557,14 +1520,12 @@ class Transform:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class BoneInfo:
     """Bone, skeletal animation bone"""
 
     size: int = 36
 
-    def __init__(self, name: CharArray = None, parent: int = 0, address: int = 0, to_alloc: bool = True,
-                 frozen: bool = False):
+    def __init__(self, name: CharArray = None, parent: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -1577,7 +1538,7 @@ class BoneInfo:
 
     @property
     def name(self):
-        return CharArray(address=self._address + 0, to_alloc=False)
+        return CharArray(32, address=self._address + 0, to_alloc=False)
 
     @name.setter
     def name(self, value):
@@ -1600,15 +1561,12 @@ class BoneInfo:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class Model:
     """Model, meshes, materials and animation data"""
 
     size: int = 96
 
-    def __init__(self, transform: Matrix = None, meshCount: int = 0, materialCount: int = 0, meshes: int = 0,
-                 materials: int = 0, meshMaterial: int = 0, boneCount: int = 0, bones: int = 0, bindPose: int = 0,
-                 address: int = 0, to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, transform: Matrix = None, meshCount: int = 0, materialCount: int = 0, meshes: int = 0, materials: int = 0, meshMaterial: int = 0, boneCount: int = 0, bones: int = 0, bindPose: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -1628,7 +1586,7 @@ class Model:
 
     @property
     def transform(self):
-        return Matrix(address=self._address + 0, to_alloc=False)
+        return Matrix(0, address=self._address + 0, to_alloc=False)
 
     @transform.setter
     def transform(self, value):
@@ -1714,14 +1672,12 @@ class Model:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class ModelAnimation:
     """ModelAnimation"""
 
     size: int = 48
 
-    def __init__(self, boneCount: int = 0, frameCount: int = 0, bones: int = 0, framePoses: int = 0,
-                 name: CharArray = None, address: int = 0, to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, boneCount: int = 0, frameCount: int = 0, bones: int = 0, framePoses: int = 0, name: CharArray = None, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -1773,7 +1729,7 @@ class ModelAnimation:
 
     @property
     def name(self):
-        return CharArray(address=self._address + 16, to_alloc=False)
+        return CharArray(32, address=self._address + 16, to_alloc=False)
 
     @name.setter
     def name(self, value):
@@ -1787,14 +1743,12 @@ class ModelAnimation:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class Ray:
     """Ray, ray for raycasting"""
 
     size: int = 24
 
-    def __init__(self, position: Vector3 = None, direction: Vector3 = None, address: int = 0, to_alloc: bool = True,
-                 frozen: bool = False):
+    def __init__(self, position: Vector3 = None, direction: Vector3 = None, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -1808,7 +1762,7 @@ class Ray:
 
     @property
     def position(self):
-        return Vector3(address=self._address + 0, to_alloc=False)
+        return Vector3(0, address=self._address + 0, to_alloc=False)
 
     @position.setter
     def position(self, value):
@@ -1817,7 +1771,7 @@ class Ray:
 
     @property
     def direction(self):
-        return Vector3(address=self._address + 12, to_alloc=False)
+        return Vector3(0, address=self._address + 12, to_alloc=False)
 
     @direction.setter
     def direction(self, value):
@@ -1831,14 +1785,12 @@ class Ray:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class RayCollision:
     """RayCollision, ray hit information"""
 
     size: int = 29
 
-    def __init__(self, hit: int = 0, distance: float = 0.0, point: Vector3 = None, normal: Vector3 = None,
-                 address: int = 0, to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, hit: int = 0, distance: float = 0.0, point: Vector3 = None, normal: Vector3 = None, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -1872,7 +1824,7 @@ class RayCollision:
 
     @property
     def point(self):
-        return Vector3(address=self._address + 5, to_alloc=False)
+        return Vector3(0, address=self._address + 5, to_alloc=False)
 
     @point.setter
     def point(self, value):
@@ -1881,7 +1833,7 @@ class RayCollision:
 
     @property
     def normal(self):
-        return Vector3(address=self._address + 17, to_alloc=False)
+        return Vector3(0, address=self._address + 17, to_alloc=False)
 
     @normal.setter
     def normal(self, value):
@@ -1895,14 +1847,12 @@ class RayCollision:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class BoundingBox:
     """BoundingBox"""
 
     size: int = 24
 
-    def __init__(self, min: Vector3 = None, max: Vector3 = None, address: int = 0, to_alloc: bool = True,
-                 frozen: bool = False):
+    def __init__(self, min: Vector3 = None, max: Vector3 = None, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -1916,7 +1866,7 @@ class BoundingBox:
 
     @property
     def min(self):
-        return Vector3(address=self._address + 0, to_alloc=False)
+        return Vector3(0, address=self._address + 0, to_alloc=False)
 
     @min.setter
     def min(self, value):
@@ -1925,7 +1875,7 @@ class BoundingBox:
 
     @property
     def max(self):
-        return Vector3(address=self._address + 12, to_alloc=False)
+        return Vector3(0, address=self._address + 12, to_alloc=False)
 
     @max.setter
     def max(self, value):
@@ -1939,14 +1889,12 @@ class BoundingBox:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class Wave:
     """Wave, audio wave data"""
 
     size: int = 20
 
-    def __init__(self, frameCount: int = 0, sampleRate: int = 0, sampleSize: int = 0, channels: int = 0, data: int = 0,
-                 address: int = 0, to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, frameCount: int = 0, sampleRate: int = 0, sampleSize: int = 0, channels: int = 0, data: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -2011,14 +1959,12 @@ class Wave:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class AudioStream:
     """AudioStream, custom audio stream"""
 
     size: int = 20
 
-    def __init__(self, buffer: int = 0, processor: int = 0, sampleRate: int = 0, sampleSize: int = 0, channels: int = 0,
-                 address: int = 0, to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, buffer: int = 0, processor: int = 0, sampleRate: int = 0, sampleSize: int = 0, channels: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -2083,14 +2029,12 @@ class AudioStream:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class Sound:
     """Sound"""
 
     size: int = 24
 
-    def __init__(self, stream: AudioStream = None, frameCount: int = 0, address: int = 0, to_alloc: bool = True,
-                 frozen: bool = False):
+    def __init__(self, stream: AudioStream = None, frameCount: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -2103,7 +2047,7 @@ class Sound:
 
     @property
     def stream(self):
-        return AudioStream(address=self._address + 0, to_alloc=False)
+        return AudioStream(0, address=self._address + 0, to_alloc=False)
 
     @stream.setter
     def stream(self, value):
@@ -2126,14 +2070,12 @@ class Sound:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class Music:
     """Music, audio stream, anything longer than ~10 seconds should be streamed"""
 
     size: int = 33
 
-    def __init__(self, stream: AudioStream = None, frameCount: int = 0, looping: int = 0, ctxType: int = 0,
-                 ctxData: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, stream: AudioStream = None, frameCount: int = 0, looping: int = 0, ctxType: int = 0, ctxData: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -2149,7 +2091,7 @@ class Music:
 
     @property
     def stream(self):
-        return AudioStream(address=self._address + 0, to_alloc=False)
+        return AudioStream(0, address=self._address + 0, to_alloc=False)
 
     @stream.setter
     def stream(self, value):
@@ -2199,16 +2141,12 @@ class Music:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class VrDeviceInfo:
     """VrDeviceInfo, Head-Mounted-Display device parameters"""
 
     size: int = 64
 
-    def __init__(self, hResolution: int = 0, vResolution: int = 0, hScreenSize: float = 0.0, vScreenSize: float = 0.0,
-                 vScreenCenter: float = 0.0, eyeToScreenDistance: float = 0.0, lensSeparationDistance: float = 0.0,
-                 interpupillaryDistance: float = 0.0, lensDistortionValues: FloatArray = None,
-                 chromaAbCorrection: FloatArray = None, address: int = 0, to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, hResolution: int = 0, vResolution: int = 0, hScreenSize: float = 0.0, vScreenSize: float = 0.0, vScreenCenter: float = 0.0, eyeToScreenDistance: float = 0.0, lensSeparationDistance: float = 0.0, interpupillaryDistance: float = 0.0, lensDistortionValues: FloatArray = None, chromaAbCorrection: FloatArray = None, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -2302,16 +2240,16 @@ class VrDeviceInfo:
 
     @property
     def lensDistortionValues(self):
-        return FloatArray(address=self._address + 32, to_alloc=False)
+        return FloatArray(4, address=self._address + 32, to_alloc=False)
 
     @lensDistortionValues.setter
     def lensDistortionValues(self, value):
         if not self._frozen:
-            struct_clone(value, _mod.mem.getUint32(self._address + 32))
+            struct_clone(value, self._address + 32)
 
     @property
     def chromaAbCorrection(self):
-        return FloatArray(address=self._address + 48, to_alloc=False)
+        return FloatArray(4, address=self._address + 48, to_alloc=False)
 
     @chromaAbCorrection.setter
     def chromaAbCorrection(self, value):
@@ -2325,16 +2263,12 @@ class VrDeviceInfo:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class VrStereoConfig:
     """VrStereoConfig, VR stereo rendering configuration for simulator"""
 
     size: int = 304
 
-    def __init__(self, projection: StructArray = None, viewOffset: StructArray = None,
-                 leftLensCenter: FloatArray = None, rightLensCenter: FloatArray = None,
-                 leftScreenCenter: FloatArray = None, rightScreenCenter: FloatArray = None, scale: FloatArray = None,
-                 scaleIn: FloatArray = None, address: int = 0, to_alloc: bool = True, frozen: bool = False):
+    def __init__(self, projection: StructArray = None, viewOffset: StructArray = None, leftLensCenter: FloatArray = None, rightLensCenter: FloatArray = None, leftScreenCenter: FloatArray = None, rightScreenCenter: FloatArray = None, scale: FloatArray = None, scaleIn: FloatArray = None, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -2360,7 +2294,7 @@ class VrStereoConfig:
 
     @property
     def projection(self):
-        return StructArray(Matrix, address=self._address + 0, to_alloc=False)
+        return StructArray(Matrix, 2, address=self._address + 0, to_alloc=False)
 
     @projection.setter
     def projection(self, value):
@@ -2369,7 +2303,7 @@ class VrStereoConfig:
 
     @property
     def viewOffset(self):
-        return StructArray(Matrix, address=self._address + 128, to_alloc=False)
+        return StructArray(Matrix, 2, address=self._address + 128, to_alloc=False)
 
     @viewOffset.setter
     def viewOffset(self, value):
@@ -2378,7 +2312,7 @@ class VrStereoConfig:
 
     @property
     def leftLensCenter(self):
-        return FloatArray(address=self._address + 256, to_alloc=False)
+        return FloatArray(2, address=self._address + 256, to_alloc=False)
 
     @leftLensCenter.setter
     def leftLensCenter(self, value):
@@ -2387,7 +2321,7 @@ class VrStereoConfig:
 
     @property
     def rightLensCenter(self):
-        return FloatArray(address=self._address + 264, to_alloc=False)
+        return FloatArray(2, address=self._address + 264, to_alloc=False)
 
     @rightLensCenter.setter
     def rightLensCenter(self, value):
@@ -2396,7 +2330,7 @@ class VrStereoConfig:
 
     @property
     def leftScreenCenter(self):
-        return FloatArray(address=self._address + 272, to_alloc=False)
+        return FloatArray(2, address=self._address + 272, to_alloc=False)
 
     @leftScreenCenter.setter
     def leftScreenCenter(self, value):
@@ -2405,7 +2339,7 @@ class VrStereoConfig:
 
     @property
     def rightScreenCenter(self):
-        return FloatArray(address=self._address + 280, to_alloc=False)
+        return FloatArray(2, address=self._address + 280, to_alloc=False)
 
     @rightScreenCenter.setter
     def rightScreenCenter(self, value):
@@ -2414,7 +2348,7 @@ class VrStereoConfig:
 
     @property
     def scale(self):
-        return FloatArray(address=self._address + 288, to_alloc=False)
+        return FloatArray(2, address=self._address + 288, to_alloc=False)
 
     @scale.setter
     def scale(self, value):
@@ -2423,7 +2357,7 @@ class VrStereoConfig:
 
     @property
     def scaleIn(self):
-        return FloatArray(address=self._address + 296, to_alloc=False)
+        return FloatArray(2, address=self._address + 296, to_alloc=False)
 
     @scaleIn.setter
     def scaleIn(self, value):
@@ -2437,14 +2371,12 @@ class VrStereoConfig:
         if self._to_alloc:
             _mod._free(self._address)
 
-
 class FilePathList:
     """File path list"""
 
     size: int = 12
 
-    def __init__(self, capacity: int = 0, count: int = 0, paths: int = 0, address: int = 0, to_alloc: bool = True,
-                 frozen: bool = False):
+    def __init__(self, capacity: int = 0, count: int = 0, paths: int = 0, address: int = 0, to_alloc: bool = True, frozen: bool = False):
         self._to_alloc = to_alloc
         self._frozen = frozen
         if not to_alloc:
@@ -2489,91 +2421,3 @@ class FilePathList:
         if self._to_alloc:
             _mod._free(self._address)
 
-
-LIGHTGRAY = Color(200, 200, 200, 255, frozen=True)  # Light Gray
-GRAY = Color(130, 130, 130, 255, frozen=True)  # Gray
-DARKGRAY = Color(80, 80, 80, 255, frozen=True)  # Dark Gray
-YELLOW = Color(253, 249, 0, 255, frozen=True)  # Yellow
-GOLD = Color(255, 203, 0, 255, frozen=True)  # Gold
-ORANGE = Color(255, 161, 0, 255, frozen=True)  # Orange
-PINK = Color(255, 109, 194, 255, frozen=True)  # Pink
-RED = Color(230, 41, 55, 255, frozen=True)  # Red
-MAROON = Color(190, 33, 55, 255, frozen=True)  # Maroon
-GREEN = Color(0, 228, 48, 255, frozen=True)  # Green
-LIME = Color(0, 158, 47, 255, frozen=True)  # Lime
-DARKGREEN = Color(0, 117, 44, 255, frozen=True)  # Dark Green
-SKYBLUE = Color(102, 191, 255, 255, frozen=True)  # Sky Blue
-BLUE = Color(0, 121, 241, 255, frozen=True)  # Blue
-DARKBLUE = Color(0, 82, 172, 255, frozen=True)  # Dark Blue
-PURPLE = Color(200, 122, 255, 255, frozen=True)  # Purple
-VIOLET = Color(135, 60, 190, 255, frozen=True)  # Violet
-DARKPURPLE = Color(112, 31, 126, 255, frozen=True)  # Dark Purple
-BEIGE = Color(211, 176, 131, 255, frozen=True)  # Beige
-BROWN = Color(127, 106, 79, 255, frozen=True)  # Brown
-DARKBROWN = Color(76, 63, 47, 255, frozen=True)  # Dark Brown
-WHITE = Color(255, 255, 255, 255, frozen=True)  # White
-BLACK = Color(0, 0, 0, 255, frozen=True)  # Black
-BLANK = Color(0, 0, 0, 0, frozen=True)  # Blank (Transparent)
-MAGENTA = Color(255, 0, 255, 255, frozen=True)  # Magenta
-RAYWHITE = Color(245, 245, 245, 255, frozen=True)  # My own White (raylib logo)
-
-
-# helper to copy a struct
-# newColor = struct_clone(RAYWHITE)
-# newColor._frozen = false
-# newColor.a = 127
-def struct_clone(source, a):
-    if not a:
-        a = _mod._malloc(source.size)
-    _mod._memcpy(a, source._address, source.size)
-    out = source.__class__(address=a, to_alloc=False)
-    return out
-
-
-def GetFontDefault():
-    a = _mod._malloc(Font.size)
-    _mod._GetFontDefault(a)
-    return Font(address=a, to_alloc=False)
-
-
-def ClearBackground(color):
-    _mod._ClearBackground(color._address)
-
-
-def DrawText(text, x, y, fontSize, color):
-    sp = _mod._malloc(len(text) + 1)
-    _mod.stringToUTF8(text, sp, len(text) + 1)
-    _mod._DrawText(sp, x, y, fontSize, color._address)
-    _mod._free(sp)
-
-
-def BeginDrawing():
-    _mod._BeginDrawing()
-
-
-def EndDrawing():
-    _mod._EndDrawing()
-
-
-def DrawFPS(x, y):
-    _mod._DrawFPS(x, y)
-
-
-def InitWindow(width, height):
-    _mod._InitWindow(width, height)
-
-
-def DrawTextBoxedSelectable(font, text, rec, fontSize, spacing, wordWrap, tint, selectStart, selectLength, selectTint,
-                            selectBackTint):
-    sp = _mod._malloc(len(text) + 1)
-    _mod.stringToUTF8(text, sp, len(text) + 1)
-    _mod._DrawTextBoxedSelectable(font._address, sp, rec._address, fontSize, spacing, wordWrap, tint._address,
-                                  selectStart, selectLength, selectTint._address, selectBackTint._address)
-    _mod._free(sp)
-
-
-def DrawTextBoxed(font, text, rec, fontSize, spacing, wordWrap, tint):
-    sp = _mod._malloc(len(text) + 1)
-    _mod.stringToUTF8(text, sp, len(text) + 1)
-    _mod._DrawTextBoxed(font._address, sp, rec._address, fontSize, spacing, wordWrap, tint._address)
-    _mod._free(sp)
