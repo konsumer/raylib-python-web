@@ -3,18 +3,19 @@ wasm_array_string: str = \
 class WasmArray:
     \"\"\"Generic array-like collection that uses wasm as memory-back\"\"\"
     
-    def __init__(self, item_size: int, length: int, address: int = 0, to_alloc: bool = True):
+    def __init__(self, item_size: int, length: int, address: int = 0):
         self._length = length
         self._item_size = item_size
         self._size = self._item_size * self._length
-        self._to_alloc = to_alloc
-        if not to_alloc:
+        if address != 0:
             self._address: int = address
+            self._to_free: bool = False
         else:
             self._address: int = _mod._malloc(self._size)
+            self._to_free: bool = True
 
     def __del__(self):
-        if self._to_alloc:
+        if self._to_free:
             _mod._free(self._address)
 
     def __len__(self):
@@ -31,12 +32,12 @@ struct_array_string: str = \
     """
 class StructArray(WasmArray):
     \"\"\"an array of structs\"\"\"
-    def __init__(self, stype, length, address: int = 0, to_alloc: bool = True):
-        super(StructArray, self).__init__(stype.size, length, address, to_alloc)
+    def __init__(self, stype, length, address: int = 0):
+        super(StructArray, self).__init__(stype.size, length, address)
         self._stype = stype
 
     def __getitem__(self, item):
-        return self._stype(address=(self._address + (self._item_size * item)), to_alloc=False)
+        return self._stype(address=(self._address + (self._item_size * item)))
 
     def __setitem__(self, item, value):
         struct_clone(value, self._address + (self._item_size * item))
@@ -48,8 +49,8 @@ def generate_primitive_array_class(metadata: tuple[str, str, int]) -> str:
     string += f"class {metadata[0]}(WasmArray):\n"
 
     # add __init__ method
-    string += f"    def __init__(self, length, address: int = 0, to_alloc: bool = True):\n"
-    string += f"        super({metadata[0]}, self).__init__({metadata[2]}, length, address, to_alloc)\n\n"
+    string += f"    def __init__(self, length, address: int = 0):\n"
+    string += f"        super({metadata[0]}, self).__init__({metadata[2]}, length, address)\n\n"
 
     # add __getitem__
     string += f"    def __getitem__(self, item):\n"
