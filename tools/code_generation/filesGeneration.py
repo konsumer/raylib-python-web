@@ -133,9 +133,9 @@ generate_file(WASMRAYPY_FOLDER_PATH / '__init__.py')
 add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
 """def struct_clone(source, a):
     if not a:
-        a = _mod._malloc(source.size)
-    _mod._memcpy(a, source._address, source.size)
-    out = source.__class__(address=a, to_alloc=False)
+        a = _mod._malloc(source._size)
+    _mod._memcpy(a, source._address, source._size)
+    out = source.__class__(address=a)
     return out
 
 """
