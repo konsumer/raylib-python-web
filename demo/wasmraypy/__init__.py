@@ -1,3 +1,9 @@
+# helper to copy a struct
+# newColor = struct_clone(RAYWHITE)
+# newColor._frozen = false
+# newColor.a = 127
+
+
 def struct_clone(source, a):
     if not a:
         a = _mod._malloc(source._size)
@@ -8,7 +14,7 @@ def struct_clone(source, a):
 
 class WasmArray:
     """Generic array-like collection that uses wasm as memory-back"""
-    
+
     def __init__(self, item_size: int, length: int, address: int = 0):
         self._length = length
         self._item_size = item_size
@@ -36,6 +42,7 @@ class WasmArray:
 
 class StructArray(WasmArray):
     """an array of structs"""
+
     def __init__(self, stype, length, address: int = 0):
         super(StructArray, self).__init__(stype.size, length, address)
         self._stype = stype
@@ -45,7 +52,8 @@ class StructArray(WasmArray):
 
     def __setitem__(self, item, value):
         struct_clone(value, self._address + (self._item_size * item))
-    
+
+
 class CharArray(WasmArray):
     def __init__(self, length, address: int = 0):
         super(CharArray, self).__init__(1, length, address)
@@ -175,6 +183,7 @@ class Vector2:
         if self._to_free:
             _mod._free(self._address)
 
+
 class Vector3:
     """Vector3, 3 components"""
 
@@ -225,6 +234,7 @@ class Vector3:
     def __del__(self):
         if self._to_free:
             _mod._free(self._address)
+
 
 class Vector4:
     """Vector4, 4 components"""
@@ -287,14 +297,17 @@ class Vector4:
         if self._to_free:
             _mod._free(self._address)
 
+
 Quaternion = Vector4
+
 
 class Matrix:
     """Matrix, 4x4 components, column major, OpenGL style, right-handed"""
 
     _size: int = 64
 
-    def __init__(self, m0: float = 0.0, m4: float = 0.0, m8: float = 0.0, m12: float = 0.0, m1: float = 0.0, m5: float = 0.0, m9: float = 0.0, m13: float = 0.0, m2: float = 0.0, m6: float = 0.0, m10: float = 0.0, m14: float = 0.0, m3: float = 0.0, m7: float = 0.0, m11: float = 0.0, m15: float = 0.0, address: int = 0, frozen: bool = False):
+    def __init__(self, m0: float = 0.0, m4: float = 0.0, m8: float = 0.0, m12: float = 0.0, m1: float = 0.0, m5: float = 0.0, m9: float = 0.0, m13: float = 0.0, m2: float = 0.0, m6: float = 0.0, m10: float = 0.0, m14: float = 0.0,
+                 m3: float = 0.0, m7: float = 0.0, m11: float = 0.0, m15: float = 0.0, address: int = 0, frozen: bool = False):
         self._frozen = frozen
         if address != 0:
             self._address = address
@@ -470,6 +483,7 @@ class Matrix:
         if self._to_free:
             _mod._free(self._address)
 
+
 class Color:
     """Color, 4 components, R8G8B8A8 (32bit)"""
 
@@ -531,6 +545,7 @@ class Color:
         if self._to_free:
             _mod._free(self._address)
 
+
 class Rectangle:
     """Rectangle, 4 components"""
 
@@ -591,6 +606,7 @@ class Rectangle:
     def __del__(self):
         if self._to_free:
             _mod._free(self._address)
+
 
 class Image:
     """Image, pixel data stored in CPU memory (RAM)"""
@@ -663,6 +679,7 @@ class Image:
         if self._to_free:
             _mod._free(self._address)
 
+
 class Texture:
     """Texture, tex data stored in GPU memory (VRAM)"""
 
@@ -734,9 +751,11 @@ class Texture:
         if self._to_free:
             _mod._free(self._address)
 
+
 Texture2D = Texture
 
 TextureCubemap = Texture
+
 
 class RenderTexture:
     """RenderTexture, fbo for texture rendering"""
@@ -791,7 +810,9 @@ class RenderTexture:
         if self._to_free:
             _mod._free(self._address)
 
+
 RenderTexture2D = RenderTexture
+
 
 class NPatchInfo:
     """NPatchInfo, n-patch layout info"""
@@ -875,6 +896,7 @@ class NPatchInfo:
         if self._to_free:
             _mod._free(self._address)
 
+
 class GlyphInfo:
     """GlyphInfo, font characters glyphs info"""
 
@@ -946,6 +968,7 @@ class GlyphInfo:
     def __del__(self):
         if self._to_free:
             _mod._free(self._address)
+
 
 class Font:
     """Font, font texture and GlyphInfo array data"""
@@ -1029,6 +1052,7 @@ class Font:
         if self._to_free:
             _mod._free(self._address)
 
+
 class Camera3D:
     """Camera, defines position/orientation in 3d space"""
 
@@ -1103,7 +1127,9 @@ class Camera3D:
         if self._to_free:
             _mod._free(self._address)
 
+
 Camera = Camera3D
+
 
 class Camera2D:
     """Camera2D, defines position/orientation in 2d space"""
@@ -1168,12 +1194,14 @@ class Camera2D:
         if self._to_free:
             _mod._free(self._address)
 
+
 class Mesh:
     """Mesh, vertex data and vao/vbo"""
 
     _size: int = 60
 
-    def __init__(self, vertexCount: int = 0, triangleCount: int = 0, vertices: int = 0, texcoords: int = 0, texcoords2: int = 0, normals: int = 0, tangents: int = 0, colors: int = 0, indices: int = 0, animVertices: int = 0, animNormals: int = 0, boneIds: int = 0, boneWeights: int = 0, vaoId: int = 0, vboId: int = 0, address: int = 0, frozen: bool = False):
+    def __init__(self, vertexCount: int = 0, triangleCount: int = 0, vertices: int = 0, texcoords: int = 0, texcoords2: int = 0, normals: int = 0, tangents: int = 0, colors: int = 0, indices: int = 0, animVertices: int = 0,
+                 animNormals: int = 0, boneIds: int = 0, boneWeights: int = 0, vaoId: int = 0, vboId: int = 0, address: int = 0, frozen: bool = False):
         self._frozen = frozen
         if address != 0:
             self._address = address
@@ -1339,6 +1367,7 @@ class Mesh:
         if self._to_free:
             _mod._free(self._address)
 
+
 class Shader:
     """Shader"""
 
@@ -1379,6 +1408,7 @@ class Shader:
     def __del__(self):
         if self._to_free:
             _mod._free(self._address)
+
 
 class MaterialMap:
     """MaterialMap"""
@@ -1433,6 +1463,7 @@ class MaterialMap:
         if self._to_free:
             _mod._free(self._address)
 
+
 class Material:
     """Material, includes shader and maps"""
 
@@ -1485,6 +1516,7 @@ class Material:
     def __del__(self):
         if self._to_free:
             _mod._free(self._address)
+
 
 class Transform:
     """Transform, vertex transformation data"""
@@ -1540,6 +1572,7 @@ class Transform:
         if self._to_free:
             _mod._free(self._address)
 
+
 class BoneInfo:
     """Bone, skeletal animation bone"""
 
@@ -1582,12 +1615,14 @@ class BoneInfo:
         if self._to_free:
             _mod._free(self._address)
 
+
 class Model:
     """Model, meshes, materials and animation data"""
 
     _size: int = 96
 
-    def __init__(self, transform: Matrix = None, meshCount: int = 0, materialCount: int = 0, meshes: int = 0, materials: int = 0, meshMaterial: int = 0, boneCount: int = 0, bones: int = 0, bindPose: int = 0, address: int = 0, frozen: bool = False):
+    def __init__(self, transform: Matrix = None, meshCount: int = 0, materialCount: int = 0, meshes: int = 0, materials: int = 0, meshMaterial: int = 0, boneCount: int = 0, bones: int = 0, bindPose: int = 0, address: int = 0,
+                 frozen: bool = False):
         self._frozen = frozen
         if address != 0:
             self._address = address
@@ -1694,6 +1729,7 @@ class Model:
         if self._to_free:
             _mod._free(self._address)
 
+
 class ModelAnimation:
     """ModelAnimation"""
 
@@ -1766,6 +1802,7 @@ class ModelAnimation:
         if self._to_free:
             _mod._free(self._address)
 
+
 class Ray:
     """Ray, ray for raycasting"""
 
@@ -1808,6 +1845,7 @@ class Ray:
     def __del__(self):
         if self._to_free:
             _mod._free(self._address)
+
 
 class RayCollision:
     """RayCollision, ray hit information"""
@@ -1872,6 +1910,7 @@ class RayCollision:
         if self._to_free:
             _mod._free(self._address)
 
+
 class BoundingBox:
     """BoundingBox"""
 
@@ -1914,6 +1953,7 @@ class BoundingBox:
     def __del__(self):
         if self._to_free:
             _mod._free(self._address)
+
 
 class Wave:
     """Wave, audio wave data"""
@@ -1986,6 +2026,7 @@ class Wave:
         if self._to_free:
             _mod._free(self._address)
 
+
 class AudioStream:
     """AudioStream, custom audio stream"""
 
@@ -2057,6 +2098,7 @@ class AudioStream:
         if self._to_free:
             _mod._free(self._address)
 
+
 class Sound:
     """Sound"""
 
@@ -2098,6 +2140,7 @@ class Sound:
     def __del__(self):
         if self._to_free:
             _mod._free(self._address)
+
 
 class Music:
     """Music, audio stream, anything longer than ~10 seconds should be streamed"""
@@ -2171,12 +2214,14 @@ class Music:
         if self._to_free:
             _mod._free(self._address)
 
+
 class VrDeviceInfo:
     """VrDeviceInfo, Head-Mounted-Display device parameters"""
 
     _size: int = 64
 
-    def __init__(self, hResolution: int = 0, vResolution: int = 0, hScreenSize: float = 0.0, vScreenSize: float = 0.0, vScreenCenter: float = 0.0, eyeToScreenDistance: float = 0.0, lensSeparationDistance: float = 0.0, interpupillaryDistance: float = 0.0, lensDistortionValues: FloatArray = None, chromaAbCorrection: FloatArray = None, address: int = 0, frozen: bool = False):
+    def __init__(self, hResolution: int = 0, vResolution: int = 0, hScreenSize: float = 0.0, vScreenSize: float = 0.0, vScreenCenter: float = 0.0, eyeToScreenDistance: float = 0.0, lensSeparationDistance: float = 0.0,
+                 interpupillaryDistance: float = 0.0, lensDistortionValues: FloatArray = None, chromaAbCorrection: FloatArray = None, address: int = 0, frozen: bool = False):
         self._frozen = frozen
         if address != 0:
             self._address = address
@@ -2294,12 +2339,14 @@ class VrDeviceInfo:
         if self._to_free:
             _mod._free(self._address)
 
+
 class VrStereoConfig:
     """VrStereoConfig, VR stereo rendering configuration for simulator"""
 
     _size: int = 304
 
-    def __init__(self, projection: StructArray = None, viewOffset: StructArray = None, leftLensCenter: FloatArray = None, rightLensCenter: FloatArray = None, leftScreenCenter: FloatArray = None, rightScreenCenter: FloatArray = None, scale: FloatArray = None, scaleIn: FloatArray = None, address: int = 0, frozen: bool = False):
+    def __init__(self, projection: StructArray = None, viewOffset: StructArray = None, leftLensCenter: FloatArray = None, rightLensCenter: FloatArray = None, leftScreenCenter: FloatArray = None, rightScreenCenter: FloatArray = None,
+                 scale: FloatArray = None, scaleIn: FloatArray = None, address: int = 0, frozen: bool = False):
         self._frozen = frozen
         if address != 0:
             self._address = address
@@ -2403,6 +2450,7 @@ class VrStereoConfig:
         if self._to_free:
             _mod._free(self._address)
 
+
 class FilePathList:
     """File path list"""
 
@@ -2454,3 +2502,79 @@ class FilePathList:
         if self._to_free:
             _mod._free(self._address)
 
+
+LIGHTGRAY = Color(200, 200, 200, 255, frozen=True)  # Light Gray
+GRAY = Color(130, 130, 130, 255, frozen=True)  # Gray
+DARKGRAY = Color(80, 80, 80, 255, frozen=True)  # Dark Gray
+YELLOW = Color(253, 249, 0, 255, frozen=True)  # Yellow
+GOLD = Color(255, 203, 0, 255, frozen=True)  # Gold
+ORANGE = Color(255, 161, 0, 255, frozen=True)  # Orange
+PINK = Color(255, 109, 194, 255, frozen=True)  # Pink
+RED = Color(230, 41, 55, 255, frozen=True)  # Red
+MAROON = Color(190, 33, 55, 255, frozen=True)  # Maroon
+GREEN = Color(0, 228, 48, 255, frozen=True)  # Green
+LIME = Color(0, 158, 47, 255, frozen=True)  # Lime
+DARKGREEN = Color(0, 117, 44, 255, frozen=True)  # Dark Green
+SKYBLUE = Color(102, 191, 255, 255, frozen=True)  # Sky Blue
+BLUE = Color(0, 121, 241, 255, frozen=True)  # Blue
+DARKBLUE = Color(0, 82, 172, 255, frozen=True)  # Dark Blue
+PURPLE = Color(200, 122, 255, 255, frozen=True)  # Purple
+VIOLET = Color(135, 60, 190, 255, frozen=True)  # Violet
+DARKPURPLE = Color(112, 31, 126, 255, frozen=True)  # Dark Purple
+BEIGE = Color(211, 176, 131, 255, frozen=True)  # Beige
+BROWN = Color(127, 106, 79, 255, frozen=True)  # Brown
+DARKBROWN = Color(76, 63, 47, 255, frozen=True)  # Dark Brown
+WHITE = Color(255, 255, 255, 255, frozen=True)  # White
+BLACK = Color(0, 0, 0, 255, frozen=True)  # Black
+BLANK = Color(0, 0, 0, 0, frozen=True)  # Blank (Transparent)
+MAGENTA = Color(255, 0, 255, 255, frozen=True)  # Magenta
+RAYWHITE = Color(245, 245, 245, 255, frozen=True)  # My own White (raylib logo)
+
+
+def GetFontDefault():
+    a = _mod._malloc(Font.size)
+    _mod._GetFontDefault(a)
+    return Font(address=a)
+
+
+def ClearBackground(color):
+    _mod._ClearBackground(color._address)
+
+
+def DrawText(text, x, y, fontSize, color):
+    sp = _mod._malloc(len(text) + 1)
+    _mod.stringToUTF8(text, sp, len(text) + 1)
+    _mod._DrawText(sp, x, y, fontSize, color._address)
+    _mod._free(sp)
+
+
+def BeginDrawing():
+    _mod._BeginDrawing()
+
+
+def EndDrawing():
+    _mod._EndDrawing()
+
+
+def DrawFPS(x, y):
+    _mod._DrawFPS(x, y)
+
+
+def InitWindow(width, height):
+    _mod._InitWindow(width, height)
+
+
+def DrawTextBoxedSelectable(font, text, rec, fontSize, spacing, wordWrap, tint, selectStart, selectLength, selectTint,
+                            selectBackTint):
+    sp = _mod._malloc(len(text) + 1)
+    _mod.stringToUTF8(text, sp, len(text) + 1)
+    _mod._DrawTextBoxedSelectable(font._address, sp, rec._address, fontSize, spacing, wordWrap, tint._address,
+                                  selectStart, selectLength, selectTint._address, selectBackTint._address)
+    _mod._free(sp)
+
+
+def DrawTextBoxed(font, text, rec, fontSize, spacing, wordWrap, tint):
+    sp = _mod._malloc(len(text) + 1)
+    _mod.stringToUTF8(text, sp, len(text) + 1)
+    _mod._DrawTextBoxed(font._address, sp, rec._address, fontSize, spacing, wordWrap, tint._address)
+    _mod._free(sp)

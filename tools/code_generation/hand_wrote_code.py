@@ -28,18 +28,6 @@ MAGENTA = Color(255, 0, 255, 255, frozen=True)  # Magenta
 RAYWHITE = Color(245, 245, 245, 255, frozen=True)  # My own White (raylib logo)
 
 
-# helper to copy a struct
-# newColor = struct_clone(RAYWHITE)
-# newColor._frozen = false
-# newColor.a = 127
-def struct_clone(source, a):
-    if not a:
-        a = _mod._malloc(source.size)
-    _mod._memcpy(a, source._address, source.size)
-    out = source.__class__(address=a, to_alloc=False)
-    return out
-
-
 def GetFontDefault():
     a = _mod._malloc(Font.size)
     _mod._GetFontDefault(a)
