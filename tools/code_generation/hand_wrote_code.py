@@ -1,6 +1,3 @@
-import array_generation
-import struct_generation
-
 other_string = \
     """
 LIGHTGRAY = Color(200, 200, 200, 255, frozen=True)  # Light Gray
@@ -92,5 +89,3 @@ def DrawTextBoxed(font, text, rec, fontSize, spacing, wordWrap, tint):
     _mod._free(sp)
     
     """
-
-print(other_string)
