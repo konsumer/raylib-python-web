@@ -29,7 +29,7 @@ RAYWHITE = Color(245, 245, 245, 255, frozen=True)  # My own White (raylib logo)
 
 
 def GetFontDefault():
-    a = _mod._malloc(Font.size)
+    a = _mod._malloc(Font._size)
     _mod._GetFontDefault(a)
     return Font(address=a)
 

@@ -33,7 +33,7 @@ struct_array_string: str = \
 class StructArray(WasmArray):
     \"\"\"an array of structs\"\"\"
     def __init__(self, stype, length, address: int = 0):
-        super(StructArray, self).__init__(stype.size, length, address)
+        super(StructArray, self).__init__(stype._size, length, address)
         self._stype = stype
 
     def __getitem__(self, item):

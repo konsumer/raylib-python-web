@@ -44,7 +44,7 @@ class StructArray(WasmArray):
     """an array of structs"""
 
     def __init__(self, stype, length, address: int = 0):
-        super(StructArray, self).__init__(stype.size, length, address)
+        super(StructArray, self).__init__(stype._size, length, address)
         self._stype = stype
 
     def __getitem__(self, item):
@@ -2532,7 +2532,7 @@ RAYWHITE = Color(245, 245, 245, 255, frozen=True)  # My own White (raylib logo)
 
 
 def GetFontDefault():
-    a = _mod._malloc(Font.size)
+    a = _mod._malloc(Font._size)
     _mod._GetFontDefault(a)
     return Font(address=a)
 
