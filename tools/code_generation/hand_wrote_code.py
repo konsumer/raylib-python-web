@@ -1,6 +1,3 @@
-import array_generation
-import struct_generation
-
 other_string = \
     """
 LIGHTGRAY = Color(200, 200, 200, 255, frozen=True)  # Light Gray
@@ -31,20 +28,8 @@ MAGENTA = Color(255, 0, 255, 255, frozen=True)  # Magenta
 RAYWHITE = Color(245, 245, 245, 255, frozen=True)  # My own White (raylib logo)
 
 
-# helper to copy a struct
-# newColor = struct_clone(RAYWHITE)
-# newColor._frozen = false
-# newColor.a = 127
-def struct_clone(source, a):
-    if not a:
-        a = _mod._malloc(source.size)
-    _mod._memcpy(a, source._address, source.size)
-    out = source.__class__(address=a, to_alloc=False)
-    return out
-
-
 def GetFontDefault():
-    a = _mod._malloc(Font.size)
+    a = _mod._malloc(Font._size)
     _mod._GetFontDefault(a)
     return Font(address=a)
 
@@ -92,5 +77,3 @@ def DrawTextBoxed(font, text, rec, fontSize, spacing, wordWrap, tint):
     _mod._free(sp)
     
     """
-
-print(other_string)

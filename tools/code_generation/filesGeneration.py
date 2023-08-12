@@ -1,4 +1,5 @@
 from __future__ import annotations
+import hand_wrote_code
 import array_generation
 import ctype_struct
 import struct_generation
@@ -131,11 +132,17 @@ raygui_api_functions = raygui_api['functions']
 # generate all the files for wasmraypy
 generate_file(WASMRAYPY_FOLDER_PATH / '__init__.py')
 add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
-"""def struct_clone(source, a):
+"""# helper to copy a struct
+# newColor = struct_clone(RAYWHITE)
+# newColor._frozen = false
+# newColor.a = 127
+
+
+def struct_clone(source, a):
     if not a:
-        a = _mod._malloc(source.size)
-    _mod._memcpy(a, source._address, source.size)
-    out = source.__class__(address=a, to_alloc=False)
+        a = _mod._malloc(source._size)
+    _mod._memcpy(a, source._address, source._size)
+    out = source.__class__(address=a)
     return out
 
 """
@@ -143,3 +150,4 @@ add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
 add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py', generate_wasm_array_classes_code())
 add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
                  generate_structs_aliases_code(raylib_api_structs, raylib_api_aliases))
+add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py', hand_wrote_code.other_string)

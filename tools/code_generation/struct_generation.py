@@ -117,7 +117,7 @@ def generate_struct_code(struct_api) -> str:
     string += f"class {struct_api['name']}:\n"
     string += f"    \"\"\"{struct_api['description']}\"\"\"\n\n"
     # add size member variable
-    string += f"    size: int = {struct_.size}\n\n"
+    string += f"    _size: int = {struct_.size}\n\n"
 
     # add init method
     string += f"    def __init__(self, "
@@ -130,20 +130,21 @@ def generate_struct_code(struct_api) -> str:
 
         string += ", "
 
-    # added to_alloc, frozen and address arguments
+    # added frozen and address arguments
     string += f"address: int = 0, "
-    string += f"to_alloc: bool = True, "
     string += f"frozen: bool = False"
     string += f"):\n"
 
-    # add to_alloc and frozen to self
-    string += f"        self._to_alloc = to_alloc\n"
+    # add frozen to self
     string += f"        self._frozen = frozen\n"
     # malloc code of class
-    string += f"        if not to_alloc:\n"
+    string += f"        if address != 0:\n"
     string += f"            self._address = address\n"
+    string += f"            self._to_free = False\n"
     string += f"        else:\n"
     string += f"            self._address = _mod._malloc({struct_.size})\n"
+    string += f"            self._to_free = True\n"
+
 
     # set self values
     offset: int = 0
@@ -197,7 +198,7 @@ def generate_struct_code(struct_api) -> str:
             if member_ctype.kind == CTypeKind.Array:
                 if member_ctype.of.kind == CTypeKind.Struct:
                     string += f"{member_ctype.of.struct_token.string}, "
-            string += f"{member_ctype.array_size}, address=self._address + {offset}, to_alloc=False)\n\n"
+            string += f"{member_ctype.array_size}, address=self._address + {offset})\n\n"
 
             # setter
             string += f"    @{member_json['name']}.setter\n"
@@ -218,7 +219,7 @@ def generate_struct_code(struct_api) -> str:
 
     # add __del__ method
     string += "    def __del__(self):\n"
-    string += "        if self._to_alloc:\n"
+    string += "        if self._to_free:\n"
     string += "            _mod._free(self._address)\n\n"
 
     return string
