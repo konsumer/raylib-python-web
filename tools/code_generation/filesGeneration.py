@@ -3,6 +3,7 @@ import hand_wrote_code
 import array_generation
 import ctype_struct
 import struct_generation
+import enum_generation
 import json
 from pathlib import Path
 
@@ -77,6 +78,17 @@ def generate_structs_aliases_code(structs_api, aliases_api) -> str:
     return _string
 
 
+def generate_enums_code(enums_api) -> str:
+    _string = ""
+    for enum_api in enums_api:
+        if enum_api['name'] in wrapped_enums_names:
+            continue
+        wrapped_enums_names.append(enum_api['name'])
+        _string += enum_generation.generate_enum_code(enum_api) + '\n'
+
+    return _string
+
+
 # -----------------------------------------
 """# load config data
 with open(Path(JSON_API_FOLDER_PATH / 'config.json')) as reader:
@@ -131,8 +143,10 @@ raygui_api_functions = raygui_api['functions']
 # -----------------------------------------
 # generate all the files for wasmraypy
 generate_file(WASMRAYPY_FOLDER_PATH / '__init__.py')
-add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
-"""# helper to copy a struct
+other_text = """
+import enum
+
+# helper to copy a struct
 # newColor = struct_clone(RAYWHITE)
 # newColor._frozen = false
 # newColor.a = 127
@@ -144,10 +158,11 @@ def struct_clone(source, a):
     _mod._memcpy(a, source._address, source._size)
     out = source.__class__(address=a)
     return out
-
 """
-                 )
+add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py', other_text)
 add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py', generate_wasm_array_classes_code())
 add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
                  generate_structs_aliases_code(raylib_api_structs, raylib_api_aliases))
+add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
+                 generate_enums_code(raylib_api_enums))
 add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py', hand_wrote_code.other_string)
