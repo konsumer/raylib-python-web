@@ -2840,6 +2840,13 @@ class NPatchLayout(enum.IntEnum):
     NPATCH_THREE_PATCH_HORIZONTAL: int = 2  # Npatch layout: 3x1 tiles
 
 
+RAYLIB_VERSION_MAJOR: int = 4
+RAYLIB_VERSION_MINOR: int = 6
+RAYLIB_VERSION_PATCH: int = 0
+RAYLIB_VERSION: str = "4.6-dev"
+PI: float = 3.141592653589793
+DEG2RAD: float = (PI/180.0)
+RAD2DEG: float = (180.0/PI)
 
 LIGHTGRAY = Color(200, 200, 200, 255, frozen=True)  # Light Gray
 GRAY = Color(130, 130, 130, 255, frozen=True)  # Gray

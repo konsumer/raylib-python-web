@@ -4,6 +4,7 @@ import array_generation
 import ctype_struct
 import struct_generation
 import enum_generation
+import define_generation
 import json
 from pathlib import Path
 
@@ -88,6 +89,16 @@ def generate_enums_code(enums_api) -> str:
 
     return _string
 
+def generate_defines_code(defines_api) -> str:
+    _string = ""
+    for define_api in defines_api:
+        if define_api['name'] in wrapped_defines_names:
+            continue
+        wrapped_enums_names.append(define_api['name'])
+        _string += define_generation.generate_define_code(define_api)
+
+    return _string
+
 
 # -----------------------------------------
 """# load config data
@@ -165,4 +176,6 @@ add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
                  generate_structs_aliases_code(raylib_api_structs, raylib_api_aliases))
 add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
                  generate_enums_code(raylib_api_enums))
+add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
+                 generate_defines_code(raylib_api_defines))
 add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py', hand_wrote_code.other_string)
