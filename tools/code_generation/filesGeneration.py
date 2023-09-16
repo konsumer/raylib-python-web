@@ -1,5 +1,4 @@
 from __future__ import annotations
-import hand_wrote_code
 import array_generation
 import ctype_struct
 import struct_generation
@@ -210,4 +209,3 @@ add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
                  generate_functions_code(raylib_api_functions))
 add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
                  generate_colors_code(raylib_api_defines))
-add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py', hand_wrote_code.other_string)
