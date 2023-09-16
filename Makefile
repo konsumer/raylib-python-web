@@ -12,5 +12,3 @@ demo/raylib.wasm: ## Build the raylib wasm from C
 clean: ## Delete built files
 	rm -f demo/raylib.js demo/raylib.wasm
 
-deploy: ## Deploy the website
-	npx -y surge demo raylib-python.surge.sh
