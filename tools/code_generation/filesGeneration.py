@@ -6,6 +6,7 @@ import struct_generation
 import enum_generation
 import define_generation
 import function_generation
+import color_generation
 import json
 from pathlib import Path
 
@@ -114,6 +115,19 @@ def generate_functions_code(functions_api) -> str:
     return _string
 
 
+def generate_colors_code(defines_api) -> str:
+    _string = ""
+    for defines_api in defines_api:
+        if defines_api['name'] in wrapped_colors_names:
+            continue
+        color_string = color_generation.generate_color_code(defines_api)
+        if color_string != "":
+            wrapped_functions_names.append(defines_api['name'])
+            _string += color_string + '\n'
+
+    return _string + '\n'
+
+
 # -----------------------------------------
 """# load config data
 with open(Path(JSON_API_FOLDER_PATH / 'config.json')) as reader:
@@ -194,4 +208,6 @@ add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
                  generate_defines_code(raylib_api_defines))
 add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
                  generate_functions_code(raylib_api_functions))
+add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
+                 generate_colors_code(raylib_api_defines))
 add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py', hand_wrote_code.other_string)
