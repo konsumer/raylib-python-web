@@ -4,7 +4,7 @@ colors = None
 
 def init():
     global font, colors
-    InitWindow(800, 450)
+    InitWindow(800, 450, "dfgdfg")
 
     # test struct
     print(RAYWHITE)

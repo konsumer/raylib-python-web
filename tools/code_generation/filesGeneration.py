@@ -5,6 +5,7 @@ import ctype_struct
 import struct_generation
 import enum_generation
 import define_generation
+import function_generation
 import json
 from pathlib import Path
 
@@ -24,7 +25,7 @@ wrapped_structures_names_stub = []
 
 wrapped_aliases_names = []
 
-wrapped_functions_names_stub = []
+wrapped_functions_names = []
 
 
 # -----------------------------------------
@@ -89,6 +90,7 @@ def generate_enums_code(enums_api) -> str:
 
     return _string
 
+
 def generate_defines_code(defines_api) -> str:
     _string = ""
     for define_api in defines_api:
@@ -96,6 +98,18 @@ def generate_defines_code(defines_api) -> str:
             continue
         wrapped_enums_names.append(define_api['name'])
         _string += define_generation.generate_define_code(define_api)
+
+    return _string
+
+
+def generate_functions_code(functions_api) -> str:
+    _string = ""
+    for function_api in functions_api:
+        if function_api['name'] in wrapped_functions_names:
+            continue
+        wrapped_functions_names.append(function_api['name'])
+        function_string = function_generation.generate_function_code(function_api)
+        _string += function_string + '\n\n' if function_string != "" else ""
 
     return _string
 
@@ -178,4 +192,6 @@ add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
                  generate_enums_code(raylib_api_enums))
 add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
                  generate_defines_code(raylib_api_defines))
+add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
+                 generate_functions_code(raylib_api_functions))
 add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py', hand_wrote_code.other_string)
