@@ -1,7 +1,7 @@
 # raylib-python-web
 Try out python raylib ideas on the web
 
-It is deployed [here](https://raylib-python.surge.sh)
+It is deployed [here](https://konsumer.js.org/raylib-python-web/).
 
 ## local dev
 
