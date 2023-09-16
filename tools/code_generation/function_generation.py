@@ -107,6 +107,9 @@ def generate_function_code(function_data):
 
     # function body
     # ----------------------------------------------------------------------------
+    # add function description
+    function_body += f"    \"\"\"{function_data['description']}\"\"\"\n" if function_data['description'] != "" else ""
+
     # add start _mod._function
     # if function return type that is not a struct (and not void) we need to create a return instance
     if function_data["returnType"] != "void" and return_ctype.kind != CTypeKind.Struct:
