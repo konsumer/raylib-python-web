@@ -12,7 +12,7 @@ export default async function setup (canvas) {
   console.log()
 
   // just for dev, pull wrapper from seperate file
-  const wrapper = await fetch(`${loc}/wasmraypy/__init__.py`).then(r => r.text())
+  const wrapper = await fetch(`${loc}/wasmraypy.txt`).then(r => r.text())
   pyodide.runPython(wrapper)
 
   return pyodide
