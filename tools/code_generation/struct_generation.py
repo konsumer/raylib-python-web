@@ -180,6 +180,7 @@ def generate_struct_code(struct_api) -> str:
             # getter
             string += f"    @property\n"
             string += f"    def {member_json['name']}(self):\n"
+            string += f"        \"\"\"{member_json['description']}\"\"\"\n"
             string += f"        return _mod.mem.{emscripten_XXXType_string_for_ctype_kind(member_ctype.kind, True)}" \
                       f"(self._address + {offset}, True)\n\n"
 
@@ -194,6 +195,7 @@ def generate_struct_code(struct_api) -> str:
             # getter
             string += f"    @property\n"
             string += f"    def {member_json['name']}(self):\n"
+            string += f"        \"\"\"{member_json['description']}\"\"\"\n"
             string += f"        return {type_hint}("
             if member_ctype.kind == CTypeKind.Array:
                 if member_ctype.of.kind == CTypeKind.Struct:
