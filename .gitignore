@@ -162,3 +162,6 @@ cython_debug/
 /src/raylib/
 /src/raygui/
 /src/reasings/
+
+
+.DS_Store
