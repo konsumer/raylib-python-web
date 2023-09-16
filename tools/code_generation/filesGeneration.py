@@ -12,7 +12,7 @@ from pathlib import Path
 RAYLIB_PYTHON_WEB_FOLDER_PATH = Path(__file__).parent.parent.parent
 print(RAYLIB_PYTHON_WEB_FOLDER_PATH)
 JSON_API_FOLDER_PATH = RAYLIB_PYTHON_WEB_FOLDER_PATH / "tools/api"
-WASMRAYPY_FOLDER_PATH = RAYLIB_PYTHON_WEB_FOLDER_PATH / "demo/wasmraypy"
+WASMRAYPY_FOLDER_PATH = RAYLIB_PYTHON_WEB_FOLDER_PATH / "docs"
 
 wrapped_defines_names = []
 
@@ -180,7 +180,7 @@ raygui_api_functions = raygui_api['functions']
 
 # -----------------------------------------
 # generate all the files for wasmraypy
-generate_file(WASMRAYPY_FOLDER_PATH / '__init__.py')
+generate_file(WASMRAYPY_FOLDER_PATH / 'wasmraypy.txt')
 other_text = """
 import enum
 
@@ -197,15 +197,15 @@ def struct_clone(source, a):
     out = source.__class__(address=a)
     return out
 """
-add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py', other_text)
-add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py', generate_wasm_array_classes_code())
-add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
+add_text_to_file(WASMRAYPY_FOLDER_PATH / 'wasmraypy.txt', other_text)
+add_text_to_file(WASMRAYPY_FOLDER_PATH / 'wasmraypy.txt', generate_wasm_array_classes_code())
+add_text_to_file(WASMRAYPY_FOLDER_PATH / 'wasmraypy.txt',
                  generate_structs_aliases_code(raylib_api_structs, raylib_api_aliases))
-add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
+add_text_to_file(WASMRAYPY_FOLDER_PATH / 'wasmraypy.txt',
                  generate_enums_code(raylib_api_enums))
-add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
+add_text_to_file(WASMRAYPY_FOLDER_PATH / 'wasmraypy.txt',
                  generate_defines_code(raylib_api_defines))
-add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
+add_text_to_file(WASMRAYPY_FOLDER_PATH / 'wasmraypy.txt',
                  generate_functions_code(raylib_api_functions))
-add_text_to_file(WASMRAYPY_FOLDER_PATH / '__init__.py',
+add_text_to_file(WASMRAYPY_FOLDER_PATH / 'wasmraypy.txt',
                  generate_colors_code(raylib_api_defines))
