@@ -1,5 +1,13 @@
 from ctype_lexer import *
 from ctype_parser import *
+import re
+
+
+def underscore(_string: str) -> str:
+    _string = re.sub(r"([A-Z]+)([A-Z][a-z])", r'\1_\2', _string)
+    _string = re.sub(r"([a-z\d])([A-Z])", r'\1_\2', _string)
+    _string = _string.replace("-", "_")
+    return _string.lower()
 
 
 def function_member_to_python_type_hint(member: CType):
@@ -51,9 +59,13 @@ def generate_function_code(function_data):
     parser = Parser()
 
     parameters_ctype_index_list = []
+
+    # function name fixing
+    name_of_function = underscore(function_data['name']).replace('3_d', '_3d').replace('2_d', '_2d').replace('vector_2', 'vector_2').replace('vector_3', 'vector3_')
+
     # function header
     # ----------------------------------------------------------------------------
-    function_header += f"def {function_data['name']}("
+    function_header += f"def {name_of_function}("
 
     params = function_data.get('params', [])
     for param in params:
