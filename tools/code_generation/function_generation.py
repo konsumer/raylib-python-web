@@ -1,5 +1,13 @@
 from ctype_lexer import *
 from ctype_parser import *
+import re
+
+
+def underscore(_string: str) -> str:
+    _string = re.sub(r"([A-Z]+)([A-Z][a-z])", r'\1_\2', _string)
+    _string = re.sub(r"([a-z\d])([A-Z])", r'\1_\2', _string)
+    _string = _string.replace("-", "_")
+    return _string.lower()
 
 
 def function_member_to_python_type_hint(member: CType):
