@@ -17,11 +17,11 @@ SCREEN_HEIGHT = 450
 # Web main entry point
 # ------------------------------------------------------------------------------------
 def init():
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "raylib [core] example - basic window")
+    init_window(SCREEN_WIDTH, SCREEN_HEIGHT, "raylib [core] example - basic window")
 
     # TODO: Load resources / Initialize variables at this point
 
-    SetTargetFPS(60)  # Set our game to run at 60 frames-per-second
+    set_target_fps(60)  # Set our game to run at 60 frames-per-second
     # ------------------------------------------------------------------------------------
 
 
@@ -36,10 +36,10 @@ def update():
 
     # Draw
     # ----------------------------------------------------------------------------------
-    BeginDrawing()
+    begin_drawing()
 
-    ClearBackground(RAYWHITE)
-    DrawText("Congrats! You created your first python window!", 150, 200, 20, LIGHTGRAY)
+    clear_background(RED)
+    draw_text("Congrats! You created your first python window!", 150, 200, 20, LIGHTGRAY)
 
-    EndDrawing()
+    end_drawing()
     # ----------------------------------------------------------------------------------

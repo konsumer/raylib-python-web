@@ -59,9 +59,13 @@ def generate_function_code(function_data):
     parser = Parser()
 
     parameters_ctype_index_list = []
+
+    # function name fixing
+    name_of_function = underscore(function_data['name']).replace('3_d', '_3d').replace('2_d', '_2d').replace('vector_2', 'vector_2').replace('vector_3', 'vector3_')
+
     # function header
     # ----------------------------------------------------------------------------
-    function_header += f"def {function_data['name']}("
+    function_header += f"def {name_of_function}("
 
     params = function_data.get('params', [])
     for param in params:

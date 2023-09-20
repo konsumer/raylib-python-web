@@ -3007,7 +3007,7 @@ RAYLIB_VERSION: str = "4.6-dev"
 PI: float = 3.141592653589793
 DEG2RAD: float = (PI/180.0)
 RAD2DEG: float = (180.0/PI)
-def InitWindow(width: int, height: int, title: str):
+def init_window(width: int, height: int, title: str):
     title_ = _mod._malloc(len(title) + 1)
     _mod.stringToUTF8(title, title_, len(title) + 1)
     """Initialize window and OpenGL context"""
@@ -3015,106 +3015,106 @@ def InitWindow(width: int, height: int, title: str):
     _mod._free(title_)
 
 
-def WindowShouldClose() -> int:
+def window_should_close() -> int:
     """Check if KEY_ESCAPE pressed or Close icon pressed"""
     return_interface = _mod._WindowShouldClose()
     return return_interface
 
 
-def CloseWindow():
+def close_window():
     """Close window and unload OpenGL context"""
     _mod._CloseWindow()
 
 
-def IsWindowReady() -> int:
+def is_window_ready() -> int:
     """Check if window has been initialized successfully"""
     return_interface = _mod._IsWindowReady()
     return return_interface
 
 
-def IsWindowFullscreen() -> int:
+def is_window_fullscreen() -> int:
     """Check if window is currently fullscreen"""
     return_interface = _mod._IsWindowFullscreen()
     return return_interface
 
 
-def IsWindowHidden() -> int:
+def is_window_hidden() -> int:
     """Check if window is currently hidden (only PLATFORM_DESKTOP)"""
     return_interface = _mod._IsWindowHidden()
     return return_interface
 
 
-def IsWindowMinimized() -> int:
+def is_window_minimized() -> int:
     """Check if window is currently minimized (only PLATFORM_DESKTOP)"""
     return_interface = _mod._IsWindowMinimized()
     return return_interface
 
 
-def IsWindowMaximized() -> int:
+def is_window_maximized() -> int:
     """Check if window is currently maximized (only PLATFORM_DESKTOP)"""
     return_interface = _mod._IsWindowMaximized()
     return return_interface
 
 
-def IsWindowFocused() -> int:
+def is_window_focused() -> int:
     """Check if window is currently focused (only PLATFORM_DESKTOP)"""
     return_interface = _mod._IsWindowFocused()
     return return_interface
 
 
-def IsWindowResized() -> int:
+def is_window_resized() -> int:
     """Check if window has been resized last frame"""
     return_interface = _mod._IsWindowResized()
     return return_interface
 
 
-def IsWindowState(flag: int) -> int:
+def is_window_state(flag: int) -> int:
     """Check if one specific window flag is enabled"""
     return_interface = _mod._IsWindowState(flag)
     return return_interface
 
 
-def SetWindowState(flags: int):
+def set_window_state(flags: int):
     """Set window configuration state using flags (only PLATFORM_DESKTOP)"""
     _mod._SetWindowState(flags)
 
 
-def ClearWindowState(flags: int):
+def clear_window_state(flags: int):
     """Clear window configuration state flags"""
     _mod._ClearWindowState(flags)
 
 
-def ToggleFullscreen():
+def toggle_fullscreen():
     """Toggle window state: fullscreen/windowed (only PLATFORM_DESKTOP)"""
     _mod._ToggleFullscreen()
 
 
-def MaximizeWindow():
+def maximize_window():
     """Set window state: maximized, if resizable (only PLATFORM_DESKTOP)"""
     _mod._MaximizeWindow()
 
 
-def MinimizeWindow():
+def minimize_window():
     """Set window state: minimized, if resizable (only PLATFORM_DESKTOP)"""
     _mod._MinimizeWindow()
 
 
-def RestoreWindow():
+def restore_window():
     """Set window state: not minimized/maximized (only PLATFORM_DESKTOP)"""
     _mod._RestoreWindow()
 
 
-def SetWindowIcon(image: Image):
+def set_window_icon(image: Image):
     """Set icon for window (single image, RGBA 32bit, only PLATFORM_DESKTOP)"""
     _mod._SetWindowIcon(image._address)
 
 
-def SetWindowIcons(images: int, count: int):
+def set_window_icons(images: int, count: int):
     """Set icon for window (multiple images, RGBA 32bit, only PLATFORM_DESKTOP)"""
     _mod._SetWindowIcons(images, count)
 
 
-def SetWindowTitle(title: str):
+def set_window_title(title: str):
     title_ = _mod._malloc(len(title) + 1)
     _mod.stringToUTF8(title, title_, len(title) + 1)
     """Set title for window (only PLATFORM_DESKTOP)"""
@@ -3122,136 +3122,136 @@ def SetWindowTitle(title: str):
     _mod._free(title_)
 
 
-def SetWindowPosition(x: int, y: int):
+def set_window_position(x: int, y: int):
     """Set window position on screen (only PLATFORM_DESKTOP)"""
     _mod._SetWindowPosition(x, y)
 
 
-def SetWindowMonitor(monitor: int):
+def set_window_monitor(monitor: int):
     """Set monitor for the current window (fullscreen mode)"""
     _mod._SetWindowMonitor(monitor)
 
 
-def SetWindowMinSize(width: int, height: int):
+def set_window_min_size(width: int, height: int):
     """Set window minimum dimensions (for FLAG_WINDOW_RESIZABLE)"""
     _mod._SetWindowMinSize(width, height)
 
 
-def SetWindowSize(width: int, height: int):
+def set_window_size(width: int, height: int):
     """Set window dimensions"""
     _mod._SetWindowSize(width, height)
 
 
-def SetWindowOpacity(opacity: float):
+def set_window_opacity(opacity: float):
     """Set window opacity [0.0f..1.0f] (only PLATFORM_DESKTOP)"""
     _mod._SetWindowOpacity(opacity)
 
 
-def SetWindowFocused():
+def set_window_focused():
     """Set window focused (only PLATFORM_DESKTOP)"""
     _mod._SetWindowFocused()
 
 
-def GetWindowHandle() -> int:
+def get_window_handle() -> int:
     """Get native window handle"""
     return_interface = _mod._GetWindowHandle()
     return return_interface
 
 
-def GetScreenWidth() -> int:
+def get_screen_width() -> int:
     """Get current screen width"""
     return_interface = _mod._GetScreenWidth()
     return return_interface
 
 
-def GetScreenHeight() -> int:
+def get_screen_height() -> int:
     """Get current screen height"""
     return_interface = _mod._GetScreenHeight()
     return return_interface
 
 
-def GetRenderWidth() -> int:
+def get_render_width() -> int:
     """Get current render width (it considers HiDPI)"""
     return_interface = _mod._GetRenderWidth()
     return return_interface
 
 
-def GetRenderHeight() -> int:
+def get_render_height() -> int:
     """Get current render height (it considers HiDPI)"""
     return_interface = _mod._GetRenderHeight()
     return return_interface
 
 
-def GetMonitorCount() -> int:
+def get_monitor_count() -> int:
     """Get number of connected monitors"""
     return_interface = _mod._GetMonitorCount()
     return return_interface
 
 
-def GetCurrentMonitor() -> int:
+def get_current_monitor() -> int:
     """Get current connected monitor"""
     return_interface = _mod._GetCurrentMonitor()
     return return_interface
 
 
-def GetMonitorPosition(monitor: int) -> Vector2:
+def get_monitor_position(monitor: int) -> Vector2:
     Vector2_ = Vector2()
     """Get specified monitor position"""
     _mod._GetMonitorPosition(Vector2_._address, monitor)
     return Vector2_
 
 
-def GetMonitorWidth(monitor: int) -> int:
+def get_monitor_width(monitor: int) -> int:
     """Get specified monitor width (current video mode used by monitor)"""
     return_interface = _mod._GetMonitorWidth(monitor)
     return return_interface
 
 
-def GetMonitorHeight(monitor: int) -> int:
+def get_monitor_height(monitor: int) -> int:
     """Get specified monitor height (current video mode used by monitor)"""
     return_interface = _mod._GetMonitorHeight(monitor)
     return return_interface
 
 
-def GetMonitorPhysicalWidth(monitor: int) -> int:
+def get_monitor_physical_width(monitor: int) -> int:
     """Get specified monitor physical width in millimetres"""
     return_interface = _mod._GetMonitorPhysicalWidth(monitor)
     return return_interface
 
 
-def GetMonitorPhysicalHeight(monitor: int) -> int:
+def get_monitor_physical_height(monitor: int) -> int:
     """Get specified monitor physical height in millimetres"""
     return_interface = _mod._GetMonitorPhysicalHeight(monitor)
     return return_interface
 
 
-def GetMonitorRefreshRate(monitor: int) -> int:
+def get_monitor_refresh_rate(monitor: int) -> int:
     """Get specified monitor refresh rate"""
     return_interface = _mod._GetMonitorRefreshRate(monitor)
     return return_interface
 
 
-def GetWindowPosition() -> Vector2:
+def get_window_position() -> Vector2:
     Vector2_ = Vector2()
     """Get window position XY on monitor"""
     _mod._GetWindowPosition(Vector2_._address)
     return Vector2_
 
 
-def GetWindowScaleDPI() -> Vector2:
+def get_window_scale_dpi() -> Vector2:
     Vector2_ = Vector2()
     """Get window scale DPI factor"""
     _mod._GetWindowScaleDPI(Vector2_._address)
     return Vector2_
 
 
-def GetMonitorName(monitor: int) -> int:
+def get_monitor_name(monitor: int) -> int:
     """Get the human-readable, UTF-8 encoded name of the primary monitor"""
     return_interface = _mod._GetMonitorName(monitor)
     return return_interface
 
 
-def SetClipboardText(text: str):
+def set_clipboard_text(text: str):
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
     """Set clipboard text content"""
@@ -3259,167 +3259,167 @@ def SetClipboardText(text: str):
     _mod._free(text_)
 
 
-def GetClipboardText() -> int:
+def get_clipboard_text() -> int:
     """Get clipboard text content"""
     return_interface = _mod._GetClipboardText()
     return return_interface
 
 
-def EnableEventWaiting():
+def enable_event_waiting():
     """Enable waiting for events on EndDrawing(), no automatic event polling"""
     _mod._EnableEventWaiting()
 
 
-def DisableEventWaiting():
+def disable_event_waiting():
     """Disable waiting for events on EndDrawing(), automatic events polling"""
     _mod._DisableEventWaiting()
 
 
-def SwapScreenBuffer():
+def swap_screen_buffer():
     """Swap back buffer with front buffer (screen drawing)"""
     _mod._SwapScreenBuffer()
 
 
-def PollInputEvents():
+def poll_input_events():
     """Register all input events"""
     _mod._PollInputEvents()
 
 
-def WaitTime(seconds: float):
+def wait_time(seconds: float):
     """Wait for some time (halt program execution)"""
     _mod._WaitTime(seconds)
 
 
-def ShowCursor():
+def show_cursor():
     """Shows cursor"""
     _mod._ShowCursor()
 
 
-def HideCursor():
+def hide_cursor():
     """Hides cursor"""
     _mod._HideCursor()
 
 
-def IsCursorHidden() -> int:
+def is_cursor_hidden() -> int:
     """Check if cursor is not visible"""
     return_interface = _mod._IsCursorHidden()
     return return_interface
 
 
-def EnableCursor():
+def enable_cursor():
     """Enables cursor (unlock cursor)"""
     _mod._EnableCursor()
 
 
-def DisableCursor():
+def disable_cursor():
     """Disables cursor (lock cursor)"""
     _mod._DisableCursor()
 
 
-def IsCursorOnScreen() -> int:
+def is_cursor_on_screen() -> int:
     """Check if cursor is on the screen"""
     return_interface = _mod._IsCursorOnScreen()
     return return_interface
 
 
-def ClearBackground(color: Color):
+def clear_background(color: Color):
     """Set background color (framebuffer clear color)"""
     _mod._ClearBackground(color._address)
 
 
-def BeginDrawing():
+def begin_drawing():
     """Setup canvas (framebuffer) to start drawing"""
     _mod._BeginDrawing()
 
 
-def EndDrawing():
+def end_drawing():
     """End canvas drawing and swap buffers (double buffering)"""
     _mod._EndDrawing()
 
 
-def BeginMode2D(camera: Camera2D):
+def begin_mode_2d(camera: Camera2D):
     """Begin 2D mode with custom camera (2D)"""
     _mod._BeginMode2D(camera._address)
 
 
-def EndMode2D():
+def end_mode_2d():
     """Ends 2D mode with custom camera"""
     _mod._EndMode2D()
 
 
-def BeginMode3D(camera: Camera3D):
+def begin_mode_3d(camera: Camera3D):
     """Begin 3D mode with custom camera (3D)"""
     _mod._BeginMode3D(camera._address)
 
 
-def EndMode3D():
+def end_mode_3d():
     """Ends 3D mode and returns to default 2D orthographic mode"""
     _mod._EndMode3D()
 
 
-def BeginTextureMode(target: RenderTexture2D):
+def begin_texture_mode(target: RenderTexture2D):
     """Begin drawing to render texture"""
     _mod._BeginTextureMode(target._address)
 
 
-def EndTextureMode():
+def end_texture_mode():
     """Ends drawing to render texture"""
     _mod._EndTextureMode()
 
 
-def BeginShaderMode(shader: Shader):
+def begin_shader_mode(shader: Shader):
     """Begin custom shader drawing"""
     _mod._BeginShaderMode(shader._address)
 
 
-def EndShaderMode():
+def end_shader_mode():
     """End custom shader drawing (use default shader)"""
     _mod._EndShaderMode()
 
 
-def BeginBlendMode(mode: int):
+def begin_blend_mode(mode: int):
     """Begin blending mode (alpha, additive, multiplied, subtract, custom)"""
     _mod._BeginBlendMode(mode)
 
 
-def EndBlendMode():
+def end_blend_mode():
     """End blending mode (reset to default: alpha blending)"""
     _mod._EndBlendMode()
 
 
-def BeginScissorMode(x: int, y: int, width: int, height: int):
+def begin_scissor_mode(x: int, y: int, width: int, height: int):
     """Begin scissor mode (define screen area for following drawing)"""
     _mod._BeginScissorMode(x, y, width, height)
 
 
-def EndScissorMode():
+def end_scissor_mode():
     """End scissor mode"""
     _mod._EndScissorMode()
 
 
-def BeginVrStereoMode(config: VrStereoConfig):
+def begin_vr_stereo_mode(config: VrStereoConfig):
     """Begin stereo rendering (requires VR simulator)"""
     _mod._BeginVrStereoMode(config._address)
 
 
-def EndVrStereoMode():
+def end_vr_stereo_mode():
     """End stereo rendering (requires VR simulator)"""
     _mod._EndVrStereoMode()
 
 
-def LoadVrStereoConfig(device: VrDeviceInfo) -> VrStereoConfig:
+def load_vr_stereo_config(device: VrDeviceInfo) -> VrStereoConfig:
     VrStereoConfig_ = VrStereoConfig()
     """Load VR stereo config for VR simulator device parameters"""
     _mod._LoadVrStereoConfig(VrStereoConfig_._address, device._address)
     return VrStereoConfig_
 
 
-def UnloadVrStereoConfig(config: VrStereoConfig):
+def unload_vr_stereo_config(config: VrStereoConfig):
     """Unload VR stereo config"""
     _mod._UnloadVrStereoConfig(config._address)
 
 
-def LoadShader(vsFileName: str, fsFileName: str) -> Shader:
+def load_shader(vsFileName: str, fsFileName: str) -> Shader:
     Shader_ = Shader()
     vsFileName_ = _mod._malloc(len(vsFileName) + 1)
     _mod.stringToUTF8(vsFileName, vsFileName_, len(vsFileName) + 1)
@@ -3432,7 +3432,7 @@ def LoadShader(vsFileName: str, fsFileName: str) -> Shader:
     return Shader_
 
 
-def LoadShaderFromMemory(vsCode: str, fsCode: str) -> Shader:
+def load_shader_from_memory(vsCode: str, fsCode: str) -> Shader:
     Shader_ = Shader()
     vsCode_ = _mod._malloc(len(vsCode) + 1)
     _mod.stringToUTF8(vsCode, vsCode_, len(vsCode) + 1)
@@ -3445,13 +3445,13 @@ def LoadShaderFromMemory(vsCode: str, fsCode: str) -> Shader:
     return Shader_
 
 
-def IsShaderReady(shader: Shader) -> int:
+def is_shader_ready(shader: Shader) -> int:
     """Check if a shader is ready"""
     return_interface = _mod._IsShaderReady(shader._address)
     return return_interface
 
 
-def GetShaderLocation(shader: Shader, uniformName: str) -> int:
+def get_shader_location(shader: Shader, uniformName: str) -> int:
     uniformName_ = _mod._malloc(len(uniformName) + 1)
     _mod.stringToUTF8(uniformName, uniformName_, len(uniformName) + 1)
     """Get shader uniform location"""
@@ -3460,7 +3460,7 @@ def GetShaderLocation(shader: Shader, uniformName: str) -> int:
     return return_interface
 
 
-def GetShaderLocationAttrib(shader: Shader, attribName: str) -> int:
+def get_shader_location_attrib(shader: Shader, attribName: str) -> int:
     attribName_ = _mod._malloc(len(attribName) + 1)
     _mod.stringToUTF8(attribName, attribName_, len(attribName) + 1)
     """Get shader attribute location"""
@@ -3469,115 +3469,115 @@ def GetShaderLocationAttrib(shader: Shader, attribName: str) -> int:
     return return_interface
 
 
-def SetShaderValue(shader: Shader, locIndex: int, value: int, uniformType: int):
+def set_shader_value(shader: Shader, locIndex: int, value: int, uniformType: int):
     """Set shader uniform value"""
     _mod._SetShaderValue(shader._address, locIndex, value, uniformType)
 
 
-def SetShaderValueV(shader: Shader, locIndex: int, value: int, uniformType: int, count: int):
+def set_shader_value_v(shader: Shader, locIndex: int, value: int, uniformType: int, count: int):
     """Set shader uniform value vector"""
     _mod._SetShaderValueV(shader._address, locIndex, value, uniformType, count)
 
 
-def SetShaderValueMatrix(shader: Shader, locIndex: int, mat: Matrix):
+def set_shader_value_matrix(shader: Shader, locIndex: int, mat: Matrix):
     """Set shader uniform value (matrix 4x4)"""
     _mod._SetShaderValueMatrix(shader._address, locIndex, mat._address)
 
 
-def SetShaderValueTexture(shader: Shader, locIndex: int, texture: Texture2D):
+def set_shader_value_texture(shader: Shader, locIndex: int, texture: Texture2D):
     """Set shader uniform value for texture (sampler2d)"""
     _mod._SetShaderValueTexture(shader._address, locIndex, texture._address)
 
 
-def UnloadShader(shader: Shader):
+def unload_shader(shader: Shader):
     """Unload shader from GPU memory (VRAM)"""
     _mod._UnloadShader(shader._address)
 
 
-def GetMouseRay(mousePosition: Vector2, camera: Camera) -> Ray:
+def get_mouse_ray(mousePosition: Vector2, camera: Camera) -> Ray:
     Ray_ = Ray()
     """Get a ray trace from mouse position"""
     _mod._GetMouseRay(Ray_._address, mousePosition._address, camera._address)
     return Ray_
 
 
-def GetCameraMatrix(camera: Camera) -> Matrix:
+def get_camera_matrix(camera: Camera) -> Matrix:
     Matrix_ = Matrix()
     """Get camera transform matrix (view matrix)"""
     _mod._GetCameraMatrix(Matrix_._address, camera._address)
     return Matrix_
 
 
-def GetCameraMatrix2D(camera: Camera2D) -> Matrix:
+def get_camera_matrix_2d(camera: Camera2D) -> Matrix:
     Matrix_ = Matrix()
     """Get camera 2d transform matrix"""
     _mod._GetCameraMatrix2D(Matrix_._address, camera._address)
     return Matrix_
 
 
-def GetWorldToScreen(position: Vector3, camera: Camera) -> Vector2:
+def get_world_to_screen(position: Vector3, camera: Camera) -> Vector2:
     Vector2_ = Vector2()
     """Get the screen space position for a 3d world space position"""
     _mod._GetWorldToScreen(Vector2_._address, position._address, camera._address)
     return Vector2_
 
 
-def GetScreenToWorld2D(position: Vector2, camera: Camera2D) -> Vector2:
+def get_screen_to_world_2d(position: Vector2, camera: Camera2D) -> Vector2:
     Vector2_ = Vector2()
     """Get the world space position for a 2d camera screen space position"""
     _mod._GetScreenToWorld2D(Vector2_._address, position._address, camera._address)
     return Vector2_
 
 
-def GetWorldToScreenEx(position: Vector3, camera: Camera, width: int, height: int) -> Vector2:
+def get_world_to_screen_ex(position: Vector3, camera: Camera, width: int, height: int) -> Vector2:
     Vector2_ = Vector2()
     """Get size position for a 3d world space position"""
     _mod._GetWorldToScreenEx(Vector2_._address, position._address, camera._address, width, height)
     return Vector2_
 
 
-def GetWorldToScreen2D(position: Vector2, camera: Camera2D) -> Vector2:
+def get_world_to_screen_2d(position: Vector2, camera: Camera2D) -> Vector2:
     Vector2_ = Vector2()
     """Get the screen space position for a 2d camera world space position"""
     _mod._GetWorldToScreen2D(Vector2_._address, position._address, camera._address)
     return Vector2_
 
 
-def SetTargetFPS(fps: int):
+def set_target_fps(fps: int):
     """Set target FPS (maximum)"""
     _mod._SetTargetFPS(fps)
 
 
-def GetFPS() -> int:
+def get_fps() -> int:
     """Get current FPS"""
     return_interface = _mod._GetFPS()
     return return_interface
 
 
-def GetFrameTime() -> float:
+def get_frame_time() -> float:
     """Get time in seconds for last frame drawn (delta time)"""
     return_interface = _mod._GetFrameTime()
     return return_interface
 
 
-def GetTime() -> float:
+def get_time() -> float:
     """Get elapsed time in seconds since InitWindow()"""
     return_interface = _mod._GetTime()
     return return_interface
 
 
-def GetRandomValue(min: int, max: int) -> int:
+def get_random_value(min: int, max: int) -> int:
     """Get a random value between min and max (both included)"""
     return_interface = _mod._GetRandomValue(min, max)
     return return_interface
 
 
-def SetRandomSeed(seed: int):
+def set_random_seed(seed: int):
     """Set the seed for the random number generator"""
     _mod._SetRandomSeed(seed)
 
 
-def TakeScreenshot(fileName: str):
+def take_screenshot(fileName: str):
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
     """Takes a screenshot of current screen (filename extension defines format)"""
@@ -3585,34 +3585,34 @@ def TakeScreenshot(fileName: str):
     _mod._free(fileName_)
 
 
-def SetConfigFlags(flags: int):
+def set_config_flags(flags: int):
     """Setup init configuration flags (view FLAGS)"""
     _mod._SetConfigFlags(flags)
 
 
-def SetTraceLogLevel(logLevel: int):
+def set_trace_log_level(logLevel: int):
     """Set the current threshold (minimum) log level"""
     _mod._SetTraceLogLevel(logLevel)
 
 
-def MemAlloc(size: int) -> int:
+def mem_alloc(size: int) -> int:
     """Internal memory allocator"""
     return_interface = _mod._MemAlloc(size)
     return return_interface
 
 
-def MemRealloc(ptr: int, size: int) -> int:
+def mem_realloc(ptr: int, size: int) -> int:
     """Internal memory reallocator"""
     return_interface = _mod._MemRealloc(ptr, size)
     return return_interface
 
 
-def MemFree(ptr: int):
+def mem_free(ptr: int):
     """Internal memory free"""
     _mod._MemFree(ptr)
 
 
-def OpenURL(url: str):
+def open_url(url: str):
     url_ = _mod._malloc(len(url) + 1)
     _mod.stringToUTF8(url, url_, len(url) + 1)
     """Open URL with default system browser (if available)"""
@@ -3620,7 +3620,7 @@ def OpenURL(url: str):
     _mod._free(url_)
 
 
-def LoadFileData(fileName: str, bytesRead: int) -> int:
+def load_file_data(fileName: str, bytesRead: int) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
     """Load file data as byte array (read)"""
@@ -3629,12 +3629,12 @@ def LoadFileData(fileName: str, bytesRead: int) -> int:
     return return_interface
 
 
-def UnloadFileData(data: int):
+def unload_file_data(data: int):
     """Unload file data allocated by LoadFileData()"""
     _mod._UnloadFileData(data)
 
 
-def SaveFileData(fileName: str, data: int, bytesToWrite: int) -> int:
+def save_file_data(fileName: str, data: int, bytesToWrite: int) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
     """Save data to file from byte array (write), returns true on success"""
@@ -3643,7 +3643,7 @@ def SaveFileData(fileName: str, data: int, bytesToWrite: int) -> int:
     return return_interface
 
 
-def ExportDataAsCode(data: int, size: int, fileName: str) -> int:
+def export_data_as_code(data: int, size: int, fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
     """Export data to code (.h), returns true on success"""
@@ -3652,7 +3652,7 @@ def ExportDataAsCode(data: int, size: int, fileName: str) -> int:
     return return_interface
 
 
-def LoadFileText(fileName: str) -> int:
+def load_file_text(fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
     """Load text data from file (read), returns a '\0' terminated string"""
@@ -3661,12 +3661,12 @@ def LoadFileText(fileName: str) -> int:
     return return_interface
 
 
-def UnloadFileText(text: int):
+def unload_file_text(text: int):
     """Unload file text data allocated by LoadFileText()"""
     _mod._UnloadFileText(text)
 
 
-def SaveFileText(fileName: str, text: int) -> int:
+def save_file_text(fileName: str, text: int) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
     """Save text data to file (write), string must be '\0' terminated, returns true on success"""
@@ -3675,7 +3675,7 @@ def SaveFileText(fileName: str, text: int) -> int:
     return return_interface
 
 
-def FileExists(fileName: str) -> int:
+def file_exists(fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
     """Check if file exists"""
@@ -3684,7 +3684,7 @@ def FileExists(fileName: str) -> int:
     return return_interface
 
 
-def DirectoryExists(dirPath: str) -> int:
+def directory_exists(dirPath: str) -> int:
     dirPath_ = _mod._malloc(len(dirPath) + 1)
     _mod.stringToUTF8(dirPath, dirPath_, len(dirPath) + 1)
     """Check if a directory path exists"""
@@ -3693,7 +3693,7 @@ def DirectoryExists(dirPath: str) -> int:
     return return_interface
 
 
-def IsFileExtension(fileName: str, ext: str) -> int:
+def is_file_extension(fileName: str, ext: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
     ext_ = _mod._malloc(len(ext) + 1)
@@ -3705,7 +3705,7 @@ def IsFileExtension(fileName: str, ext: str) -> int:
     return return_interface
 
 
-def GetFileLength(fileName: str) -> int:
+def get_file_length(fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
     """Get file length in bytes (NOTE: GetFileSize() conflicts with windows.h)"""
@@ -3714,7 +3714,7 @@ def GetFileLength(fileName: str) -> int:
     return return_interface
 
 
-def GetFileExtension(fileName: str) -> int:
+def get_file_extension(fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
     """Get pointer to extension for a filename string (includes dot: '.png')"""
@@ -3723,7 +3723,7 @@ def GetFileExtension(fileName: str) -> int:
     return return_interface
 
 
-def GetFileName(filePath: str) -> int:
+def get_file_name(filePath: str) -> int:
     filePath_ = _mod._malloc(len(filePath) + 1)
     _mod.stringToUTF8(filePath, filePath_, len(filePath) + 1)
     """Get pointer to filename for a path string"""
@@ -3732,7 +3732,7 @@ def GetFileName(filePath: str) -> int:
     return return_interface
 
 
-def GetFileNameWithoutExt(filePath: str) -> int:
+def get_file_name_without_ext(filePath: str) -> int:
     filePath_ = _mod._malloc(len(filePath) + 1)
     _mod.stringToUTF8(filePath, filePath_, len(filePath) + 1)
     """Get filename string without extension (uses static string)"""
@@ -3741,7 +3741,7 @@ def GetFileNameWithoutExt(filePath: str) -> int:
     return return_interface
 
 
-def GetDirectoryPath(filePath: str) -> int:
+def get_directory_path(filePath: str) -> int:
     filePath_ = _mod._malloc(len(filePath) + 1)
     _mod.stringToUTF8(filePath, filePath_, len(filePath) + 1)
     """Get full path for a given fileName with path (uses static string)"""
@@ -3750,7 +3750,7 @@ def GetDirectoryPath(filePath: str) -> int:
     return return_interface
 
 
-def GetPrevDirectoryPath(dirPath: str) -> int:
+def get_prev_directory_path(dirPath: str) -> int:
     dirPath_ = _mod._malloc(len(dirPath) + 1)
     _mod.stringToUTF8(dirPath, dirPath_, len(dirPath) + 1)
     """Get previous directory path for a given path (uses static string)"""
@@ -3759,19 +3759,19 @@ def GetPrevDirectoryPath(dirPath: str) -> int:
     return return_interface
 
 
-def GetWorkingDirectory() -> int:
+def get_working_directory() -> int:
     """Get current working directory (uses static string)"""
     return_interface = _mod._GetWorkingDirectory()
     return return_interface
 
 
-def GetApplicationDirectory() -> int:
+def get_application_directory() -> int:
     """Get the directory if the running application (uses static string)"""
     return_interface = _mod._GetApplicationDirectory()
     return return_interface
 
 
-def ChangeDirectory(dir: str) -> int:
+def change_directory(dir: str) -> int:
     dir_ = _mod._malloc(len(dir) + 1)
     _mod.stringToUTF8(dir, dir_, len(dir) + 1)
     """Change working directory, return true on success"""
@@ -3780,7 +3780,7 @@ def ChangeDirectory(dir: str) -> int:
     return return_interface
 
 
-def IsPathFile(path: str) -> int:
+def is_path_file(path: str) -> int:
     path_ = _mod._malloc(len(path) + 1)
     _mod.stringToUTF8(path, path_, len(path) + 1)
     """Check if a given path is a file or a directory"""
@@ -3789,7 +3789,7 @@ def IsPathFile(path: str) -> int:
     return return_interface
 
 
-def LoadDirectoryFiles(dirPath: str) -> FilePathList:
+def load_directory_files(dirPath: str) -> FilePathList:
     FilePathList_ = FilePathList()
     dirPath_ = _mod._malloc(len(dirPath) + 1)
     _mod.stringToUTF8(dirPath, dirPath_, len(dirPath) + 1)
@@ -3799,7 +3799,7 @@ def LoadDirectoryFiles(dirPath: str) -> FilePathList:
     return FilePathList_
 
 
-def LoadDirectoryFilesEx(basePath: str, filter: str, scanSubdirs: int) -> FilePathList:
+def load_directory_files_ex(basePath: str, filter: str, scanSubdirs: int) -> FilePathList:
     FilePathList_ = FilePathList()
     basePath_ = _mod._malloc(len(basePath) + 1)
     _mod.stringToUTF8(basePath, basePath_, len(basePath) + 1)
@@ -3812,30 +3812,30 @@ def LoadDirectoryFilesEx(basePath: str, filter: str, scanSubdirs: int) -> FilePa
     return FilePathList_
 
 
-def UnloadDirectoryFiles(files: FilePathList):
+def unload_directory_files(files: FilePathList):
     """Unload filepaths"""
     _mod._UnloadDirectoryFiles(files._address)
 
 
-def IsFileDropped() -> int:
+def is_file_dropped() -> int:
     """Check if a file has been dropped into window"""
     return_interface = _mod._IsFileDropped()
     return return_interface
 
 
-def LoadDroppedFiles() -> FilePathList:
+def load_dropped_files() -> FilePathList:
     FilePathList_ = FilePathList()
     """Load dropped filepaths"""
     _mod._LoadDroppedFiles(FilePathList_._address)
     return FilePathList_
 
 
-def UnloadDroppedFiles(files: FilePathList):
+def unload_dropped_files(files: FilePathList):
     """Unload dropped filepaths"""
     _mod._UnloadDroppedFiles(files._address)
 
 
-def GetFileModTime(fileName: str) -> int:
+def get_file_mod_time(fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
     """Get file modification time (last write time)"""
@@ -3844,126 +3844,126 @@ def GetFileModTime(fileName: str) -> int:
     return return_interface
 
 
-def CompressData(data: int, dataSize: int, compDataSize: int) -> int:
+def compress_data(data: int, dataSize: int, compDataSize: int) -> int:
     """Compress data (DEFLATE algorithm), memory must be MemFree()"""
     return_interface = _mod._CompressData(data, dataSize, compDataSize)
     return return_interface
 
 
-def DecompressData(compData: int, compDataSize: int, dataSize: int) -> int:
+def decompress_data(compData: int, compDataSize: int, dataSize: int) -> int:
     """Decompress data (DEFLATE algorithm), memory must be MemFree()"""
     return_interface = _mod._DecompressData(compData, compDataSize, dataSize)
     return return_interface
 
 
-def EncodeDataBase64(data: int, dataSize: int, outputSize: int) -> int:
+def encode_data_base64(data: int, dataSize: int, outputSize: int) -> int:
     """Encode data to Base64 string, memory must be MemFree()"""
     return_interface = _mod._EncodeDataBase64(data, dataSize, outputSize)
     return return_interface
 
 
-def DecodeDataBase64(data: int, outputSize: int) -> int:
+def decode_data_base64(data: int, outputSize: int) -> int:
     """Decode Base64 string data, memory must be MemFree()"""
     return_interface = _mod._DecodeDataBase64(data, outputSize)
     return return_interface
 
 
-def IsKeyPressed(key: int) -> int:
+def is_key_pressed(key: int) -> int:
     """Check if a key has been pressed once"""
     return_interface = _mod._IsKeyPressed(key)
     return return_interface
 
 
-def IsKeyDown(key: int) -> int:
+def is_key_down(key: int) -> int:
     """Check if a key is being pressed"""
     return_interface = _mod._IsKeyDown(key)
     return return_interface
 
 
-def IsKeyReleased(key: int) -> int:
+def is_key_released(key: int) -> int:
     """Check if a key has been released once"""
     return_interface = _mod._IsKeyReleased(key)
     return return_interface
 
 
-def IsKeyUp(key: int) -> int:
+def is_key_up(key: int) -> int:
     """Check if a key is NOT being pressed"""
     return_interface = _mod._IsKeyUp(key)
     return return_interface
 
 
-def SetExitKey(key: int):
+def set_exit_key(key: int):
     """Set a custom key to exit program (default is ESC)"""
     _mod._SetExitKey(key)
 
 
-def GetKeyPressed() -> int:
+def get_key_pressed() -> int:
     """Get key pressed (keycode), call it multiple times for keys queued, returns 0 when the queue is empty"""
     return_interface = _mod._GetKeyPressed()
     return return_interface
 
 
-def GetCharPressed() -> int:
+def get_char_pressed() -> int:
     """Get char pressed (unicode), call it multiple times for chars queued, returns 0 when the queue is empty"""
     return_interface = _mod._GetCharPressed()
     return return_interface
 
 
-def IsGamepadAvailable(gamepad: int) -> int:
+def is_gamepad_available(gamepad: int) -> int:
     """Check if a gamepad is available"""
     return_interface = _mod._IsGamepadAvailable(gamepad)
     return return_interface
 
 
-def GetGamepadName(gamepad: int) -> int:
+def get_gamepad_name(gamepad: int) -> int:
     """Get gamepad internal name id"""
     return_interface = _mod._GetGamepadName(gamepad)
     return return_interface
 
 
-def IsGamepadButtonPressed(gamepad: int, button: int) -> int:
+def is_gamepad_button_pressed(gamepad: int, button: int) -> int:
     """Check if a gamepad button has been pressed once"""
     return_interface = _mod._IsGamepadButtonPressed(gamepad, button)
     return return_interface
 
 
-def IsGamepadButtonDown(gamepad: int, button: int) -> int:
+def is_gamepad_button_down(gamepad: int, button: int) -> int:
     """Check if a gamepad button is being pressed"""
     return_interface = _mod._IsGamepadButtonDown(gamepad, button)
     return return_interface
 
 
-def IsGamepadButtonReleased(gamepad: int, button: int) -> int:
+def is_gamepad_button_released(gamepad: int, button: int) -> int:
     """Check if a gamepad button has been released once"""
     return_interface = _mod._IsGamepadButtonReleased(gamepad, button)
     return return_interface
 
 
-def IsGamepadButtonUp(gamepad: int, button: int) -> int:
+def is_gamepad_button_up(gamepad: int, button: int) -> int:
     """Check if a gamepad button is NOT being pressed"""
     return_interface = _mod._IsGamepadButtonUp(gamepad, button)
     return return_interface
 
 
-def GetGamepadButtonPressed() -> int:
+def get_gamepad_button_pressed() -> int:
     """Get the last gamepad button pressed"""
     return_interface = _mod._GetGamepadButtonPressed()
     return return_interface
 
 
-def GetGamepadAxisCount(gamepad: int) -> int:
+def get_gamepad_axis_count(gamepad: int) -> int:
     """Get gamepad axis count for a gamepad"""
     return_interface = _mod._GetGamepadAxisCount(gamepad)
     return return_interface
 
 
-def GetGamepadAxisMovement(gamepad: int, axis: int) -> float:
+def get_gamepad_axis_movement(gamepad: int, axis: int) -> float:
     """Get axis movement value for a gamepad axis"""
     return_interface = _mod._GetGamepadAxisMovement(gamepad, axis)
     return return_interface
 
 
-def SetGamepadMappings(mappings: str) -> int:
+def set_gamepad_mappings(mappings: str) -> int:
     mappings_ = _mod._malloc(len(mappings) + 1)
     _mod.stringToUTF8(mappings, mappings_, len(mappings) + 1)
     """Set internal gamepad mappings (SDL_GameControllerDB)"""
@@ -3972,431 +3972,431 @@ def SetGamepadMappings(mappings: str) -> int:
     return return_interface
 
 
-def IsMouseButtonPressed(button: int) -> int:
+def is_mouse_button_pressed(button: int) -> int:
     """Check if a mouse button has been pressed once"""
     return_interface = _mod._IsMouseButtonPressed(button)
     return return_interface
 
 
-def IsMouseButtonDown(button: int) -> int:
+def is_mouse_button_down(button: int) -> int:
     """Check if a mouse button is being pressed"""
     return_interface = _mod._IsMouseButtonDown(button)
     return return_interface
 
 
-def IsMouseButtonReleased(button: int) -> int:
+def is_mouse_button_released(button: int) -> int:
     """Check if a mouse button has been released once"""
     return_interface = _mod._IsMouseButtonReleased(button)
     return return_interface
 
 
-def IsMouseButtonUp(button: int) -> int:
+def is_mouse_button_up(button: int) -> int:
     """Check if a mouse button is NOT being pressed"""
     return_interface = _mod._IsMouseButtonUp(button)
     return return_interface
 
 
-def GetMouseX() -> int:
+def get_mouse_x() -> int:
     """Get mouse position X"""
     return_interface = _mod._GetMouseX()
     return return_interface
 
 
-def GetMouseY() -> int:
+def get_mouse_y() -> int:
     """Get mouse position Y"""
     return_interface = _mod._GetMouseY()
     return return_interface
 
 
-def GetMousePosition() -> Vector2:
+def get_mouse_position() -> Vector2:
     Vector2_ = Vector2()
     """Get mouse position XY"""
     _mod._GetMousePosition(Vector2_._address)
     return Vector2_
 
 
-def GetMouseDelta() -> Vector2:
+def get_mouse_delta() -> Vector2:
     Vector2_ = Vector2()
     """Get mouse delta between frames"""
     _mod._GetMouseDelta(Vector2_._address)
     return Vector2_
 
 
-def SetMousePosition(x: int, y: int):
+def set_mouse_position(x: int, y: int):
     """Set mouse position XY"""
     _mod._SetMousePosition(x, y)
 
 
-def SetMouseOffset(offsetX: int, offsetY: int):
+def set_mouse_offset(offsetX: int, offsetY: int):
     """Set mouse offset"""
     _mod._SetMouseOffset(offsetX, offsetY)
 
 
-def SetMouseScale(scaleX: float, scaleY: float):
+def set_mouse_scale(scaleX: float, scaleY: float):
     """Set mouse scaling"""
     _mod._SetMouseScale(scaleX, scaleY)
 
 
-def GetMouseWheelMove() -> float:
+def get_mouse_wheel_move() -> float:
     """Get mouse wheel movement for X or Y, whichever is larger"""
     return_interface = _mod._GetMouseWheelMove()
     return return_interface
 
 
-def GetMouseWheelMoveV() -> Vector2:
+def get_mouse_wheel_move_v() -> Vector2:
     Vector2_ = Vector2()
     """Get mouse wheel movement for both X and Y"""
     _mod._GetMouseWheelMoveV(Vector2_._address)
     return Vector2_
 
 
-def SetMouseCursor(cursor: int):
+def set_mouse_cursor(cursor: int):
     """Set mouse cursor"""
     _mod._SetMouseCursor(cursor)
 
 
-def GetTouchX() -> int:
+def get_touch_x() -> int:
     """Get touch position X for touch point 0 (relative to screen size)"""
     return_interface = _mod._GetTouchX()
     return return_interface
 
 
-def GetTouchY() -> int:
+def get_touch_y() -> int:
     """Get touch position Y for touch point 0 (relative to screen size)"""
     return_interface = _mod._GetTouchY()
     return return_interface
 
 
-def GetTouchPosition(index: int) -> Vector2:
+def get_touch_position(index: int) -> Vector2:
     Vector2_ = Vector2()
     """Get touch position XY for a touch point index (relative to screen size)"""
     _mod._GetTouchPosition(Vector2_._address, index)
     return Vector2_
 
 
-def GetTouchPointId(index: int) -> int:
+def get_touch_point_id(index: int) -> int:
     """Get touch point identifier for given index"""
     return_interface = _mod._GetTouchPointId(index)
     return return_interface
 
 
-def GetTouchPointCount() -> int:
+def get_touch_point_count() -> int:
     """Get number of touch points"""
     return_interface = _mod._GetTouchPointCount()
     return return_interface
 
 
-def SetGesturesEnabled(flags: int):
+def set_gestures_enabled(flags: int):
     """Enable a set of gestures using flags"""
     _mod._SetGesturesEnabled(flags)
 
 
-def IsGestureDetected(gesture: int) -> int:
+def is_gesture_detected(gesture: int) -> int:
     """Check if a gesture have been detected"""
     return_interface = _mod._IsGestureDetected(gesture)
     return return_interface
 
 
-def GetGestureDetected() -> int:
+def get_gesture_detected() -> int:
     """Get latest detected gesture"""
     return_interface = _mod._GetGestureDetected()
     return return_interface
 
 
-def GetGestureHoldDuration() -> float:
+def get_gesture_hold_duration() -> float:
     """Get gesture hold time in milliseconds"""
     return_interface = _mod._GetGestureHoldDuration()
     return return_interface
 
 
-def GetGestureDragVector() -> Vector2:
+def get_gesture_drag_vector() -> Vector2:
     Vector2_ = Vector2()
     """Get gesture drag vector"""
     _mod._GetGestureDragVector(Vector2_._address)
     return Vector2_
 
 
-def GetGestureDragAngle() -> float:
+def get_gesture_drag_angle() -> float:
     """Get gesture drag angle"""
     return_interface = _mod._GetGestureDragAngle()
     return return_interface
 
 
-def GetGesturePinchVector() -> Vector2:
+def get_gesture_pinch_vector() -> Vector2:
     Vector2_ = Vector2()
     """Get gesture pinch delta"""
     _mod._GetGesturePinchVector(Vector2_._address)
     return Vector2_
 
 
-def GetGesturePinchAngle() -> float:
+def get_gesture_pinch_angle() -> float:
     """Get gesture pinch angle"""
     return_interface = _mod._GetGesturePinchAngle()
     return return_interface
 
 
-def UpdateCamera(camera: int, mode: int):
+def update_camera(camera: int, mode: int):
     """Update camera position for selected mode"""
     _mod._UpdateCamera(camera, mode)
 
 
-def UpdateCameraPro(camera: int, movement: Vector3, rotation: Vector3, zoom: float):
+def update_camera_pro(camera: int, movement: Vector3, rotation: Vector3, zoom: float):
     """Update camera movement/rotation"""
     _mod._UpdateCameraPro(camera, movement._address, rotation._address, zoom)
 
 
-def SetShapesTexture(texture: Texture2D, source: Rectangle):
+def set_shapes_texture(texture: Texture2D, source: Rectangle):
     """Set texture and rectangle to be used on shapes drawing"""
     _mod._SetShapesTexture(texture._address, source._address)
 
 
-def DrawPixel(posX: int, posY: int, color: Color):
+def draw_pixel(posX: int, posY: int, color: Color):
     """Draw a pixel"""
     _mod._DrawPixel(posX, posY, color._address)
 
 
-def DrawPixelV(position: Vector2, color: Color):
+def draw_pixel_v(position: Vector2, color: Color):
     """Draw a pixel (Vector version)"""
     _mod._DrawPixelV(position._address, color._address)
 
 
-def DrawLine(startPosX: int, startPosY: int, endPosX: int, endPosY: int, color: Color):
+def draw_line(startPosX: int, startPosY: int, endPosX: int, endPosY: int, color: Color):
     """Draw a line"""
     _mod._DrawLine(startPosX, startPosY, endPosX, endPosY, color._address)
 
 
-def DrawLineV(startPos: Vector2, endPos: Vector2, color: Color):
+def draw_line_v(startPos: Vector2, endPos: Vector2, color: Color):
     """Draw a line (Vector version)"""
     _mod._DrawLineV(startPos._address, endPos._address, color._address)
 
 
-def DrawLineEx(startPos: Vector2, endPos: Vector2, thick: float, color: Color):
+def draw_line_ex(startPos: Vector2, endPos: Vector2, thick: float, color: Color):
     """Draw a line defining thickness"""
     _mod._DrawLineEx(startPos._address, endPos._address, thick, color._address)
 
 
-def DrawLineBezier(startPos: Vector2, endPos: Vector2, thick: float, color: Color):
+def draw_line_bezier(startPos: Vector2, endPos: Vector2, thick: float, color: Color):
     """Draw a line using cubic-bezier curves in-out"""
     _mod._DrawLineBezier(startPos._address, endPos._address, thick, color._address)
 
 
-def DrawLineBezierQuad(startPos: Vector2, endPos: Vector2, controlPos: Vector2, thick: float, color: Color):
+def draw_line_bezier_quad(startPos: Vector2, endPos: Vector2, controlPos: Vector2, thick: float, color: Color):
     """Draw line using quadratic bezier curves with a control point"""
     _mod._DrawLineBezierQuad(startPos._address, endPos._address, controlPos._address, thick, color._address)
 
 
-def DrawLineBezierCubic(startPos: Vector2, endPos: Vector2, startControlPos: Vector2, endControlPos: Vector2, thick: float, color: Color):
+def draw_line_bezier_cubic(startPos: Vector2, endPos: Vector2, startControlPos: Vector2, endControlPos: Vector2, thick: float, color: Color):
     """Draw line using cubic bezier curves with 2 control points"""
     _mod._DrawLineBezierCubic(startPos._address, endPos._address, startControlPos._address, endControlPos._address, thick, color._address)
 
 
-def DrawLineStrip(points: int, pointCount: int, color: Color):
+def draw_line_strip(points: int, pointCount: int, color: Color):
     """Draw lines sequence"""
     _mod._DrawLineStrip(points, pointCount, color._address)
 
 
-def DrawCircle(centerX: int, centerY: int, radius: float, color: Color):
+def draw_circle(centerX: int, centerY: int, radius: float, color: Color):
     """Draw a color-filled circle"""
     _mod._DrawCircle(centerX, centerY, radius, color._address)
 
 
-def DrawCircleSector(center: Vector2, radius: float, startAngle: float, endAngle: float, segments: int, color: Color):
+def draw_circle_sector(center: Vector2, radius: float, startAngle: float, endAngle: float, segments: int, color: Color):
     """Draw a piece of a circle"""
     _mod._DrawCircleSector(center._address, radius, startAngle, endAngle, segments, color._address)
 
 
-def DrawCircleSectorLines(center: Vector2, radius: float, startAngle: float, endAngle: float, segments: int, color: Color):
+def draw_circle_sector_lines(center: Vector2, radius: float, startAngle: float, endAngle: float, segments: int, color: Color):
     """Draw circle sector outline"""
     _mod._DrawCircleSectorLines(center._address, radius, startAngle, endAngle, segments, color._address)
 
 
-def DrawCircleGradient(centerX: int, centerY: int, radius: float, color1: Color, color2: Color):
+def draw_circle_gradient(centerX: int, centerY: int, radius: float, color1: Color, color2: Color):
     """Draw a gradient-filled circle"""
     _mod._DrawCircleGradient(centerX, centerY, radius, color1._address, color2._address)
 
 
-def DrawCircleV(center: Vector2, radius: float, color: Color):
+def draw_circle_v(center: Vector2, radius: float, color: Color):
     """Draw a color-filled circle (Vector version)"""
     _mod._DrawCircleV(center._address, radius, color._address)
 
 
-def DrawCircleLines(centerX: int, centerY: int, radius: float, color: Color):
+def draw_circle_lines(centerX: int, centerY: int, radius: float, color: Color):
     """Draw circle outline"""
     _mod._DrawCircleLines(centerX, centerY, radius, color._address)
 
 
-def DrawEllipse(centerX: int, centerY: int, radiusH: float, radiusV: float, color: Color):
+def draw_ellipse(centerX: int, centerY: int, radiusH: float, radiusV: float, color: Color):
     """Draw ellipse"""
     _mod._DrawEllipse(centerX, centerY, radiusH, radiusV, color._address)
 
 
-def DrawEllipseLines(centerX: int, centerY: int, radiusH: float, radiusV: float, color: Color):
+def draw_ellipse_lines(centerX: int, centerY: int, radiusH: float, radiusV: float, color: Color):
     """Draw ellipse outline"""
     _mod._DrawEllipseLines(centerX, centerY, radiusH, radiusV, color._address)
 
 
-def DrawRing(center: Vector2, innerRadius: float, outerRadius: float, startAngle: float, endAngle: float, segments: int, color: Color):
+def draw_ring(center: Vector2, innerRadius: float, outerRadius: float, startAngle: float, endAngle: float, segments: int, color: Color):
     """Draw ring"""
     _mod._DrawRing(center._address, innerRadius, outerRadius, startAngle, endAngle, segments, color._address)
 
 
-def DrawRingLines(center: Vector2, innerRadius: float, outerRadius: float, startAngle: float, endAngle: float, segments: int, color: Color):
+def draw_ring_lines(center: Vector2, innerRadius: float, outerRadius: float, startAngle: float, endAngle: float, segments: int, color: Color):
     """Draw ring outline"""
     _mod._DrawRingLines(center._address, innerRadius, outerRadius, startAngle, endAngle, segments, color._address)
 
 
-def DrawRectangle(posX: int, posY: int, width: int, height: int, color: Color):
+def draw_rectangle(posX: int, posY: int, width: int, height: int, color: Color):
     """Draw a color-filled rectangle"""
     _mod._DrawRectangle(posX, posY, width, height, color._address)
 
 
-def DrawRectangleV(position: Vector2, size: Vector2, color: Color):
+def draw_rectangle_v(position: Vector2, size: Vector2, color: Color):
     """Draw a color-filled rectangle (Vector version)"""
     _mod._DrawRectangleV(position._address, size._address, color._address)
 
 
-def DrawRectangleRec(rec: Rectangle, color: Color):
+def draw_rectangle_rec(rec: Rectangle, color: Color):
     """Draw a color-filled rectangle"""
     _mod._DrawRectangleRec(rec._address, color._address)
 
 
-def DrawRectanglePro(rec: Rectangle, origin: Vector2, rotation: float, color: Color):
+def draw_rectangle_pro(rec: Rectangle, origin: Vector2, rotation: float, color: Color):
     """Draw a color-filled rectangle with pro parameters"""
     _mod._DrawRectanglePro(rec._address, origin._address, rotation, color._address)
 
 
-def DrawRectangleGradientV(posX: int, posY: int, width: int, height: int, color1: Color, color2: Color):
+def draw_rectangle_gradient_v(posX: int, posY: int, width: int, height: int, color1: Color, color2: Color):
     """Draw a vertical-gradient-filled rectangle"""
     _mod._DrawRectangleGradientV(posX, posY, width, height, color1._address, color2._address)
 
 
-def DrawRectangleGradientH(posX: int, posY: int, width: int, height: int, color1: Color, color2: Color):
+def draw_rectangle_gradient_h(posX: int, posY: int, width: int, height: int, color1: Color, color2: Color):
     """Draw a horizontal-gradient-filled rectangle"""
     _mod._DrawRectangleGradientH(posX, posY, width, height, color1._address, color2._address)
 
 
-def DrawRectangleGradientEx(rec: Rectangle, col1: Color, col2: Color, col3: Color, col4: Color):
+def draw_rectangle_gradient_ex(rec: Rectangle, col1: Color, col2: Color, col3: Color, col4: Color):
     """Draw a gradient-filled rectangle with custom vertex colors"""
     _mod._DrawRectangleGradientEx(rec._address, col1._address, col2._address, col3._address, col4._address)
 
 
-def DrawRectangleLines(posX: int, posY: int, width: int, height: int, color: Color):
+def draw_rectangle_lines(posX: int, posY: int, width: int, height: int, color: Color):
     """Draw rectangle outline"""
     _mod._DrawRectangleLines(posX, posY, width, height, color._address)
 
 
-def DrawRectangleLinesEx(rec: Rectangle, lineThick: float, color: Color):
+def draw_rectangle_lines_ex(rec: Rectangle, lineThick: float, color: Color):
     """Draw rectangle outline with extended parameters"""
     _mod._DrawRectangleLinesEx(rec._address, lineThick, color._address)
 
 
-def DrawRectangleRounded(rec: Rectangle, roundness: float, segments: int, color: Color):
+def draw_rectangle_rounded(rec: Rectangle, roundness: float, segments: int, color: Color):
     """Draw rectangle with rounded edges"""
     _mod._DrawRectangleRounded(rec._address, roundness, segments, color._address)
 
 
-def DrawRectangleRoundedLines(rec: Rectangle, roundness: float, segments: int, lineThick: float, color: Color):
+def draw_rectangle_rounded_lines(rec: Rectangle, roundness: float, segments: int, lineThick: float, color: Color):
     """Draw rectangle with rounded edges outline"""
     _mod._DrawRectangleRoundedLines(rec._address, roundness, segments, lineThick, color._address)
 
 
-def DrawTriangle(v1: Vector2, v2: Vector2, v3: Vector2, color: Color):
+def draw_triangle(v1: Vector2, v2: Vector2, v3: Vector2, color: Color):
     """Draw a color-filled triangle (vertex in counter-clockwise order!)"""
     _mod._DrawTriangle(v1._address, v2._address, v3._address, color._address)
 
 
-def DrawTriangleLines(v1: Vector2, v2: Vector2, v3: Vector2, color: Color):
+def draw_triangle_lines(v1: Vector2, v2: Vector2, v3: Vector2, color: Color):
     """Draw triangle outline (vertex in counter-clockwise order!)"""
     _mod._DrawTriangleLines(v1._address, v2._address, v3._address, color._address)
 
 
-def DrawTriangleFan(points: int, pointCount: int, color: Color):
+def draw_triangle_fan(points: int, pointCount: int, color: Color):
     """Draw a triangle fan defined by points (first vertex is the center)"""
     _mod._DrawTriangleFan(points, pointCount, color._address)
 
 
-def DrawTriangleStrip(points: int, pointCount: int, color: Color):
+def draw_triangle_strip(points: int, pointCount: int, color: Color):
     """Draw a triangle strip defined by points"""
     _mod._DrawTriangleStrip(points, pointCount, color._address)
 
 
-def DrawPoly(center: Vector2, sides: int, radius: float, rotation: float, color: Color):
+def draw_poly(center: Vector2, sides: int, radius: float, rotation: float, color: Color):
     """Draw a regular polygon (Vector version)"""
     _mod._DrawPoly(center._address, sides, radius, rotation, color._address)
 
 
-def DrawPolyLines(center: Vector2, sides: int, radius: float, rotation: float, color: Color):
+def draw_poly_lines(center: Vector2, sides: int, radius: float, rotation: float, color: Color):
     """Draw a polygon outline of n sides"""
     _mod._DrawPolyLines(center._address, sides, radius, rotation, color._address)
 
 
-def DrawPolyLinesEx(center: Vector2, sides: int, radius: float, rotation: float, lineThick: float, color: Color):
+def draw_poly_lines_ex(center: Vector2, sides: int, radius: float, rotation: float, lineThick: float, color: Color):
     """Draw a polygon outline of n sides with extended parameters"""
     _mod._DrawPolyLinesEx(center._address, sides, radius, rotation, lineThick, color._address)
 
 
-def CheckCollisionRecs(rec1: Rectangle, rec2: Rectangle) -> int:
+def check_collision_recs(rec1: Rectangle, rec2: Rectangle) -> int:
     """Check collision between two rectangles"""
     return_interface = _mod._CheckCollisionRecs(rec1._address, rec2._address)
     return return_interface
 
 
-def CheckCollisionCircles(center1: Vector2, radius1: float, center2: Vector2, radius2: float) -> int:
+def check_collision_circles(center1: Vector2, radius1: float, center2: Vector2, radius2: float) -> int:
     """Check collision between two circles"""
     return_interface = _mod._CheckCollisionCircles(center1._address, radius1, center2._address, radius2)
     return return_interface
 
 
-def CheckCollisionCircleRec(center: Vector2, radius: float, rec: Rectangle) -> int:
+def check_collision_circle_rec(center: Vector2, radius: float, rec: Rectangle) -> int:
     """Check collision between circle and rectangle"""
     return_interface = _mod._CheckCollisionCircleRec(center._address, radius, rec._address)
     return return_interface
 
 
-def CheckCollisionPointRec(point: Vector2, rec: Rectangle) -> int:
+def check_collision_point_rec(point: Vector2, rec: Rectangle) -> int:
     """Check if point is inside rectangle"""
     return_interface = _mod._CheckCollisionPointRec(point._address, rec._address)
     return return_interface
 
 
-def CheckCollisionPointCircle(point: Vector2, center: Vector2, radius: float) -> int:
+def check_collision_point_circle(point: Vector2, center: Vector2, radius: float) -> int:
     """Check if point is inside circle"""
     return_interface = _mod._CheckCollisionPointCircle(point._address, center._address, radius)
     return return_interface
 
 
-def CheckCollisionPointTriangle(point: Vector2, p1: Vector2, p2: Vector2, p3: Vector2) -> int:
+def check_collision_point_triangle(point: Vector2, p1: Vector2, p2: Vector2, p3: Vector2) -> int:
     """Check if point is inside a triangle"""
     return_interface = _mod._CheckCollisionPointTriangle(point._address, p1._address, p2._address, p3._address)
     return return_interface
 
 
-def CheckCollisionPointPoly(point: Vector2, points: int, pointCount: int) -> int:
+def check_collision_point_poly(point: Vector2, points: int, pointCount: int) -> int:
     """Check if point is within a polygon described by array of vertices"""
     return_interface = _mod._CheckCollisionPointPoly(point._address, points, pointCount)
     return return_interface
 
 
-def CheckCollisionLines(startPos1: Vector2, endPos1: Vector2, startPos2: Vector2, endPos2: Vector2, collisionPoint: int) -> int:
+def check_collision_lines(startPos1: Vector2, endPos1: Vector2, startPos2: Vector2, endPos2: Vector2, collisionPoint: int) -> int:
     """Check the collision between two lines defined by two points each, returns collision point by reference"""
     return_interface = _mod._CheckCollisionLines(startPos1._address, endPos1._address, startPos2._address, endPos2._address, collisionPoint)
     return return_interface
 
 
-def CheckCollisionPointLine(point: Vector2, p1: Vector2, p2: Vector2, threshold: int) -> int:
+def check_collision_point_line(point: Vector2, p1: Vector2, p2: Vector2, threshold: int) -> int:
     """Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]"""
     return_interface = _mod._CheckCollisionPointLine(point._address, p1._address, p2._address, threshold)
     return return_interface
 
 
-def GetCollisionRec(rec1: Rectangle, rec2: Rectangle) -> Rectangle:
+def get_collision_rec(rec1: Rectangle, rec2: Rectangle) -> Rectangle:
     Rectangle_ = Rectangle()
     """Get collision rectangle for two rectangles collision"""
     _mod._GetCollisionRec(Rectangle_._address, rec1._address, rec2._address)
     return Rectangle_
 
 
-def LoadImage(fileName: str) -> Image:
+def load_image(fileName: str) -> Image:
     Image_ = Image()
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
@@ -4406,7 +4406,7 @@ def LoadImage(fileName: str) -> Image:
     return Image_
 
 
-def LoadImageRaw(fileName: str, width: int, height: int, format: int, headerSize: int) -> Image:
+def load_image_raw(fileName: str, width: int, height: int, format: int, headerSize: int) -> Image:
     Image_ = Image()
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
@@ -4416,7 +4416,7 @@ def LoadImageRaw(fileName: str, width: int, height: int, format: int, headerSize
     return Image_
 
 
-def LoadImageAnim(fileName: str, frames: int) -> Image:
+def load_image_anim(fileName: str, frames: int) -> Image:
     Image_ = Image()
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
@@ -4426,7 +4426,7 @@ def LoadImageAnim(fileName: str, frames: int) -> Image:
     return Image_
 
 
-def LoadImageFromMemory(fileType: str, fileData: int, dataSize: int) -> Image:
+def load_image_from_memory(fileType: str, fileData: int, dataSize: int) -> Image:
     Image_ = Image()
     fileType_ = _mod._malloc(len(fileType) + 1)
     _mod.stringToUTF8(fileType, fileType_, len(fileType) + 1)
@@ -4436,32 +4436,32 @@ def LoadImageFromMemory(fileType: str, fileData: int, dataSize: int) -> Image:
     return Image_
 
 
-def LoadImageFromTexture(texture: Texture2D) -> Image:
+def load_image_from_texture(texture: Texture2D) -> Image:
     Image_ = Image()
     """Load image from GPU texture data"""
     _mod._LoadImageFromTexture(Image_._address, texture._address)
     return Image_
 
 
-def LoadImageFromScreen() -> Image:
+def load_image_from_screen() -> Image:
     Image_ = Image()
     """Load image from screen buffer and (screenshot)"""
     _mod._LoadImageFromScreen(Image_._address)
     return Image_
 
 
-def IsImageReady(image: Image) -> int:
+def is_image_ready(image: Image) -> int:
     """Check if an image is ready"""
     return_interface = _mod._IsImageReady(image._address)
     return return_interface
 
 
-def UnloadImage(image: Image):
+def unload_image(image: Image):
     """Unload image from CPU memory (RAM)"""
     _mod._UnloadImage(image._address)
 
 
-def ExportImage(image: Image, fileName: str) -> int:
+def export_image(image: Image, fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
     """Export image data to file, returns true on success"""
@@ -4470,7 +4470,7 @@ def ExportImage(image: Image, fileName: str) -> int:
     return return_interface
 
 
-def ExportImageToMemory(image: Image, fileType: str, fileSize: int) -> int:
+def export_image_to_memory(image: Image, fileType: str, fileSize: int) -> int:
     fileType_ = _mod._malloc(len(fileType) + 1)
     _mod.stringToUTF8(fileType, fileType_, len(fileType) + 1)
     """Export image to memory buffer"""
@@ -4479,7 +4479,7 @@ def ExportImageToMemory(image: Image, fileType: str, fileSize: int) -> int:
     return return_interface
 
 
-def ExportImageAsCode(image: Image, fileName: str) -> int:
+def export_image_as_code(image: Image, fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
     """Export image as code file defining an array of bytes, returns true on success"""
@@ -4488,63 +4488,63 @@ def ExportImageAsCode(image: Image, fileName: str) -> int:
     return return_interface
 
 
-def GenImageColor(width: int, height: int, color: Color) -> Image:
+def gen_image_color(width: int, height: int, color: Color) -> Image:
     Image_ = Image()
     """Generate image: plain color"""
     _mod._GenImageColor(Image_._address, width, height, color._address)
     return Image_
 
 
-def GenImageGradientLinear(width: int, height: int, direction: int, start: Color, end: Color) -> Image:
+def gen_image_gradient_linear(width: int, height: int, direction: int, start: Color, end: Color) -> Image:
     Image_ = Image()
     """Generate image: linear gradient, direction in degrees [0..360], 0=Vertical gradient"""
     _mod._GenImageGradientLinear(Image_._address, width, height, direction, start._address, end._address)
     return Image_
 
 
-def GenImageGradientRadial(width: int, height: int, density: float, inner: Color, outer: Color) -> Image:
+def gen_image_gradient_radial(width: int, height: int, density: float, inner: Color, outer: Color) -> Image:
     Image_ = Image()
     """Generate image: radial gradient"""
     _mod._GenImageGradientRadial(Image_._address, width, height, density, inner._address, outer._address)
     return Image_
 
 
-def GenImageGradientSquare(width: int, height: int, density: float, inner: Color, outer: Color) -> Image:
+def gen_image_gradient_square(width: int, height: int, density: float, inner: Color, outer: Color) -> Image:
     Image_ = Image()
     """Generate image: square gradient"""
     _mod._GenImageGradientSquare(Image_._address, width, height, density, inner._address, outer._address)
     return Image_
 
 
-def GenImageChecked(width: int, height: int, checksX: int, checksY: int, col1: Color, col2: Color) -> Image:
+def gen_image_checked(width: int, height: int, checksX: int, checksY: int, col1: Color, col2: Color) -> Image:
     Image_ = Image()
     """Generate image: checked"""
     _mod._GenImageChecked(Image_._address, width, height, checksX, checksY, col1._address, col2._address)
     return Image_
 
 
-def GenImageWhiteNoise(width: int, height: int, factor: float) -> Image:
+def gen_image_white_noise(width: int, height: int, factor: float) -> Image:
     Image_ = Image()
     """Generate image: white noise"""
     _mod._GenImageWhiteNoise(Image_._address, width, height, factor)
     return Image_
 
 
-def GenImagePerlinNoise(width: int, height: int, offsetX: int, offsetY: int, scale: float) -> Image:
+def gen_image_perlin_noise(width: int, height: int, offsetX: int, offsetY: int, scale: float) -> Image:
     Image_ = Image()
     """Generate image: perlin noise"""
     _mod._GenImagePerlinNoise(Image_._address, width, height, offsetX, offsetY, scale)
     return Image_
 
 
-def GenImageCellular(width: int, height: int, tileSize: int) -> Image:
+def gen_image_cellular(width: int, height: int, tileSize: int) -> Image:
     Image_ = Image()
     """Generate image: cellular algorithm, bigger tileSize means bigger cells"""
     _mod._GenImageCellular(Image_._address, width, height, tileSize)
     return Image_
 
 
-def GenImageText(width: int, height: int, text: str) -> Image:
+def gen_image_text(width: int, height: int, text: str) -> Image:
     Image_ = Image()
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
@@ -4554,21 +4554,21 @@ def GenImageText(width: int, height: int, text: str) -> Image:
     return Image_
 
 
-def ImageCopy(image: Image) -> Image:
+def image_copy(image: Image) -> Image:
     Image_ = Image()
     """Create an image duplicate (useful for transformations)"""
     _mod._ImageCopy(Image_._address, image._address)
     return Image_
 
 
-def ImageFromImage(image: Image, rec: Rectangle) -> Image:
+def image_from_image(image: Image, rec: Rectangle) -> Image:
     Image_ = Image()
     """Create an image from another image piece"""
     _mod._ImageFromImage(Image_._address, image._address, rec._address)
     return Image_
 
 
-def ImageText(text: str, fontSize: int, color: Color) -> Image:
+def image_text(text: str, fontSize: int, color: Color) -> Image:
     Image_ = Image()
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
@@ -4578,7 +4578,7 @@ def ImageText(text: str, fontSize: int, color: Color) -> Image:
     return Image_
 
 
-def ImageTextEx(font: Font, text: str, fontSize: float, spacing: float, tint: Color) -> Image:
+def image_text_ex(font: Font, text: str, fontSize: float, spacing: float, tint: Color) -> Image:
     Image_ = Image()
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
@@ -4588,233 +4588,233 @@ def ImageTextEx(font: Font, text: str, fontSize: float, spacing: float, tint: Co
     return Image_
 
 
-def ImageFormat(image: int, newFormat: int):
+def image_format(image: int, newFormat: int):
     """Convert image data to desired format"""
     _mod._ImageFormat(image, newFormat)
 
 
-def ImageToPOT(image: int, fill: Color):
+def image_to_pot(image: int, fill: Color):
     """Convert image to POT (power-of-two)"""
     _mod._ImageToPOT(image, fill._address)
 
 
-def ImageCrop(image: int, crop: Rectangle):
+def image_crop(image: int, crop: Rectangle):
     """Crop an image to a defined rectangle"""
     _mod._ImageCrop(image, crop._address)
 
 
-def ImageAlphaCrop(image: int, threshold: float):
+def image_alpha_crop(image: int, threshold: float):
     """Crop image depending on alpha value"""
     _mod._ImageAlphaCrop(image, threshold)
 
 
-def ImageAlphaClear(image: int, color: Color, threshold: float):
+def image_alpha_clear(image: int, color: Color, threshold: float):
     """Clear alpha channel to desired color"""
     _mod._ImageAlphaClear(image, color._address, threshold)
 
 
-def ImageAlphaMask(image: int, alphaMask: Image):
+def image_alpha_mask(image: int, alphaMask: Image):
     """Apply alpha mask to image"""
     _mod._ImageAlphaMask(image, alphaMask._address)
 
 
-def ImageAlphaPremultiply(image: int):
+def image_alpha_premultiply(image: int):
     """Premultiply alpha channel"""
     _mod._ImageAlphaPremultiply(image)
 
 
-def ImageBlurGaussian(image: int, blurSize: int):
+def image_blur_gaussian(image: int, blurSize: int):
     """Apply Gaussian blur using a box blur approximation"""
     _mod._ImageBlurGaussian(image, blurSize)
 
 
-def ImageResize(image: int, newWidth: int, newHeight: int):
+def image_resize(image: int, newWidth: int, newHeight: int):
     """Resize image (Bicubic scaling algorithm)"""
     _mod._ImageResize(image, newWidth, newHeight)
 
 
-def ImageResizeNN(image: int, newWidth: int, newHeight: int):
+def image_resize_nn(image: int, newWidth: int, newHeight: int):
     """Resize image (Nearest-Neighbor scaling algorithm)"""
     _mod._ImageResizeNN(image, newWidth, newHeight)
 
 
-def ImageResizeCanvas(image: int, newWidth: int, newHeight: int, offsetX: int, offsetY: int, fill: Color):
+def image_resize_canvas(image: int, newWidth: int, newHeight: int, offsetX: int, offsetY: int, fill: Color):
     """Resize canvas and fill with color"""
     _mod._ImageResizeCanvas(image, newWidth, newHeight, offsetX, offsetY, fill._address)
 
 
-def ImageMipmaps(image: int):
+def image_mipmaps(image: int):
     """Compute all mipmap levels for a provided image"""
     _mod._ImageMipmaps(image)
 
 
-def ImageDither(image: int, rBpp: int, gBpp: int, bBpp: int, aBpp: int):
+def image_dither(image: int, rBpp: int, gBpp: int, bBpp: int, aBpp: int):
     """Dither image data to 16bpp or lower (Floyd-Steinberg dithering)"""
     _mod._ImageDither(image, rBpp, gBpp, bBpp, aBpp)
 
 
-def ImageFlipVertical(image: int):
+def image_flip_vertical(image: int):
     """Flip image vertically"""
     _mod._ImageFlipVertical(image)
 
 
-def ImageFlipHorizontal(image: int):
+def image_flip_horizontal(image: int):
     """Flip image horizontally"""
     _mod._ImageFlipHorizontal(image)
 
 
-def ImageRotate(image: int, degrees: int):
+def image_rotate(image: int, degrees: int):
     """Rotate image by input angle in degrees (-359 to 359)"""
     _mod._ImageRotate(image, degrees)
 
 
-def ImageRotateCW(image: int):
+def image_rotate_cw(image: int):
     """Rotate image clockwise 90deg"""
     _mod._ImageRotateCW(image)
 
 
-def ImageRotateCCW(image: int):
+def image_rotate_ccw(image: int):
     """Rotate image counter-clockwise 90deg"""
     _mod._ImageRotateCCW(image)
 
 
-def ImageColorTint(image: int, color: Color):
+def image_color_tint(image: int, color: Color):
     """Modify image color: tint"""
     _mod._ImageColorTint(image, color._address)
 
 
-def ImageColorInvert(image: int):
+def image_color_invert(image: int):
     """Modify image color: invert"""
     _mod._ImageColorInvert(image)
 
 
-def ImageColorGrayscale(image: int):
+def image_color_grayscale(image: int):
     """Modify image color: grayscale"""
     _mod._ImageColorGrayscale(image)
 
 
-def ImageColorContrast(image: int, contrast: float):
+def image_color_contrast(image: int, contrast: float):
     """Modify image color: contrast (-100 to 100)"""
     _mod._ImageColorContrast(image, contrast)
 
 
-def ImageColorBrightness(image: int, brightness: int):
+def image_color_brightness(image: int, brightness: int):
     """Modify image color: brightness (-255 to 255)"""
     _mod._ImageColorBrightness(image, brightness)
 
 
-def ImageColorReplace(image: int, color: Color, replace: Color):
+def image_color_replace(image: int, color: Color, replace: Color):
     """Modify image color: replace color"""
     _mod._ImageColorReplace(image, color._address, replace._address)
 
 
-def LoadImageColors(image: Image) -> int:
+def load_image_colors(image: Image) -> int:
     """Load color data from image as a Color array (RGBA - 32bit)"""
     return_interface = _mod._LoadImageColors(image._address)
     return return_interface
 
 
-def LoadImagePalette(image: Image, maxPaletteSize: int, colorCount: int) -> int:
+def load_image_palette(image: Image, maxPaletteSize: int, colorCount: int) -> int:
     """Load colors palette from image as a Color array (RGBA - 32bit)"""
     return_interface = _mod._LoadImagePalette(image._address, maxPaletteSize, colorCount)
     return return_interface
 
 
-def UnloadImageColors(colors: int):
+def unload_image_colors(colors: int):
     """Unload color data loaded with LoadImageColors()"""
     _mod._UnloadImageColors(colors)
 
 
-def UnloadImagePalette(colors: int):
+def unload_image_palette(colors: int):
     """Unload colors palette loaded with LoadImagePalette()"""
     _mod._UnloadImagePalette(colors)
 
 
-def GetImageAlphaBorder(image: Image, threshold: float) -> Rectangle:
+def get_image_alpha_border(image: Image, threshold: float) -> Rectangle:
     Rectangle_ = Rectangle()
     """Get image alpha border rectangle"""
     _mod._GetImageAlphaBorder(Rectangle_._address, image._address, threshold)
     return Rectangle_
 
 
-def GetImageColor(image: Image, x: int, y: int) -> Color:
+def get_image_color(image: Image, x: int, y: int) -> Color:
     Color_ = Color()
     """Get image pixel color at (x, y) position"""
     _mod._GetImageColor(Color_._address, image._address, x, y)
     return Color_
 
 
-def ImageClearBackground(dst: int, color: Color):
+def image_clear_background(dst: int, color: Color):
     """Clear image background with given color"""
     _mod._ImageClearBackground(dst, color._address)
 
 
-def ImageDrawPixel(dst: int, posX: int, posY: int, color: Color):
+def image_draw_pixel(dst: int, posX: int, posY: int, color: Color):
     """Draw pixel within an image"""
     _mod._ImageDrawPixel(dst, posX, posY, color._address)
 
 
-def ImageDrawPixelV(dst: int, position: Vector2, color: Color):
+def image_draw_pixel_v(dst: int, position: Vector2, color: Color):
     """Draw pixel within an image (Vector version)"""
     _mod._ImageDrawPixelV(dst, position._address, color._address)
 
 
-def ImageDrawLine(dst: int, startPosX: int, startPosY: int, endPosX: int, endPosY: int, color: Color):
+def image_draw_line(dst: int, startPosX: int, startPosY: int, endPosX: int, endPosY: int, color: Color):
     """Draw line within an image"""
     _mod._ImageDrawLine(dst, startPosX, startPosY, endPosX, endPosY, color._address)
 
 
-def ImageDrawLineV(dst: int, start: Vector2, end: Vector2, color: Color):
+def image_draw_line_v(dst: int, start: Vector2, end: Vector2, color: Color):
     """Draw line within an image (Vector version)"""
     _mod._ImageDrawLineV(dst, start._address, end._address, color._address)
 
 
-def ImageDrawCircle(dst: int, centerX: int, centerY: int, radius: int, color: Color):
+def image_draw_circle(dst: int, centerX: int, centerY: int, radius: int, color: Color):
     """Draw a filled circle within an image"""
     _mod._ImageDrawCircle(dst, centerX, centerY, radius, color._address)
 
 
-def ImageDrawCircleV(dst: int, center: Vector2, radius: int, color: Color):
+def image_draw_circle_v(dst: int, center: Vector2, radius: int, color: Color):
     """Draw a filled circle within an image (Vector version)"""
     _mod._ImageDrawCircleV(dst, center._address, radius, color._address)
 
 
-def ImageDrawCircleLines(dst: int, centerX: int, centerY: int, radius: int, color: Color):
+def image_draw_circle_lines(dst: int, centerX: int, centerY: int, radius: int, color: Color):
     """Draw circle outline within an image"""
     _mod._ImageDrawCircleLines(dst, centerX, centerY, radius, color._address)
 
 
-def ImageDrawCircleLinesV(dst: int, center: Vector2, radius: int, color: Color):
+def image_draw_circle_lines_v(dst: int, center: Vector2, radius: int, color: Color):
     """Draw circle outline within an image (Vector version)"""
     _mod._ImageDrawCircleLinesV(dst, center._address, radius, color._address)
 
 
-def ImageDrawRectangle(dst: int, posX: int, posY: int, width: int, height: int, color: Color):
+def image_draw_rectangle(dst: int, posX: int, posY: int, width: int, height: int, color: Color):
     """Draw rectangle within an image"""
     _mod._ImageDrawRectangle(dst, posX, posY, width, height, color._address)
 
 
-def ImageDrawRectangleV(dst: int, position: Vector2, size: Vector2, color: Color):
+def image_draw_rectangle_v(dst: int, position: Vector2, size: Vector2, color: Color):
     """Draw rectangle within an image (Vector version)"""
     _mod._ImageDrawRectangleV(dst, position._address, size._address, color._address)
 
 
-def ImageDrawRectangleRec(dst: int, rec: Rectangle, color: Color):
+def image_draw_rectangle_rec(dst: int, rec: Rectangle, color: Color):
     """Draw rectangle within an image"""
     _mod._ImageDrawRectangleRec(dst, rec._address, color._address)
 
 
-def ImageDrawRectangleLines(dst: int, rec: Rectangle, thick: int, color: Color):
+def image_draw_rectangle_lines(dst: int, rec: Rectangle, thick: int, color: Color):
     """Draw rectangle lines within an image"""
     _mod._ImageDrawRectangleLines(dst, rec._address, thick, color._address)
 
 
-def ImageDraw(dst: int, src: Image, srcRec: Rectangle, dstRec: Rectangle, tint: Color):
+def image_draw(dst: int, src: Image, srcRec: Rectangle, dstRec: Rectangle, tint: Color):
     """Draw a source image within a destination image (tint applied to source)"""
     _mod._ImageDraw(dst, src._address, srcRec._address, dstRec._address, tint._address)
 
 
-def ImageDrawText(dst: int, text: str, posX: int, posY: int, fontSize: int, color: Color):
+def image_draw_text(dst: int, text: str, posX: int, posY: int, fontSize: int, color: Color):
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
     """Draw text (using default font) within an image (destination)"""
@@ -4822,7 +4822,7 @@ def ImageDrawText(dst: int, text: str, posX: int, posY: int, fontSize: int, colo
     _mod._free(text_)
 
 
-def ImageDrawTextEx(dst: int, font: Font, text: str, position: Vector2, fontSize: float, spacing: float, tint: Color):
+def image_draw_text_ex(dst: int, font: Font, text: str, position: Vector2, fontSize: float, spacing: float, tint: Color):
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
     """Draw text (custom sprite font) within an image (destination)"""
@@ -4830,7 +4830,7 @@ def ImageDrawTextEx(dst: int, font: Font, text: str, position: Vector2, fontSize
     _mod._free(text_)
 
 
-def LoadTexture(fileName: str) -> Texture2D:
+def load_texture(fileName: str) -> Texture2D:
     Texture2D_ = Texture2D()
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
@@ -4840,213 +4840,213 @@ def LoadTexture(fileName: str) -> Texture2D:
     return Texture2D_
 
 
-def LoadTextureFromImage(image: Image) -> Texture2D:
+def load_texture_from_image(image: Image) -> Texture2D:
     Texture2D_ = Texture2D()
     """Load texture from image data"""
     _mod._LoadTextureFromImage(Texture2D_._address, image._address)
     return Texture2D_
 
 
-def LoadTextureCubemap(image: Image, layout: int) -> TextureCubemap:
+def load_texture_cubemap(image: Image, layout: int) -> TextureCubemap:
     TextureCubemap_ = TextureCubemap()
     """Load cubemap from image, multiple image cubemap layouts supported"""
     _mod._LoadTextureCubemap(TextureCubemap_._address, image._address, layout)
     return TextureCubemap_
 
 
-def LoadRenderTexture(width: int, height: int) -> RenderTexture2D:
+def load_render_texture(width: int, height: int) -> RenderTexture2D:
     RenderTexture2D_ = RenderTexture2D()
     """Load texture for rendering (framebuffer)"""
     _mod._LoadRenderTexture(RenderTexture2D_._address, width, height)
     return RenderTexture2D_
 
 
-def IsTextureReady(texture: Texture2D) -> int:
+def is_texture_ready(texture: Texture2D) -> int:
     """Check if a texture is ready"""
     return_interface = _mod._IsTextureReady(texture._address)
     return return_interface
 
 
-def UnloadTexture(texture: Texture2D):
+def unload_texture(texture: Texture2D):
     """Unload texture from GPU memory (VRAM)"""
     _mod._UnloadTexture(texture._address)
 
 
-def IsRenderTextureReady(target: RenderTexture2D) -> int:
+def is_render_texture_ready(target: RenderTexture2D) -> int:
     """Check if a render texture is ready"""
     return_interface = _mod._IsRenderTextureReady(target._address)
     return return_interface
 
 
-def UnloadRenderTexture(target: RenderTexture2D):
+def unload_render_texture(target: RenderTexture2D):
     """Unload render texture from GPU memory (VRAM)"""
     _mod._UnloadRenderTexture(target._address)
 
 
-def UpdateTexture(texture: Texture2D, pixels: int):
+def update_texture(texture: Texture2D, pixels: int):
     """Update GPU texture with new data"""
     _mod._UpdateTexture(texture._address, pixels)
 
 
-def UpdateTextureRec(texture: Texture2D, rec: Rectangle, pixels: int):
+def update_texture_rec(texture: Texture2D, rec: Rectangle, pixels: int):
     """Update GPU texture rectangle with new data"""
     _mod._UpdateTextureRec(texture._address, rec._address, pixels)
 
 
-def GenTextureMipmaps(texture: int):
+def gen_texture_mipmaps(texture: int):
     """Generate GPU mipmaps for a texture"""
     _mod._GenTextureMipmaps(texture)
 
 
-def SetTextureFilter(texture: Texture2D, filter: int):
+def set_texture_filter(texture: Texture2D, filter: int):
     """Set texture scaling filter mode"""
     _mod._SetTextureFilter(texture._address, filter)
 
 
-def SetTextureWrap(texture: Texture2D, wrap: int):
+def set_texture_wrap(texture: Texture2D, wrap: int):
     """Set texture wrapping mode"""
     _mod._SetTextureWrap(texture._address, wrap)
 
 
-def DrawTexture(texture: Texture2D, posX: int, posY: int, tint: Color):
+def draw_texture(texture: Texture2D, posX: int, posY: int, tint: Color):
     """Draw a Texture2D"""
     _mod._DrawTexture(texture._address, posX, posY, tint._address)
 
 
-def DrawTextureV(texture: Texture2D, position: Vector2, tint: Color):
+def draw_texture_v(texture: Texture2D, position: Vector2, tint: Color):
     """Draw a Texture2D with position defined as Vector2"""
     _mod._DrawTextureV(texture._address, position._address, tint._address)
 
 
-def DrawTextureEx(texture: Texture2D, position: Vector2, rotation: float, scale: float, tint: Color):
+def draw_texture_ex(texture: Texture2D, position: Vector2, rotation: float, scale: float, tint: Color):
     """Draw a Texture2D with extended parameters"""
     _mod._DrawTextureEx(texture._address, position._address, rotation, scale, tint._address)
 
 
-def DrawTextureRec(texture: Texture2D, source: Rectangle, position: Vector2, tint: Color):
+def draw_texture_rec(texture: Texture2D, source: Rectangle, position: Vector2, tint: Color):
     """Draw a part of a texture defined by a rectangle"""
     _mod._DrawTextureRec(texture._address, source._address, position._address, tint._address)
 
 
-def DrawTexturePro(texture: Texture2D, source: Rectangle, dest: Rectangle, origin: Vector2, rotation: float, tint: Color):
+def draw_texture_pro(texture: Texture2D, source: Rectangle, dest: Rectangle, origin: Vector2, rotation: float, tint: Color):
     """Draw a part of a texture defined by a rectangle with 'pro' parameters"""
     _mod._DrawTexturePro(texture._address, source._address, dest._address, origin._address, rotation, tint._address)
 
 
-def DrawTextureNPatch(texture: Texture2D, nPatchInfo: NPatchInfo, dest: Rectangle, origin: Vector2, rotation: float, tint: Color):
+def draw_texture_n_patch(texture: Texture2D, nPatchInfo: NPatchInfo, dest: Rectangle, origin: Vector2, rotation: float, tint: Color):
     """Draws a texture (or part of it) that stretches or shrinks nicely"""
     _mod._DrawTextureNPatch(texture._address, nPatchInfo._address, dest._address, origin._address, rotation, tint._address)
 
 
-def Fade(color: Color, alpha: float) -> Color:
+def fade(color: Color, alpha: float) -> Color:
     Color_ = Color()
     """Get color with alpha applied, alpha goes from 0.0f to 1.0f"""
     _mod._Fade(Color_._address, color._address, alpha)
     return Color_
 
 
-def ColorToInt(color: Color) -> int:
+def color_to_int(color: Color) -> int:
     """Get hexadecimal value for a Color"""
     return_interface = _mod._ColorToInt(color._address)
     return return_interface
 
 
-def ColorNormalize(color: Color) -> Vector4:
+def color_normalize(color: Color) -> Vector4:
     Vector4_ = Vector4()
     """Get Color normalized as float [0..1]"""
     _mod._ColorNormalize(Vector4_._address, color._address)
     return Vector4_
 
 
-def ColorFromNormalized(normalized: Vector4) -> Color:
+def color_from_normalized(normalized: Vector4) -> Color:
     Color_ = Color()
     """Get Color from normalized values [0..1]"""
     _mod._ColorFromNormalized(Color_._address, normalized._address)
     return Color_
 
 
-def ColorToHSV(color: Color) -> Vector3:
+def color_to_hsv(color: Color) -> Vector3:
     Vector3_ = Vector3()
     """Get HSV values for a Color, hue [0..360], saturation/value [0..1]"""
     _mod._ColorToHSV(Vector3_._address, color._address)
     return Vector3_
 
 
-def ColorFromHSV(hue: float, saturation: float, value: float) -> Color:
+def color_from_hsv(hue: float, saturation: float, value: float) -> Color:
     Color_ = Color()
     """Get a Color from HSV values, hue [0..360], saturation/value [0..1]"""
     _mod._ColorFromHSV(Color_._address, hue, saturation, value)
     return Color_
 
 
-def ColorTint(color: Color, tint: Color) -> Color:
+def color_tint(color: Color, tint: Color) -> Color:
     Color_ = Color()
     """Get color multiplied with another color"""
     _mod._ColorTint(Color_._address, color._address, tint._address)
     return Color_
 
 
-def ColorBrightness(color: Color, factor: float) -> Color:
+def color_brightness(color: Color, factor: float) -> Color:
     Color_ = Color()
     """Get color with brightness correction, brightness factor goes from -1.0f to 1.0f"""
     _mod._ColorBrightness(Color_._address, color._address, factor)
     return Color_
 
 
-def ColorContrast(color: Color, contrast: float) -> Color:
+def color_contrast(color: Color, contrast: float) -> Color:
     Color_ = Color()
     """Get color with contrast correction, contrast values between -1.0f and 1.0f"""
     _mod._ColorContrast(Color_._address, color._address, contrast)
     return Color_
 
 
-def ColorAlpha(color: Color, alpha: float) -> Color:
+def color_alpha(color: Color, alpha: float) -> Color:
     Color_ = Color()
     """Get color with alpha applied, alpha goes from 0.0f to 1.0f"""
     _mod._ColorAlpha(Color_._address, color._address, alpha)
     return Color_
 
 
-def ColorAlphaBlend(dst: Color, src: Color, tint: Color) -> Color:
+def color_alpha_blend(dst: Color, src: Color, tint: Color) -> Color:
     Color_ = Color()
     """Get src alpha-blended into dst color with tint"""
     _mod._ColorAlphaBlend(Color_._address, dst._address, src._address, tint._address)
     return Color_
 
 
-def GetColor(hexValue: int) -> Color:
+def get_color(hexValue: int) -> Color:
     Color_ = Color()
     """Get Color structure from hexadecimal value"""
     _mod._GetColor(Color_._address, hexValue)
     return Color_
 
 
-def GetPixelColor(srcPtr: int, format: int) -> Color:
+def get_pixel_color(srcPtr: int, format: int) -> Color:
     Color_ = Color()
     """Get Color from a source pixel pointer of certain format"""
     _mod._GetPixelColor(Color_._address, srcPtr, format)
     return Color_
 
 
-def SetPixelColor(dstPtr: int, color: Color, format: int):
+def set_pixel_color(dstPtr: int, color: Color, format: int):
     """Set color formatted into destination pixel pointer"""
     _mod._SetPixelColor(dstPtr, color._address, format)
 
 
-def GetPixelDataSize(width: int, height: int, format: int) -> int:
+def get_pixel_data_size(width: int, height: int, format: int) -> int:
     """Get pixel data size in bytes for certain format"""
     return_interface = _mod._GetPixelDataSize(width, height, format)
     return return_interface
 
 
-def GetFontDefault() -> Font:
+def get_font_default() -> Font:
     Font_ = Font()
     """Get the default Font"""
     _mod._GetFontDefault(Font_._address)
     return Font_
 
 
-def LoadFont(fileName: str) -> Font:
+def load_font(fileName: str) -> Font:
     Font_ = Font()
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
@@ -5056,7 +5056,7 @@ def LoadFont(fileName: str) -> Font:
     return Font_
 
 
-def LoadFontEx(fileName: str, fontSize: int, fontChars: int, glyphCount: int) -> Font:
+def load_font_ex(fileName: str, fontSize: int, fontChars: int, glyphCount: int) -> Font:
     Font_ = Font()
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
@@ -5066,14 +5066,14 @@ def LoadFontEx(fileName: str, fontSize: int, fontChars: int, glyphCount: int) ->
     return Font_
 
 
-def LoadFontFromImage(image: Image, key: Color, firstChar: int) -> Font:
+def load_font_from_image(image: Image, key: Color, firstChar: int) -> Font:
     Font_ = Font()
     """Load font from Image (XNA style)"""
     _mod._LoadFontFromImage(Font_._address, image._address, key._address, firstChar)
     return Font_
 
 
-def LoadFontFromMemory(fileType: str, fileData: int, dataSize: int, fontSize: int, fontChars: int, glyphCount: int) -> Font:
+def load_font_from_memory(fileType: str, fileData: int, dataSize: int, fontSize: int, fontChars: int, glyphCount: int) -> Font:
     Font_ = Font()
     fileType_ = _mod._malloc(len(fileType) + 1)
     _mod.stringToUTF8(fileType, fileType_, len(fileType) + 1)
@@ -5083,36 +5083,36 @@ def LoadFontFromMemory(fileType: str, fileData: int, dataSize: int, fontSize: in
     return Font_
 
 
-def IsFontReady(font: Font) -> int:
+def is_font_ready(font: Font) -> int:
     """Check if a font is ready"""
     return_interface = _mod._IsFontReady(font._address)
     return return_interface
 
 
-def LoadFontData(fileData: int, dataSize: int, fontSize: int, fontChars: int, glyphCount: int, type: int) -> int:
+def load_font_data(fileData: int, dataSize: int, fontSize: int, fontChars: int, glyphCount: int, type: int) -> int:
     """Load font data for further use"""
     return_interface = _mod._LoadFontData(fileData, dataSize, fontSize, fontChars, glyphCount, type)
     return return_interface
 
 
-def GenImageFontAtlas(chars: int, recs: int, glyphCount: int, fontSize: int, padding: int, packMethod: int) -> Image:
+def gen_image_font_atlas(chars: int, recs: int, glyphCount: int, fontSize: int, padding: int, packMethod: int) -> Image:
     Image_ = Image()
     """Generate image font atlas using chars info"""
     _mod._GenImageFontAtlas(Image_._address, chars, recs, glyphCount, fontSize, padding, packMethod)
     return Image_
 
 
-def UnloadFontData(chars: int, glyphCount: int):
+def unload_font_data(chars: int, glyphCount: int):
     """Unload font chars info data (RAM)"""
     _mod._UnloadFontData(chars, glyphCount)
 
 
-def UnloadFont(font: Font):
+def unload_font(font: Font):
     """Unload font from GPU memory (VRAM)"""
     _mod._UnloadFont(font._address)
 
 
-def ExportFontAsCode(font: Font, fileName: str) -> int:
+def export_font_as_code(font: Font, fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
     """Export font as code file, returns true on success"""
@@ -5121,12 +5121,12 @@ def ExportFontAsCode(font: Font, fileName: str) -> int:
     return return_interface
 
 
-def DrawFPS(posX: int, posY: int):
+def draw_fps(posX: int, posY: int):
     """Draw current FPS"""
     _mod._DrawFPS(posX, posY)
 
 
-def DrawText(text: str, posX: int, posY: int, fontSize: int, color: Color):
+def draw_text(text: str, posX: int, posY: int, fontSize: int, color: Color):
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
     """Draw text (using default font)"""
@@ -5134,7 +5134,7 @@ def DrawText(text: str, posX: int, posY: int, fontSize: int, color: Color):
     _mod._free(text_)
 
 
-def DrawTextEx(font: Font, text: str, position: Vector2, fontSize: float, spacing: float, tint: Color):
+def draw_text_ex(font: Font, text: str, position: Vector2, fontSize: float, spacing: float, tint: Color):
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
     """Draw text using font and additional parameters"""
@@ -5142,7 +5142,7 @@ def DrawTextEx(font: Font, text: str, position: Vector2, fontSize: float, spacin
     _mod._free(text_)
 
 
-def DrawTextPro(font: Font, text: str, position: Vector2, origin: Vector2, rotation: float, fontSize: float, spacing: float, tint: Color):
+def draw_text_pro(font: Font, text: str, position: Vector2, origin: Vector2, rotation: float, fontSize: float, spacing: float, tint: Color):
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
     """Draw text using Font and pro parameters (rotation)"""
@@ -5150,22 +5150,22 @@ def DrawTextPro(font: Font, text: str, position: Vector2, origin: Vector2, rotat
     _mod._free(text_)
 
 
-def DrawTextCodepoint(font: Font, codepoint: int, position: Vector2, fontSize: float, tint: Color):
+def draw_text_codepoint(font: Font, codepoint: int, position: Vector2, fontSize: float, tint: Color):
     """Draw one character (codepoint)"""
     _mod._DrawTextCodepoint(font._address, codepoint, position._address, fontSize, tint._address)
 
 
-def DrawTextCodepoints(font: Font, codepoints: int, count: int, position: Vector2, fontSize: float, spacing: float, tint: Color):
+def draw_text_codepoints(font: Font, codepoints: int, count: int, position: Vector2, fontSize: float, spacing: float, tint: Color):
     """Draw multiple character (codepoint)"""
     _mod._DrawTextCodepoints(font._address, codepoints, count, position._address, fontSize, spacing, tint._address)
 
 
-def SetTextLineSpacing(spacing: int):
+def set_text_line_spacing(spacing: int):
     """Set vertical line spacing when drawing with line-breaks"""
     _mod._SetTextLineSpacing(spacing)
 
 
-def MeasureText(text: str, fontSize: int) -> int:
+def measure_text(text: str, fontSize: int) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
     """Measure string width for default font"""
@@ -5174,7 +5174,7 @@ def MeasureText(text: str, fontSize: int) -> int:
     return return_interface
 
 
-def MeasureTextEx(font: Font, text: str, fontSize: float, spacing: float) -> Vector2:
+def measure_text_ex(font: Font, text: str, fontSize: float, spacing: float) -> Vector2:
     Vector2_ = Vector2()
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
@@ -5184,38 +5184,38 @@ def MeasureTextEx(font: Font, text: str, fontSize: float, spacing: float) -> Vec
     return Vector2_
 
 
-def GetGlyphIndex(font: Font, codepoint: int) -> int:
+def get_glyph_index(font: Font, codepoint: int) -> int:
     """Get glyph index position in font for a codepoint (unicode character), fallback to '?' if not found"""
     return_interface = _mod._GetGlyphIndex(font._address, codepoint)
     return return_interface
 
 
-def GetGlyphInfo(font: Font, codepoint: int) -> GlyphInfo:
+def get_glyph_info(font: Font, codepoint: int) -> GlyphInfo:
     GlyphInfo_ = GlyphInfo()
     """Get glyph font info data for a codepoint (unicode character), fallback to '?' if not found"""
     _mod._GetGlyphInfo(GlyphInfo_._address, font._address, codepoint)
     return GlyphInfo_
 
 
-def GetGlyphAtlasRec(font: Font, codepoint: int) -> Rectangle:
+def get_glyph_atlas_rec(font: Font, codepoint: int) -> Rectangle:
     Rectangle_ = Rectangle()
     """Get glyph rectangle in font atlas for a codepoint (unicode character), fallback to '?' if not found"""
     _mod._GetGlyphAtlasRec(Rectangle_._address, font._address, codepoint)
     return Rectangle_
 
 
-def LoadUTF8(codepoints: int, length: int) -> int:
+def load_utf8(codepoints: int, length: int) -> int:
     """Load UTF-8 text encoded from codepoints array"""
     return_interface = _mod._LoadUTF8(codepoints, length)
     return return_interface
 
 
-def UnloadUTF8(text: int):
+def unload_utf8(text: int):
     """Unload UTF-8 text encoded from codepoints array"""
     _mod._UnloadUTF8(text)
 
 
-def LoadCodepoints(text: str, count: int) -> int:
+def load_codepoints(text: str, count: int) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
     """Load all codepoints from a UTF-8 text string, codepoints count returned by parameter"""
@@ -5224,12 +5224,12 @@ def LoadCodepoints(text: str, count: int) -> int:
     return return_interface
 
 
-def UnloadCodepoints(codepoints: int):
+def unload_codepoints(codepoints: int):
     """Unload codepoints data from memory"""
     _mod._UnloadCodepoints(codepoints)
 
 
-def GetCodepointCount(text: str) -> int:
+def get_codepoint_count(text: str) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
     """Get total number of codepoints in a UTF-8 encoded string"""
@@ -5238,7 +5238,7 @@ def GetCodepointCount(text: str) -> int:
     return return_interface
 
 
-def GetCodepoint(text: str, codepointSize: int) -> int:
+def get_codepoint(text: str, codepointSize: int) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
     """Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure"""
@@ -5247,7 +5247,7 @@ def GetCodepoint(text: str, codepointSize: int) -> int:
     return return_interface
 
 
-def GetCodepointNext(text: str, codepointSize: int) -> int:
+def get_codepoint_next(text: str, codepointSize: int) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
     """Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure"""
@@ -5256,7 +5256,7 @@ def GetCodepointNext(text: str, codepointSize: int) -> int:
     return return_interface
 
 
-def GetCodepointPrevious(text: str, codepointSize: int) -> int:
+def get_codepoint_previous(text: str, codepointSize: int) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
     """Get previous codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure"""
@@ -5265,13 +5265,13 @@ def GetCodepointPrevious(text: str, codepointSize: int) -> int:
     return return_interface
 
 
-def CodepointToUTF8(codepoint: int, utf8Size: int) -> int:
+def codepoint_to_utf8(codepoint: int, utf8Size: int) -> int:
     """Encode one codepoint into UTF-8 byte array (array length returned as parameter)"""
     return_interface = _mod._CodepointToUTF8(codepoint, utf8Size)
     return return_interface
 
 
-def TextCopy(dst: int, src: str) -> int:
+def text_copy(dst: int, src: str) -> int:
     src_ = _mod._malloc(len(src) + 1)
     _mod.stringToUTF8(src, src_, len(src) + 1)
     """Copy one string to another, returns bytes copied"""
@@ -5280,7 +5280,7 @@ def TextCopy(dst: int, src: str) -> int:
     return return_interface
 
 
-def TextIsEqual(text1: str, text2: str) -> int:
+def text_is_equal(text1: str, text2: str) -> int:
     text1_ = _mod._malloc(len(text1) + 1)
     _mod.stringToUTF8(text1, text1_, len(text1) + 1)
     text2_ = _mod._malloc(len(text2) + 1)
@@ -5292,7 +5292,7 @@ def TextIsEqual(text1: str, text2: str) -> int:
     return return_interface
 
 
-def TextLength(text: str) -> int:
+def text_length(text: str) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
     """Get text length, checks for '\0' ending"""
@@ -5301,7 +5301,7 @@ def TextLength(text: str) -> int:
     return return_interface
 
 
-def TextSubtext(text: str, position: int, length: int) -> int:
+def text_subtext(text: str, position: int, length: int) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
     """Get a piece of a text string"""
@@ -5310,7 +5310,7 @@ def TextSubtext(text: str, position: int, length: int) -> int:
     return return_interface
 
 
-def TextReplace(text: int, replace: str, by: str) -> int:
+def text_replace(text: int, replace: str, by: str) -> int:
     replace_ = _mod._malloc(len(replace) + 1)
     _mod.stringToUTF8(replace, replace_, len(replace) + 1)
     by_ = _mod._malloc(len(by) + 1)
@@ -5322,7 +5322,7 @@ def TextReplace(text: int, replace: str, by: str) -> int:
     return return_interface
 
 
-def TextInsert(text: str, insert: str, position: int) -> int:
+def text_insert(text: str, insert: str, position: int) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
     insert_ = _mod._malloc(len(insert) + 1)
@@ -5334,7 +5334,7 @@ def TextInsert(text: str, insert: str, position: int) -> int:
     return return_interface
 
 
-def TextJoin(textList: int, count: int, delimiter: str) -> int:
+def text_join(textList: int, count: int, delimiter: str) -> int:
     delimiter_ = _mod._malloc(len(delimiter) + 1)
     _mod.stringToUTF8(delimiter, delimiter_, len(delimiter) + 1)
     """Join text strings with delimiter"""
@@ -5343,7 +5343,7 @@ def TextJoin(textList: int, count: int, delimiter: str) -> int:
     return return_interface
 
 
-def TextSplit(text: str, delimiter: int, count: int) -> int:
+def text_split(text: str, delimiter: int, count: int) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
     """Split text into multiple strings"""
@@ -5352,7 +5352,7 @@ def TextSplit(text: str, delimiter: int, count: int) -> int:
     return return_interface
 
 
-def TextAppend(text: int, append: str, position: int):
+def text_append(text: int, append: str, position: int):
     append_ = _mod._malloc(len(append) + 1)
     _mod.stringToUTF8(append, append_, len(append) + 1)
     """Append text at specific position and move cursor!"""
@@ -5360,7 +5360,7 @@ def TextAppend(text: int, append: str, position: int):
     _mod._free(append_)
 
 
-def TextFindIndex(text: str, find: str) -> int:
+def text_find_index(text: str, find: str) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
     find_ = _mod._malloc(len(find) + 1)
@@ -5372,7 +5372,7 @@ def TextFindIndex(text: str, find: str) -> int:
     return return_interface
 
 
-def TextToUpper(text: str) -> int:
+def text_to_upper(text: str) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
     """Get upper case version of provided string"""
@@ -5381,7 +5381,7 @@ def TextToUpper(text: str) -> int:
     return return_interface
 
 
-def TextToLower(text: str) -> int:
+def text_to_lower(text: str) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
     """Get lower case version of provided string"""
@@ -5390,7 +5390,7 @@ def TextToLower(text: str) -> int:
     return return_interface
 
 
-def TextToPascal(text: str) -> int:
+def text_to_pascal(text: str) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
     """Get Pascal case notation version of provided string"""
@@ -5399,7 +5399,7 @@ def TextToPascal(text: str) -> int:
     return return_interface
 
 
-def TextToInteger(text: str) -> int:
+def text_to_integer(text: str) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
     """Get integer value from text (negative values not supported)"""
@@ -5408,112 +5408,112 @@ def TextToInteger(text: str) -> int:
     return return_interface
 
 
-def DrawLine3D(startPos: Vector3, endPos: Vector3, color: Color):
+def draw_line_3d(startPos: Vector3, endPos: Vector3, color: Color):
     """Draw a line in 3D world space"""
     _mod._DrawLine3D(startPos._address, endPos._address, color._address)
 
 
-def DrawPoint3D(position: Vector3, color: Color):
+def draw_point_3d(position: Vector3, color: Color):
     """Draw a point in 3D space, actually a small line"""
     _mod._DrawPoint3D(position._address, color._address)
 
 
-def DrawCircle3D(center: Vector3, radius: float, rotationAxis: Vector3, rotationAngle: float, color: Color):
+def draw_circle_3d(center: Vector3, radius: float, rotationAxis: Vector3, rotationAngle: float, color: Color):
     """Draw a circle in 3D world space"""
     _mod._DrawCircle3D(center._address, radius, rotationAxis._address, rotationAngle, color._address)
 
 
-def DrawTriangle3D(v1: Vector3, v2: Vector3, v3: Vector3, color: Color):
+def draw_triangle_3d(v1: Vector3, v2: Vector3, v3: Vector3, color: Color):
     """Draw a color-filled triangle (vertex in counter-clockwise order!)"""
     _mod._DrawTriangle3D(v1._address, v2._address, v3._address, color._address)
 
 
-def DrawTriangleStrip3D(points: int, pointCount: int, color: Color):
+def draw_triangle_strip_3d(points: int, pointCount: int, color: Color):
     """Draw a triangle strip defined by points"""
     _mod._DrawTriangleStrip3D(points, pointCount, color._address)
 
 
-def DrawCube(position: Vector3, width: float, height: float, length: float, color: Color):
+def draw_cube(position: Vector3, width: float, height: float, length: float, color: Color):
     """Draw cube"""
     _mod._DrawCube(position._address, width, height, length, color._address)
 
 
-def DrawCubeV(position: Vector3, size: Vector3, color: Color):
+def draw_cube_v(position: Vector3, size: Vector3, color: Color):
     """Draw cube (Vector version)"""
     _mod._DrawCubeV(position._address, size._address, color._address)
 
 
-def DrawCubeWires(position: Vector3, width: float, height: float, length: float, color: Color):
+def draw_cube_wires(position: Vector3, width: float, height: float, length: float, color: Color):
     """Draw cube wires"""
     _mod._DrawCubeWires(position._address, width, height, length, color._address)
 
 
-def DrawCubeWiresV(position: Vector3, size: Vector3, color: Color):
+def draw_cube_wires_v(position: Vector3, size: Vector3, color: Color):
     """Draw cube wires (Vector version)"""
     _mod._DrawCubeWiresV(position._address, size._address, color._address)
 
 
-def DrawSphere(centerPos: Vector3, radius: float, color: Color):
+def draw_sphere(centerPos: Vector3, radius: float, color: Color):
     """Draw sphere"""
     _mod._DrawSphere(centerPos._address, radius, color._address)
 
 
-def DrawSphereEx(centerPos: Vector3, radius: float, rings: int, slices: int, color: Color):
+def draw_sphere_ex(centerPos: Vector3, radius: float, rings: int, slices: int, color: Color):
     """Draw sphere with extended parameters"""
     _mod._DrawSphereEx(centerPos._address, radius, rings, slices, color._address)
 
 
-def DrawSphereWires(centerPos: Vector3, radius: float, rings: int, slices: int, color: Color):
+def draw_sphere_wires(centerPos: Vector3, radius: float, rings: int, slices: int, color: Color):
     """Draw sphere wires"""
     _mod._DrawSphereWires(centerPos._address, radius, rings, slices, color._address)
 
 
-def DrawCylinder(position: Vector3, radiusTop: float, radiusBottom: float, height: float, slices: int, color: Color):
+def draw_cylinder(position: Vector3, radiusTop: float, radiusBottom: float, height: float, slices: int, color: Color):
     """Draw a cylinder/cone"""
     _mod._DrawCylinder(position._address, radiusTop, radiusBottom, height, slices, color._address)
 
 
-def DrawCylinderEx(startPos: Vector3, endPos: Vector3, startRadius: float, endRadius: float, sides: int, color: Color):
+def draw_cylinder_ex(startPos: Vector3, endPos: Vector3, startRadius: float, endRadius: float, sides: int, color: Color):
     """Draw a cylinder with base at startPos and top at endPos"""
     _mod._DrawCylinderEx(startPos._address, endPos._address, startRadius, endRadius, sides, color._address)
 
 
-def DrawCylinderWires(position: Vector3, radiusTop: float, radiusBottom: float, height: float, slices: int, color: Color):
+def draw_cylinder_wires(position: Vector3, radiusTop: float, radiusBottom: float, height: float, slices: int, color: Color):
     """Draw a cylinder/cone wires"""
     _mod._DrawCylinderWires(position._address, radiusTop, radiusBottom, height, slices, color._address)
 
 
-def DrawCylinderWiresEx(startPos: Vector3, endPos: Vector3, startRadius: float, endRadius: float, sides: int, color: Color):
+def draw_cylinder_wires_ex(startPos: Vector3, endPos: Vector3, startRadius: float, endRadius: float, sides: int, color: Color):
     """Draw a cylinder wires with base at startPos and top at endPos"""
     _mod._DrawCylinderWiresEx(startPos._address, endPos._address, startRadius, endRadius, sides, color._address)
 
 
-def DrawCapsule(startPos: Vector3, endPos: Vector3, radius: float, slices: int, rings: int, color: Color):
+def draw_capsule(startPos: Vector3, endPos: Vector3, radius: float, slices: int, rings: int, color: Color):
     """Draw a capsule with the center of its sphere caps at startPos and endPos"""
     _mod._DrawCapsule(startPos._address, endPos._address, radius, slices, rings, color._address)
 
 
-def DrawCapsuleWires(startPos: Vector3, endPos: Vector3, radius: float, slices: int, rings: int, color: Color):
+def draw_capsule_wires(startPos: Vector3, endPos: Vector3, radius: float, slices: int, rings: int, color: Color):
     """Draw capsule wireframe with the center of its sphere caps at startPos and endPos"""
     _mod._DrawCapsuleWires(startPos._address, endPos._address, radius, slices, rings, color._address)
 
 
-def DrawPlane(centerPos: Vector3, size: Vector2, color: Color):
+def draw_plane(centerPos: Vector3, size: Vector2, color: Color):
     """Draw a plane XZ"""
     _mod._DrawPlane(centerPos._address, size._address, color._address)
 
 
-def DrawRay(ray: Ray, color: Color):
+def draw_ray(ray: Ray, color: Color):
     """Draw a ray line"""
     _mod._DrawRay(ray._address, color._address)
 
 
-def DrawGrid(slices: int, spacing: float):
+def draw_grid(slices: int, spacing: float):
     """Draw a grid (centered at (0, 0, 0))"""
     _mod._DrawGrid(slices, spacing)
 
 
-def LoadModel(fileName: str) -> Model:
+def load_model(fileName: str) -> Model:
     Model_ = Model()
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
@@ -5523,97 +5523,97 @@ def LoadModel(fileName: str) -> Model:
     return Model_
 
 
-def LoadModelFromMesh(mesh: Mesh) -> Model:
+def load_model_from_mesh(mesh: Mesh) -> Model:
     Model_ = Model()
     """Load model from generated mesh (default material)"""
     _mod._LoadModelFromMesh(Model_._address, mesh._address)
     return Model_
 
 
-def IsModelReady(model: Model) -> int:
+def is_model_ready(model: Model) -> int:
     """Check if a model is ready"""
     return_interface = _mod._IsModelReady(model._address)
     return return_interface
 
 
-def UnloadModel(model: Model):
+def unload_model(model: Model):
     """Unload model (including meshes) from memory (RAM and/or VRAM)"""
     _mod._UnloadModel(model._address)
 
 
-def GetModelBoundingBox(model: Model) -> BoundingBox:
+def get_model_bounding_box(model: Model) -> BoundingBox:
     BoundingBox_ = BoundingBox()
     """Compute model bounding box limits (considers all meshes)"""
     _mod._GetModelBoundingBox(BoundingBox_._address, model._address)
     return BoundingBox_
 
 
-def DrawModel(model: Model, position: Vector3, scale: float, tint: Color):
+def draw_model(model: Model, position: Vector3, scale: float, tint: Color):
     """Draw a model (with texture if set)"""
     _mod._DrawModel(model._address, position._address, scale, tint._address)
 
 
-def DrawModelEx(model: Model, position: Vector3, rotationAxis: Vector3, rotationAngle: float, scale: Vector3, tint: Color):
+def draw_model_ex(model: Model, position: Vector3, rotationAxis: Vector3, rotationAngle: float, scale: Vector3, tint: Color):
     """Draw a model with extended parameters"""
     _mod._DrawModelEx(model._address, position._address, rotationAxis._address, rotationAngle, scale._address, tint._address)
 
 
-def DrawModelWires(model: Model, position: Vector3, scale: float, tint: Color):
+def draw_model_wires(model: Model, position: Vector3, scale: float, tint: Color):
     """Draw a model wires (with texture if set)"""
     _mod._DrawModelWires(model._address, position._address, scale, tint._address)
 
 
-def DrawModelWiresEx(model: Model, position: Vector3, rotationAxis: Vector3, rotationAngle: float, scale: Vector3, tint: Color):
+def draw_model_wires_ex(model: Model, position: Vector3, rotationAxis: Vector3, rotationAngle: float, scale: Vector3, tint: Color):
     """Draw a model wires (with texture if set) with extended parameters"""
     _mod._DrawModelWiresEx(model._address, position._address, rotationAxis._address, rotationAngle, scale._address, tint._address)
 
 
-def DrawBoundingBox(box: BoundingBox, color: Color):
+def draw_bounding_box(box: BoundingBox, color: Color):
     """Draw bounding box (wires)"""
     _mod._DrawBoundingBox(box._address, color._address)
 
 
-def DrawBillboard(camera: Camera, texture: Texture2D, position: Vector3, size: float, tint: Color):
+def draw_billboard(camera: Camera, texture: Texture2D, position: Vector3, size: float, tint: Color):
     """Draw a billboard texture"""
     _mod._DrawBillboard(camera._address, texture._address, position._address, size, tint._address)
 
 
-def DrawBillboardRec(camera: Camera, texture: Texture2D, source: Rectangle, position: Vector3, size: Vector2, tint: Color):
+def draw_billboard_rec(camera: Camera, texture: Texture2D, source: Rectangle, position: Vector3, size: Vector2, tint: Color):
     """Draw a billboard texture defined by source"""
     _mod._DrawBillboardRec(camera._address, texture._address, source._address, position._address, size._address, tint._address)
 
 
-def DrawBillboardPro(camera: Camera, texture: Texture2D, source: Rectangle, position: Vector3, up: Vector3, size: Vector2, origin: Vector2, rotation: float, tint: Color):
+def draw_billboard_pro(camera: Camera, texture: Texture2D, source: Rectangle, position: Vector3, up: Vector3, size: Vector2, origin: Vector2, rotation: float, tint: Color):
     """Draw a billboard texture defined by source and rotation"""
     _mod._DrawBillboardPro(camera._address, texture._address, source._address, position._address, up._address, size._address, origin._address, rotation, tint._address)
 
 
-def UploadMesh(mesh: int, dynamic: int):
+def upload_mesh(mesh: int, dynamic: int):
     """Upload mesh vertex data in GPU and provide VAO/VBO ids"""
     _mod._UploadMesh(mesh, dynamic)
 
 
-def UpdateMeshBuffer(mesh: Mesh, index: int, data: int, dataSize: int, offset: int):
+def update_mesh_buffer(mesh: Mesh, index: int, data: int, dataSize: int, offset: int):
     """Update mesh vertex data in GPU for a specific buffer index"""
     _mod._UpdateMeshBuffer(mesh._address, index, data, dataSize, offset)
 
 
-def UnloadMesh(mesh: Mesh):
+def unload_mesh(mesh: Mesh):
     """Unload mesh data from CPU and GPU"""
     _mod._UnloadMesh(mesh._address)
 
 
-def DrawMesh(mesh: Mesh, material: Material, transform: Matrix):
+def draw_mesh(mesh: Mesh, material: Material, transform: Matrix):
     """Draw a 3d mesh with material and transform"""
     _mod._DrawMesh(mesh._address, material._address, transform._address)
 
 
-def DrawMeshInstanced(mesh: Mesh, material: Material, transforms: int, instances: int):
+def draw_mesh_instanced(mesh: Mesh, material: Material, transforms: int, instances: int):
     """Draw multiple mesh instances with material and different transforms"""
     _mod._DrawMeshInstanced(mesh._address, material._address, transforms, instances)
 
 
-def ExportMesh(mesh: Mesh, fileName: str) -> int:
+def export_mesh(mesh: Mesh, fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
     """Export mesh data to file, returns true on success"""
@@ -5622,96 +5622,96 @@ def ExportMesh(mesh: Mesh, fileName: str) -> int:
     return return_interface
 
 
-def GetMeshBoundingBox(mesh: Mesh) -> BoundingBox:
+def get_mesh_bounding_box(mesh: Mesh) -> BoundingBox:
     BoundingBox_ = BoundingBox()
     """Compute mesh bounding box limits"""
     _mod._GetMeshBoundingBox(BoundingBox_._address, mesh._address)
     return BoundingBox_
 
 
-def GenMeshTangents(mesh: int):
+def gen_mesh_tangents(mesh: int):
     """Compute mesh tangents"""
     _mod._GenMeshTangents(mesh)
 
 
-def GenMeshPoly(sides: int, radius: float) -> Mesh:
+def gen_mesh_poly(sides: int, radius: float) -> Mesh:
     Mesh_ = Mesh()
     """Generate polygonal mesh"""
     _mod._GenMeshPoly(Mesh_._address, sides, radius)
     return Mesh_
 
 
-def GenMeshPlane(width: float, length: float, resX: int, resZ: int) -> Mesh:
+def gen_mesh_plane(width: float, length: float, resX: int, resZ: int) -> Mesh:
     Mesh_ = Mesh()
     """Generate plane mesh (with subdivisions)"""
     _mod._GenMeshPlane(Mesh_._address, width, length, resX, resZ)
     return Mesh_
 
 
-def GenMeshCube(width: float, height: float, length: float) -> Mesh:
+def gen_mesh_cube(width: float, height: float, length: float) -> Mesh:
     Mesh_ = Mesh()
     """Generate cuboid mesh"""
     _mod._GenMeshCube(Mesh_._address, width, height, length)
     return Mesh_
 
 
-def GenMeshSphere(radius: float, rings: int, slices: int) -> Mesh:
+def gen_mesh_sphere(radius: float, rings: int, slices: int) -> Mesh:
     Mesh_ = Mesh()
     """Generate sphere mesh (standard sphere)"""
     _mod._GenMeshSphere(Mesh_._address, radius, rings, slices)
     return Mesh_
 
 
-def GenMeshHemiSphere(radius: float, rings: int, slices: int) -> Mesh:
+def gen_mesh_hemi_sphere(radius: float, rings: int, slices: int) -> Mesh:
     Mesh_ = Mesh()
     """Generate half-sphere mesh (no bottom cap)"""
     _mod._GenMeshHemiSphere(Mesh_._address, radius, rings, slices)
     return Mesh_
 
 
-def GenMeshCylinder(radius: float, height: float, slices: int) -> Mesh:
+def gen_mesh_cylinder(radius: float, height: float, slices: int) -> Mesh:
     Mesh_ = Mesh()
     """Generate cylinder mesh"""
     _mod._GenMeshCylinder(Mesh_._address, radius, height, slices)
     return Mesh_
 
 
-def GenMeshCone(radius: float, height: float, slices: int) -> Mesh:
+def gen_mesh_cone(radius: float, height: float, slices: int) -> Mesh:
     Mesh_ = Mesh()
     """Generate cone/pyramid mesh"""
     _mod._GenMeshCone(Mesh_._address, radius, height, slices)
     return Mesh_
 
 
-def GenMeshTorus(radius: float, size: float, radSeg: int, sides: int) -> Mesh:
+def gen_mesh_torus(radius: float, size: float, radSeg: int, sides: int) -> Mesh:
     Mesh_ = Mesh()
     """Generate torus mesh"""
     _mod._GenMeshTorus(Mesh_._address, radius, size, radSeg, sides)
     return Mesh_
 
 
-def GenMeshKnot(radius: float, size: float, radSeg: int, sides: int) -> Mesh:
+def gen_mesh_knot(radius: float, size: float, radSeg: int, sides: int) -> Mesh:
     Mesh_ = Mesh()
     """Generate trefoil knot mesh"""
     _mod._GenMeshKnot(Mesh_._address, radius, size, radSeg, sides)
     return Mesh_
 
 
-def GenMeshHeightmap(heightmap: Image, size: Vector3) -> Mesh:
+def gen_mesh_heightmap(heightmap: Image, size: Vector3) -> Mesh:
     Mesh_ = Mesh()
     """Generate heightmap mesh from image data"""
     _mod._GenMeshHeightmap(Mesh_._address, heightmap._address, size._address)
     return Mesh_
 
 
-def GenMeshCubicmap(cubicmap: Image, cubeSize: Vector3) -> Mesh:
+def gen_mesh_cubicmap(cubicmap: Image, cubeSize: Vector3) -> Mesh:
     Mesh_ = Mesh()
     """Generate cubes-based map mesh from image data"""
     _mod._GenMeshCubicmap(Mesh_._address, cubicmap._address, cubeSize._address)
     return Mesh_
 
 
-def LoadMaterials(fileName: str, materialCount: int) -> int:
+def load_materials(fileName: str, materialCount: int) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
     """Load materials from model file"""
@@ -5720,35 +5720,35 @@ def LoadMaterials(fileName: str, materialCount: int) -> int:
     return return_interface
 
 
-def LoadMaterialDefault() -> Material:
+def load_material_default() -> Material:
     Material_ = Material()
     """Load default material (Supports: DIFFUSE, SPECULAR, NORMAL maps)"""
     _mod._LoadMaterialDefault(Material_._address)
     return Material_
 
 
-def IsMaterialReady(material: Material) -> int:
+def is_material_ready(material: Material) -> int:
     """Check if a material is ready"""
     return_interface = _mod._IsMaterialReady(material._address)
     return return_interface
 
 
-def UnloadMaterial(material: Material):
+def unload_material(material: Material):
     """Unload material from GPU memory (VRAM)"""
     _mod._UnloadMaterial(material._address)
 
 
-def SetMaterialTexture(material: int, mapType: int, texture: Texture2D):
+def set_material_texture(material: int, mapType: int, texture: Texture2D):
     """Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...)"""
     _mod._SetMaterialTexture(material, mapType, texture._address)
 
 
-def SetModelMeshMaterial(model: int, meshId: int, materialId: int):
+def set_model_mesh_material(model: int, meshId: int, materialId: int):
     """Set material for a mesh"""
     _mod._SetModelMeshMaterial(model, meshId, materialId)
 
 
-def LoadModelAnimations(fileName: str, animCount: int) -> int:
+def load_model_animations(fileName: str, animCount: int) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
     """Load model animations from file"""
@@ -5757,102 +5757,102 @@ def LoadModelAnimations(fileName: str, animCount: int) -> int:
     return return_interface
 
 
-def UpdateModelAnimation(model: Model, anim: ModelAnimation, frame: int):
+def update_model_animation(model: Model, anim: ModelAnimation, frame: int):
     """Update model animation pose"""
     _mod._UpdateModelAnimation(model._address, anim._address, frame)
 
 
-def UnloadModelAnimation(anim: ModelAnimation):
+def unload_model_animation(anim: ModelAnimation):
     """Unload animation data"""
     _mod._UnloadModelAnimation(anim._address)
 
 
-def UnloadModelAnimations(animations: int, count: int):
+def unload_model_animations(animations: int, count: int):
     """Unload animation array data"""
     _mod._UnloadModelAnimations(animations, count)
 
 
-def IsModelAnimationValid(model: Model, anim: ModelAnimation) -> int:
+def is_model_animation_valid(model: Model, anim: ModelAnimation) -> int:
     """Check model animation skeleton match"""
     return_interface = _mod._IsModelAnimationValid(model._address, anim._address)
     return return_interface
 
 
-def CheckCollisionSpheres(center1: Vector3, radius1: float, center2: Vector3, radius2: float) -> int:
+def check_collision_spheres(center1: Vector3, radius1: float, center2: Vector3, radius2: float) -> int:
     """Check collision between two spheres"""
     return_interface = _mod._CheckCollisionSpheres(center1._address, radius1, center2._address, radius2)
     return return_interface
 
 
-def CheckCollisionBoxes(box1: BoundingBox, box2: BoundingBox) -> int:
+def check_collision_boxes(box1: BoundingBox, box2: BoundingBox) -> int:
     """Check collision between two bounding boxes"""
     return_interface = _mod._CheckCollisionBoxes(box1._address, box2._address)
     return return_interface
 
 
-def CheckCollisionBoxSphere(box: BoundingBox, center: Vector3, radius: float) -> int:
+def check_collision_box_sphere(box: BoundingBox, center: Vector3, radius: float) -> int:
     """Check collision between box and sphere"""
     return_interface = _mod._CheckCollisionBoxSphere(box._address, center._address, radius)
     return return_interface
 
 
-def GetRayCollisionSphere(ray: Ray, center: Vector3, radius: float) -> RayCollision:
+def get_ray_collision_sphere(ray: Ray, center: Vector3, radius: float) -> RayCollision:
     RayCollision_ = RayCollision()
     """Get collision info between ray and sphere"""
     _mod._GetRayCollisionSphere(RayCollision_._address, ray._address, center._address, radius)
     return RayCollision_
 
 
-def GetRayCollisionBox(ray: Ray, box: BoundingBox) -> RayCollision:
+def get_ray_collision_box(ray: Ray, box: BoundingBox) -> RayCollision:
     RayCollision_ = RayCollision()
     """Get collision info between ray and box"""
     _mod._GetRayCollisionBox(RayCollision_._address, ray._address, box._address)
     return RayCollision_
 
 
-def GetRayCollisionMesh(ray: Ray, mesh: Mesh, transform: Matrix) -> RayCollision:
+def get_ray_collision_mesh(ray: Ray, mesh: Mesh, transform: Matrix) -> RayCollision:
     RayCollision_ = RayCollision()
     """Get collision info between ray and mesh"""
     _mod._GetRayCollisionMesh(RayCollision_._address, ray._address, mesh._address, transform._address)
     return RayCollision_
 
 
-def GetRayCollisionTriangle(ray: Ray, p1: Vector3, p2: Vector3, p3: Vector3) -> RayCollision:
+def get_ray_collision_triangle(ray: Ray, p1: Vector3, p2: Vector3, p3: Vector3) -> RayCollision:
     RayCollision_ = RayCollision()
     """Get collision info between ray and triangle"""
     _mod._GetRayCollisionTriangle(RayCollision_._address, ray._address, p1._address, p2._address, p3._address)
     return RayCollision_
 
 
-def GetRayCollisionQuad(ray: Ray, p1: Vector3, p2: Vector3, p3: Vector3, p4: Vector3) -> RayCollision:
+def get_ray_collision_quad(ray: Ray, p1: Vector3, p2: Vector3, p3: Vector3, p4: Vector3) -> RayCollision:
     RayCollision_ = RayCollision()
     """Get collision info between ray and quad"""
     _mod._GetRayCollisionQuad(RayCollision_._address, ray._address, p1._address, p2._address, p3._address, p4._address)
     return RayCollision_
 
 
-def InitAudioDevice():
+def init_audio_device():
     """Initialize audio device and context"""
     _mod._InitAudioDevice()
 
 
-def CloseAudioDevice():
+def close_audio_device():
     """Close the audio device and context"""
     _mod._CloseAudioDevice()
 
 
-def IsAudioDeviceReady() -> int:
+def is_audio_device_ready() -> int:
     """Check if audio device has been initialized successfully"""
     return_interface = _mod._IsAudioDeviceReady()
     return return_interface
 
 
-def SetMasterVolume(volume: float):
+def set_master_volume(volume: float):
     """Set master volume (listener)"""
     _mod._SetMasterVolume(volume)
 
 
-def LoadWave(fileName: str) -> Wave:
+def load_wave(fileName: str) -> Wave:
     Wave_ = Wave()
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
@@ -5862,7 +5862,7 @@ def LoadWave(fileName: str) -> Wave:
     return Wave_
 
 
-def LoadWaveFromMemory(fileType: str, fileData: int, dataSize: int) -> Wave:
+def load_wave_from_memory(fileType: str, fileData: int, dataSize: int) -> Wave:
     Wave_ = Wave()
     fileType_ = _mod._malloc(len(fileType) + 1)
     _mod.stringToUTF8(fileType, fileType_, len(fileType) + 1)
@@ -5872,13 +5872,13 @@ def LoadWaveFromMemory(fileType: str, fileData: int, dataSize: int) -> Wave:
     return Wave_
 
 
-def IsWaveReady(wave: Wave) -> int:
+def is_wave_ready(wave: Wave) -> int:
     """Checks if wave data is ready"""
     return_interface = _mod._IsWaveReady(wave._address)
     return return_interface
 
 
-def LoadSound(fileName: str) -> Sound:
+def load_sound(fileName: str) -> Sound:
     Sound_ = Sound()
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
@@ -5888,35 +5888,35 @@ def LoadSound(fileName: str) -> Sound:
     return Sound_
 
 
-def LoadSoundFromWave(wave: Wave) -> Sound:
+def load_sound_from_wave(wave: Wave) -> Sound:
     Sound_ = Sound()
     """Load sound from wave data"""
     _mod._LoadSoundFromWave(Sound_._address, wave._address)
     return Sound_
 
 
-def IsSoundReady(sound: Sound) -> int:
+def is_sound_ready(sound: Sound) -> int:
     """Checks if a sound is ready"""
     return_interface = _mod._IsSoundReady(sound._address)
     return return_interface
 
 
-def UpdateSound(sound: Sound, data: int, sampleCount: int):
+def update_sound(sound: Sound, data: int, sampleCount: int):
     """Update sound buffer with new data"""
     _mod._UpdateSound(sound._address, data, sampleCount)
 
 
-def UnloadWave(wave: Wave):
+def unload_wave(wave: Wave):
     """Unload wave data"""
     _mod._UnloadWave(wave._address)
 
 
-def UnloadSound(sound: Sound):
+def unload_sound(sound: Sound):
     """Unload sound"""
     _mod._UnloadSound(sound._address)
 
 
-def ExportWave(wave: Wave, fileName: str) -> int:
+def export_wave(wave: Wave, fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
     """Export wave data to file, returns true on success"""
@@ -5925,7 +5925,7 @@ def ExportWave(wave: Wave, fileName: str) -> int:
     return return_interface
 
 
-def ExportWaveAsCode(wave: Wave, fileName: str) -> int:
+def export_wave_as_code(wave: Wave, fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
     """Export wave sample data to code (.h), returns true on success"""
@@ -5934,76 +5934,76 @@ def ExportWaveAsCode(wave: Wave, fileName: str) -> int:
     return return_interface
 
 
-def PlaySound(sound: Sound):
+def play_sound(sound: Sound):
     """Play a sound"""
     _mod._PlaySound(sound._address)
 
 
-def StopSound(sound: Sound):
+def stop_sound(sound: Sound):
     """Stop playing a sound"""
     _mod._StopSound(sound._address)
 
 
-def PauseSound(sound: Sound):
+def pause_sound(sound: Sound):
     """Pause a sound"""
     _mod._PauseSound(sound._address)
 
 
-def ResumeSound(sound: Sound):
+def resume_sound(sound: Sound):
     """Resume a paused sound"""
     _mod._ResumeSound(sound._address)
 
 
-def IsSoundPlaying(sound: Sound) -> int:
+def is_sound_playing(sound: Sound) -> int:
     """Check if a sound is currently playing"""
     return_interface = _mod._IsSoundPlaying(sound._address)
     return return_interface
 
 
-def SetSoundVolume(sound: Sound, volume: float):
+def set_sound_volume(sound: Sound, volume: float):
     """Set volume for a sound (1.0 is max level)"""
     _mod._SetSoundVolume(sound._address, volume)
 
 
-def SetSoundPitch(sound: Sound, pitch: float):
+def set_sound_pitch(sound: Sound, pitch: float):
     """Set pitch for a sound (1.0 is base level)"""
     _mod._SetSoundPitch(sound._address, pitch)
 
 
-def SetSoundPan(sound: Sound, pan: float):
+def set_sound_pan(sound: Sound, pan: float):
     """Set pan for a sound (0.5 is center)"""
     _mod._SetSoundPan(sound._address, pan)
 
 
-def WaveCopy(wave: Wave) -> Wave:
+def wave_copy(wave: Wave) -> Wave:
     Wave_ = Wave()
     """Copy a wave to a new wave"""
     _mod._WaveCopy(Wave_._address, wave._address)
     return Wave_
 
 
-def WaveCrop(wave: int, initSample: int, finalSample: int):
+def wave_crop(wave: int, initSample: int, finalSample: int):
     """Crop a wave to defined samples range"""
     _mod._WaveCrop(wave, initSample, finalSample)
 
 
-def WaveFormat(wave: int, sampleRate: int, sampleSize: int, channels: int):
+def wave_format(wave: int, sampleRate: int, sampleSize: int, channels: int):
     """Convert wave data to desired format"""
     _mod._WaveFormat(wave, sampleRate, sampleSize, channels)
 
 
-def LoadWaveSamples(wave: Wave) -> int:
+def load_wave_samples(wave: Wave) -> int:
     """Load samples data from wave as a 32bit float data array"""
     return_interface = _mod._LoadWaveSamples(wave._address)
     return return_interface
 
 
-def UnloadWaveSamples(samples: int):
+def unload_wave_samples(samples: int):
     """Unload samples data loaded with LoadWaveSamples()"""
     _mod._UnloadWaveSamples(samples)
 
 
-def LoadMusicStream(fileName: str) -> Music:
+def load_music_stream(fileName: str) -> Music:
     Music_ = Music()
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
@@ -6013,7 +6013,7 @@ def LoadMusicStream(fileName: str) -> Music:
     return Music_
 
 
-def LoadMusicStreamFromMemory(fileType: str, data: int, dataSize: int) -> Music:
+def load_music_stream_from_memory(fileType: str, data: int, dataSize: int) -> Music:
     Music_ = Music()
     fileType_ = _mod._malloc(len(fileType) + 1)
     _mod.stringToUTF8(fileType, fileType_, len(fileType) + 1)
@@ -6023,151 +6023,151 @@ def LoadMusicStreamFromMemory(fileType: str, data: int, dataSize: int) -> Music:
     return Music_
 
 
-def IsMusicReady(music: Music) -> int:
+def is_music_ready(music: Music) -> int:
     """Checks if a music stream is ready"""
     return_interface = _mod._IsMusicReady(music._address)
     return return_interface
 
 
-def UnloadMusicStream(music: Music):
+def unload_music_stream(music: Music):
     """Unload music stream"""
     _mod._UnloadMusicStream(music._address)
 
 
-def PlayMusicStream(music: Music):
+def play_music_stream(music: Music):
     """Start music playing"""
     _mod._PlayMusicStream(music._address)
 
 
-def IsMusicStreamPlaying(music: Music) -> int:
+def is_music_stream_playing(music: Music) -> int:
     """Check if music is playing"""
     return_interface = _mod._IsMusicStreamPlaying(music._address)
     return return_interface
 
 
-def UpdateMusicStream(music: Music):
+def update_music_stream(music: Music):
     """Updates buffers for music streaming"""
     _mod._UpdateMusicStream(music._address)
 
 
-def StopMusicStream(music: Music):
+def stop_music_stream(music: Music):
     """Stop music playing"""
     _mod._StopMusicStream(music._address)
 
 
-def PauseMusicStream(music: Music):
+def pause_music_stream(music: Music):
     """Pause music playing"""
     _mod._PauseMusicStream(music._address)
 
 
-def ResumeMusicStream(music: Music):
+def resume_music_stream(music: Music):
     """Resume playing paused music"""
     _mod._ResumeMusicStream(music._address)
 
 
-def SeekMusicStream(music: Music, position: float):
+def seek_music_stream(music: Music, position: float):
     """Seek music to a position (in seconds)"""
     _mod._SeekMusicStream(music._address, position)
 
 
-def SetMusicVolume(music: Music, volume: float):
+def set_music_volume(music: Music, volume: float):
     """Set volume for music (1.0 is max level)"""
     _mod._SetMusicVolume(music._address, volume)
 
 
-def SetMusicPitch(music: Music, pitch: float):
+def set_music_pitch(music: Music, pitch: float):
     """Set pitch for a music (1.0 is base level)"""
     _mod._SetMusicPitch(music._address, pitch)
 
 
-def SetMusicPan(music: Music, pan: float):
+def set_music_pan(music: Music, pan: float):
     """Set pan for a music (0.5 is center)"""
     _mod._SetMusicPan(music._address, pan)
 
 
-def GetMusicTimeLength(music: Music) -> float:
+def get_music_time_length(music: Music) -> float:
     """Get music time length (in seconds)"""
     return_interface = _mod._GetMusicTimeLength(music._address)
     return return_interface
 
 
-def GetMusicTimePlayed(music: Music) -> float:
+def get_music_time_played(music: Music) -> float:
     """Get current music time played (in seconds)"""
     return_interface = _mod._GetMusicTimePlayed(music._address)
     return return_interface
 
 
-def LoadAudioStream(sampleRate: int, sampleSize: int, channels: int) -> AudioStream:
+def load_audio_stream(sampleRate: int, sampleSize: int, channels: int) -> AudioStream:
     AudioStream_ = AudioStream()
     """Load audio stream (to stream raw audio pcm data)"""
     _mod._LoadAudioStream(AudioStream_._address, sampleRate, sampleSize, channels)
     return AudioStream_
 
 
-def IsAudioStreamReady(stream: AudioStream) -> int:
+def is_audio_stream_ready(stream: AudioStream) -> int:
     """Checks if an audio stream is ready"""
     return_interface = _mod._IsAudioStreamReady(stream._address)
     return return_interface
 
 
-def UnloadAudioStream(stream: AudioStream):
+def unload_audio_stream(stream: AudioStream):
     """Unload audio stream and free memory"""
     _mod._UnloadAudioStream(stream._address)
 
 
-def UpdateAudioStream(stream: AudioStream, data: int, frameCount: int):
+def update_audio_stream(stream: AudioStream, data: int, frameCount: int):
     """Update audio stream buffers with data"""
     _mod._UpdateAudioStream(stream._address, data, frameCount)
 
 
-def IsAudioStreamProcessed(stream: AudioStream) -> int:
+def is_audio_stream_processed(stream: AudioStream) -> int:
     """Check if any audio stream buffers requires refill"""
     return_interface = _mod._IsAudioStreamProcessed(stream._address)
     return return_interface
 
 
-def PlayAudioStream(stream: AudioStream):
+def play_audio_stream(stream: AudioStream):
     """Play audio stream"""
     _mod._PlayAudioStream(stream._address)
 
 
-def PauseAudioStream(stream: AudioStream):
+def pause_audio_stream(stream: AudioStream):
     """Pause audio stream"""
     _mod._PauseAudioStream(stream._address)
 
 
-def ResumeAudioStream(stream: AudioStream):
+def resume_audio_stream(stream: AudioStream):
     """Resume audio stream"""
     _mod._ResumeAudioStream(stream._address)
 
 
-def IsAudioStreamPlaying(stream: AudioStream) -> int:
+def is_audio_stream_playing(stream: AudioStream) -> int:
     """Check if audio stream is playing"""
     return_interface = _mod._IsAudioStreamPlaying(stream._address)
     return return_interface
 
 
-def StopAudioStream(stream: AudioStream):
+def stop_audio_stream(stream: AudioStream):
     """Stop audio stream"""
     _mod._StopAudioStream(stream._address)
 
 
-def SetAudioStreamVolume(stream: AudioStream, volume: float):
+def set_audio_stream_volume(stream: AudioStream, volume: float):
     """Set volume for audio stream (1.0 is max level)"""
     _mod._SetAudioStreamVolume(stream._address, volume)
 
 
-def SetAudioStreamPitch(stream: AudioStream, pitch: float):
+def set_audio_stream_pitch(stream: AudioStream, pitch: float):
     """Set pitch for audio stream (1.0 is base level)"""
     _mod._SetAudioStreamPitch(stream._address, pitch)
 
 
-def SetAudioStreamPan(stream: AudioStream, pan: float):
+def set_audio_stream_pan(stream: AudioStream, pan: float):
     """Set pan for audio stream (0.5 is centered)"""
     _mod._SetAudioStreamPan(stream._address, pan)
 
 
-def SetAudioStreamBufferSizeDefault(size: int):
+def set_audio_stream_buffer_size_default(size: int):
     """Default size for new audio streams"""
     _mod._SetAudioStreamBufferSizeDefault(size)
 

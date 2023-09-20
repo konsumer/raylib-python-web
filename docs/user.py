@@ -4,7 +4,7 @@ colors = None
 
 def init():
     global font, colors
-    InitWindow(800, 450, "dfgdfg")
+    init_window(800, 450, "dfgdfg")
 
     # test struct
     print(RAYWHITE)
@@ -24,13 +24,13 @@ def init():
     print(colors)
 
     # test fonts
-    font = GetFontDefault()
+    font = get_font_default()
     print(font)
 
 
 def update():
-    BeginDrawing()
-    ClearBackground(RAYWHITE)
-    DrawText("Congrats! You created your first python window!", 150, 200, 20, LIGHTGRAY)
-    DrawFPS(10, 10)
-    EndDrawing()
+    begin_drawing()
+    clear_background(RAYWHITE)
+    draw_text("Congrats! You created your first python window!", 150, 200, 20, LIGHTGRAY)
+    draw_fps(10, 10)
+    end_drawing()
