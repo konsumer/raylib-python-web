@@ -160,6 +160,7 @@ class Vector2:
 
     @property
     def x(self):
+        """Vector x component"""
         return _mod.mem.getFloat32(self._address + 0, True)
 
     @x.setter
@@ -169,6 +170,7 @@ class Vector2:
 
     @property
     def y(self):
+        """Vector y component"""
         return _mod.mem.getFloat32(self._address + 4, True)
 
     @y.setter
@@ -202,6 +204,7 @@ class Vector3:
 
     @property
     def x(self):
+        """Vector x component"""
         return _mod.mem.getFloat32(self._address + 0, True)
 
     @x.setter
@@ -211,6 +214,7 @@ class Vector3:
 
     @property
     def y(self):
+        """Vector y component"""
         return _mod.mem.getFloat32(self._address + 4, True)
 
     @y.setter
@@ -220,6 +224,7 @@ class Vector3:
 
     @property
     def z(self):
+        """Vector z component"""
         return _mod.mem.getFloat32(self._address + 8, True)
 
     @z.setter
@@ -254,6 +259,7 @@ class Vector4:
 
     @property
     def x(self):
+        """Vector x component"""
         return _mod.mem.getFloat32(self._address + 0, True)
 
     @x.setter
@@ -263,6 +269,7 @@ class Vector4:
 
     @property
     def y(self):
+        """Vector y component"""
         return _mod.mem.getFloat32(self._address + 4, True)
 
     @y.setter
@@ -272,6 +279,7 @@ class Vector4:
 
     @property
     def z(self):
+        """Vector z component"""
         return _mod.mem.getFloat32(self._address + 8, True)
 
     @z.setter
@@ -281,6 +289,7 @@ class Vector4:
 
     @property
     def w(self):
+        """Vector w component"""
         return _mod.mem.getFloat32(self._address + 12, True)
 
     @w.setter
@@ -329,6 +338,7 @@ class Matrix:
 
     @property
     def m0(self):
+        """Matrix first row (4 components)"""
         return _mod.mem.getFloat32(self._address + 0, True)
 
     @m0.setter
@@ -338,6 +348,7 @@ class Matrix:
 
     @property
     def m4(self):
+        """Matrix first row (4 components)"""
         return _mod.mem.getFloat32(self._address + 4, True)
 
     @m4.setter
@@ -347,6 +358,7 @@ class Matrix:
 
     @property
     def m8(self):
+        """Matrix first row (4 components)"""
         return _mod.mem.getFloat32(self._address + 8, True)
 
     @m8.setter
@@ -356,6 +368,7 @@ class Matrix:
 
     @property
     def m12(self):
+        """Matrix first row (4 components)"""
         return _mod.mem.getFloat32(self._address + 12, True)
 
     @m12.setter
@@ -365,6 +378,7 @@ class Matrix:
 
     @property
     def m1(self):
+        """Matrix second row (4 components)"""
         return _mod.mem.getFloat32(self._address + 16, True)
 
     @m1.setter
@@ -374,6 +388,7 @@ class Matrix:
 
     @property
     def m5(self):
+        """Matrix second row (4 components)"""
         return _mod.mem.getFloat32(self._address + 20, True)
 
     @m5.setter
@@ -383,6 +398,7 @@ class Matrix:
 
     @property
     def m9(self):
+        """Matrix second row (4 components)"""
         return _mod.mem.getFloat32(self._address + 24, True)
 
     @m9.setter
@@ -392,6 +408,7 @@ class Matrix:
 
     @property
     def m13(self):
+        """Matrix second row (4 components)"""
         return _mod.mem.getFloat32(self._address + 28, True)
 
     @m13.setter
@@ -401,6 +418,7 @@ class Matrix:
 
     @property
     def m2(self):
+        """Matrix third row (4 components)"""
         return _mod.mem.getFloat32(self._address + 32, True)
 
     @m2.setter
@@ -410,6 +428,7 @@ class Matrix:
 
     @property
     def m6(self):
+        """Matrix third row (4 components)"""
         return _mod.mem.getFloat32(self._address + 36, True)
 
     @m6.setter
@@ -419,6 +438,7 @@ class Matrix:
 
     @property
     def m10(self):
+        """Matrix third row (4 components)"""
         return _mod.mem.getFloat32(self._address + 40, True)
 
     @m10.setter
@@ -428,6 +448,7 @@ class Matrix:
 
     @property
     def m14(self):
+        """Matrix third row (4 components)"""
         return _mod.mem.getFloat32(self._address + 44, True)
 
     @m14.setter
@@ -437,6 +458,7 @@ class Matrix:
 
     @property
     def m3(self):
+        """Matrix fourth row (4 components)"""
         return _mod.mem.getFloat32(self._address + 48, True)
 
     @m3.setter
@@ -446,6 +468,7 @@ class Matrix:
 
     @property
     def m7(self):
+        """Matrix fourth row (4 components)"""
         return _mod.mem.getFloat32(self._address + 52, True)
 
     @m7.setter
@@ -455,6 +478,7 @@ class Matrix:
 
     @property
     def m11(self):
+        """Matrix fourth row (4 components)"""
         return _mod.mem.getFloat32(self._address + 56, True)
 
     @m11.setter
@@ -464,6 +488,7 @@ class Matrix:
 
     @property
     def m15(self):
+        """Matrix fourth row (4 components)"""
         return _mod.mem.getFloat32(self._address + 60, True)
 
     @m15.setter
@@ -498,6 +523,7 @@ class Color:
 
     @property
     def r(self):
+        """Color red value"""
         return _mod.mem.getUint8(self._address + 0, True)
 
     @r.setter
@@ -507,6 +533,7 @@ class Color:
 
     @property
     def g(self):
+        """Color green value"""
         return _mod.mem.getUint8(self._address + 1, True)
 
     @g.setter
@@ -516,6 +543,7 @@ class Color:
 
     @property
     def b(self):
+        """Color blue value"""
         return _mod.mem.getUint8(self._address + 2, True)
 
     @b.setter
@@ -525,6 +553,7 @@ class Color:
 
     @property
     def a(self):
+        """Color alpha value"""
         return _mod.mem.getUint8(self._address + 3, True)
 
     @a.setter
@@ -559,6 +588,7 @@ class Rectangle:
 
     @property
     def x(self):
+        """Rectangle top-left corner position x"""
         return _mod.mem.getFloat32(self._address + 0, True)
 
     @x.setter
@@ -568,6 +598,7 @@ class Rectangle:
 
     @property
     def y(self):
+        """Rectangle top-left corner position y"""
         return _mod.mem.getFloat32(self._address + 4, True)
 
     @y.setter
@@ -577,6 +608,7 @@ class Rectangle:
 
     @property
     def width(self):
+        """Rectangle width"""
         return _mod.mem.getFloat32(self._address + 8, True)
 
     @width.setter
@@ -586,6 +618,7 @@ class Rectangle:
 
     @property
     def height(self):
+        """Rectangle height"""
         return _mod.mem.getFloat32(self._address + 12, True)
 
     @height.setter
@@ -621,6 +654,7 @@ class Image:
 
     @property
     def data(self):
+        """Image raw data"""
         return _mod.mem.getUint32(self._address + 0, True)
 
     @data.setter
@@ -630,6 +664,7 @@ class Image:
 
     @property
     def width(self):
+        """Image base width"""
         return _mod.mem.getInt32(self._address + 4, True)
 
     @width.setter
@@ -639,6 +674,7 @@ class Image:
 
     @property
     def height(self):
+        """Image base height"""
         return _mod.mem.getInt32(self._address + 8, True)
 
     @height.setter
@@ -648,6 +684,7 @@ class Image:
 
     @property
     def mipmaps(self):
+        """Mipmap levels, 1 by default"""
         return _mod.mem.getInt32(self._address + 12, True)
 
     @mipmaps.setter
@@ -657,6 +694,7 @@ class Image:
 
     @property
     def format(self):
+        """Data format (PixelFormat type)"""
         return _mod.mem.getInt32(self._address + 16, True)
 
     @format.setter
@@ -692,6 +730,7 @@ class Texture:
 
     @property
     def id(self):
+        """OpenGL texture id"""
         return _mod.mem.getUint32(self._address + 0, True)
 
     @id.setter
@@ -701,6 +740,7 @@ class Texture:
 
     @property
     def width(self):
+        """Texture base width"""
         return _mod.mem.getInt32(self._address + 4, True)
 
     @width.setter
@@ -710,6 +750,7 @@ class Texture:
 
     @property
     def height(self):
+        """Texture base height"""
         return _mod.mem.getInt32(self._address + 8, True)
 
     @height.setter
@@ -719,6 +760,7 @@ class Texture:
 
     @property
     def mipmaps(self):
+        """Mipmap levels, 1 by default"""
         return _mod.mem.getInt32(self._address + 12, True)
 
     @mipmaps.setter
@@ -728,6 +770,7 @@ class Texture:
 
     @property
     def format(self):
+        """Data format (PixelFormat type)"""
         return _mod.mem.getInt32(self._address + 16, True)
 
     @format.setter
@@ -767,6 +810,7 @@ class RenderTexture:
 
     @property
     def id(self):
+        """OpenGL framebuffer object id"""
         return _mod.mem.getUint32(self._address + 0, True)
 
     @id.setter
@@ -776,6 +820,7 @@ class RenderTexture:
 
     @property
     def texture(self):
+        """Color buffer attachment texture"""
         return Texture(0, address=self._address + 4)
 
     @texture.setter
@@ -785,6 +830,7 @@ class RenderTexture:
 
     @property
     def depth(self):
+        """Depth buffer attachment texture"""
         return Texture(0, address=self._address + 24)
 
     @depth.setter
@@ -824,6 +870,7 @@ class NPatchInfo:
 
     @property
     def source(self):
+        """Texture source rectangle"""
         return Rectangle(0, address=self._address + 0)
 
     @source.setter
@@ -833,6 +880,7 @@ class NPatchInfo:
 
     @property
     def left(self):
+        """Left border offset"""
         return _mod.mem.getInt32(self._address + 16, True)
 
     @left.setter
@@ -842,6 +890,7 @@ class NPatchInfo:
 
     @property
     def top(self):
+        """Top border offset"""
         return _mod.mem.getInt32(self._address + 20, True)
 
     @top.setter
@@ -851,6 +900,7 @@ class NPatchInfo:
 
     @property
     def right(self):
+        """Right border offset"""
         return _mod.mem.getInt32(self._address + 24, True)
 
     @right.setter
@@ -860,6 +910,7 @@ class NPatchInfo:
 
     @property
     def bottom(self):
+        """Bottom border offset"""
         return _mod.mem.getInt32(self._address + 28, True)
 
     @bottom.setter
@@ -869,6 +920,7 @@ class NPatchInfo:
 
     @property
     def layout(self):
+        """Layout of the n-patch: 3x3, 1x3 or 3x1"""
         return _mod.mem.getInt32(self._address + 32, True)
 
     @layout.setter
@@ -905,6 +957,7 @@ class GlyphInfo:
 
     @property
     def value(self):
+        """Character value (Unicode)"""
         return _mod.mem.getInt32(self._address + 0, True)
 
     @value.setter
@@ -914,6 +967,7 @@ class GlyphInfo:
 
     @property
     def offsetX(self):
+        """Character offset X when drawing"""
         return _mod.mem.getInt32(self._address + 4, True)
 
     @offsetX.setter
@@ -923,6 +977,7 @@ class GlyphInfo:
 
     @property
     def offsetY(self):
+        """Character offset Y when drawing"""
         return _mod.mem.getInt32(self._address + 8, True)
 
     @offsetY.setter
@@ -932,6 +987,7 @@ class GlyphInfo:
 
     @property
     def advanceX(self):
+        """Character advance position X"""
         return _mod.mem.getInt32(self._address + 12, True)
 
     @advanceX.setter
@@ -941,6 +997,7 @@ class GlyphInfo:
 
     @property
     def image(self):
+        """Character image data"""
         return Image(0, address=self._address + 16)
 
     @image.setter
@@ -978,6 +1035,7 @@ class Font:
 
     @property
     def baseSize(self):
+        """Base size (default chars height)"""
         return _mod.mem.getInt32(self._address + 0, True)
 
     @baseSize.setter
@@ -987,6 +1045,7 @@ class Font:
 
     @property
     def glyphCount(self):
+        """Number of glyph characters"""
         return _mod.mem.getInt32(self._address + 4, True)
 
     @glyphCount.setter
@@ -996,6 +1055,7 @@ class Font:
 
     @property
     def glyphPadding(self):
+        """Padding around the glyph characters"""
         return _mod.mem.getInt32(self._address + 8, True)
 
     @glyphPadding.setter
@@ -1005,6 +1065,7 @@ class Font:
 
     @property
     def texture(self):
+        """Texture atlas containing the glyphs"""
         return Texture2D(0, address=self._address + 12)
 
     @texture.setter
@@ -1014,6 +1075,7 @@ class Font:
 
     @property
     def recs(self):
+        """Rectangles in texture for the glyphs"""
         return _mod.mem.getUint32(self._address + 32, True)
 
     @recs.setter
@@ -1023,6 +1085,7 @@ class Font:
 
     @property
     def glyphs(self):
+        """Glyphs info data"""
         return _mod.mem.getUint32(self._address + 36, True)
 
     @glyphs.setter
@@ -1061,6 +1124,7 @@ class Camera3D:
 
     @property
     def position(self):
+        """Camera position"""
         return Vector3(0, address=self._address + 0)
 
     @position.setter
@@ -1070,6 +1134,7 @@ class Camera3D:
 
     @property
     def target(self):
+        """Camera target it looks-at"""
         return Vector3(0, address=self._address + 12)
 
     @target.setter
@@ -1079,6 +1144,7 @@ class Camera3D:
 
     @property
     def up(self):
+        """Camera up vector (rotation over its axis)"""
         return Vector3(0, address=self._address + 24)
 
     @up.setter
@@ -1088,6 +1154,7 @@ class Camera3D:
 
     @property
     def fovy(self):
+        """Camera field-of-view aperture in Y (degrees) in perspective, used as near plane width in orthographic"""
         return _mod.mem.getFloat32(self._address + 36, True)
 
     @fovy.setter
@@ -1097,6 +1164,7 @@ class Camera3D:
 
     @property
     def projection(self):
+        """Camera projection: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC"""
         return _mod.mem.getInt32(self._address + 40, True)
 
     @projection.setter
@@ -1135,6 +1203,7 @@ class Camera2D:
 
     @property
     def offset(self):
+        """Camera offset (displacement from target)"""
         return Vector2(0, address=self._address + 0)
 
     @offset.setter
@@ -1144,6 +1213,7 @@ class Camera2D:
 
     @property
     def target(self):
+        """Camera target (rotation and zoom origin)"""
         return Vector2(0, address=self._address + 8)
 
     @target.setter
@@ -1153,6 +1223,7 @@ class Camera2D:
 
     @property
     def rotation(self):
+        """Camera rotation in degrees"""
         return _mod.mem.getFloat32(self._address + 16, True)
 
     @rotation.setter
@@ -1162,6 +1233,7 @@ class Camera2D:
 
     @property
     def zoom(self):
+        """Camera zoom (scaling), should be 1.0f by default"""
         return _mod.mem.getFloat32(self._address + 20, True)
 
     @zoom.setter
@@ -1207,6 +1279,7 @@ class Mesh:
 
     @property
     def vertexCount(self):
+        """Number of vertices stored in arrays"""
         return _mod.mem.getInt32(self._address + 0, True)
 
     @vertexCount.setter
@@ -1216,6 +1289,7 @@ class Mesh:
 
     @property
     def triangleCount(self):
+        """Number of triangles stored (indexed or not)"""
         return _mod.mem.getInt32(self._address + 4, True)
 
     @triangleCount.setter
@@ -1225,6 +1299,7 @@ class Mesh:
 
     @property
     def vertices(self):
+        """Vertex position (XYZ - 3 components per vertex) (shader-location = 0)"""
         return _mod.mem.getUint32(self._address + 8, True)
 
     @vertices.setter
@@ -1234,6 +1309,7 @@ class Mesh:
 
     @property
     def texcoords(self):
+        """Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1)"""
         return _mod.mem.getUint32(self._address + 12, True)
 
     @texcoords.setter
@@ -1243,6 +1319,7 @@ class Mesh:
 
     @property
     def texcoords2(self):
+        """Vertex texture second coordinates (UV - 2 components per vertex) (shader-location = 5)"""
         return _mod.mem.getUint32(self._address + 16, True)
 
     @texcoords2.setter
@@ -1252,6 +1329,7 @@ class Mesh:
 
     @property
     def normals(self):
+        """Vertex normals (XYZ - 3 components per vertex) (shader-location = 2)"""
         return _mod.mem.getUint32(self._address + 20, True)
 
     @normals.setter
@@ -1261,6 +1339,7 @@ class Mesh:
 
     @property
     def tangents(self):
+        """Vertex tangents (XYZW - 4 components per vertex) (shader-location = 4)"""
         return _mod.mem.getUint32(self._address + 24, True)
 
     @tangents.setter
@@ -1270,6 +1349,7 @@ class Mesh:
 
     @property
     def colors(self):
+        """Vertex colors (RGBA - 4 components per vertex) (shader-location = 3)"""
         return _mod.mem.getUint32(self._address + 28, True)
 
     @colors.setter
@@ -1279,6 +1359,7 @@ class Mesh:
 
     @property
     def indices(self):
+        """Vertex indices (in case vertex data comes indexed)"""
         return _mod.mem.getUint32(self._address + 32, True)
 
     @indices.setter
@@ -1288,6 +1369,7 @@ class Mesh:
 
     @property
     def animVertices(self):
+        """Animated vertex positions (after bones transformations)"""
         return _mod.mem.getUint32(self._address + 36, True)
 
     @animVertices.setter
@@ -1297,6 +1379,7 @@ class Mesh:
 
     @property
     def animNormals(self):
+        """Animated normals (after bones transformations)"""
         return _mod.mem.getUint32(self._address + 40, True)
 
     @animNormals.setter
@@ -1306,6 +1389,7 @@ class Mesh:
 
     @property
     def boneIds(self):
+        """Vertex bone ids, max 255 bone ids, up to 4 bones influence by vertex (skinning)"""
         return _mod.mem.getUint32(self._address + 44, True)
 
     @boneIds.setter
@@ -1315,6 +1399,7 @@ class Mesh:
 
     @property
     def boneWeights(self):
+        """Vertex bone weight, up to 4 bones influence by vertex (skinning)"""
         return _mod.mem.getUint32(self._address + 48, True)
 
     @boneWeights.setter
@@ -1324,6 +1409,7 @@ class Mesh:
 
     @property
     def vaoId(self):
+        """OpenGL Vertex Array Object id"""
         return _mod.mem.getUint32(self._address + 52, True)
 
     @vaoId.setter
@@ -1333,6 +1419,7 @@ class Mesh:
 
     @property
     def vboId(self):
+        """OpenGL Vertex Buffer Objects id (default vertex data)"""
         return _mod.mem.getUint32(self._address + 56, True)
 
     @vboId.setter
@@ -1365,6 +1452,7 @@ class Shader:
 
     @property
     def id(self):
+        """Shader program id"""
         return _mod.mem.getUint32(self._address + 0, True)
 
     @id.setter
@@ -1374,6 +1462,7 @@ class Shader:
 
     @property
     def locs(self):
+        """Shader locations array (RL_MAX_SHADER_LOCATIONS)"""
         return _mod.mem.getUint32(self._address + 4, True)
 
     @locs.setter
@@ -1409,6 +1498,7 @@ class MaterialMap:
 
     @property
     def texture(self):
+        """Material map texture"""
         return Texture2D(0, address=self._address + 0)
 
     @texture.setter
@@ -1418,6 +1508,7 @@ class MaterialMap:
 
     @property
     def color(self):
+        """Material map color"""
         return Color(0, address=self._address + 20)
 
     @color.setter
@@ -1427,6 +1518,7 @@ class MaterialMap:
 
     @property
     def value(self):
+        """Material map value"""
         return _mod.mem.getFloat32(self._address + 24, True)
 
     @value.setter
@@ -1462,6 +1554,7 @@ class Material:
 
     @property
     def shader(self):
+        """Material shader"""
         return Shader(0, address=self._address + 0)
 
     @shader.setter
@@ -1471,6 +1564,7 @@ class Material:
 
     @property
     def maps(self):
+        """Material maps array (MAX_MATERIAL_MAPS)"""
         return _mod.mem.getUint32(self._address + 8, True)
 
     @maps.setter
@@ -1480,6 +1574,7 @@ class Material:
 
     @property
     def params(self):
+        """Material generic parameters (if required)"""
         return FloatArray(4, address=self._address + 12)
 
     @params.setter
@@ -1516,6 +1611,7 @@ class Transform:
 
     @property
     def translation(self):
+        """Translation"""
         return Vector3(0, address=self._address + 0)
 
     @translation.setter
@@ -1525,6 +1621,7 @@ class Transform:
 
     @property
     def rotation(self):
+        """Rotation"""
         return Quaternion(0, address=self._address + 12)
 
     @rotation.setter
@@ -1534,6 +1631,7 @@ class Transform:
 
     @property
     def scale(self):
+        """Scale"""
         return Vector3(0, address=self._address + 28)
 
     @scale.setter
@@ -1567,6 +1665,7 @@ class BoneInfo:
 
     @property
     def name(self):
+        """Bone name"""
         return CharArray(32, address=self._address + 0)
 
     @name.setter
@@ -1576,6 +1675,7 @@ class BoneInfo:
 
     @property
     def parent(self):
+        """Bone parent"""
         return _mod.mem.getInt32(self._address + 32, True)
 
     @parent.setter
@@ -1616,6 +1716,7 @@ class Model:
 
     @property
     def transform(self):
+        """Local transform matrix"""
         return Matrix(0, address=self._address + 0)
 
     @transform.setter
@@ -1625,6 +1726,7 @@ class Model:
 
     @property
     def meshCount(self):
+        """Number of meshes"""
         return _mod.mem.getInt32(self._address + 64, True)
 
     @meshCount.setter
@@ -1634,6 +1736,7 @@ class Model:
 
     @property
     def materialCount(self):
+        """Number of materials"""
         return _mod.mem.getInt32(self._address + 68, True)
 
     @materialCount.setter
@@ -1643,6 +1746,7 @@ class Model:
 
     @property
     def meshes(self):
+        """Meshes array"""
         return _mod.mem.getUint32(self._address + 72, True)
 
     @meshes.setter
@@ -1652,6 +1756,7 @@ class Model:
 
     @property
     def materials(self):
+        """Materials array"""
         return _mod.mem.getUint32(self._address + 76, True)
 
     @materials.setter
@@ -1661,6 +1766,7 @@ class Model:
 
     @property
     def meshMaterial(self):
+        """Mesh material number"""
         return _mod.mem.getUint32(self._address + 80, True)
 
     @meshMaterial.setter
@@ -1670,6 +1776,7 @@ class Model:
 
     @property
     def boneCount(self):
+        """Number of bones"""
         return _mod.mem.getInt32(self._address + 84, True)
 
     @boneCount.setter
@@ -1679,6 +1786,7 @@ class Model:
 
     @property
     def bones(self):
+        """Bones information (skeleton)"""
         return _mod.mem.getUint32(self._address + 88, True)
 
     @bones.setter
@@ -1688,6 +1796,7 @@ class Model:
 
     @property
     def bindPose(self):
+        """Bones base transformation (pose)"""
         return _mod.mem.getUint32(self._address + 92, True)
 
     @bindPose.setter
@@ -1724,6 +1833,7 @@ class ModelAnimation:
 
     @property
     def boneCount(self):
+        """Number of bones"""
         return _mod.mem.getInt32(self._address + 0, True)
 
     @boneCount.setter
@@ -1733,6 +1843,7 @@ class ModelAnimation:
 
     @property
     def frameCount(self):
+        """Number of animation frames"""
         return _mod.mem.getInt32(self._address + 4, True)
 
     @frameCount.setter
@@ -1742,6 +1853,7 @@ class ModelAnimation:
 
     @property
     def bones(self):
+        """Bones information (skeleton)"""
         return _mod.mem.getUint32(self._address + 8, True)
 
     @bones.setter
@@ -1751,6 +1863,7 @@ class ModelAnimation:
 
     @property
     def framePoses(self):
+        """Poses array by frame"""
         return _mod.mem.getUint32(self._address + 12, True)
 
     @framePoses.setter
@@ -1760,6 +1873,7 @@ class ModelAnimation:
 
     @property
     def name(self):
+        """Animation name"""
         return CharArray(32, address=self._address + 16)
 
     @name.setter
@@ -1794,6 +1908,7 @@ class Ray:
 
     @property
     def position(self):
+        """Ray position (origin)"""
         return Vector3(0, address=self._address + 0)
 
     @position.setter
@@ -1803,6 +1918,7 @@ class Ray:
 
     @property
     def direction(self):
+        """Ray direction"""
         return Vector3(0, address=self._address + 12)
 
     @direction.setter
@@ -1839,6 +1955,7 @@ class RayCollision:
 
     @property
     def hit(self):
+        """Did the ray hit something?"""
         return _mod.mem.getInt8(self._address + 0, True)
 
     @hit.setter
@@ -1848,6 +1965,7 @@ class RayCollision:
 
     @property
     def distance(self):
+        """Distance to the nearest hit"""
         return _mod.mem.getFloat32(self._address + 1, True)
 
     @distance.setter
@@ -1857,6 +1975,7 @@ class RayCollision:
 
     @property
     def point(self):
+        """Point of the nearest hit"""
         return Vector3(0, address=self._address + 5)
 
     @point.setter
@@ -1866,6 +1985,7 @@ class RayCollision:
 
     @property
     def normal(self):
+        """Surface normal of hit"""
         return Vector3(0, address=self._address + 17)
 
     @normal.setter
@@ -1900,6 +2020,7 @@ class BoundingBox:
 
     @property
     def min(self):
+        """Minimum vertex box-corner"""
         return Vector3(0, address=self._address + 0)
 
     @min.setter
@@ -1909,6 +2030,7 @@ class BoundingBox:
 
     @property
     def max(self):
+        """Maximum vertex box-corner"""
         return Vector3(0, address=self._address + 12)
 
     @max.setter
@@ -1944,6 +2066,7 @@ class Wave:
 
     @property
     def frameCount(self):
+        """Total number of frames (considering channels)"""
         return _mod.mem.getUint32(self._address + 0, True)
 
     @frameCount.setter
@@ -1953,6 +2076,7 @@ class Wave:
 
     @property
     def sampleRate(self):
+        """Frequency (samples per second)"""
         return _mod.mem.getUint32(self._address + 4, True)
 
     @sampleRate.setter
@@ -1962,6 +2086,7 @@ class Wave:
 
     @property
     def sampleSize(self):
+        """Bit depth (bits per sample): 8, 16, 32 (24 not supported)"""
         return _mod.mem.getUint32(self._address + 8, True)
 
     @sampleSize.setter
@@ -1971,6 +2096,7 @@ class Wave:
 
     @property
     def channels(self):
+        """Number of channels (1-mono, 2-stereo, ...)"""
         return _mod.mem.getUint32(self._address + 12, True)
 
     @channels.setter
@@ -1980,6 +2106,7 @@ class Wave:
 
     @property
     def data(self):
+        """Buffer data pointer"""
         return _mod.mem.getUint32(self._address + 16, True)
 
     @data.setter
@@ -2015,6 +2142,7 @@ class AudioStream:
 
     @property
     def buffer(self):
+        """Pointer to internal data used by the audio system"""
         return _mod.mem.getUint32(self._address + 0, True)
 
     @buffer.setter
@@ -2024,6 +2152,7 @@ class AudioStream:
 
     @property
     def processor(self):
+        """Pointer to internal data processor, useful for audio effects"""
         return _mod.mem.getUint32(self._address + 4, True)
 
     @processor.setter
@@ -2033,6 +2162,7 @@ class AudioStream:
 
     @property
     def sampleRate(self):
+        """Frequency (samples per second)"""
         return _mod.mem.getUint32(self._address + 8, True)
 
     @sampleRate.setter
@@ -2042,6 +2172,7 @@ class AudioStream:
 
     @property
     def sampleSize(self):
+        """Bit depth (bits per sample): 8, 16, 32 (24 not supported)"""
         return _mod.mem.getUint32(self._address + 12, True)
 
     @sampleSize.setter
@@ -2051,6 +2182,7 @@ class AudioStream:
 
     @property
     def channels(self):
+        """Number of channels (1-mono, 2-stereo, ...)"""
         return _mod.mem.getUint32(self._address + 16, True)
 
     @channels.setter
@@ -2084,6 +2216,7 @@ class Sound:
 
     @property
     def stream(self):
+        """Audio stream"""
         return AudioStream(0, address=self._address + 0)
 
     @stream.setter
@@ -2093,6 +2226,7 @@ class Sound:
 
     @property
     def frameCount(self):
+        """Total number of frames (considering channels)"""
         return _mod.mem.getUint32(self._address + 20, True)
 
     @frameCount.setter
@@ -2129,6 +2263,7 @@ class Music:
 
     @property
     def stream(self):
+        """Audio stream"""
         return AudioStream(0, address=self._address + 0)
 
     @stream.setter
@@ -2138,6 +2273,7 @@ class Music:
 
     @property
     def frameCount(self):
+        """Total number of frames (considering channels)"""
         return _mod.mem.getUint32(self._address + 20, True)
 
     @frameCount.setter
@@ -2147,6 +2283,7 @@ class Music:
 
     @property
     def looping(self):
+        """Music looping enable"""
         return _mod.mem.getInt8(self._address + 24, True)
 
     @looping.setter
@@ -2156,6 +2293,7 @@ class Music:
 
     @property
     def ctxType(self):
+        """Type of music context (audio filetype)"""
         return _mod.mem.getInt32(self._address + 25, True)
 
     @ctxType.setter
@@ -2165,6 +2303,7 @@ class Music:
 
     @property
     def ctxData(self):
+        """Audio context data, depends on type"""
         return _mod.mem.getUint32(self._address + 29, True)
 
     @ctxData.setter
@@ -2207,6 +2346,7 @@ class VrDeviceInfo:
 
     @property
     def hResolution(self):
+        """Horizontal resolution in pixels"""
         return _mod.mem.getInt32(self._address + 0, True)
 
     @hResolution.setter
@@ -2216,6 +2356,7 @@ class VrDeviceInfo:
 
     @property
     def vResolution(self):
+        """Vertical resolution in pixels"""
         return _mod.mem.getInt32(self._address + 4, True)
 
     @vResolution.setter
@@ -2225,6 +2366,7 @@ class VrDeviceInfo:
 
     @property
     def hScreenSize(self):
+        """Horizontal size in meters"""
         return _mod.mem.getFloat32(self._address + 8, True)
 
     @hScreenSize.setter
@@ -2234,6 +2376,7 @@ class VrDeviceInfo:
 
     @property
     def vScreenSize(self):
+        """Vertical size in meters"""
         return _mod.mem.getFloat32(self._address + 12, True)
 
     @vScreenSize.setter
@@ -2243,6 +2386,7 @@ class VrDeviceInfo:
 
     @property
     def vScreenCenter(self):
+        """Screen center in meters"""
         return _mod.mem.getFloat32(self._address + 16, True)
 
     @vScreenCenter.setter
@@ -2252,6 +2396,7 @@ class VrDeviceInfo:
 
     @property
     def eyeToScreenDistance(self):
+        """Distance between eye and display in meters"""
         return _mod.mem.getFloat32(self._address + 20, True)
 
     @eyeToScreenDistance.setter
@@ -2261,6 +2406,7 @@ class VrDeviceInfo:
 
     @property
     def lensSeparationDistance(self):
+        """Lens separation distance in meters"""
         return _mod.mem.getFloat32(self._address + 24, True)
 
     @lensSeparationDistance.setter
@@ -2270,6 +2416,7 @@ class VrDeviceInfo:
 
     @property
     def interpupillaryDistance(self):
+        """IPD (distance between pupils) in meters"""
         return _mod.mem.getFloat32(self._address + 28, True)
 
     @interpupillaryDistance.setter
@@ -2279,6 +2426,7 @@ class VrDeviceInfo:
 
     @property
     def lensDistortionValues(self):
+        """Lens distortion constant parameters"""
         return FloatArray(4, address=self._address + 32)
 
     @lensDistortionValues.setter
@@ -2288,6 +2436,7 @@ class VrDeviceInfo:
 
     @property
     def chromaAbCorrection(self):
+        """Chromatic aberration correction parameters"""
         return FloatArray(4, address=self._address + 48)
 
     @chromaAbCorrection.setter
@@ -2334,6 +2483,7 @@ class VrStereoConfig:
 
     @property
     def projection(self):
+        """VR projection matrices (per eye)"""
         return StructArray(Matrix, 2, address=self._address + 0)
 
     @projection.setter
@@ -2343,6 +2493,7 @@ class VrStereoConfig:
 
     @property
     def viewOffset(self):
+        """VR view offset matrices (per eye)"""
         return StructArray(Matrix, 2, address=self._address + 128)
 
     @viewOffset.setter
@@ -2352,6 +2503,7 @@ class VrStereoConfig:
 
     @property
     def leftLensCenter(self):
+        """VR left lens center"""
         return FloatArray(2, address=self._address + 256)
 
     @leftLensCenter.setter
@@ -2361,6 +2513,7 @@ class VrStereoConfig:
 
     @property
     def rightLensCenter(self):
+        """VR right lens center"""
         return FloatArray(2, address=self._address + 264)
 
     @rightLensCenter.setter
@@ -2370,6 +2523,7 @@ class VrStereoConfig:
 
     @property
     def leftScreenCenter(self):
+        """VR left screen center"""
         return FloatArray(2, address=self._address + 272)
 
     @leftScreenCenter.setter
@@ -2379,6 +2533,7 @@ class VrStereoConfig:
 
     @property
     def rightScreenCenter(self):
+        """VR right screen center"""
         return FloatArray(2, address=self._address + 280)
 
     @rightScreenCenter.setter
@@ -2388,6 +2543,7 @@ class VrStereoConfig:
 
     @property
     def scale(self):
+        """VR distortion scale"""
         return FloatArray(2, address=self._address + 288)
 
     @scale.setter
@@ -2397,6 +2553,7 @@ class VrStereoConfig:
 
     @property
     def scaleIn(self):
+        """VR distortion scale in"""
         return FloatArray(2, address=self._address + 296)
 
     @scaleIn.setter
@@ -2430,6 +2587,7 @@ class FilePathList:
 
     @property
     def capacity(self):
+        """Filepaths max entries"""
         return _mod.mem.getUint32(self._address + 0, True)
 
     @capacity.setter
@@ -2439,6 +2597,7 @@ class FilePathList:
 
     @property
     def count(self):
+        """Filepaths entries count"""
         return _mod.mem.getUint32(self._address + 4, True)
 
     @count.setter
@@ -2448,6 +2607,7 @@ class FilePathList:
 
     @property
     def paths(self):
+        """Filepaths entries"""
         return _mod.mem.getUint32(self._address + 8, True)
 
     @paths.setter
@@ -2850,201 +3010,243 @@ RAD2DEG: float = (180.0/PI)
 def InitWindow(width: int, height: int, title: str):
     title_ = _mod._malloc(len(title) + 1)
     _mod.stringToUTF8(title, title_, len(title) + 1)
+    """Initialize window and OpenGL context"""
     _mod._InitWindow(width, height, title_)
     _mod._free(title_)
 
 
 def WindowShouldClose() -> int:
+    """Check if KEY_ESCAPE pressed or Close icon pressed"""
     return_interface = _mod._WindowShouldClose()
     return return_interface
 
 
 def CloseWindow():
+    """Close window and unload OpenGL context"""
     _mod._CloseWindow()
 
 
 def IsWindowReady() -> int:
+    """Check if window has been initialized successfully"""
     return_interface = _mod._IsWindowReady()
     return return_interface
 
 
 def IsWindowFullscreen() -> int:
+    """Check if window is currently fullscreen"""
     return_interface = _mod._IsWindowFullscreen()
     return return_interface
 
 
 def IsWindowHidden() -> int:
+    """Check if window is currently hidden (only PLATFORM_DESKTOP)"""
     return_interface = _mod._IsWindowHidden()
     return return_interface
 
 
 def IsWindowMinimized() -> int:
+    """Check if window is currently minimized (only PLATFORM_DESKTOP)"""
     return_interface = _mod._IsWindowMinimized()
     return return_interface
 
 
 def IsWindowMaximized() -> int:
+    """Check if window is currently maximized (only PLATFORM_DESKTOP)"""
     return_interface = _mod._IsWindowMaximized()
     return return_interface
 
 
 def IsWindowFocused() -> int:
+    """Check if window is currently focused (only PLATFORM_DESKTOP)"""
     return_interface = _mod._IsWindowFocused()
     return return_interface
 
 
 def IsWindowResized() -> int:
+    """Check if window has been resized last frame"""
     return_interface = _mod._IsWindowResized()
     return return_interface
 
 
 def IsWindowState(flag: int) -> int:
+    """Check if one specific window flag is enabled"""
     return_interface = _mod._IsWindowState(flag)
     return return_interface
 
 
 def SetWindowState(flags: int):
+    """Set window configuration state using flags (only PLATFORM_DESKTOP)"""
     _mod._SetWindowState(flags)
 
 
 def ClearWindowState(flags: int):
+    """Clear window configuration state flags"""
     _mod._ClearWindowState(flags)
 
 
 def ToggleFullscreen():
+    """Toggle window state: fullscreen/windowed (only PLATFORM_DESKTOP)"""
     _mod._ToggleFullscreen()
 
 
 def MaximizeWindow():
+    """Set window state: maximized, if resizable (only PLATFORM_DESKTOP)"""
     _mod._MaximizeWindow()
 
 
 def MinimizeWindow():
+    """Set window state: minimized, if resizable (only PLATFORM_DESKTOP)"""
     _mod._MinimizeWindow()
 
 
 def RestoreWindow():
+    """Set window state: not minimized/maximized (only PLATFORM_DESKTOP)"""
     _mod._RestoreWindow()
 
 
 def SetWindowIcon(image: Image):
+    """Set icon for window (single image, RGBA 32bit, only PLATFORM_DESKTOP)"""
     _mod._SetWindowIcon(image._address)
 
 
 def SetWindowIcons(images: int, count: int):
+    """Set icon for window (multiple images, RGBA 32bit, only PLATFORM_DESKTOP)"""
     _mod._SetWindowIcons(images, count)
 
 
 def SetWindowTitle(title: str):
     title_ = _mod._malloc(len(title) + 1)
     _mod.stringToUTF8(title, title_, len(title) + 1)
+    """Set title for window (only PLATFORM_DESKTOP)"""
     _mod._SetWindowTitle(title_)
     _mod._free(title_)
 
 
 def SetWindowPosition(x: int, y: int):
+    """Set window position on screen (only PLATFORM_DESKTOP)"""
     _mod._SetWindowPosition(x, y)
 
 
 def SetWindowMonitor(monitor: int):
+    """Set monitor for the current window (fullscreen mode)"""
     _mod._SetWindowMonitor(monitor)
 
 
 def SetWindowMinSize(width: int, height: int):
+    """Set window minimum dimensions (for FLAG_WINDOW_RESIZABLE)"""
     _mod._SetWindowMinSize(width, height)
 
 
 def SetWindowSize(width: int, height: int):
+    """Set window dimensions"""
     _mod._SetWindowSize(width, height)
 
 
 def SetWindowOpacity(opacity: float):
+    """Set window opacity [0.0f..1.0f] (only PLATFORM_DESKTOP)"""
     _mod._SetWindowOpacity(opacity)
 
 
 def SetWindowFocused():
+    """Set window focused (only PLATFORM_DESKTOP)"""
     _mod._SetWindowFocused()
 
 
 def GetWindowHandle() -> int:
+    """Get native window handle"""
     return_interface = _mod._GetWindowHandle()
     return return_interface
 
 
 def GetScreenWidth() -> int:
+    """Get current screen width"""
     return_interface = _mod._GetScreenWidth()
     return return_interface
 
 
 def GetScreenHeight() -> int:
+    """Get current screen height"""
     return_interface = _mod._GetScreenHeight()
     return return_interface
 
 
 def GetRenderWidth() -> int:
+    """Get current render width (it considers HiDPI)"""
     return_interface = _mod._GetRenderWidth()
     return return_interface
 
 
 def GetRenderHeight() -> int:
+    """Get current render height (it considers HiDPI)"""
     return_interface = _mod._GetRenderHeight()
     return return_interface
 
 
 def GetMonitorCount() -> int:
+    """Get number of connected monitors"""
     return_interface = _mod._GetMonitorCount()
     return return_interface
 
 
 def GetCurrentMonitor() -> int:
+    """Get current connected monitor"""
     return_interface = _mod._GetCurrentMonitor()
     return return_interface
 
 
 def GetMonitorPosition(monitor: int) -> Vector2:
     Vector2_ = Vector2()
+    """Get specified monitor position"""
     _mod._GetMonitorPosition(Vector2_._address, monitor)
     return Vector2_
 
 
 def GetMonitorWidth(monitor: int) -> int:
+    """Get specified monitor width (current video mode used by monitor)"""
     return_interface = _mod._GetMonitorWidth(monitor)
     return return_interface
 
 
 def GetMonitorHeight(monitor: int) -> int:
+    """Get specified monitor height (current video mode used by monitor)"""
     return_interface = _mod._GetMonitorHeight(monitor)
     return return_interface
 
 
 def GetMonitorPhysicalWidth(monitor: int) -> int:
+    """Get specified monitor physical width in millimetres"""
     return_interface = _mod._GetMonitorPhysicalWidth(monitor)
     return return_interface
 
 
 def GetMonitorPhysicalHeight(monitor: int) -> int:
+    """Get specified monitor physical height in millimetres"""
     return_interface = _mod._GetMonitorPhysicalHeight(monitor)
     return return_interface
 
 
 def GetMonitorRefreshRate(monitor: int) -> int:
+    """Get specified monitor refresh rate"""
     return_interface = _mod._GetMonitorRefreshRate(monitor)
     return return_interface
 
 
 def GetWindowPosition() -> Vector2:
     Vector2_ = Vector2()
+    """Get window position XY on monitor"""
     _mod._GetWindowPosition(Vector2_._address)
     return Vector2_
 
 
 def GetWindowScaleDPI() -> Vector2:
     Vector2_ = Vector2()
+    """Get window scale DPI factor"""
     _mod._GetWindowScaleDPI(Vector2_._address)
     return Vector2_
 
 
 def GetMonitorName(monitor: int) -> int:
+    """Get the human-readable, UTF-8 encoded name of the primary monitor"""
     return_interface = _mod._GetMonitorName(monitor)
     return return_interface
 
@@ -3052,136 +3254,168 @@ def GetMonitorName(monitor: int) -> int:
 def SetClipboardText(text: str):
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Set clipboard text content"""
     _mod._SetClipboardText(text_)
     _mod._free(text_)
 
 
 def GetClipboardText() -> int:
+    """Get clipboard text content"""
     return_interface = _mod._GetClipboardText()
     return return_interface
 
 
 def EnableEventWaiting():
+    """Enable waiting for events on EndDrawing(), no automatic event polling"""
     _mod._EnableEventWaiting()
 
 
 def DisableEventWaiting():
+    """Disable waiting for events on EndDrawing(), automatic events polling"""
     _mod._DisableEventWaiting()
 
 
 def SwapScreenBuffer():
+    """Swap back buffer with front buffer (screen drawing)"""
     _mod._SwapScreenBuffer()
 
 
 def PollInputEvents():
+    """Register all input events"""
     _mod._PollInputEvents()
 
 
 def WaitTime(seconds: float):
+    """Wait for some time (halt program execution)"""
     _mod._WaitTime(seconds)
 
 
 def ShowCursor():
+    """Shows cursor"""
     _mod._ShowCursor()
 
 
 def HideCursor():
+    """Hides cursor"""
     _mod._HideCursor()
 
 
 def IsCursorHidden() -> int:
+    """Check if cursor is not visible"""
     return_interface = _mod._IsCursorHidden()
     return return_interface
 
 
 def EnableCursor():
+    """Enables cursor (unlock cursor)"""
     _mod._EnableCursor()
 
 
 def DisableCursor():
+    """Disables cursor (lock cursor)"""
     _mod._DisableCursor()
 
 
 def IsCursorOnScreen() -> int:
+    """Check if cursor is on the screen"""
     return_interface = _mod._IsCursorOnScreen()
     return return_interface
 
 
 def ClearBackground(color: Color):
+    """Set background color (framebuffer clear color)"""
     _mod._ClearBackground(color._address)
 
 
 def BeginDrawing():
+    """Setup canvas (framebuffer) to start drawing"""
     _mod._BeginDrawing()
 
 
 def EndDrawing():
+    """End canvas drawing and swap buffers (double buffering)"""
     _mod._EndDrawing()
 
 
 def BeginMode2D(camera: Camera2D):
+    """Begin 2D mode with custom camera (2D)"""
     _mod._BeginMode2D(camera._address)
 
 
 def EndMode2D():
+    """Ends 2D mode with custom camera"""
     _mod._EndMode2D()
 
 
 def BeginMode3D(camera: Camera3D):
+    """Begin 3D mode with custom camera (3D)"""
     _mod._BeginMode3D(camera._address)
 
 
 def EndMode3D():
+    """Ends 3D mode and returns to default 2D orthographic mode"""
     _mod._EndMode3D()
 
 
 def BeginTextureMode(target: RenderTexture2D):
+    """Begin drawing to render texture"""
     _mod._BeginTextureMode(target._address)
 
 
 def EndTextureMode():
+    """Ends drawing to render texture"""
     _mod._EndTextureMode()
 
 
 def BeginShaderMode(shader: Shader):
+    """Begin custom shader drawing"""
     _mod._BeginShaderMode(shader._address)
 
 
 def EndShaderMode():
+    """End custom shader drawing (use default shader)"""
     _mod._EndShaderMode()
 
 
 def BeginBlendMode(mode: int):
+    """Begin blending mode (alpha, additive, multiplied, subtract, custom)"""
     _mod._BeginBlendMode(mode)
 
 
 def EndBlendMode():
+    """End blending mode (reset to default: alpha blending)"""
     _mod._EndBlendMode()
 
 
 def BeginScissorMode(x: int, y: int, width: int, height: int):
+    """Begin scissor mode (define screen area for following drawing)"""
     _mod._BeginScissorMode(x, y, width, height)
 
 
 def EndScissorMode():
+    """End scissor mode"""
     _mod._EndScissorMode()
 
 
 def BeginVrStereoMode(config: VrStereoConfig):
+    """Begin stereo rendering (requires VR simulator)"""
     _mod._BeginVrStereoMode(config._address)
 
 
 def EndVrStereoMode():
+    """End stereo rendering (requires VR simulator)"""
     _mod._EndVrStereoMode()
 
 
 def LoadVrStereoConfig(device: VrDeviceInfo) -> VrStereoConfig:
     VrStereoConfig_ = VrStereoConfig()
+    """Load VR stereo config for VR simulator device parameters"""
     _mod._LoadVrStereoConfig(VrStereoConfig_._address, device._address)
     return VrStereoConfig_
 
 
 def UnloadVrStereoConfig(config: VrStereoConfig):
+    """Unload VR stereo config"""
     _mod._UnloadVrStereoConfig(config._address)
 
 
@@ -3191,6 +3425,7 @@ def LoadShader(vsFileName: str, fsFileName: str) -> Shader:
     _mod.stringToUTF8(vsFileName, vsFileName_, len(vsFileName) + 1)
     fsFileName_ = _mod._malloc(len(fsFileName) + 1)
     _mod.stringToUTF8(fsFileName, fsFileName_, len(fsFileName) + 1)
+    """Load shader from files and bind default locations"""
     _mod._LoadShader(Shader_._address, vsFileName_, fsFileName_)
     _mod._free(vsFileName_)
     _mod._free(fsFileName_)
@@ -3203,6 +3438,7 @@ def LoadShaderFromMemory(vsCode: str, fsCode: str) -> Shader:
     _mod.stringToUTF8(vsCode, vsCode_, len(vsCode) + 1)
     fsCode_ = _mod._malloc(len(fsCode) + 1)
     _mod.stringToUTF8(fsCode, fsCode_, len(fsCode) + 1)
+    """Load shader from code strings and bind default locations"""
     _mod._LoadShaderFromMemory(Shader_._address, vsCode_, fsCode_)
     _mod._free(vsCode_)
     _mod._free(fsCode_)
@@ -3210,6 +3446,7 @@ def LoadShaderFromMemory(vsCode: str, fsCode: str) -> Shader:
 
 
 def IsShaderReady(shader: Shader) -> int:
+    """Check if a shader is ready"""
     return_interface = _mod._IsShaderReady(shader._address)
     return return_interface
 
@@ -3217,6 +3454,7 @@ def IsShaderReady(shader: Shader) -> int:
 def GetShaderLocation(shader: Shader, uniformName: str) -> int:
     uniformName_ = _mod._malloc(len(uniformName) + 1)
     _mod.stringToUTF8(uniformName, uniformName_, len(uniformName) + 1)
+    """Get shader uniform location"""
     return_interface = _mod._GetShaderLocation(shader._address, uniformName_)
     _mod._free(uniformName_)
     return return_interface
@@ -3225,133 +3463,159 @@ def GetShaderLocation(shader: Shader, uniformName: str) -> int:
 def GetShaderLocationAttrib(shader: Shader, attribName: str) -> int:
     attribName_ = _mod._malloc(len(attribName) + 1)
     _mod.stringToUTF8(attribName, attribName_, len(attribName) + 1)
+    """Get shader attribute location"""
     return_interface = _mod._GetShaderLocationAttrib(shader._address, attribName_)
     _mod._free(attribName_)
     return return_interface
 
 
 def SetShaderValue(shader: Shader, locIndex: int, value: int, uniformType: int):
+    """Set shader uniform value"""
     _mod._SetShaderValue(shader._address, locIndex, value, uniformType)
 
 
 def SetShaderValueV(shader: Shader, locIndex: int, value: int, uniformType: int, count: int):
+    """Set shader uniform value vector"""
     _mod._SetShaderValueV(shader._address, locIndex, value, uniformType, count)
 
 
 def SetShaderValueMatrix(shader: Shader, locIndex: int, mat: Matrix):
+    """Set shader uniform value (matrix 4x4)"""
     _mod._SetShaderValueMatrix(shader._address, locIndex, mat._address)
 
 
 def SetShaderValueTexture(shader: Shader, locIndex: int, texture: Texture2D):
+    """Set shader uniform value for texture (sampler2d)"""
     _mod._SetShaderValueTexture(shader._address, locIndex, texture._address)
 
 
 def UnloadShader(shader: Shader):
+    """Unload shader from GPU memory (VRAM)"""
     _mod._UnloadShader(shader._address)
 
 
 def GetMouseRay(mousePosition: Vector2, camera: Camera) -> Ray:
     Ray_ = Ray()
+    """Get a ray trace from mouse position"""
     _mod._GetMouseRay(Ray_._address, mousePosition._address, camera._address)
     return Ray_
 
 
 def GetCameraMatrix(camera: Camera) -> Matrix:
     Matrix_ = Matrix()
+    """Get camera transform matrix (view matrix)"""
     _mod._GetCameraMatrix(Matrix_._address, camera._address)
     return Matrix_
 
 
 def GetCameraMatrix2D(camera: Camera2D) -> Matrix:
     Matrix_ = Matrix()
+    """Get camera 2d transform matrix"""
     _mod._GetCameraMatrix2D(Matrix_._address, camera._address)
     return Matrix_
 
 
 def GetWorldToScreen(position: Vector3, camera: Camera) -> Vector2:
     Vector2_ = Vector2()
+    """Get the screen space position for a 3d world space position"""
     _mod._GetWorldToScreen(Vector2_._address, position._address, camera._address)
     return Vector2_
 
 
 def GetScreenToWorld2D(position: Vector2, camera: Camera2D) -> Vector2:
     Vector2_ = Vector2()
+    """Get the world space position for a 2d camera screen space position"""
     _mod._GetScreenToWorld2D(Vector2_._address, position._address, camera._address)
     return Vector2_
 
 
 def GetWorldToScreenEx(position: Vector3, camera: Camera, width: int, height: int) -> Vector2:
     Vector2_ = Vector2()
+    """Get size position for a 3d world space position"""
     _mod._GetWorldToScreenEx(Vector2_._address, position._address, camera._address, width, height)
     return Vector2_
 
 
 def GetWorldToScreen2D(position: Vector2, camera: Camera2D) -> Vector2:
     Vector2_ = Vector2()
+    """Get the screen space position for a 2d camera world space position"""
     _mod._GetWorldToScreen2D(Vector2_._address, position._address, camera._address)
     return Vector2_
 
 
 def SetTargetFPS(fps: int):
+    """Set target FPS (maximum)"""
     _mod._SetTargetFPS(fps)
 
 
 def GetFPS() -> int:
+    """Get current FPS"""
     return_interface = _mod._GetFPS()
     return return_interface
 
 
 def GetFrameTime() -> float:
+    """Get time in seconds for last frame drawn (delta time)"""
     return_interface = _mod._GetFrameTime()
     return return_interface
 
 
 def GetTime() -> float:
+    """Get elapsed time in seconds since InitWindow()"""
     return_interface = _mod._GetTime()
     return return_interface
 
 
 def GetRandomValue(min: int, max: int) -> int:
+    """Get a random value between min and max (both included)"""
     return_interface = _mod._GetRandomValue(min, max)
     return return_interface
 
 
 def SetRandomSeed(seed: int):
+    """Set the seed for the random number generator"""
     _mod._SetRandomSeed(seed)
 
 
 def TakeScreenshot(fileName: str):
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Takes a screenshot of current screen (filename extension defines format)"""
     _mod._TakeScreenshot(fileName_)
     _mod._free(fileName_)
 
 
 def SetConfigFlags(flags: int):
+    """Setup init configuration flags (view FLAGS)"""
     _mod._SetConfigFlags(flags)
 
 
 def SetTraceLogLevel(logLevel: int):
+    """Set the current threshold (minimum) log level"""
     _mod._SetTraceLogLevel(logLevel)
 
 
 def MemAlloc(size: int) -> int:
+    """Internal memory allocator"""
     return_interface = _mod._MemAlloc(size)
     return return_interface
 
 
 def MemRealloc(ptr: int, size: int) -> int:
+    """Internal memory reallocator"""
     return_interface = _mod._MemRealloc(ptr, size)
     return return_interface
 
 
 def MemFree(ptr: int):
+    """Internal memory free"""
     _mod._MemFree(ptr)
 
 
 def OpenURL(url: str):
     url_ = _mod._malloc(len(url) + 1)
     _mod.stringToUTF8(url, url_, len(url) + 1)
+    """Open URL with default system browser (if available)"""
     _mod._OpenURL(url_)
     _mod._free(url_)
 
@@ -3359,18 +3623,21 @@ def OpenURL(url: str):
 def LoadFileData(fileName: str, bytesRead: int) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Load file data as byte array (read)"""
     return_interface = _mod._LoadFileData(fileName_, bytesRead)
     _mod._free(fileName_)
     return return_interface
 
 
 def UnloadFileData(data: int):
+    """Unload file data allocated by LoadFileData()"""
     _mod._UnloadFileData(data)
 
 
 def SaveFileData(fileName: str, data: int, bytesToWrite: int) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Save data to file from byte array (write), returns true on success"""
     return_interface = _mod._SaveFileData(fileName_, data, bytesToWrite)
     _mod._free(fileName_)
     return return_interface
@@ -3379,6 +3646,7 @@ def SaveFileData(fileName: str, data: int, bytesToWrite: int) -> int:
 def ExportDataAsCode(data: int, size: int, fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Export data to code (.h), returns true on success"""
     return_interface = _mod._ExportDataAsCode(data, size, fileName_)
     _mod._free(fileName_)
     return return_interface
@@ -3387,18 +3655,21 @@ def ExportDataAsCode(data: int, size: int, fileName: str) -> int:
 def LoadFileText(fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Load text data from file (read), returns a '\0' terminated string"""
     return_interface = _mod._LoadFileText(fileName_)
     _mod._free(fileName_)
     return return_interface
 
 
 def UnloadFileText(text: int):
+    """Unload file text data allocated by LoadFileText()"""
     _mod._UnloadFileText(text)
 
 
 def SaveFileText(fileName: str, text: int) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Save text data to file (write), string must be '\0' terminated, returns true on success"""
     return_interface = _mod._SaveFileText(fileName_, text)
     _mod._free(fileName_)
     return return_interface
@@ -3407,6 +3678,7 @@ def SaveFileText(fileName: str, text: int) -> int:
 def FileExists(fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Check if file exists"""
     return_interface = _mod._FileExists(fileName_)
     _mod._free(fileName_)
     return return_interface
@@ -3415,6 +3687,7 @@ def FileExists(fileName: str) -> int:
 def DirectoryExists(dirPath: str) -> int:
     dirPath_ = _mod._malloc(len(dirPath) + 1)
     _mod.stringToUTF8(dirPath, dirPath_, len(dirPath) + 1)
+    """Check if a directory path exists"""
     return_interface = _mod._DirectoryExists(dirPath_)
     _mod._free(dirPath_)
     return return_interface
@@ -3425,6 +3698,7 @@ def IsFileExtension(fileName: str, ext: str) -> int:
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
     ext_ = _mod._malloc(len(ext) + 1)
     _mod.stringToUTF8(ext, ext_, len(ext) + 1)
+    """Check file extension (including point: .png, .wav)"""
     return_interface = _mod._IsFileExtension(fileName_, ext_)
     _mod._free(fileName_)
     _mod._free(ext_)
@@ -3434,6 +3708,7 @@ def IsFileExtension(fileName: str, ext: str) -> int:
 def GetFileLength(fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Get file length in bytes (NOTE: GetFileSize() conflicts with windows.h)"""
     return_interface = _mod._GetFileLength(fileName_)
     _mod._free(fileName_)
     return return_interface
@@ -3442,6 +3717,7 @@ def GetFileLength(fileName: str) -> int:
 def GetFileExtension(fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Get pointer to extension for a filename string (includes dot: '.png')"""
     return_interface = _mod._GetFileExtension(fileName_)
     _mod._free(fileName_)
     return return_interface
@@ -3450,6 +3726,7 @@ def GetFileExtension(fileName: str) -> int:
 def GetFileName(filePath: str) -> int:
     filePath_ = _mod._malloc(len(filePath) + 1)
     _mod.stringToUTF8(filePath, filePath_, len(filePath) + 1)
+    """Get pointer to filename for a path string"""
     return_interface = _mod._GetFileName(filePath_)
     _mod._free(filePath_)
     return return_interface
@@ -3458,6 +3735,7 @@ def GetFileName(filePath: str) -> int:
 def GetFileNameWithoutExt(filePath: str) -> int:
     filePath_ = _mod._malloc(len(filePath) + 1)
     _mod.stringToUTF8(filePath, filePath_, len(filePath) + 1)
+    """Get filename string without extension (uses static string)"""
     return_interface = _mod._GetFileNameWithoutExt(filePath_)
     _mod._free(filePath_)
     return return_interface
@@ -3466,6 +3744,7 @@ def GetFileNameWithoutExt(filePath: str) -> int:
 def GetDirectoryPath(filePath: str) -> int:
     filePath_ = _mod._malloc(len(filePath) + 1)
     _mod.stringToUTF8(filePath, filePath_, len(filePath) + 1)
+    """Get full path for a given fileName with path (uses static string)"""
     return_interface = _mod._GetDirectoryPath(filePath_)
     _mod._free(filePath_)
     return return_interface
@@ -3474,17 +3753,20 @@ def GetDirectoryPath(filePath: str) -> int:
 def GetPrevDirectoryPath(dirPath: str) -> int:
     dirPath_ = _mod._malloc(len(dirPath) + 1)
     _mod.stringToUTF8(dirPath, dirPath_, len(dirPath) + 1)
+    """Get previous directory path for a given path (uses static string)"""
     return_interface = _mod._GetPrevDirectoryPath(dirPath_)
     _mod._free(dirPath_)
     return return_interface
 
 
 def GetWorkingDirectory() -> int:
+    """Get current working directory (uses static string)"""
     return_interface = _mod._GetWorkingDirectory()
     return return_interface
 
 
 def GetApplicationDirectory() -> int:
+    """Get the directory if the running application (uses static string)"""
     return_interface = _mod._GetApplicationDirectory()
     return return_interface
 
@@ -3492,6 +3774,7 @@ def GetApplicationDirectory() -> int:
 def ChangeDirectory(dir: str) -> int:
     dir_ = _mod._malloc(len(dir) + 1)
     _mod.stringToUTF8(dir, dir_, len(dir) + 1)
+    """Change working directory, return true on success"""
     return_interface = _mod._ChangeDirectory(dir_)
     _mod._free(dir_)
     return return_interface
@@ -3500,6 +3783,7 @@ def ChangeDirectory(dir: str) -> int:
 def IsPathFile(path: str) -> int:
     path_ = _mod._malloc(len(path) + 1)
     _mod.stringToUTF8(path, path_, len(path) + 1)
+    """Check if a given path is a file or a directory"""
     return_interface = _mod._IsPathFile(path_)
     _mod._free(path_)
     return return_interface
@@ -3509,6 +3793,7 @@ def LoadDirectoryFiles(dirPath: str) -> FilePathList:
     FilePathList_ = FilePathList()
     dirPath_ = _mod._malloc(len(dirPath) + 1)
     _mod.stringToUTF8(dirPath, dirPath_, len(dirPath) + 1)
+    """Load directory filepaths"""
     _mod._LoadDirectoryFiles(FilePathList_._address, dirPath_)
     _mod._free(dirPath_)
     return FilePathList_
@@ -3520,6 +3805,7 @@ def LoadDirectoryFilesEx(basePath: str, filter: str, scanSubdirs: int) -> FilePa
     _mod.stringToUTF8(basePath, basePath_, len(basePath) + 1)
     filter_ = _mod._malloc(len(filter) + 1)
     _mod.stringToUTF8(filter, filter_, len(filter) + 1)
+    """Load directory filepaths with extension filtering and recursive directory scan"""
     _mod._LoadDirectoryFilesEx(FilePathList_._address, basePath_, filter_, scanSubdirs)
     _mod._free(basePath_)
     _mod._free(filter_)
@@ -3527,127 +3813,152 @@ def LoadDirectoryFilesEx(basePath: str, filter: str, scanSubdirs: int) -> FilePa
 
 
 def UnloadDirectoryFiles(files: FilePathList):
+    """Unload filepaths"""
     _mod._UnloadDirectoryFiles(files._address)
 
 
 def IsFileDropped() -> int:
+    """Check if a file has been dropped into window"""
     return_interface = _mod._IsFileDropped()
     return return_interface
 
 
 def LoadDroppedFiles() -> FilePathList:
     FilePathList_ = FilePathList()
+    """Load dropped filepaths"""
     _mod._LoadDroppedFiles(FilePathList_._address)
     return FilePathList_
 
 
 def UnloadDroppedFiles(files: FilePathList):
+    """Unload dropped filepaths"""
     _mod._UnloadDroppedFiles(files._address)
 
 
 def GetFileModTime(fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Get file modification time (last write time)"""
     return_interface = _mod._GetFileModTime(fileName_)
     _mod._free(fileName_)
     return return_interface
 
 
 def CompressData(data: int, dataSize: int, compDataSize: int) -> int:
+    """Compress data (DEFLATE algorithm), memory must be MemFree()"""
     return_interface = _mod._CompressData(data, dataSize, compDataSize)
     return return_interface
 
 
 def DecompressData(compData: int, compDataSize: int, dataSize: int) -> int:
+    """Decompress data (DEFLATE algorithm), memory must be MemFree()"""
     return_interface = _mod._DecompressData(compData, compDataSize, dataSize)
     return return_interface
 
 
 def EncodeDataBase64(data: int, dataSize: int, outputSize: int) -> int:
+    """Encode data to Base64 string, memory must be MemFree()"""
     return_interface = _mod._EncodeDataBase64(data, dataSize, outputSize)
     return return_interface
 
 
 def DecodeDataBase64(data: int, outputSize: int) -> int:
+    """Decode Base64 string data, memory must be MemFree()"""
     return_interface = _mod._DecodeDataBase64(data, outputSize)
     return return_interface
 
 
 def IsKeyPressed(key: int) -> int:
+    """Check if a key has been pressed once"""
     return_interface = _mod._IsKeyPressed(key)
     return return_interface
 
 
 def IsKeyDown(key: int) -> int:
+    """Check if a key is being pressed"""
     return_interface = _mod._IsKeyDown(key)
     return return_interface
 
 
 def IsKeyReleased(key: int) -> int:
+    """Check if a key has been released once"""
     return_interface = _mod._IsKeyReleased(key)
     return return_interface
 
 
 def IsKeyUp(key: int) -> int:
+    """Check if a key is NOT being pressed"""
     return_interface = _mod._IsKeyUp(key)
     return return_interface
 
 
 def SetExitKey(key: int):
+    """Set a custom key to exit program (default is ESC)"""
     _mod._SetExitKey(key)
 
 
 def GetKeyPressed() -> int:
+    """Get key pressed (keycode), call it multiple times for keys queued, returns 0 when the queue is empty"""
     return_interface = _mod._GetKeyPressed()
     return return_interface
 
 
 def GetCharPressed() -> int:
+    """Get char pressed (unicode), call it multiple times for chars queued, returns 0 when the queue is empty"""
     return_interface = _mod._GetCharPressed()
     return return_interface
 
 
 def IsGamepadAvailable(gamepad: int) -> int:
+    """Check if a gamepad is available"""
     return_interface = _mod._IsGamepadAvailable(gamepad)
     return return_interface
 
 
 def GetGamepadName(gamepad: int) -> int:
+    """Get gamepad internal name id"""
     return_interface = _mod._GetGamepadName(gamepad)
     return return_interface
 
 
 def IsGamepadButtonPressed(gamepad: int, button: int) -> int:
+    """Check if a gamepad button has been pressed once"""
     return_interface = _mod._IsGamepadButtonPressed(gamepad, button)
     return return_interface
 
 
 def IsGamepadButtonDown(gamepad: int, button: int) -> int:
+    """Check if a gamepad button is being pressed"""
     return_interface = _mod._IsGamepadButtonDown(gamepad, button)
     return return_interface
 
 
 def IsGamepadButtonReleased(gamepad: int, button: int) -> int:
+    """Check if a gamepad button has been released once"""
     return_interface = _mod._IsGamepadButtonReleased(gamepad, button)
     return return_interface
 
 
 def IsGamepadButtonUp(gamepad: int, button: int) -> int:
+    """Check if a gamepad button is NOT being pressed"""
     return_interface = _mod._IsGamepadButtonUp(gamepad, button)
     return return_interface
 
 
 def GetGamepadButtonPressed() -> int:
+    """Get the last gamepad button pressed"""
     return_interface = _mod._GetGamepadButtonPressed()
     return return_interface
 
 
 def GetGamepadAxisCount(gamepad: int) -> int:
+    """Get gamepad axis count for a gamepad"""
     return_interface = _mod._GetGamepadAxisCount(gamepad)
     return return_interface
 
 
 def GetGamepadAxisMovement(gamepad: int, axis: int) -> float:
+    """Get axis movement value for a gamepad axis"""
     return_interface = _mod._GetGamepadAxisMovement(gamepad, axis)
     return return_interface
 
@@ -3655,354 +3966,432 @@ def GetGamepadAxisMovement(gamepad: int, axis: int) -> float:
 def SetGamepadMappings(mappings: str) -> int:
     mappings_ = _mod._malloc(len(mappings) + 1)
     _mod.stringToUTF8(mappings, mappings_, len(mappings) + 1)
+    """Set internal gamepad mappings (SDL_GameControllerDB)"""
     return_interface = _mod._SetGamepadMappings(mappings_)
     _mod._free(mappings_)
     return return_interface
 
 
 def IsMouseButtonPressed(button: int) -> int:
+    """Check if a mouse button has been pressed once"""
     return_interface = _mod._IsMouseButtonPressed(button)
     return return_interface
 
 
 def IsMouseButtonDown(button: int) -> int:
+    """Check if a mouse button is being pressed"""
     return_interface = _mod._IsMouseButtonDown(button)
     return return_interface
 
 
 def IsMouseButtonReleased(button: int) -> int:
+    """Check if a mouse button has been released once"""
     return_interface = _mod._IsMouseButtonReleased(button)
     return return_interface
 
 
 def IsMouseButtonUp(button: int) -> int:
+    """Check if a mouse button is NOT being pressed"""
     return_interface = _mod._IsMouseButtonUp(button)
     return return_interface
 
 
 def GetMouseX() -> int:
+    """Get mouse position X"""
     return_interface = _mod._GetMouseX()
     return return_interface
 
 
 def GetMouseY() -> int:
+    """Get mouse position Y"""
     return_interface = _mod._GetMouseY()
     return return_interface
 
 
 def GetMousePosition() -> Vector2:
     Vector2_ = Vector2()
+    """Get mouse position XY"""
     _mod._GetMousePosition(Vector2_._address)
     return Vector2_
 
 
 def GetMouseDelta() -> Vector2:
     Vector2_ = Vector2()
+    """Get mouse delta between frames"""
     _mod._GetMouseDelta(Vector2_._address)
     return Vector2_
 
 
 def SetMousePosition(x: int, y: int):
+    """Set mouse position XY"""
     _mod._SetMousePosition(x, y)
 
 
 def SetMouseOffset(offsetX: int, offsetY: int):
+    """Set mouse offset"""
     _mod._SetMouseOffset(offsetX, offsetY)
 
 
 def SetMouseScale(scaleX: float, scaleY: float):
+    """Set mouse scaling"""
     _mod._SetMouseScale(scaleX, scaleY)
 
 
 def GetMouseWheelMove() -> float:
+    """Get mouse wheel movement for X or Y, whichever is larger"""
     return_interface = _mod._GetMouseWheelMove()
     return return_interface
 
 
 def GetMouseWheelMoveV() -> Vector2:
     Vector2_ = Vector2()
+    """Get mouse wheel movement for both X and Y"""
     _mod._GetMouseWheelMoveV(Vector2_._address)
     return Vector2_
 
 
 def SetMouseCursor(cursor: int):
+    """Set mouse cursor"""
     _mod._SetMouseCursor(cursor)
 
 
 def GetTouchX() -> int:
+    """Get touch position X for touch point 0 (relative to screen size)"""
     return_interface = _mod._GetTouchX()
     return return_interface
 
 
 def GetTouchY() -> int:
+    """Get touch position Y for touch point 0 (relative to screen size)"""
     return_interface = _mod._GetTouchY()
     return return_interface
 
 
 def GetTouchPosition(index: int) -> Vector2:
     Vector2_ = Vector2()
+    """Get touch position XY for a touch point index (relative to screen size)"""
     _mod._GetTouchPosition(Vector2_._address, index)
     return Vector2_
 
 
 def GetTouchPointId(index: int) -> int:
+    """Get touch point identifier for given index"""
     return_interface = _mod._GetTouchPointId(index)
     return return_interface
 
 
 def GetTouchPointCount() -> int:
+    """Get number of touch points"""
     return_interface = _mod._GetTouchPointCount()
     return return_interface
 
 
 def SetGesturesEnabled(flags: int):
+    """Enable a set of gestures using flags"""
     _mod._SetGesturesEnabled(flags)
 
 
 def IsGestureDetected(gesture: int) -> int:
+    """Check if a gesture have been detected"""
     return_interface = _mod._IsGestureDetected(gesture)
     return return_interface
 
 
 def GetGestureDetected() -> int:
+    """Get latest detected gesture"""
     return_interface = _mod._GetGestureDetected()
     return return_interface
 
 
 def GetGestureHoldDuration() -> float:
+    """Get gesture hold time in milliseconds"""
     return_interface = _mod._GetGestureHoldDuration()
     return return_interface
 
 
 def GetGestureDragVector() -> Vector2:
     Vector2_ = Vector2()
+    """Get gesture drag vector"""
     _mod._GetGestureDragVector(Vector2_._address)
     return Vector2_
 
 
 def GetGestureDragAngle() -> float:
+    """Get gesture drag angle"""
     return_interface = _mod._GetGestureDragAngle()
     return return_interface
 
 
 def GetGesturePinchVector() -> Vector2:
     Vector2_ = Vector2()
+    """Get gesture pinch delta"""
     _mod._GetGesturePinchVector(Vector2_._address)
     return Vector2_
 
 
 def GetGesturePinchAngle() -> float:
+    """Get gesture pinch angle"""
     return_interface = _mod._GetGesturePinchAngle()
     return return_interface
 
 
 def UpdateCamera(camera: int, mode: int):
+    """Update camera position for selected mode"""
     _mod._UpdateCamera(camera, mode)
 
 
 def UpdateCameraPro(camera: int, movement: Vector3, rotation: Vector3, zoom: float):
+    """Update camera movement/rotation"""
     _mod._UpdateCameraPro(camera, movement._address, rotation._address, zoom)
 
 
 def SetShapesTexture(texture: Texture2D, source: Rectangle):
+    """Set texture and rectangle to be used on shapes drawing"""
     _mod._SetShapesTexture(texture._address, source._address)
 
 
 def DrawPixel(posX: int, posY: int, color: Color):
+    """Draw a pixel"""
     _mod._DrawPixel(posX, posY, color._address)
 
 
 def DrawPixelV(position: Vector2, color: Color):
+    """Draw a pixel (Vector version)"""
     _mod._DrawPixelV(position._address, color._address)
 
 
 def DrawLine(startPosX: int, startPosY: int, endPosX: int, endPosY: int, color: Color):
+    """Draw a line"""
     _mod._DrawLine(startPosX, startPosY, endPosX, endPosY, color._address)
 
 
 def DrawLineV(startPos: Vector2, endPos: Vector2, color: Color):
+    """Draw a line (Vector version)"""
     _mod._DrawLineV(startPos._address, endPos._address, color._address)
 
 
 def DrawLineEx(startPos: Vector2, endPos: Vector2, thick: float, color: Color):
+    """Draw a line defining thickness"""
     _mod._DrawLineEx(startPos._address, endPos._address, thick, color._address)
 
 
 def DrawLineBezier(startPos: Vector2, endPos: Vector2, thick: float, color: Color):
+    """Draw a line using cubic-bezier curves in-out"""
     _mod._DrawLineBezier(startPos._address, endPos._address, thick, color._address)
 
 
 def DrawLineBezierQuad(startPos: Vector2, endPos: Vector2, controlPos: Vector2, thick: float, color: Color):
+    """Draw line using quadratic bezier curves with a control point"""
     _mod._DrawLineBezierQuad(startPos._address, endPos._address, controlPos._address, thick, color._address)
 
 
 def DrawLineBezierCubic(startPos: Vector2, endPos: Vector2, startControlPos: Vector2, endControlPos: Vector2, thick: float, color: Color):
+    """Draw line using cubic bezier curves with 2 control points"""
     _mod._DrawLineBezierCubic(startPos._address, endPos._address, startControlPos._address, endControlPos._address, thick, color._address)
 
 
 def DrawLineStrip(points: int, pointCount: int, color: Color):
+    """Draw lines sequence"""
     _mod._DrawLineStrip(points, pointCount, color._address)
 
 
 def DrawCircle(centerX: int, centerY: int, radius: float, color: Color):
+    """Draw a color-filled circle"""
     _mod._DrawCircle(centerX, centerY, radius, color._address)
 
 
 def DrawCircleSector(center: Vector2, radius: float, startAngle: float, endAngle: float, segments: int, color: Color):
+    """Draw a piece of a circle"""
     _mod._DrawCircleSector(center._address, radius, startAngle, endAngle, segments, color._address)
 
 
 def DrawCircleSectorLines(center: Vector2, radius: float, startAngle: float, endAngle: float, segments: int, color: Color):
+    """Draw circle sector outline"""
     _mod._DrawCircleSectorLines(center._address, radius, startAngle, endAngle, segments, color._address)
 
 
 def DrawCircleGradient(centerX: int, centerY: int, radius: float, color1: Color, color2: Color):
+    """Draw a gradient-filled circle"""
     _mod._DrawCircleGradient(centerX, centerY, radius, color1._address, color2._address)
 
 
 def DrawCircleV(center: Vector2, radius: float, color: Color):
+    """Draw a color-filled circle (Vector version)"""
     _mod._DrawCircleV(center._address, radius, color._address)
 
 
 def DrawCircleLines(centerX: int, centerY: int, radius: float, color: Color):
+    """Draw circle outline"""
     _mod._DrawCircleLines(centerX, centerY, radius, color._address)
 
 
 def DrawEllipse(centerX: int, centerY: int, radiusH: float, radiusV: float, color: Color):
+    """Draw ellipse"""
     _mod._DrawEllipse(centerX, centerY, radiusH, radiusV, color._address)
 
 
 def DrawEllipseLines(centerX: int, centerY: int, radiusH: float, radiusV: float, color: Color):
+    """Draw ellipse outline"""
     _mod._DrawEllipseLines(centerX, centerY, radiusH, radiusV, color._address)
 
 
 def DrawRing(center: Vector2, innerRadius: float, outerRadius: float, startAngle: float, endAngle: float, segments: int, color: Color):
+    """Draw ring"""
     _mod._DrawRing(center._address, innerRadius, outerRadius, startAngle, endAngle, segments, color._address)
 
 
 def DrawRingLines(center: Vector2, innerRadius: float, outerRadius: float, startAngle: float, endAngle: float, segments: int, color: Color):
+    """Draw ring outline"""
     _mod._DrawRingLines(center._address, innerRadius, outerRadius, startAngle, endAngle, segments, color._address)
 
 
 def DrawRectangle(posX: int, posY: int, width: int, height: int, color: Color):
+    """Draw a color-filled rectangle"""
     _mod._DrawRectangle(posX, posY, width, height, color._address)
 
 
 def DrawRectangleV(position: Vector2, size: Vector2, color: Color):
+    """Draw a color-filled rectangle (Vector version)"""
     _mod._DrawRectangleV(position._address, size._address, color._address)
 
 
 def DrawRectangleRec(rec: Rectangle, color: Color):
+    """Draw a color-filled rectangle"""
     _mod._DrawRectangleRec(rec._address, color._address)
 
 
 def DrawRectanglePro(rec: Rectangle, origin: Vector2, rotation: float, color: Color):
+    """Draw a color-filled rectangle with pro parameters"""
     _mod._DrawRectanglePro(rec._address, origin._address, rotation, color._address)
 
 
 def DrawRectangleGradientV(posX: int, posY: int, width: int, height: int, color1: Color, color2: Color):
+    """Draw a vertical-gradient-filled rectangle"""
     _mod._DrawRectangleGradientV(posX, posY, width, height, color1._address, color2._address)
 
 
 def DrawRectangleGradientH(posX: int, posY: int, width: int, height: int, color1: Color, color2: Color):
+    """Draw a horizontal-gradient-filled rectangle"""
     _mod._DrawRectangleGradientH(posX, posY, width, height, color1._address, color2._address)
 
 
 def DrawRectangleGradientEx(rec: Rectangle, col1: Color, col2: Color, col3: Color, col4: Color):
+    """Draw a gradient-filled rectangle with custom vertex colors"""
     _mod._DrawRectangleGradientEx(rec._address, col1._address, col2._address, col3._address, col4._address)
 
 
 def DrawRectangleLines(posX: int, posY: int, width: int, height: int, color: Color):
+    """Draw rectangle outline"""
     _mod._DrawRectangleLines(posX, posY, width, height, color._address)
 
 
 def DrawRectangleLinesEx(rec: Rectangle, lineThick: float, color: Color):
+    """Draw rectangle outline with extended parameters"""
     _mod._DrawRectangleLinesEx(rec._address, lineThick, color._address)
 
 
 def DrawRectangleRounded(rec: Rectangle, roundness: float, segments: int, color: Color):
+    """Draw rectangle with rounded edges"""
     _mod._DrawRectangleRounded(rec._address, roundness, segments, color._address)
 
 
 def DrawRectangleRoundedLines(rec: Rectangle, roundness: float, segments: int, lineThick: float, color: Color):
+    """Draw rectangle with rounded edges outline"""
     _mod._DrawRectangleRoundedLines(rec._address, roundness, segments, lineThick, color._address)
 
 
 def DrawTriangle(v1: Vector2, v2: Vector2, v3: Vector2, color: Color):
+    """Draw a color-filled triangle (vertex in counter-clockwise order!)"""
     _mod._DrawTriangle(v1._address, v2._address, v3._address, color._address)
 
 
 def DrawTriangleLines(v1: Vector2, v2: Vector2, v3: Vector2, color: Color):
+    """Draw triangle outline (vertex in counter-clockwise order!)"""
     _mod._DrawTriangleLines(v1._address, v2._address, v3._address, color._address)
 
 
 def DrawTriangleFan(points: int, pointCount: int, color: Color):
+    """Draw a triangle fan defined by points (first vertex is the center)"""
     _mod._DrawTriangleFan(points, pointCount, color._address)
 
 
 def DrawTriangleStrip(points: int, pointCount: int, color: Color):
+    """Draw a triangle strip defined by points"""
     _mod._DrawTriangleStrip(points, pointCount, color._address)
 
 
 def DrawPoly(center: Vector2, sides: int, radius: float, rotation: float, color: Color):
+    """Draw a regular polygon (Vector version)"""
     _mod._DrawPoly(center._address, sides, radius, rotation, color._address)
 
 
 def DrawPolyLines(center: Vector2, sides: int, radius: float, rotation: float, color: Color):
+    """Draw a polygon outline of n sides"""
     _mod._DrawPolyLines(center._address, sides, radius, rotation, color._address)
 
 
 def DrawPolyLinesEx(center: Vector2, sides: int, radius: float, rotation: float, lineThick: float, color: Color):
+    """Draw a polygon outline of n sides with extended parameters"""
     _mod._DrawPolyLinesEx(center._address, sides, radius, rotation, lineThick, color._address)
 
 
 def CheckCollisionRecs(rec1: Rectangle, rec2: Rectangle) -> int:
+    """Check collision between two rectangles"""
     return_interface = _mod._CheckCollisionRecs(rec1._address, rec2._address)
     return return_interface
 
 
 def CheckCollisionCircles(center1: Vector2, radius1: float, center2: Vector2, radius2: float) -> int:
+    """Check collision between two circles"""
     return_interface = _mod._CheckCollisionCircles(center1._address, radius1, center2._address, radius2)
     return return_interface
 
 
 def CheckCollisionCircleRec(center: Vector2, radius: float, rec: Rectangle) -> int:
+    """Check collision between circle and rectangle"""
     return_interface = _mod._CheckCollisionCircleRec(center._address, radius, rec._address)
     return return_interface
 
 
 def CheckCollisionPointRec(point: Vector2, rec: Rectangle) -> int:
+    """Check if point is inside rectangle"""
     return_interface = _mod._CheckCollisionPointRec(point._address, rec._address)
     return return_interface
 
 
 def CheckCollisionPointCircle(point: Vector2, center: Vector2, radius: float) -> int:
+    """Check if point is inside circle"""
     return_interface = _mod._CheckCollisionPointCircle(point._address, center._address, radius)
     return return_interface
 
 
 def CheckCollisionPointTriangle(point: Vector2, p1: Vector2, p2: Vector2, p3: Vector2) -> int:
+    """Check if point is inside a triangle"""
     return_interface = _mod._CheckCollisionPointTriangle(point._address, p1._address, p2._address, p3._address)
     return return_interface
 
 
 def CheckCollisionPointPoly(point: Vector2, points: int, pointCount: int) -> int:
+    """Check if point is within a polygon described by array of vertices"""
     return_interface = _mod._CheckCollisionPointPoly(point._address, points, pointCount)
     return return_interface
 
 
 def CheckCollisionLines(startPos1: Vector2, endPos1: Vector2, startPos2: Vector2, endPos2: Vector2, collisionPoint: int) -> int:
+    """Check the collision between two lines defined by two points each, returns collision point by reference"""
     return_interface = _mod._CheckCollisionLines(startPos1._address, endPos1._address, startPos2._address, endPos2._address, collisionPoint)
     return return_interface
 
 
 def CheckCollisionPointLine(point: Vector2, p1: Vector2, p2: Vector2, threshold: int) -> int:
+    """Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]"""
     return_interface = _mod._CheckCollisionPointLine(point._address, p1._address, p2._address, threshold)
     return return_interface
 
 
 def GetCollisionRec(rec1: Rectangle, rec2: Rectangle) -> Rectangle:
     Rectangle_ = Rectangle()
+    """Get collision rectangle for two rectangles collision"""
     _mod._GetCollisionRec(Rectangle_._address, rec1._address, rec2._address)
     return Rectangle_
 
@@ -4011,6 +4400,7 @@ def LoadImage(fileName: str) -> Image:
     Image_ = Image()
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Load image from file into CPU memory (RAM)"""
     _mod._LoadImage(Image_._address, fileName_)
     _mod._free(fileName_)
     return Image_
@@ -4020,6 +4410,7 @@ def LoadImageRaw(fileName: str, width: int, height: int, format: int, headerSize
     Image_ = Image()
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Load image from RAW file data"""
     _mod._LoadImageRaw(Image_._address, fileName_, width, height, format, headerSize)
     _mod._free(fileName_)
     return Image_
@@ -4029,6 +4420,7 @@ def LoadImageAnim(fileName: str, frames: int) -> Image:
     Image_ = Image()
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Load image sequence from file (frames appended to image.data)"""
     _mod._LoadImageAnim(Image_._address, fileName_, frames)
     _mod._free(fileName_)
     return Image_
@@ -4038,6 +4430,7 @@ def LoadImageFromMemory(fileType: str, fileData: int, dataSize: int) -> Image:
     Image_ = Image()
     fileType_ = _mod._malloc(len(fileType) + 1)
     _mod.stringToUTF8(fileType, fileType_, len(fileType) + 1)
+    """Load image from memory buffer, fileType refers to extension: i.e. '.png'"""
     _mod._LoadImageFromMemory(Image_._address, fileType_, fileData, dataSize)
     _mod._free(fileType_)
     return Image_
@@ -4045,28 +4438,33 @@ def LoadImageFromMemory(fileType: str, fileData: int, dataSize: int) -> Image:
 
 def LoadImageFromTexture(texture: Texture2D) -> Image:
     Image_ = Image()
+    """Load image from GPU texture data"""
     _mod._LoadImageFromTexture(Image_._address, texture._address)
     return Image_
 
 
 def LoadImageFromScreen() -> Image:
     Image_ = Image()
+    """Load image from screen buffer and (screenshot)"""
     _mod._LoadImageFromScreen(Image_._address)
     return Image_
 
 
 def IsImageReady(image: Image) -> int:
+    """Check if an image is ready"""
     return_interface = _mod._IsImageReady(image._address)
     return return_interface
 
 
 def UnloadImage(image: Image):
+    """Unload image from CPU memory (RAM)"""
     _mod._UnloadImage(image._address)
 
 
 def ExportImage(image: Image, fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Export image data to file, returns true on success"""
     return_interface = _mod._ExportImage(image._address, fileName_)
     _mod._free(fileName_)
     return return_interface
@@ -4075,6 +4473,7 @@ def ExportImage(image: Image, fileName: str) -> int:
 def ExportImageToMemory(image: Image, fileType: str, fileSize: int) -> int:
     fileType_ = _mod._malloc(len(fileType) + 1)
     _mod.stringToUTF8(fileType, fileType_, len(fileType) + 1)
+    """Export image to memory buffer"""
     return_interface = _mod._ExportImageToMemory(image._address, fileType_, fileSize)
     _mod._free(fileType_)
     return return_interface
@@ -4083,6 +4482,7 @@ def ExportImageToMemory(image: Image, fileType: str, fileSize: int) -> int:
 def ExportImageAsCode(image: Image, fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Export image as code file defining an array of bytes, returns true on success"""
     return_interface = _mod._ExportImageAsCode(image._address, fileName_)
     _mod._free(fileName_)
     return return_interface
@@ -4090,48 +4490,56 @@ def ExportImageAsCode(image: Image, fileName: str) -> int:
 
 def GenImageColor(width: int, height: int, color: Color) -> Image:
     Image_ = Image()
+    """Generate image: plain color"""
     _mod._GenImageColor(Image_._address, width, height, color._address)
     return Image_
 
 
 def GenImageGradientLinear(width: int, height: int, direction: int, start: Color, end: Color) -> Image:
     Image_ = Image()
+    """Generate image: linear gradient, direction in degrees [0..360], 0=Vertical gradient"""
     _mod._GenImageGradientLinear(Image_._address, width, height, direction, start._address, end._address)
     return Image_
 
 
 def GenImageGradientRadial(width: int, height: int, density: float, inner: Color, outer: Color) -> Image:
     Image_ = Image()
+    """Generate image: radial gradient"""
     _mod._GenImageGradientRadial(Image_._address, width, height, density, inner._address, outer._address)
     return Image_
 
 
 def GenImageGradientSquare(width: int, height: int, density: float, inner: Color, outer: Color) -> Image:
     Image_ = Image()
+    """Generate image: square gradient"""
     _mod._GenImageGradientSquare(Image_._address, width, height, density, inner._address, outer._address)
     return Image_
 
 
 def GenImageChecked(width: int, height: int, checksX: int, checksY: int, col1: Color, col2: Color) -> Image:
     Image_ = Image()
+    """Generate image: checked"""
     _mod._GenImageChecked(Image_._address, width, height, checksX, checksY, col1._address, col2._address)
     return Image_
 
 
 def GenImageWhiteNoise(width: int, height: int, factor: float) -> Image:
     Image_ = Image()
+    """Generate image: white noise"""
     _mod._GenImageWhiteNoise(Image_._address, width, height, factor)
     return Image_
 
 
 def GenImagePerlinNoise(width: int, height: int, offsetX: int, offsetY: int, scale: float) -> Image:
     Image_ = Image()
+    """Generate image: perlin noise"""
     _mod._GenImagePerlinNoise(Image_._address, width, height, offsetX, offsetY, scale)
     return Image_
 
 
 def GenImageCellular(width: int, height: int, tileSize: int) -> Image:
     Image_ = Image()
+    """Generate image: cellular algorithm, bigger tileSize means bigger cells"""
     _mod._GenImageCellular(Image_._address, width, height, tileSize)
     return Image_
 
@@ -4140,6 +4548,7 @@ def GenImageText(width: int, height: int, text: str) -> Image:
     Image_ = Image()
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Generate image: grayscale image from text data"""
     _mod._GenImageText(Image_._address, width, height, text_)
     _mod._free(text_)
     return Image_
@@ -4147,12 +4556,14 @@ def GenImageText(width: int, height: int, text: str) -> Image:
 
 def ImageCopy(image: Image) -> Image:
     Image_ = Image()
+    """Create an image duplicate (useful for transformations)"""
     _mod._ImageCopy(Image_._address, image._address)
     return Image_
 
 
 def ImageFromImage(image: Image, rec: Rectangle) -> Image:
     Image_ = Image()
+    """Create an image from another image piece"""
     _mod._ImageFromImage(Image_._address, image._address, rec._address)
     return Image_
 
@@ -4161,6 +4572,7 @@ def ImageText(text: str, fontSize: int, color: Color) -> Image:
     Image_ = Image()
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Create an image from text (default font)"""
     _mod._ImageText(Image_._address, text_, fontSize, color._address)
     _mod._free(text_)
     return Image_
@@ -4170,196 +4582,242 @@ def ImageTextEx(font: Font, text: str, fontSize: float, spacing: float, tint: Co
     Image_ = Image()
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Create an image from text (custom sprite font)"""
     _mod._ImageTextEx(Image_._address, font._address, text_, fontSize, spacing, tint._address)
     _mod._free(text_)
     return Image_
 
 
 def ImageFormat(image: int, newFormat: int):
+    """Convert image data to desired format"""
     _mod._ImageFormat(image, newFormat)
 
 
 def ImageToPOT(image: int, fill: Color):
+    """Convert image to POT (power-of-two)"""
     _mod._ImageToPOT(image, fill._address)
 
 
 def ImageCrop(image: int, crop: Rectangle):
+    """Crop an image to a defined rectangle"""
     _mod._ImageCrop(image, crop._address)
 
 
 def ImageAlphaCrop(image: int, threshold: float):
+    """Crop image depending on alpha value"""
     _mod._ImageAlphaCrop(image, threshold)
 
 
 def ImageAlphaClear(image: int, color: Color, threshold: float):
+    """Clear alpha channel to desired color"""
     _mod._ImageAlphaClear(image, color._address, threshold)
 
 
 def ImageAlphaMask(image: int, alphaMask: Image):
+    """Apply alpha mask to image"""
     _mod._ImageAlphaMask(image, alphaMask._address)
 
 
 def ImageAlphaPremultiply(image: int):
+    """Premultiply alpha channel"""
     _mod._ImageAlphaPremultiply(image)
 
 
 def ImageBlurGaussian(image: int, blurSize: int):
+    """Apply Gaussian blur using a box blur approximation"""
     _mod._ImageBlurGaussian(image, blurSize)
 
 
 def ImageResize(image: int, newWidth: int, newHeight: int):
+    """Resize image (Bicubic scaling algorithm)"""
     _mod._ImageResize(image, newWidth, newHeight)
 
 
 def ImageResizeNN(image: int, newWidth: int, newHeight: int):
+    """Resize image (Nearest-Neighbor scaling algorithm)"""
     _mod._ImageResizeNN(image, newWidth, newHeight)
 
 
 def ImageResizeCanvas(image: int, newWidth: int, newHeight: int, offsetX: int, offsetY: int, fill: Color):
+    """Resize canvas and fill with color"""
     _mod._ImageResizeCanvas(image, newWidth, newHeight, offsetX, offsetY, fill._address)
 
 
 def ImageMipmaps(image: int):
+    """Compute all mipmap levels for a provided image"""
     _mod._ImageMipmaps(image)
 
 
 def ImageDither(image: int, rBpp: int, gBpp: int, bBpp: int, aBpp: int):
+    """Dither image data to 16bpp or lower (Floyd-Steinberg dithering)"""
     _mod._ImageDither(image, rBpp, gBpp, bBpp, aBpp)
 
 
 def ImageFlipVertical(image: int):
+    """Flip image vertically"""
     _mod._ImageFlipVertical(image)
 
 
 def ImageFlipHorizontal(image: int):
+    """Flip image horizontally"""
     _mod._ImageFlipHorizontal(image)
 
 
 def ImageRotate(image: int, degrees: int):
+    """Rotate image by input angle in degrees (-359 to 359)"""
     _mod._ImageRotate(image, degrees)
 
 
 def ImageRotateCW(image: int):
+    """Rotate image clockwise 90deg"""
     _mod._ImageRotateCW(image)
 
 
 def ImageRotateCCW(image: int):
+    """Rotate image counter-clockwise 90deg"""
     _mod._ImageRotateCCW(image)
 
 
 def ImageColorTint(image: int, color: Color):
+    """Modify image color: tint"""
     _mod._ImageColorTint(image, color._address)
 
 
 def ImageColorInvert(image: int):
+    """Modify image color: invert"""
     _mod._ImageColorInvert(image)
 
 
 def ImageColorGrayscale(image: int):
+    """Modify image color: grayscale"""
     _mod._ImageColorGrayscale(image)
 
 
 def ImageColorContrast(image: int, contrast: float):
+    """Modify image color: contrast (-100 to 100)"""
     _mod._ImageColorContrast(image, contrast)
 
 
 def ImageColorBrightness(image: int, brightness: int):
+    """Modify image color: brightness (-255 to 255)"""
     _mod._ImageColorBrightness(image, brightness)
 
 
 def ImageColorReplace(image: int, color: Color, replace: Color):
+    """Modify image color: replace color"""
     _mod._ImageColorReplace(image, color._address, replace._address)
 
 
 def LoadImageColors(image: Image) -> int:
+    """Load color data from image as a Color array (RGBA - 32bit)"""
     return_interface = _mod._LoadImageColors(image._address)
     return return_interface
 
 
 def LoadImagePalette(image: Image, maxPaletteSize: int, colorCount: int) -> int:
+    """Load colors palette from image as a Color array (RGBA - 32bit)"""
     return_interface = _mod._LoadImagePalette(image._address, maxPaletteSize, colorCount)
     return return_interface
 
 
 def UnloadImageColors(colors: int):
+    """Unload color data loaded with LoadImageColors()"""
     _mod._UnloadImageColors(colors)
 
 
 def UnloadImagePalette(colors: int):
+    """Unload colors palette loaded with LoadImagePalette()"""
     _mod._UnloadImagePalette(colors)
 
 
 def GetImageAlphaBorder(image: Image, threshold: float) -> Rectangle:
     Rectangle_ = Rectangle()
+    """Get image alpha border rectangle"""
     _mod._GetImageAlphaBorder(Rectangle_._address, image._address, threshold)
     return Rectangle_
 
 
 def GetImageColor(image: Image, x: int, y: int) -> Color:
     Color_ = Color()
+    """Get image pixel color at (x, y) position"""
     _mod._GetImageColor(Color_._address, image._address, x, y)
     return Color_
 
 
 def ImageClearBackground(dst: int, color: Color):
+    """Clear image background with given color"""
     _mod._ImageClearBackground(dst, color._address)
 
 
 def ImageDrawPixel(dst: int, posX: int, posY: int, color: Color):
+    """Draw pixel within an image"""
     _mod._ImageDrawPixel(dst, posX, posY, color._address)
 
 
 def ImageDrawPixelV(dst: int, position: Vector2, color: Color):
+    """Draw pixel within an image (Vector version)"""
     _mod._ImageDrawPixelV(dst, position._address, color._address)
 
 
 def ImageDrawLine(dst: int, startPosX: int, startPosY: int, endPosX: int, endPosY: int, color: Color):
+    """Draw line within an image"""
     _mod._ImageDrawLine(dst, startPosX, startPosY, endPosX, endPosY, color._address)
 
 
 def ImageDrawLineV(dst: int, start: Vector2, end: Vector2, color: Color):
+    """Draw line within an image (Vector version)"""
     _mod._ImageDrawLineV(dst, start._address, end._address, color._address)
 
 
 def ImageDrawCircle(dst: int, centerX: int, centerY: int, radius: int, color: Color):
+    """Draw a filled circle within an image"""
     _mod._ImageDrawCircle(dst, centerX, centerY, radius, color._address)
 
 
 def ImageDrawCircleV(dst: int, center: Vector2, radius: int, color: Color):
+    """Draw a filled circle within an image (Vector version)"""
     _mod._ImageDrawCircleV(dst, center._address, radius, color._address)
 
 
 def ImageDrawCircleLines(dst: int, centerX: int, centerY: int, radius: int, color: Color):
+    """Draw circle outline within an image"""
     _mod._ImageDrawCircleLines(dst, centerX, centerY, radius, color._address)
 
 
 def ImageDrawCircleLinesV(dst: int, center: Vector2, radius: int, color: Color):
+    """Draw circle outline within an image (Vector version)"""
     _mod._ImageDrawCircleLinesV(dst, center._address, radius, color._address)
 
 
 def ImageDrawRectangle(dst: int, posX: int, posY: int, width: int, height: int, color: Color):
+    """Draw rectangle within an image"""
     _mod._ImageDrawRectangle(dst, posX, posY, width, height, color._address)
 
 
 def ImageDrawRectangleV(dst: int, position: Vector2, size: Vector2, color: Color):
+    """Draw rectangle within an image (Vector version)"""
     _mod._ImageDrawRectangleV(dst, position._address, size._address, color._address)
 
 
 def ImageDrawRectangleRec(dst: int, rec: Rectangle, color: Color):
+    """Draw rectangle within an image"""
     _mod._ImageDrawRectangleRec(dst, rec._address, color._address)
 
 
 def ImageDrawRectangleLines(dst: int, rec: Rectangle, thick: int, color: Color):
+    """Draw rectangle lines within an image"""
     _mod._ImageDrawRectangleLines(dst, rec._address, thick, color._address)
 
 
 def ImageDraw(dst: int, src: Image, srcRec: Rectangle, dstRec: Rectangle, tint: Color):
+    """Draw a source image within a destination image (tint applied to source)"""
     _mod._ImageDraw(dst, src._address, srcRec._address, dstRec._address, tint._address)
 
 
 def ImageDrawText(dst: int, text: str, posX: int, posY: int, fontSize: int, color: Color):
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Draw text (using default font) within an image (destination)"""
     _mod._ImageDrawText(dst, text_, posX, posY, fontSize, color._address)
     _mod._free(text_)
 
@@ -4367,6 +4825,7 @@ def ImageDrawText(dst: int, text: str, posX: int, posY: int, fontSize: int, colo
 def ImageDrawTextEx(dst: int, font: Font, text: str, position: Vector2, fontSize: float, spacing: float, tint: Color):
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Draw text (custom sprite font) within an image (destination)"""
     _mod._ImageDrawTextEx(dst, font._address, text_, position._address, fontSize, spacing, tint._address)
     _mod._free(text_)
 
@@ -4375,6 +4834,7 @@ def LoadTexture(fileName: str) -> Texture2D:
     Texture2D_ = Texture2D()
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Load texture from file into GPU memory (VRAM)"""
     _mod._LoadTexture(Texture2D_._address, fileName_)
     _mod._free(fileName_)
     return Texture2D_
@@ -4382,172 +4842,206 @@ def LoadTexture(fileName: str) -> Texture2D:
 
 def LoadTextureFromImage(image: Image) -> Texture2D:
     Texture2D_ = Texture2D()
+    """Load texture from image data"""
     _mod._LoadTextureFromImage(Texture2D_._address, image._address)
     return Texture2D_
 
 
 def LoadTextureCubemap(image: Image, layout: int) -> TextureCubemap:
     TextureCubemap_ = TextureCubemap()
+    """Load cubemap from image, multiple image cubemap layouts supported"""
     _mod._LoadTextureCubemap(TextureCubemap_._address, image._address, layout)
     return TextureCubemap_
 
 
 def LoadRenderTexture(width: int, height: int) -> RenderTexture2D:
     RenderTexture2D_ = RenderTexture2D()
+    """Load texture for rendering (framebuffer)"""
     _mod._LoadRenderTexture(RenderTexture2D_._address, width, height)
     return RenderTexture2D_
 
 
 def IsTextureReady(texture: Texture2D) -> int:
+    """Check if a texture is ready"""
     return_interface = _mod._IsTextureReady(texture._address)
     return return_interface
 
 
 def UnloadTexture(texture: Texture2D):
+    """Unload texture from GPU memory (VRAM)"""
     _mod._UnloadTexture(texture._address)
 
 
 def IsRenderTextureReady(target: RenderTexture2D) -> int:
+    """Check if a render texture is ready"""
     return_interface = _mod._IsRenderTextureReady(target._address)
     return return_interface
 
 
 def UnloadRenderTexture(target: RenderTexture2D):
+    """Unload render texture from GPU memory (VRAM)"""
     _mod._UnloadRenderTexture(target._address)
 
 
 def UpdateTexture(texture: Texture2D, pixels: int):
+    """Update GPU texture with new data"""
     _mod._UpdateTexture(texture._address, pixels)
 
 
 def UpdateTextureRec(texture: Texture2D, rec: Rectangle, pixels: int):
+    """Update GPU texture rectangle with new data"""
     _mod._UpdateTextureRec(texture._address, rec._address, pixels)
 
 
 def GenTextureMipmaps(texture: int):
+    """Generate GPU mipmaps for a texture"""
     _mod._GenTextureMipmaps(texture)
 
 
 def SetTextureFilter(texture: Texture2D, filter: int):
+    """Set texture scaling filter mode"""
     _mod._SetTextureFilter(texture._address, filter)
 
 
 def SetTextureWrap(texture: Texture2D, wrap: int):
+    """Set texture wrapping mode"""
     _mod._SetTextureWrap(texture._address, wrap)
 
 
 def DrawTexture(texture: Texture2D, posX: int, posY: int, tint: Color):
+    """Draw a Texture2D"""
     _mod._DrawTexture(texture._address, posX, posY, tint._address)
 
 
 def DrawTextureV(texture: Texture2D, position: Vector2, tint: Color):
+    """Draw a Texture2D with position defined as Vector2"""
     _mod._DrawTextureV(texture._address, position._address, tint._address)
 
 
 def DrawTextureEx(texture: Texture2D, position: Vector2, rotation: float, scale: float, tint: Color):
+    """Draw a Texture2D with extended parameters"""
     _mod._DrawTextureEx(texture._address, position._address, rotation, scale, tint._address)
 
 
 def DrawTextureRec(texture: Texture2D, source: Rectangle, position: Vector2, tint: Color):
+    """Draw a part of a texture defined by a rectangle"""
     _mod._DrawTextureRec(texture._address, source._address, position._address, tint._address)
 
 
 def DrawTexturePro(texture: Texture2D, source: Rectangle, dest: Rectangle, origin: Vector2, rotation: float, tint: Color):
+    """Draw a part of a texture defined by a rectangle with 'pro' parameters"""
     _mod._DrawTexturePro(texture._address, source._address, dest._address, origin._address, rotation, tint._address)
 
 
 def DrawTextureNPatch(texture: Texture2D, nPatchInfo: NPatchInfo, dest: Rectangle, origin: Vector2, rotation: float, tint: Color):
+    """Draws a texture (or part of it) that stretches or shrinks nicely"""
     _mod._DrawTextureNPatch(texture._address, nPatchInfo._address, dest._address, origin._address, rotation, tint._address)
 
 
 def Fade(color: Color, alpha: float) -> Color:
     Color_ = Color()
+    """Get color with alpha applied, alpha goes from 0.0f to 1.0f"""
     _mod._Fade(Color_._address, color._address, alpha)
     return Color_
 
 
 def ColorToInt(color: Color) -> int:
+    """Get hexadecimal value for a Color"""
     return_interface = _mod._ColorToInt(color._address)
     return return_interface
 
 
 def ColorNormalize(color: Color) -> Vector4:
     Vector4_ = Vector4()
+    """Get Color normalized as float [0..1]"""
     _mod._ColorNormalize(Vector4_._address, color._address)
     return Vector4_
 
 
 def ColorFromNormalized(normalized: Vector4) -> Color:
     Color_ = Color()
+    """Get Color from normalized values [0..1]"""
     _mod._ColorFromNormalized(Color_._address, normalized._address)
     return Color_
 
 
 def ColorToHSV(color: Color) -> Vector3:
     Vector3_ = Vector3()
+    """Get HSV values for a Color, hue [0..360], saturation/value [0..1]"""
     _mod._ColorToHSV(Vector3_._address, color._address)
     return Vector3_
 
 
 def ColorFromHSV(hue: float, saturation: float, value: float) -> Color:
     Color_ = Color()
+    """Get a Color from HSV values, hue [0..360], saturation/value [0..1]"""
     _mod._ColorFromHSV(Color_._address, hue, saturation, value)
     return Color_
 
 
 def ColorTint(color: Color, tint: Color) -> Color:
     Color_ = Color()
+    """Get color multiplied with another color"""
     _mod._ColorTint(Color_._address, color._address, tint._address)
     return Color_
 
 
 def ColorBrightness(color: Color, factor: float) -> Color:
     Color_ = Color()
+    """Get color with brightness correction, brightness factor goes from -1.0f to 1.0f"""
     _mod._ColorBrightness(Color_._address, color._address, factor)
     return Color_
 
 
 def ColorContrast(color: Color, contrast: float) -> Color:
     Color_ = Color()
+    """Get color with contrast correction, contrast values between -1.0f and 1.0f"""
     _mod._ColorContrast(Color_._address, color._address, contrast)
     return Color_
 
 
 def ColorAlpha(color: Color, alpha: float) -> Color:
     Color_ = Color()
+    """Get color with alpha applied, alpha goes from 0.0f to 1.0f"""
     _mod._ColorAlpha(Color_._address, color._address, alpha)
     return Color_
 
 
 def ColorAlphaBlend(dst: Color, src: Color, tint: Color) -> Color:
     Color_ = Color()
+    """Get src alpha-blended into dst color with tint"""
     _mod._ColorAlphaBlend(Color_._address, dst._address, src._address, tint._address)
     return Color_
 
 
 def GetColor(hexValue: int) -> Color:
     Color_ = Color()
+    """Get Color structure from hexadecimal value"""
     _mod._GetColor(Color_._address, hexValue)
     return Color_
 
 
 def GetPixelColor(srcPtr: int, format: int) -> Color:
     Color_ = Color()
+    """Get Color from a source pixel pointer of certain format"""
     _mod._GetPixelColor(Color_._address, srcPtr, format)
     return Color_
 
 
 def SetPixelColor(dstPtr: int, color: Color, format: int):
+    """Set color formatted into destination pixel pointer"""
     _mod._SetPixelColor(dstPtr, color._address, format)
 
 
 def GetPixelDataSize(width: int, height: int, format: int) -> int:
+    """Get pixel data size in bytes for certain format"""
     return_interface = _mod._GetPixelDataSize(width, height, format)
     return return_interface
 
 
 def GetFontDefault() -> Font:
     Font_ = Font()
+    """Get the default Font"""
     _mod._GetFontDefault(Font_._address)
     return Font_
 
@@ -4556,6 +5050,7 @@ def LoadFont(fileName: str) -> Font:
     Font_ = Font()
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Load font from file into GPU memory (VRAM)"""
     _mod._LoadFont(Font_._address, fileName_)
     _mod._free(fileName_)
     return Font_
@@ -4565,6 +5060,7 @@ def LoadFontEx(fileName: str, fontSize: int, fontChars: int, glyphCount: int) ->
     Font_ = Font()
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Load font from file with extended parameters, use NULL for fontChars and 0 for glyphCount to load the default character set"""
     _mod._LoadFontEx(Font_._address, fileName_, fontSize, fontChars, glyphCount)
     _mod._free(fileName_)
     return Font_
@@ -4572,6 +5068,7 @@ def LoadFontEx(fileName: str, fontSize: int, fontChars: int, glyphCount: int) ->
 
 def LoadFontFromImage(image: Image, key: Color, firstChar: int) -> Font:
     Font_ = Font()
+    """Load font from Image (XNA style)"""
     _mod._LoadFontFromImage(Font_._address, image._address, key._address, firstChar)
     return Font_
 
@@ -4580,50 +5077,59 @@ def LoadFontFromMemory(fileType: str, fileData: int, dataSize: int, fontSize: in
     Font_ = Font()
     fileType_ = _mod._malloc(len(fileType) + 1)
     _mod.stringToUTF8(fileType, fileType_, len(fileType) + 1)
+    """Load font from memory buffer, fileType refers to extension: i.e. '.ttf'"""
     _mod._LoadFontFromMemory(Font_._address, fileType_, fileData, dataSize, fontSize, fontChars, glyphCount)
     _mod._free(fileType_)
     return Font_
 
 
 def IsFontReady(font: Font) -> int:
+    """Check if a font is ready"""
     return_interface = _mod._IsFontReady(font._address)
     return return_interface
 
 
 def LoadFontData(fileData: int, dataSize: int, fontSize: int, fontChars: int, glyphCount: int, type: int) -> int:
+    """Load font data for further use"""
     return_interface = _mod._LoadFontData(fileData, dataSize, fontSize, fontChars, glyphCount, type)
     return return_interface
 
 
 def GenImageFontAtlas(chars: int, recs: int, glyphCount: int, fontSize: int, padding: int, packMethod: int) -> Image:
     Image_ = Image()
+    """Generate image font atlas using chars info"""
     _mod._GenImageFontAtlas(Image_._address, chars, recs, glyphCount, fontSize, padding, packMethod)
     return Image_
 
 
 def UnloadFontData(chars: int, glyphCount: int):
+    """Unload font chars info data (RAM)"""
     _mod._UnloadFontData(chars, glyphCount)
 
 
 def UnloadFont(font: Font):
+    """Unload font from GPU memory (VRAM)"""
     _mod._UnloadFont(font._address)
 
 
 def ExportFontAsCode(font: Font, fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Export font as code file, returns true on success"""
     return_interface = _mod._ExportFontAsCode(font._address, fileName_)
     _mod._free(fileName_)
     return return_interface
 
 
 def DrawFPS(posX: int, posY: int):
+    """Draw current FPS"""
     _mod._DrawFPS(posX, posY)
 
 
 def DrawText(text: str, posX: int, posY: int, fontSize: int, color: Color):
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Draw text (using default font)"""
     _mod._DrawText(text_, posX, posY, fontSize, color._address)
     _mod._free(text_)
 
@@ -4631,6 +5137,7 @@ def DrawText(text: str, posX: int, posY: int, fontSize: int, color: Color):
 def DrawTextEx(font: Font, text: str, position: Vector2, fontSize: float, spacing: float, tint: Color):
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Draw text using font and additional parameters"""
     _mod._DrawTextEx(font._address, text_, position._address, fontSize, spacing, tint._address)
     _mod._free(text_)
 
@@ -4638,25 +5145,30 @@ def DrawTextEx(font: Font, text: str, position: Vector2, fontSize: float, spacin
 def DrawTextPro(font: Font, text: str, position: Vector2, origin: Vector2, rotation: float, fontSize: float, spacing: float, tint: Color):
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Draw text using Font and pro parameters (rotation)"""
     _mod._DrawTextPro(font._address, text_, position._address, origin._address, rotation, fontSize, spacing, tint._address)
     _mod._free(text_)
 
 
 def DrawTextCodepoint(font: Font, codepoint: int, position: Vector2, fontSize: float, tint: Color):
+    """Draw one character (codepoint)"""
     _mod._DrawTextCodepoint(font._address, codepoint, position._address, fontSize, tint._address)
 
 
 def DrawTextCodepoints(font: Font, codepoints: int, count: int, position: Vector2, fontSize: float, spacing: float, tint: Color):
+    """Draw multiple character (codepoint)"""
     _mod._DrawTextCodepoints(font._address, codepoints, count, position._address, fontSize, spacing, tint._address)
 
 
 def SetTextLineSpacing(spacing: int):
+    """Set vertical line spacing when drawing with line-breaks"""
     _mod._SetTextLineSpacing(spacing)
 
 
 def MeasureText(text: str, fontSize: int) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Measure string width for default font"""
     return_interface = _mod._MeasureText(text_, fontSize)
     _mod._free(text_)
     return return_interface
@@ -4666,52 +5178,61 @@ def MeasureTextEx(font: Font, text: str, fontSize: float, spacing: float) -> Vec
     Vector2_ = Vector2()
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Measure string size for Font"""
     _mod._MeasureTextEx(Vector2_._address, font._address, text_, fontSize, spacing)
     _mod._free(text_)
     return Vector2_
 
 
 def GetGlyphIndex(font: Font, codepoint: int) -> int:
+    """Get glyph index position in font for a codepoint (unicode character), fallback to '?' if not found"""
     return_interface = _mod._GetGlyphIndex(font._address, codepoint)
     return return_interface
 
 
 def GetGlyphInfo(font: Font, codepoint: int) -> GlyphInfo:
     GlyphInfo_ = GlyphInfo()
+    """Get glyph font info data for a codepoint (unicode character), fallback to '?' if not found"""
     _mod._GetGlyphInfo(GlyphInfo_._address, font._address, codepoint)
     return GlyphInfo_
 
 
 def GetGlyphAtlasRec(font: Font, codepoint: int) -> Rectangle:
     Rectangle_ = Rectangle()
+    """Get glyph rectangle in font atlas for a codepoint (unicode character), fallback to '?' if not found"""
     _mod._GetGlyphAtlasRec(Rectangle_._address, font._address, codepoint)
     return Rectangle_
 
 
 def LoadUTF8(codepoints: int, length: int) -> int:
+    """Load UTF-8 text encoded from codepoints array"""
     return_interface = _mod._LoadUTF8(codepoints, length)
     return return_interface
 
 
 def UnloadUTF8(text: int):
+    """Unload UTF-8 text encoded from codepoints array"""
     _mod._UnloadUTF8(text)
 
 
 def LoadCodepoints(text: str, count: int) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Load all codepoints from a UTF-8 text string, codepoints count returned by parameter"""
     return_interface = _mod._LoadCodepoints(text_, count)
     _mod._free(text_)
     return return_interface
 
 
 def UnloadCodepoints(codepoints: int):
+    """Unload codepoints data from memory"""
     _mod._UnloadCodepoints(codepoints)
 
 
 def GetCodepointCount(text: str) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Get total number of codepoints in a UTF-8 encoded string"""
     return_interface = _mod._GetCodepointCount(text_)
     _mod._free(text_)
     return return_interface
@@ -4720,6 +5241,7 @@ def GetCodepointCount(text: str) -> int:
 def GetCodepoint(text: str, codepointSize: int) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure"""
     return_interface = _mod._GetCodepoint(text_, codepointSize)
     _mod._free(text_)
     return return_interface
@@ -4728,6 +5250,7 @@ def GetCodepoint(text: str, codepointSize: int) -> int:
 def GetCodepointNext(text: str, codepointSize: int) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure"""
     return_interface = _mod._GetCodepointNext(text_, codepointSize)
     _mod._free(text_)
     return return_interface
@@ -4736,12 +5259,14 @@ def GetCodepointNext(text: str, codepointSize: int) -> int:
 def GetCodepointPrevious(text: str, codepointSize: int) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Get previous codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure"""
     return_interface = _mod._GetCodepointPrevious(text_, codepointSize)
     _mod._free(text_)
     return return_interface
 
 
 def CodepointToUTF8(codepoint: int, utf8Size: int) -> int:
+    """Encode one codepoint into UTF-8 byte array (array length returned as parameter)"""
     return_interface = _mod._CodepointToUTF8(codepoint, utf8Size)
     return return_interface
 
@@ -4749,6 +5274,7 @@ def CodepointToUTF8(codepoint: int, utf8Size: int) -> int:
 def TextCopy(dst: int, src: str) -> int:
     src_ = _mod._malloc(len(src) + 1)
     _mod.stringToUTF8(src, src_, len(src) + 1)
+    """Copy one string to another, returns bytes copied"""
     return_interface = _mod._TextCopy(dst, src_)
     _mod._free(src_)
     return return_interface
@@ -4759,6 +5285,7 @@ def TextIsEqual(text1: str, text2: str) -> int:
     _mod.stringToUTF8(text1, text1_, len(text1) + 1)
     text2_ = _mod._malloc(len(text2) + 1)
     _mod.stringToUTF8(text2, text2_, len(text2) + 1)
+    """Check if two text string are equal"""
     return_interface = _mod._TextIsEqual(text1_, text2_)
     _mod._free(text1_)
     _mod._free(text2_)
@@ -4768,6 +5295,7 @@ def TextIsEqual(text1: str, text2: str) -> int:
 def TextLength(text: str) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Get text length, checks for '\0' ending"""
     return_interface = _mod._TextLength(text_)
     _mod._free(text_)
     return return_interface
@@ -4776,6 +5304,7 @@ def TextLength(text: str) -> int:
 def TextSubtext(text: str, position: int, length: int) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Get a piece of a text string"""
     return_interface = _mod._TextSubtext(text_, position, length)
     _mod._free(text_)
     return return_interface
@@ -4786,6 +5315,7 @@ def TextReplace(text: int, replace: str, by: str) -> int:
     _mod.stringToUTF8(replace, replace_, len(replace) + 1)
     by_ = _mod._malloc(len(by) + 1)
     _mod.stringToUTF8(by, by_, len(by) + 1)
+    """Replace text string (WARNING: memory must be freed!)"""
     return_interface = _mod._TextReplace(text, replace_, by_)
     _mod._free(replace_)
     _mod._free(by_)
@@ -4797,6 +5327,7 @@ def TextInsert(text: str, insert: str, position: int) -> int:
     _mod.stringToUTF8(text, text_, len(text) + 1)
     insert_ = _mod._malloc(len(insert) + 1)
     _mod.stringToUTF8(insert, insert_, len(insert) + 1)
+    """Insert text in a position (WARNING: memory must be freed!)"""
     return_interface = _mod._TextInsert(text_, insert_, position)
     _mod._free(text_)
     _mod._free(insert_)
@@ -4806,6 +5337,7 @@ def TextInsert(text: str, insert: str, position: int) -> int:
 def TextJoin(textList: int, count: int, delimiter: str) -> int:
     delimiter_ = _mod._malloc(len(delimiter) + 1)
     _mod.stringToUTF8(delimiter, delimiter_, len(delimiter) + 1)
+    """Join text strings with delimiter"""
     return_interface = _mod._TextJoin(textList, count, delimiter_)
     _mod._free(delimiter_)
     return return_interface
@@ -4814,6 +5346,7 @@ def TextJoin(textList: int, count: int, delimiter: str) -> int:
 def TextSplit(text: str, delimiter: int, count: int) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Split text into multiple strings"""
     return_interface = _mod._TextSplit(text_, delimiter, count)
     _mod._free(text_)
     return return_interface
@@ -4822,6 +5355,7 @@ def TextSplit(text: str, delimiter: int, count: int) -> int:
 def TextAppend(text: int, append: str, position: int):
     append_ = _mod._malloc(len(append) + 1)
     _mod.stringToUTF8(append, append_, len(append) + 1)
+    """Append text at specific position and move cursor!"""
     _mod._TextAppend(text, append_, position)
     _mod._free(append_)
 
@@ -4831,6 +5365,7 @@ def TextFindIndex(text: str, find: str) -> int:
     _mod.stringToUTF8(text, text_, len(text) + 1)
     find_ = _mod._malloc(len(find) + 1)
     _mod.stringToUTF8(find, find_, len(find) + 1)
+    """Find first text occurrence within a string"""
     return_interface = _mod._TextFindIndex(text_, find_)
     _mod._free(text_)
     _mod._free(find_)
@@ -4840,6 +5375,7 @@ def TextFindIndex(text: str, find: str) -> int:
 def TextToUpper(text: str) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Get upper case version of provided string"""
     return_interface = _mod._TextToUpper(text_)
     _mod._free(text_)
     return return_interface
@@ -4848,6 +5384,7 @@ def TextToUpper(text: str) -> int:
 def TextToLower(text: str) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Get lower case version of provided string"""
     return_interface = _mod._TextToLower(text_)
     _mod._free(text_)
     return return_interface
@@ -4856,6 +5393,7 @@ def TextToLower(text: str) -> int:
 def TextToPascal(text: str) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Get Pascal case notation version of provided string"""
     return_interface = _mod._TextToPascal(text_)
     _mod._free(text_)
     return return_interface
@@ -4864,92 +5402,114 @@ def TextToPascal(text: str) -> int:
 def TextToInteger(text: str) -> int:
     text_ = _mod._malloc(len(text) + 1)
     _mod.stringToUTF8(text, text_, len(text) + 1)
+    """Get integer value from text (negative values not supported)"""
     return_interface = _mod._TextToInteger(text_)
     _mod._free(text_)
     return return_interface
 
 
 def DrawLine3D(startPos: Vector3, endPos: Vector3, color: Color):
+    """Draw a line in 3D world space"""
     _mod._DrawLine3D(startPos._address, endPos._address, color._address)
 
 
 def DrawPoint3D(position: Vector3, color: Color):
+    """Draw a point in 3D space, actually a small line"""
     _mod._DrawPoint3D(position._address, color._address)
 
 
 def DrawCircle3D(center: Vector3, radius: float, rotationAxis: Vector3, rotationAngle: float, color: Color):
+    """Draw a circle in 3D world space"""
     _mod._DrawCircle3D(center._address, radius, rotationAxis._address, rotationAngle, color._address)
 
 
 def DrawTriangle3D(v1: Vector3, v2: Vector3, v3: Vector3, color: Color):
+    """Draw a color-filled triangle (vertex in counter-clockwise order!)"""
     _mod._DrawTriangle3D(v1._address, v2._address, v3._address, color._address)
 
 
 def DrawTriangleStrip3D(points: int, pointCount: int, color: Color):
+    """Draw a triangle strip defined by points"""
     _mod._DrawTriangleStrip3D(points, pointCount, color._address)
 
 
 def DrawCube(position: Vector3, width: float, height: float, length: float, color: Color):
+    """Draw cube"""
     _mod._DrawCube(position._address, width, height, length, color._address)
 
 
 def DrawCubeV(position: Vector3, size: Vector3, color: Color):
+    """Draw cube (Vector version)"""
     _mod._DrawCubeV(position._address, size._address, color._address)
 
 
 def DrawCubeWires(position: Vector3, width: float, height: float, length: float, color: Color):
+    """Draw cube wires"""
     _mod._DrawCubeWires(position._address, width, height, length, color._address)
 
 
 def DrawCubeWiresV(position: Vector3, size: Vector3, color: Color):
+    """Draw cube wires (Vector version)"""
     _mod._DrawCubeWiresV(position._address, size._address, color._address)
 
 
 def DrawSphere(centerPos: Vector3, radius: float, color: Color):
+    """Draw sphere"""
     _mod._DrawSphere(centerPos._address, radius, color._address)
 
 
 def DrawSphereEx(centerPos: Vector3, radius: float, rings: int, slices: int, color: Color):
+    """Draw sphere with extended parameters"""
     _mod._DrawSphereEx(centerPos._address, radius, rings, slices, color._address)
 
 
 def DrawSphereWires(centerPos: Vector3, radius: float, rings: int, slices: int, color: Color):
+    """Draw sphere wires"""
     _mod._DrawSphereWires(centerPos._address, radius, rings, slices, color._address)
 
 
 def DrawCylinder(position: Vector3, radiusTop: float, radiusBottom: float, height: float, slices: int, color: Color):
+    """Draw a cylinder/cone"""
     _mod._DrawCylinder(position._address, radiusTop, radiusBottom, height, slices, color._address)
 
 
 def DrawCylinderEx(startPos: Vector3, endPos: Vector3, startRadius: float, endRadius: float, sides: int, color: Color):
+    """Draw a cylinder with base at startPos and top at endPos"""
     _mod._DrawCylinderEx(startPos._address, endPos._address, startRadius, endRadius, sides, color._address)
 
 
 def DrawCylinderWires(position: Vector3, radiusTop: float, radiusBottom: float, height: float, slices: int, color: Color):
+    """Draw a cylinder/cone wires"""
     _mod._DrawCylinderWires(position._address, radiusTop, radiusBottom, height, slices, color._address)
 
 
 def DrawCylinderWiresEx(startPos: Vector3, endPos: Vector3, startRadius: float, endRadius: float, sides: int, color: Color):
+    """Draw a cylinder wires with base at startPos and top at endPos"""
     _mod._DrawCylinderWiresEx(startPos._address, endPos._address, startRadius, endRadius, sides, color._address)
 
 
 def DrawCapsule(startPos: Vector3, endPos: Vector3, radius: float, slices: int, rings: int, color: Color):
+    """Draw a capsule with the center of its sphere caps at startPos and endPos"""
     _mod._DrawCapsule(startPos._address, endPos._address, radius, slices, rings, color._address)
 
 
 def DrawCapsuleWires(startPos: Vector3, endPos: Vector3, radius: float, slices: int, rings: int, color: Color):
+    """Draw capsule wireframe with the center of its sphere caps at startPos and endPos"""
     _mod._DrawCapsuleWires(startPos._address, endPos._address, radius, slices, rings, color._address)
 
 
 def DrawPlane(centerPos: Vector3, size: Vector2, color: Color):
+    """Draw a plane XZ"""
     _mod._DrawPlane(centerPos._address, size._address, color._address)
 
 
 def DrawRay(ray: Ray, color: Color):
+    """Draw a ray line"""
     _mod._DrawRay(ray._address, color._address)
 
 
 def DrawGrid(slices: int, spacing: float):
+    """Draw a grid (centered at (0, 0, 0))"""
     _mod._DrawGrid(slices, spacing)
 
 
@@ -4957,6 +5517,7 @@ def LoadModel(fileName: str) -> Model:
     Model_ = Model()
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Load model from files (meshes and materials)"""
     _mod._LoadModel(Model_._address, fileName_)
     _mod._free(fileName_)
     return Model_
@@ -4964,80 +5525,98 @@ def LoadModel(fileName: str) -> Model:
 
 def LoadModelFromMesh(mesh: Mesh) -> Model:
     Model_ = Model()
+    """Load model from generated mesh (default material)"""
     _mod._LoadModelFromMesh(Model_._address, mesh._address)
     return Model_
 
 
 def IsModelReady(model: Model) -> int:
+    """Check if a model is ready"""
     return_interface = _mod._IsModelReady(model._address)
     return return_interface
 
 
 def UnloadModel(model: Model):
+    """Unload model (including meshes) from memory (RAM and/or VRAM)"""
     _mod._UnloadModel(model._address)
 
 
 def GetModelBoundingBox(model: Model) -> BoundingBox:
     BoundingBox_ = BoundingBox()
+    """Compute model bounding box limits (considers all meshes)"""
     _mod._GetModelBoundingBox(BoundingBox_._address, model._address)
     return BoundingBox_
 
 
 def DrawModel(model: Model, position: Vector3, scale: float, tint: Color):
+    """Draw a model (with texture if set)"""
     _mod._DrawModel(model._address, position._address, scale, tint._address)
 
 
 def DrawModelEx(model: Model, position: Vector3, rotationAxis: Vector3, rotationAngle: float, scale: Vector3, tint: Color):
+    """Draw a model with extended parameters"""
     _mod._DrawModelEx(model._address, position._address, rotationAxis._address, rotationAngle, scale._address, tint._address)
 
 
 def DrawModelWires(model: Model, position: Vector3, scale: float, tint: Color):
+    """Draw a model wires (with texture if set)"""
     _mod._DrawModelWires(model._address, position._address, scale, tint._address)
 
 
 def DrawModelWiresEx(model: Model, position: Vector3, rotationAxis: Vector3, rotationAngle: float, scale: Vector3, tint: Color):
+    """Draw a model wires (with texture if set) with extended parameters"""
     _mod._DrawModelWiresEx(model._address, position._address, rotationAxis._address, rotationAngle, scale._address, tint._address)
 
 
 def DrawBoundingBox(box: BoundingBox, color: Color):
+    """Draw bounding box (wires)"""
     _mod._DrawBoundingBox(box._address, color._address)
 
 
 def DrawBillboard(camera: Camera, texture: Texture2D, position: Vector3, size: float, tint: Color):
+    """Draw a billboard texture"""
     _mod._DrawBillboard(camera._address, texture._address, position._address, size, tint._address)
 
 
 def DrawBillboardRec(camera: Camera, texture: Texture2D, source: Rectangle, position: Vector3, size: Vector2, tint: Color):
+    """Draw a billboard texture defined by source"""
     _mod._DrawBillboardRec(camera._address, texture._address, source._address, position._address, size._address, tint._address)
 
 
 def DrawBillboardPro(camera: Camera, texture: Texture2D, source: Rectangle, position: Vector3, up: Vector3, size: Vector2, origin: Vector2, rotation: float, tint: Color):
+    """Draw a billboard texture defined by source and rotation"""
     _mod._DrawBillboardPro(camera._address, texture._address, source._address, position._address, up._address, size._address, origin._address, rotation, tint._address)
 
 
 def UploadMesh(mesh: int, dynamic: int):
+    """Upload mesh vertex data in GPU and provide VAO/VBO ids"""
     _mod._UploadMesh(mesh, dynamic)
 
 
 def UpdateMeshBuffer(mesh: Mesh, index: int, data: int, dataSize: int, offset: int):
+    """Update mesh vertex data in GPU for a specific buffer index"""
     _mod._UpdateMeshBuffer(mesh._address, index, data, dataSize, offset)
 
 
 def UnloadMesh(mesh: Mesh):
+    """Unload mesh data from CPU and GPU"""
     _mod._UnloadMesh(mesh._address)
 
 
 def DrawMesh(mesh: Mesh, material: Material, transform: Matrix):
+    """Draw a 3d mesh with material and transform"""
     _mod._DrawMesh(mesh._address, material._address, transform._address)
 
 
 def DrawMeshInstanced(mesh: Mesh, material: Material, transforms: int, instances: int):
+    """Draw multiple mesh instances with material and different transforms"""
     _mod._DrawMeshInstanced(mesh._address, material._address, transforms, instances)
 
 
 def ExportMesh(mesh: Mesh, fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Export mesh data to file, returns true on success"""
     return_interface = _mod._ExportMesh(mesh._address, fileName_)
     _mod._free(fileName_)
     return return_interface
@@ -5045,76 +5624,89 @@ def ExportMesh(mesh: Mesh, fileName: str) -> int:
 
 def GetMeshBoundingBox(mesh: Mesh) -> BoundingBox:
     BoundingBox_ = BoundingBox()
+    """Compute mesh bounding box limits"""
     _mod._GetMeshBoundingBox(BoundingBox_._address, mesh._address)
     return BoundingBox_
 
 
 def GenMeshTangents(mesh: int):
+    """Compute mesh tangents"""
     _mod._GenMeshTangents(mesh)
 
 
 def GenMeshPoly(sides: int, radius: float) -> Mesh:
     Mesh_ = Mesh()
+    """Generate polygonal mesh"""
     _mod._GenMeshPoly(Mesh_._address, sides, radius)
     return Mesh_
 
 
 def GenMeshPlane(width: float, length: float, resX: int, resZ: int) -> Mesh:
     Mesh_ = Mesh()
+    """Generate plane mesh (with subdivisions)"""
     _mod._GenMeshPlane(Mesh_._address, width, length, resX, resZ)
     return Mesh_
 
 
 def GenMeshCube(width: float, height: float, length: float) -> Mesh:
     Mesh_ = Mesh()
+    """Generate cuboid mesh"""
     _mod._GenMeshCube(Mesh_._address, width, height, length)
     return Mesh_
 
 
 def GenMeshSphere(radius: float, rings: int, slices: int) -> Mesh:
     Mesh_ = Mesh()
+    """Generate sphere mesh (standard sphere)"""
     _mod._GenMeshSphere(Mesh_._address, radius, rings, slices)
     return Mesh_
 
 
 def GenMeshHemiSphere(radius: float, rings: int, slices: int) -> Mesh:
     Mesh_ = Mesh()
+    """Generate half-sphere mesh (no bottom cap)"""
     _mod._GenMeshHemiSphere(Mesh_._address, radius, rings, slices)
     return Mesh_
 
 
 def GenMeshCylinder(radius: float, height: float, slices: int) -> Mesh:
     Mesh_ = Mesh()
+    """Generate cylinder mesh"""
     _mod._GenMeshCylinder(Mesh_._address, radius, height, slices)
     return Mesh_
 
 
 def GenMeshCone(radius: float, height: float, slices: int) -> Mesh:
     Mesh_ = Mesh()
+    """Generate cone/pyramid mesh"""
     _mod._GenMeshCone(Mesh_._address, radius, height, slices)
     return Mesh_
 
 
 def GenMeshTorus(radius: float, size: float, radSeg: int, sides: int) -> Mesh:
     Mesh_ = Mesh()
+    """Generate torus mesh"""
     _mod._GenMeshTorus(Mesh_._address, radius, size, radSeg, sides)
     return Mesh_
 
 
 def GenMeshKnot(radius: float, size: float, radSeg: int, sides: int) -> Mesh:
     Mesh_ = Mesh()
+    """Generate trefoil knot mesh"""
     _mod._GenMeshKnot(Mesh_._address, radius, size, radSeg, sides)
     return Mesh_
 
 
 def GenMeshHeightmap(heightmap: Image, size: Vector3) -> Mesh:
     Mesh_ = Mesh()
+    """Generate heightmap mesh from image data"""
     _mod._GenMeshHeightmap(Mesh_._address, heightmap._address, size._address)
     return Mesh_
 
 
 def GenMeshCubicmap(cubicmap: Image, cubeSize: Vector3) -> Mesh:
     Mesh_ = Mesh()
+    """Generate cubes-based map mesh from image data"""
     _mod._GenMeshCubicmap(Mesh_._address, cubicmap._address, cubeSize._address)
     return Mesh_
 
@@ -5122,6 +5714,7 @@ def GenMeshCubicmap(cubicmap: Image, cubeSize: Vector3) -> Mesh:
 def LoadMaterials(fileName: str, materialCount: int) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Load materials from model file"""
     return_interface = _mod._LoadMaterials(fileName_, materialCount)
     _mod._free(fileName_)
     return return_interface
@@ -5129,111 +5722,133 @@ def LoadMaterials(fileName: str, materialCount: int) -> int:
 
 def LoadMaterialDefault() -> Material:
     Material_ = Material()
+    """Load default material (Supports: DIFFUSE, SPECULAR, NORMAL maps)"""
     _mod._LoadMaterialDefault(Material_._address)
     return Material_
 
 
 def IsMaterialReady(material: Material) -> int:
+    """Check if a material is ready"""
     return_interface = _mod._IsMaterialReady(material._address)
     return return_interface
 
 
 def UnloadMaterial(material: Material):
+    """Unload material from GPU memory (VRAM)"""
     _mod._UnloadMaterial(material._address)
 
 
 def SetMaterialTexture(material: int, mapType: int, texture: Texture2D):
+    """Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...)"""
     _mod._SetMaterialTexture(material, mapType, texture._address)
 
 
 def SetModelMeshMaterial(model: int, meshId: int, materialId: int):
+    """Set material for a mesh"""
     _mod._SetModelMeshMaterial(model, meshId, materialId)
 
 
 def LoadModelAnimations(fileName: str, animCount: int) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Load model animations from file"""
     return_interface = _mod._LoadModelAnimations(fileName_, animCount)
     _mod._free(fileName_)
     return return_interface
 
 
 def UpdateModelAnimation(model: Model, anim: ModelAnimation, frame: int):
+    """Update model animation pose"""
     _mod._UpdateModelAnimation(model._address, anim._address, frame)
 
 
 def UnloadModelAnimation(anim: ModelAnimation):
+    """Unload animation data"""
     _mod._UnloadModelAnimation(anim._address)
 
 
 def UnloadModelAnimations(animations: int, count: int):
+    """Unload animation array data"""
     _mod._UnloadModelAnimations(animations, count)
 
 
 def IsModelAnimationValid(model: Model, anim: ModelAnimation) -> int:
+    """Check model animation skeleton match"""
     return_interface = _mod._IsModelAnimationValid(model._address, anim._address)
     return return_interface
 
 
 def CheckCollisionSpheres(center1: Vector3, radius1: float, center2: Vector3, radius2: float) -> int:
+    """Check collision between two spheres"""
     return_interface = _mod._CheckCollisionSpheres(center1._address, radius1, center2._address, radius2)
     return return_interface
 
 
 def CheckCollisionBoxes(box1: BoundingBox, box2: BoundingBox) -> int:
+    """Check collision between two bounding boxes"""
     return_interface = _mod._CheckCollisionBoxes(box1._address, box2._address)
     return return_interface
 
 
 def CheckCollisionBoxSphere(box: BoundingBox, center: Vector3, radius: float) -> int:
+    """Check collision between box and sphere"""
     return_interface = _mod._CheckCollisionBoxSphere(box._address, center._address, radius)
     return return_interface
 
 
 def GetRayCollisionSphere(ray: Ray, center: Vector3, radius: float) -> RayCollision:
     RayCollision_ = RayCollision()
+    """Get collision info between ray and sphere"""
     _mod._GetRayCollisionSphere(RayCollision_._address, ray._address, center._address, radius)
     return RayCollision_
 
 
 def GetRayCollisionBox(ray: Ray, box: BoundingBox) -> RayCollision:
     RayCollision_ = RayCollision()
+    """Get collision info between ray and box"""
     _mod._GetRayCollisionBox(RayCollision_._address, ray._address, box._address)
     return RayCollision_
 
 
 def GetRayCollisionMesh(ray: Ray, mesh: Mesh, transform: Matrix) -> RayCollision:
     RayCollision_ = RayCollision()
+    """Get collision info between ray and mesh"""
     _mod._GetRayCollisionMesh(RayCollision_._address, ray._address, mesh._address, transform._address)
     return RayCollision_
 
 
 def GetRayCollisionTriangle(ray: Ray, p1: Vector3, p2: Vector3, p3: Vector3) -> RayCollision:
     RayCollision_ = RayCollision()
+    """Get collision info between ray and triangle"""
     _mod._GetRayCollisionTriangle(RayCollision_._address, ray._address, p1._address, p2._address, p3._address)
     return RayCollision_
 
 
 def GetRayCollisionQuad(ray: Ray, p1: Vector3, p2: Vector3, p3: Vector3, p4: Vector3) -> RayCollision:
     RayCollision_ = RayCollision()
+    """Get collision info between ray and quad"""
     _mod._GetRayCollisionQuad(RayCollision_._address, ray._address, p1._address, p2._address, p3._address, p4._address)
     return RayCollision_
 
 
 def InitAudioDevice():
+    """Initialize audio device and context"""
     _mod._InitAudioDevice()
 
 
 def CloseAudioDevice():
+    """Close the audio device and context"""
     _mod._CloseAudioDevice()
 
 
 def IsAudioDeviceReady() -> int:
+    """Check if audio device has been initialized successfully"""
     return_interface = _mod._IsAudioDeviceReady()
     return return_interface
 
 
 def SetMasterVolume(volume: float):
+    """Set master volume (listener)"""
     _mod._SetMasterVolume(volume)
 
 
@@ -5241,6 +5856,7 @@ def LoadWave(fileName: str) -> Wave:
     Wave_ = Wave()
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Load wave data from file"""
     _mod._LoadWave(Wave_._address, fileName_)
     _mod._free(fileName_)
     return Wave_
@@ -5250,12 +5866,14 @@ def LoadWaveFromMemory(fileType: str, fileData: int, dataSize: int) -> Wave:
     Wave_ = Wave()
     fileType_ = _mod._malloc(len(fileType) + 1)
     _mod.stringToUTF8(fileType, fileType_, len(fileType) + 1)
+    """Load wave from memory buffer, fileType refers to extension: i.e. '.wav'"""
     _mod._LoadWaveFromMemory(Wave_._address, fileType_, fileData, dataSize)
     _mod._free(fileType_)
     return Wave_
 
 
 def IsWaveReady(wave: Wave) -> int:
+    """Checks if wave data is ready"""
     return_interface = _mod._IsWaveReady(wave._address)
     return return_interface
 
@@ -5264,6 +5882,7 @@ def LoadSound(fileName: str) -> Sound:
     Sound_ = Sound()
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Load sound from file"""
     _mod._LoadSound(Sound_._address, fileName_)
     _mod._free(fileName_)
     return Sound_
@@ -5271,30 +5890,36 @@ def LoadSound(fileName: str) -> Sound:
 
 def LoadSoundFromWave(wave: Wave) -> Sound:
     Sound_ = Sound()
+    """Load sound from wave data"""
     _mod._LoadSoundFromWave(Sound_._address, wave._address)
     return Sound_
 
 
 def IsSoundReady(sound: Sound) -> int:
+    """Checks if a sound is ready"""
     return_interface = _mod._IsSoundReady(sound._address)
     return return_interface
 
 
 def UpdateSound(sound: Sound, data: int, sampleCount: int):
+    """Update sound buffer with new data"""
     _mod._UpdateSound(sound._address, data, sampleCount)
 
 
 def UnloadWave(wave: Wave):
+    """Unload wave data"""
     _mod._UnloadWave(wave._address)
 
 
 def UnloadSound(sound: Sound):
+    """Unload sound"""
     _mod._UnloadSound(sound._address)
 
 
 def ExportWave(wave: Wave, fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Export wave data to file, returns true on success"""
     return_interface = _mod._ExportWave(wave._address, fileName_)
     _mod._free(fileName_)
     return return_interface
@@ -5303,64 +5928,78 @@ def ExportWave(wave: Wave, fileName: str) -> int:
 def ExportWaveAsCode(wave: Wave, fileName: str) -> int:
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Export wave sample data to code (.h), returns true on success"""
     return_interface = _mod._ExportWaveAsCode(wave._address, fileName_)
     _mod._free(fileName_)
     return return_interface
 
 
 def PlaySound(sound: Sound):
+    """Play a sound"""
     _mod._PlaySound(sound._address)
 
 
 def StopSound(sound: Sound):
+    """Stop playing a sound"""
     _mod._StopSound(sound._address)
 
 
 def PauseSound(sound: Sound):
+    """Pause a sound"""
     _mod._PauseSound(sound._address)
 
 
 def ResumeSound(sound: Sound):
+    """Resume a paused sound"""
     _mod._ResumeSound(sound._address)
 
 
 def IsSoundPlaying(sound: Sound) -> int:
+    """Check if a sound is currently playing"""
     return_interface = _mod._IsSoundPlaying(sound._address)
     return return_interface
 
 
 def SetSoundVolume(sound: Sound, volume: float):
+    """Set volume for a sound (1.0 is max level)"""
     _mod._SetSoundVolume(sound._address, volume)
 
 
 def SetSoundPitch(sound: Sound, pitch: float):
+    """Set pitch for a sound (1.0 is base level)"""
     _mod._SetSoundPitch(sound._address, pitch)
 
 
 def SetSoundPan(sound: Sound, pan: float):
+    """Set pan for a sound (0.5 is center)"""
     _mod._SetSoundPan(sound._address, pan)
 
 
 def WaveCopy(wave: Wave) -> Wave:
     Wave_ = Wave()
+    """Copy a wave to a new wave"""
     _mod._WaveCopy(Wave_._address, wave._address)
     return Wave_
 
 
 def WaveCrop(wave: int, initSample: int, finalSample: int):
+    """Crop a wave to defined samples range"""
     _mod._WaveCrop(wave, initSample, finalSample)
 
 
 def WaveFormat(wave: int, sampleRate: int, sampleSize: int, channels: int):
+    """Convert wave data to desired format"""
     _mod._WaveFormat(wave, sampleRate, sampleSize, channels)
 
 
 def LoadWaveSamples(wave: Wave) -> int:
+    """Load samples data from wave as a 32bit float data array"""
     return_interface = _mod._LoadWaveSamples(wave._address)
     return return_interface
 
 
 def UnloadWaveSamples(samples: int):
+    """Unload samples data loaded with LoadWaveSamples()"""
     _mod._UnloadWaveSamples(samples)
 
 
@@ -5368,6 +6007,7 @@ def LoadMusicStream(fileName: str) -> Music:
     Music_ = Music()
     fileName_ = _mod._malloc(len(fileName) + 1)
     _mod.stringToUTF8(fileName, fileName_, len(fileName) + 1)
+    """Load music stream from file"""
     _mod._LoadMusicStream(Music_._address, fileName_)
     _mod._free(fileName_)
     return Music_
@@ -5377,129 +6017,158 @@ def LoadMusicStreamFromMemory(fileType: str, data: int, dataSize: int) -> Music:
     Music_ = Music()
     fileType_ = _mod._malloc(len(fileType) + 1)
     _mod.stringToUTF8(fileType, fileType_, len(fileType) + 1)
+    """Load music stream from data"""
     _mod._LoadMusicStreamFromMemory(Music_._address, fileType_, data, dataSize)
     _mod._free(fileType_)
     return Music_
 
 
 def IsMusicReady(music: Music) -> int:
+    """Checks if a music stream is ready"""
     return_interface = _mod._IsMusicReady(music._address)
     return return_interface
 
 
 def UnloadMusicStream(music: Music):
+    """Unload music stream"""
     _mod._UnloadMusicStream(music._address)
 
 
 def PlayMusicStream(music: Music):
+    """Start music playing"""
     _mod._PlayMusicStream(music._address)
 
 
 def IsMusicStreamPlaying(music: Music) -> int:
+    """Check if music is playing"""
     return_interface = _mod._IsMusicStreamPlaying(music._address)
     return return_interface
 
 
 def UpdateMusicStream(music: Music):
+    """Updates buffers for music streaming"""
     _mod._UpdateMusicStream(music._address)
 
 
 def StopMusicStream(music: Music):
+    """Stop music playing"""
     _mod._StopMusicStream(music._address)
 
 
 def PauseMusicStream(music: Music):
+    """Pause music playing"""
     _mod._PauseMusicStream(music._address)
 
 
 def ResumeMusicStream(music: Music):
+    """Resume playing paused music"""
     _mod._ResumeMusicStream(music._address)
 
 
 def SeekMusicStream(music: Music, position: float):
+    """Seek music to a position (in seconds)"""
     _mod._SeekMusicStream(music._address, position)
 
 
 def SetMusicVolume(music: Music, volume: float):
+    """Set volume for music (1.0 is max level)"""
     _mod._SetMusicVolume(music._address, volume)
 
 
 def SetMusicPitch(music: Music, pitch: float):
+    """Set pitch for a music (1.0 is base level)"""
     _mod._SetMusicPitch(music._address, pitch)
 
 
 def SetMusicPan(music: Music, pan: float):
+    """Set pan for a music (0.5 is center)"""
     _mod._SetMusicPan(music._address, pan)
 
 
 def GetMusicTimeLength(music: Music) -> float:
+    """Get music time length (in seconds)"""
     return_interface = _mod._GetMusicTimeLength(music._address)
     return return_interface
 
 
 def GetMusicTimePlayed(music: Music) -> float:
+    """Get current music time played (in seconds)"""
     return_interface = _mod._GetMusicTimePlayed(music._address)
     return return_interface
 
 
 def LoadAudioStream(sampleRate: int, sampleSize: int, channels: int) -> AudioStream:
     AudioStream_ = AudioStream()
+    """Load audio stream (to stream raw audio pcm data)"""
     _mod._LoadAudioStream(AudioStream_._address, sampleRate, sampleSize, channels)
     return AudioStream_
 
 
 def IsAudioStreamReady(stream: AudioStream) -> int:
+    """Checks if an audio stream is ready"""
     return_interface = _mod._IsAudioStreamReady(stream._address)
     return return_interface
 
 
 def UnloadAudioStream(stream: AudioStream):
+    """Unload audio stream and free memory"""
     _mod._UnloadAudioStream(stream._address)
 
 
 def UpdateAudioStream(stream: AudioStream, data: int, frameCount: int):
+    """Update audio stream buffers with data"""
     _mod._UpdateAudioStream(stream._address, data, frameCount)
 
 
 def IsAudioStreamProcessed(stream: AudioStream) -> int:
+    """Check if any audio stream buffers requires refill"""
     return_interface = _mod._IsAudioStreamProcessed(stream._address)
     return return_interface
 
 
 def PlayAudioStream(stream: AudioStream):
+    """Play audio stream"""
     _mod._PlayAudioStream(stream._address)
 
 
 def PauseAudioStream(stream: AudioStream):
+    """Pause audio stream"""
     _mod._PauseAudioStream(stream._address)
 
 
 def ResumeAudioStream(stream: AudioStream):
+    """Resume audio stream"""
     _mod._ResumeAudioStream(stream._address)
 
 
 def IsAudioStreamPlaying(stream: AudioStream) -> int:
+    """Check if audio stream is playing"""
     return_interface = _mod._IsAudioStreamPlaying(stream._address)
     return return_interface
 
 
 def StopAudioStream(stream: AudioStream):
+    """Stop audio stream"""
     _mod._StopAudioStream(stream._address)
 
 
 def SetAudioStreamVolume(stream: AudioStream, volume: float):
+    """Set volume for audio stream (1.0 is max level)"""
     _mod._SetAudioStreamVolume(stream._address, volume)
 
 
 def SetAudioStreamPitch(stream: AudioStream, pitch: float):
+    """Set pitch for audio stream (1.0 is base level)"""
     _mod._SetAudioStreamPitch(stream._address, pitch)
 
 
 def SetAudioStreamPan(stream: AudioStream, pan: float):
+    """Set pan for audio stream (0.5 is centered)"""
     _mod._SetAudioStreamPan(stream._address, pan)
 
 
 def SetAudioStreamBufferSizeDefault(size: int):
+    """Default size for new audio streams"""
     _mod._SetAudioStreamBufferSizeDefault(size)
 
 
