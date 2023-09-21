@@ -145,13 +145,12 @@ def generate_struct_code(struct_api) -> str:
     string += f"            self._address = _mod._malloc({struct_.size})\n"
     string += f"            self._to_free = True\n"
 
-
     # set self values
     offset: int = 0
     for member_ctype, member_json in zip(struct_.members, struct_api['fields']):
         if member_ctype.kind != CTypeKind.Struct and member_ctype.kind != CTypeKind.Array:
             string += f"            _mod.mem.{emscripten_XXXType_string_for_ctype_kind(member_ctype.kind, False)}" \
-                      f"(self._address + {offset}, {member_json['name']})\n"
+                      f"(self._address + {offset}, {member_json['name']}, True)\n"
         else:
             string += f"            if {member_json['name']} is not None:\n"
             string += f"                struct_clone({member_json['name']}, self._address + {offset})\n"

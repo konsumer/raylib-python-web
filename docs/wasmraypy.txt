@@ -155,8 +155,8 @@ class Vector2:
         else:
             self._address = _mod._malloc(8)
             self._to_free = True
-            _mod.mem.setFloat32(self._address + 0, x)
-            _mod.mem.setFloat32(self._address + 4, y)
+            _mod.mem.setFloat32(self._address + 0, x, True)
+            _mod.mem.setFloat32(self._address + 4, y, True)
 
     @property
     def x(self):
@@ -198,9 +198,9 @@ class Vector3:
         else:
             self._address = _mod._malloc(12)
             self._to_free = True
-            _mod.mem.setFloat32(self._address + 0, x)
-            _mod.mem.setFloat32(self._address + 4, y)
-            _mod.mem.setFloat32(self._address + 8, z)
+            _mod.mem.setFloat32(self._address + 0, x, True)
+            _mod.mem.setFloat32(self._address + 4, y, True)
+            _mod.mem.setFloat32(self._address + 8, z, True)
 
     @property
     def x(self):
@@ -252,10 +252,10 @@ class Vector4:
         else:
             self._address = _mod._malloc(16)
             self._to_free = True
-            _mod.mem.setFloat32(self._address + 0, x)
-            _mod.mem.setFloat32(self._address + 4, y)
-            _mod.mem.setFloat32(self._address + 8, z)
-            _mod.mem.setFloat32(self._address + 12, w)
+            _mod.mem.setFloat32(self._address + 0, x, True)
+            _mod.mem.setFloat32(self._address + 4, y, True)
+            _mod.mem.setFloat32(self._address + 8, z, True)
+            _mod.mem.setFloat32(self._address + 12, w, True)
 
     @property
     def x(self):
@@ -319,22 +319,22 @@ class Matrix:
         else:
             self._address = _mod._malloc(64)
             self._to_free = True
-            _mod.mem.setFloat32(self._address + 0, m0)
-            _mod.mem.setFloat32(self._address + 4, m4)
-            _mod.mem.setFloat32(self._address + 8, m8)
-            _mod.mem.setFloat32(self._address + 12, m12)
-            _mod.mem.setFloat32(self._address + 16, m1)
-            _mod.mem.setFloat32(self._address + 20, m5)
-            _mod.mem.setFloat32(self._address + 24, m9)
-            _mod.mem.setFloat32(self._address + 28, m13)
-            _mod.mem.setFloat32(self._address + 32, m2)
-            _mod.mem.setFloat32(self._address + 36, m6)
-            _mod.mem.setFloat32(self._address + 40, m10)
-            _mod.mem.setFloat32(self._address + 44, m14)
-            _mod.mem.setFloat32(self._address + 48, m3)
-            _mod.mem.setFloat32(self._address + 52, m7)
-            _mod.mem.setFloat32(self._address + 56, m11)
-            _mod.mem.setFloat32(self._address + 60, m15)
+            _mod.mem.setFloat32(self._address + 0, m0, True)
+            _mod.mem.setFloat32(self._address + 4, m4, True)
+            _mod.mem.setFloat32(self._address + 8, m8, True)
+            _mod.mem.setFloat32(self._address + 12, m12, True)
+            _mod.mem.setFloat32(self._address + 16, m1, True)
+            _mod.mem.setFloat32(self._address + 20, m5, True)
+            _mod.mem.setFloat32(self._address + 24, m9, True)
+            _mod.mem.setFloat32(self._address + 28, m13, True)
+            _mod.mem.setFloat32(self._address + 32, m2, True)
+            _mod.mem.setFloat32(self._address + 36, m6, True)
+            _mod.mem.setFloat32(self._address + 40, m10, True)
+            _mod.mem.setFloat32(self._address + 44, m14, True)
+            _mod.mem.setFloat32(self._address + 48, m3, True)
+            _mod.mem.setFloat32(self._address + 52, m7, True)
+            _mod.mem.setFloat32(self._address + 56, m11, True)
+            _mod.mem.setFloat32(self._address + 60, m15, True)
 
     @property
     def m0(self):
@@ -516,10 +516,10 @@ class Color:
         else:
             self._address = _mod._malloc(4)
             self._to_free = True
-            _mod.mem.setUint8(self._address + 0, r)
-            _mod.mem.setUint8(self._address + 1, g)
-            _mod.mem.setUint8(self._address + 2, b)
-            _mod.mem.setUint8(self._address + 3, a)
+            _mod.mem.setUint8(self._address + 0, r, True)
+            _mod.mem.setUint8(self._address + 1, g, True)
+            _mod.mem.setUint8(self._address + 2, b, True)
+            _mod.mem.setUint8(self._address + 3, a, True)
 
     @property
     def r(self):
@@ -581,10 +581,10 @@ class Rectangle:
         else:
             self._address = _mod._malloc(16)
             self._to_free = True
-            _mod.mem.setFloat32(self._address + 0, x)
-            _mod.mem.setFloat32(self._address + 4, y)
-            _mod.mem.setFloat32(self._address + 8, width)
-            _mod.mem.setFloat32(self._address + 12, height)
+            _mod.mem.setFloat32(self._address + 0, x, True)
+            _mod.mem.setFloat32(self._address + 4, y, True)
+            _mod.mem.setFloat32(self._address + 8, width, True)
+            _mod.mem.setFloat32(self._address + 12, height, True)
 
     @property
     def x(self):
@@ -646,11 +646,11 @@ class Image:
         else:
             self._address = _mod._malloc(20)
             self._to_free = True
-            _mod.mem.setUint32(self._address + 0, data)
-            _mod.mem.setInt32(self._address + 4, width)
-            _mod.mem.setInt32(self._address + 8, height)
-            _mod.mem.setInt32(self._address + 12, mipmaps)
-            _mod.mem.setInt32(self._address + 16, format)
+            _mod.mem.setUint32(self._address + 0, data, True)
+            _mod.mem.setInt32(self._address + 4, width, True)
+            _mod.mem.setInt32(self._address + 8, height, True)
+            _mod.mem.setInt32(self._address + 12, mipmaps, True)
+            _mod.mem.setInt32(self._address + 16, format, True)
 
     @property
     def data(self):
@@ -722,11 +722,11 @@ class Texture:
         else:
             self._address = _mod._malloc(20)
             self._to_free = True
-            _mod.mem.setUint32(self._address + 0, id)
-            _mod.mem.setInt32(self._address + 4, width)
-            _mod.mem.setInt32(self._address + 8, height)
-            _mod.mem.setInt32(self._address + 12, mipmaps)
-            _mod.mem.setInt32(self._address + 16, format)
+            _mod.mem.setUint32(self._address + 0, id, True)
+            _mod.mem.setInt32(self._address + 4, width, True)
+            _mod.mem.setInt32(self._address + 8, height, True)
+            _mod.mem.setInt32(self._address + 12, mipmaps, True)
+            _mod.mem.setInt32(self._address + 16, format, True)
 
     @property
     def id(self):
@@ -802,7 +802,7 @@ class RenderTexture:
         else:
             self._address = _mod._malloc(44)
             self._to_free = True
-            _mod.mem.setUint32(self._address + 0, id)
+            _mod.mem.setUint32(self._address + 0, id, True)
             if texture is not None:
                 struct_clone(texture, self._address + 4)
             if depth is not None:
@@ -862,11 +862,11 @@ class NPatchInfo:
             self._to_free = True
             if source is not None:
                 struct_clone(source, self._address + 0)
-            _mod.mem.setInt32(self._address + 16, left)
-            _mod.mem.setInt32(self._address + 20, top)
-            _mod.mem.setInt32(self._address + 24, right)
-            _mod.mem.setInt32(self._address + 28, bottom)
-            _mod.mem.setInt32(self._address + 32, layout)
+            _mod.mem.setInt32(self._address + 16, left, True)
+            _mod.mem.setInt32(self._address + 20, top, True)
+            _mod.mem.setInt32(self._address + 24, right, True)
+            _mod.mem.setInt32(self._address + 28, bottom, True)
+            _mod.mem.setInt32(self._address + 32, layout, True)
 
     @property
     def source(self):
@@ -948,10 +948,10 @@ class GlyphInfo:
         else:
             self._address = _mod._malloc(36)
             self._to_free = True
-            _mod.mem.setInt32(self._address + 0, value)
-            _mod.mem.setInt32(self._address + 4, offsetX)
-            _mod.mem.setInt32(self._address + 8, offsetY)
-            _mod.mem.setInt32(self._address + 12, advanceX)
+            _mod.mem.setInt32(self._address + 0, value, True)
+            _mod.mem.setInt32(self._address + 4, offsetX, True)
+            _mod.mem.setInt32(self._address + 8, offsetY, True)
+            _mod.mem.setInt32(self._address + 12, advanceX, True)
             if image is not None:
                 struct_clone(image, self._address + 16)
 
@@ -1025,13 +1025,13 @@ class Font:
         else:
             self._address = _mod._malloc(40)
             self._to_free = True
-            _mod.mem.setInt32(self._address + 0, baseSize)
-            _mod.mem.setInt32(self._address + 4, glyphCount)
-            _mod.mem.setInt32(self._address + 8, glyphPadding)
+            _mod.mem.setInt32(self._address + 0, baseSize, True)
+            _mod.mem.setInt32(self._address + 4, glyphCount, True)
+            _mod.mem.setInt32(self._address + 8, glyphPadding, True)
             if texture is not None:
                 struct_clone(texture, self._address + 12)
-            _mod.mem.setUint32(self._address + 32, recs)
-            _mod.mem.setUint32(self._address + 36, glyphs)
+            _mod.mem.setUint32(self._address + 32, recs, True)
+            _mod.mem.setUint32(self._address + 36, glyphs, True)
 
     @property
     def baseSize(self):
@@ -1119,8 +1119,8 @@ class Camera3D:
                 struct_clone(target, self._address + 12)
             if up is not None:
                 struct_clone(up, self._address + 24)
-            _mod.mem.setFloat32(self._address + 36, fovy)
-            _mod.mem.setInt32(self._address + 40, projection)
+            _mod.mem.setFloat32(self._address + 36, fovy, True)
+            _mod.mem.setInt32(self._address + 40, projection, True)
 
     @property
     def position(self):
@@ -1198,8 +1198,8 @@ class Camera2D:
                 struct_clone(offset, self._address + 0)
             if target is not None:
                 struct_clone(target, self._address + 8)
-            _mod.mem.setFloat32(self._address + 16, rotation)
-            _mod.mem.setFloat32(self._address + 20, zoom)
+            _mod.mem.setFloat32(self._address + 16, rotation, True)
+            _mod.mem.setFloat32(self._address + 20, zoom, True)
 
     @property
     def offset(self):
@@ -1261,21 +1261,21 @@ class Mesh:
         else:
             self._address = _mod._malloc(60)
             self._to_free = True
-            _mod.mem.setInt32(self._address + 0, vertexCount)
-            _mod.mem.setInt32(self._address + 4, triangleCount)
-            _mod.mem.setUint32(self._address + 8, vertices)
-            _mod.mem.setUint32(self._address + 12, texcoords)
-            _mod.mem.setUint32(self._address + 16, texcoords2)
-            _mod.mem.setUint32(self._address + 20, normals)
-            _mod.mem.setUint32(self._address + 24, tangents)
-            _mod.mem.setUint32(self._address + 28, colors)
-            _mod.mem.setUint32(self._address + 32, indices)
-            _mod.mem.setUint32(self._address + 36, animVertices)
-            _mod.mem.setUint32(self._address + 40, animNormals)
-            _mod.mem.setUint32(self._address + 44, boneIds)
-            _mod.mem.setUint32(self._address + 48, boneWeights)
-            _mod.mem.setUint32(self._address + 52, vaoId)
-            _mod.mem.setUint32(self._address + 56, vboId)
+            _mod.mem.setInt32(self._address + 0, vertexCount, True)
+            _mod.mem.setInt32(self._address + 4, triangleCount, True)
+            _mod.mem.setUint32(self._address + 8, vertices, True)
+            _mod.mem.setUint32(self._address + 12, texcoords, True)
+            _mod.mem.setUint32(self._address + 16, texcoords2, True)
+            _mod.mem.setUint32(self._address + 20, normals, True)
+            _mod.mem.setUint32(self._address + 24, tangents, True)
+            _mod.mem.setUint32(self._address + 28, colors, True)
+            _mod.mem.setUint32(self._address + 32, indices, True)
+            _mod.mem.setUint32(self._address + 36, animVertices, True)
+            _mod.mem.setUint32(self._address + 40, animNormals, True)
+            _mod.mem.setUint32(self._address + 44, boneIds, True)
+            _mod.mem.setUint32(self._address + 48, boneWeights, True)
+            _mod.mem.setUint32(self._address + 52, vaoId, True)
+            _mod.mem.setUint32(self._address + 56, vboId, True)
 
     @property
     def vertexCount(self):
@@ -1447,8 +1447,8 @@ class Shader:
         else:
             self._address = _mod._malloc(8)
             self._to_free = True
-            _mod.mem.setUint32(self._address + 0, id)
-            _mod.mem.setUint32(self._address + 4, locs)
+            _mod.mem.setUint32(self._address + 0, id, True)
+            _mod.mem.setUint32(self._address + 4, locs, True)
 
     @property
     def id(self):
@@ -1494,7 +1494,7 @@ class MaterialMap:
                 struct_clone(texture, self._address + 0)
             if color is not None:
                 struct_clone(color, self._address + 20)
-            _mod.mem.setFloat32(self._address + 24, value)
+            _mod.mem.setFloat32(self._address + 24, value, True)
 
     @property
     def texture(self):
@@ -1548,7 +1548,7 @@ class Material:
             self._to_free = True
             if shader is not None:
                 struct_clone(shader, self._address + 0)
-            _mod.mem.setUint32(self._address + 8, maps)
+            _mod.mem.setUint32(self._address + 8, maps, True)
             if params is not None:
                 struct_clone(params, self._address + 12)
 
@@ -1661,7 +1661,7 @@ class BoneInfo:
             self._to_free = True
             if name is not None:
                 struct_clone(name, self._address + 0)
-            _mod.mem.setInt32(self._address + 32, parent)
+            _mod.mem.setInt32(self._address + 32, parent, True)
 
     @property
     def name(self):
@@ -1705,14 +1705,14 @@ class Model:
             self._to_free = True
             if transform is not None:
                 struct_clone(transform, self._address + 0)
-            _mod.mem.setInt32(self._address + 64, meshCount)
-            _mod.mem.setInt32(self._address + 68, materialCount)
-            _mod.mem.setUint32(self._address + 72, meshes)
-            _mod.mem.setUint32(self._address + 76, materials)
-            _mod.mem.setUint32(self._address + 80, meshMaterial)
-            _mod.mem.setInt32(self._address + 84, boneCount)
-            _mod.mem.setUint32(self._address + 88, bones)
-            _mod.mem.setUint32(self._address + 92, bindPose)
+            _mod.mem.setInt32(self._address + 64, meshCount, True)
+            _mod.mem.setInt32(self._address + 68, materialCount, True)
+            _mod.mem.setUint32(self._address + 72, meshes, True)
+            _mod.mem.setUint32(self._address + 76, materials, True)
+            _mod.mem.setUint32(self._address + 80, meshMaterial, True)
+            _mod.mem.setInt32(self._address + 84, boneCount, True)
+            _mod.mem.setUint32(self._address + 88, bones, True)
+            _mod.mem.setUint32(self._address + 92, bindPose, True)
 
     @property
     def transform(self):
@@ -1824,10 +1824,10 @@ class ModelAnimation:
         else:
             self._address = _mod._malloc(48)
             self._to_free = True
-            _mod.mem.setInt32(self._address + 0, boneCount)
-            _mod.mem.setInt32(self._address + 4, frameCount)
-            _mod.mem.setUint32(self._address + 8, bones)
-            _mod.mem.setUint32(self._address + 12, framePoses)
+            _mod.mem.setInt32(self._address + 0, boneCount, True)
+            _mod.mem.setInt32(self._address + 4, frameCount, True)
+            _mod.mem.setUint32(self._address + 8, bones, True)
+            _mod.mem.setUint32(self._address + 12, framePoses, True)
             if name is not None:
                 struct_clone(name, self._address + 16)
 
@@ -1946,8 +1946,8 @@ class RayCollision:
         else:
             self._address = _mod._malloc(29)
             self._to_free = True
-            _mod.mem.setInt8(self._address + 0, hit)
-            _mod.mem.setFloat32(self._address + 1, distance)
+            _mod.mem.setInt8(self._address + 0, hit, True)
+            _mod.mem.setFloat32(self._address + 1, distance, True)
             if point is not None:
                 struct_clone(point, self._address + 5)
             if normal is not None:
@@ -2058,11 +2058,11 @@ class Wave:
         else:
             self._address = _mod._malloc(20)
             self._to_free = True
-            _mod.mem.setUint32(self._address + 0, frameCount)
-            _mod.mem.setUint32(self._address + 4, sampleRate)
-            _mod.mem.setUint32(self._address + 8, sampleSize)
-            _mod.mem.setUint32(self._address + 12, channels)
-            _mod.mem.setUint32(self._address + 16, data)
+            _mod.mem.setUint32(self._address + 0, frameCount, True)
+            _mod.mem.setUint32(self._address + 4, sampleRate, True)
+            _mod.mem.setUint32(self._address + 8, sampleSize, True)
+            _mod.mem.setUint32(self._address + 12, channels, True)
+            _mod.mem.setUint32(self._address + 16, data, True)
 
     @property
     def frameCount(self):
@@ -2134,11 +2134,11 @@ class AudioStream:
         else:
             self._address = _mod._malloc(20)
             self._to_free = True
-            _mod.mem.setUint32(self._address + 0, buffer)
-            _mod.mem.setUint32(self._address + 4, processor)
-            _mod.mem.setUint32(self._address + 8, sampleRate)
-            _mod.mem.setUint32(self._address + 12, sampleSize)
-            _mod.mem.setUint32(self._address + 16, channels)
+            _mod.mem.setUint32(self._address + 0, buffer, True)
+            _mod.mem.setUint32(self._address + 4, processor, True)
+            _mod.mem.setUint32(self._address + 8, sampleRate, True)
+            _mod.mem.setUint32(self._address + 12, sampleSize, True)
+            _mod.mem.setUint32(self._address + 16, channels, True)
 
     @property
     def buffer(self):
@@ -2212,7 +2212,7 @@ class Sound:
             self._to_free = True
             if stream is not None:
                 struct_clone(stream, self._address + 0)
-            _mod.mem.setUint32(self._address + 20, frameCount)
+            _mod.mem.setUint32(self._address + 20, frameCount, True)
 
     @property
     def stream(self):
@@ -2256,10 +2256,10 @@ class Music:
             self._to_free = True
             if stream is not None:
                 struct_clone(stream, self._address + 0)
-            _mod.mem.setUint32(self._address + 20, frameCount)
-            _mod.mem.setInt8(self._address + 24, looping)
-            _mod.mem.setInt32(self._address + 25, ctxType)
-            _mod.mem.setUint32(self._address + 29, ctxData)
+            _mod.mem.setUint32(self._address + 20, frameCount, True)
+            _mod.mem.setInt8(self._address + 24, looping, True)
+            _mod.mem.setInt32(self._address + 25, ctxType, True)
+            _mod.mem.setUint32(self._address + 29, ctxData, True)
 
     @property
     def stream(self):
@@ -2331,14 +2331,14 @@ class VrDeviceInfo:
         else:
             self._address = _mod._malloc(64)
             self._to_free = True
-            _mod.mem.setInt32(self._address + 0, hResolution)
-            _mod.mem.setInt32(self._address + 4, vResolution)
-            _mod.mem.setFloat32(self._address + 8, hScreenSize)
-            _mod.mem.setFloat32(self._address + 12, vScreenSize)
-            _mod.mem.setFloat32(self._address + 16, vScreenCenter)
-            _mod.mem.setFloat32(self._address + 20, eyeToScreenDistance)
-            _mod.mem.setFloat32(self._address + 24, lensSeparationDistance)
-            _mod.mem.setFloat32(self._address + 28, interpupillaryDistance)
+            _mod.mem.setInt32(self._address + 0, hResolution, True)
+            _mod.mem.setInt32(self._address + 4, vResolution, True)
+            _mod.mem.setFloat32(self._address + 8, hScreenSize, True)
+            _mod.mem.setFloat32(self._address + 12, vScreenSize, True)
+            _mod.mem.setFloat32(self._address + 16, vScreenCenter, True)
+            _mod.mem.setFloat32(self._address + 20, eyeToScreenDistance, True)
+            _mod.mem.setFloat32(self._address + 24, lensSeparationDistance, True)
+            _mod.mem.setFloat32(self._address + 28, interpupillaryDistance, True)
             if lensDistortionValues is not None:
                 struct_clone(lensDistortionValues, self._address + 32)
             if chromaAbCorrection is not None:
@@ -2581,9 +2581,9 @@ class FilePathList:
         else:
             self._address = _mod._malloc(12)
             self._to_free = True
-            _mod.mem.setUint32(self._address + 0, capacity)
-            _mod.mem.setUint32(self._address + 4, count)
-            _mod.mem.setUint32(self._address + 8, paths)
+            _mod.mem.setUint32(self._address + 0, capacity, True)
+            _mod.mem.setUint32(self._address + 4, count, True)
+            _mod.mem.setUint32(self._address + 8, paths, True)
 
     @property
     def capacity(self):
