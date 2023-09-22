@@ -1,5 +1,5 @@
 import 'https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js'
-import setup from 'https://konsumer.js.org/raylib-python-web/python-raylib-web.js'
+import setup from './python-raylib-web.js'
 
 class RaylibPythonComponent extends HTMLElement {
   constructor () {
@@ -79,6 +79,6 @@ canvas {
 
 if (typeof document !== 'undefined') {
   document.addEventListener('DOMContentLoaded', () => {
-    window.customElements.define('raylib-python-game', RaylibComponent)
+    window.customElements.define('raylib-python-game', RaylibPythonComponent)
   })
 }
